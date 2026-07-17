@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local tooling (dev server launch config, not app source)
+.claude/
+
+# supabase CLI local cache (may contain pooler connection strings)
+supabase/.temp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -4,6 +4,20 @@ export interface Club {
   tag: string;
   color: string;
   color2: string;
+  logo_url?: string | null;
+}
+
+export type Position = 'GK' | 'VL' | 'PV/ATK' | 'MC';
+
+export interface Player {
+  id: string;
+  club_id: string;
+  nick: string;
+  game_id: string;
+  discord?: string | null;
+  posicao?: Position | null;
+  is_captain: boolean;
+  created_at: string;
 }
 
 export interface Standing {
@@ -19,6 +33,13 @@ export interface Standing {
   form: ('V' | 'E' | 'D')[];
 }
 
+// Um gol dentro de home_scorers/away_scorers — se own_goal, o nick pertence ao
+// elenco do time ADVERSÁRIO daquele array (marcou contra o próprio time).
+export interface GoalEntry {
+  nick: string;
+  own_goal?: boolean;
+}
+
 export interface Match {
   id: number;
   home: string;
@@ -29,25 +50,37 @@ export interface Match {
   rodada: number;
   date: string;
   stage: string;
+  home_scorers: GoalEntry[];
+  away_scorers: GoalEntry[];
+  home_assists: string[];
+  away_assists: string[];
+  is_wo: boolean;
 }
 
 export interface Scorer {
   nick: string;
+  game_id?: string | null;
   club: string;
   goals: number;
   assists: number;
   jogos: number;
 }
 
+export type NewsCategory = 'noticia' | 'inscricoes' | 'comunicado' | 'resultado';
+
 export interface NewsItem {
   id: string;
   title: string;
   excerpt: string;
+  body: string;
   tag: string;
   date: string;
   readTime: string;
   author: string;
   img: string;
+  category: NewsCategory;
+  match_id: number | null;
+  competition_id: string | null;
 }
 
 export type Page =
@@ -59,12 +92,14 @@ export type Page =
   | 'club'
   | 'article'
   | 'more'
+  | 'saved'
   | 'profile'
   | 'settings'
   | 'subscription'
   | 'rules'
   | 'support'
   | 'search'
+  | 'login'
   | 'admin';
 
 export interface HistoryEntry {
