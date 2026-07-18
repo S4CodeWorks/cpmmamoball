@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { AppProvider, useApp } from '@/contexts/AppContext';
+import { AppProvider, useApp, ConfirmDialogHost } from '@/contexts/AppContext';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { DataProvider, useData } from '@/contexts/DataContext';
 import { BottomNav } from '@/components/ui/BottomNav';
@@ -135,6 +135,7 @@ function AppRoot({ initialPage }: { initialPage?: string }) {
         <Toast />
         <BottomNav page={current.page} onNav={onTab} />
       </div>
+      <ConfirmDialogHost />
     </div>
   );
 }

@@ -27,6 +27,8 @@ interface AppContextValue {
   toast: string | null;
   showToast: (msg: string) => void;
   confirm: (opts: ConfirmOptions) => Promise<boolean>;
+  confirmState: (ConfirmOptions & { resolve: (v: boolean) => void }) | null;
+  closeConfirm: (result: boolean) => void;
 }
 
 const AppCtx = createContext<AppContextValue | null>(null);
@@ -149,29 +151,36 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       notifs, toggleNotif,
       bookmarks, toggleBookmark,
       toast, showToast,
-      confirm,
+      confirm, confirmState, closeConfirm,
     }}>
       {children}
-      {confirmState && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 500, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <div onClick={() => closeConfirm(false)} style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(3px)' }} />
-          <div style={{ position: 'relative', width: '100%', maxWidth: 360, background: 'var(--surface-c-high)', borderRadius: 20, padding: '24px 22px 18px', boxShadow: '0 12px 48px rgba(0,0,0,0.35)' }}>
-            <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>{confirmState.title}</h3>
-            {confirmState.message && (
-              <p style={{ margin: '0 0 20px', fontSize: 14, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>{confirmState.message}</p>
-            )}
-            <div style={{ display: 'flex', gap: 10, marginTop: confirmState.message ? 0 : 20 }}>
-              <button onClick={() => closeConfirm(false)} className="btn btn-outlined" style={{ flex: 1, height: 44 }}>
-                {confirmState.cancelLabel ?? 'Cancelar'}
-              </button>
-              <button onClick={() => closeConfirm(true)} className="btn btn-primary" style={{ flex: 1, height: 44, background: confirmState.danger ? 'var(--error)' : undefined, color: confirmState.danger ? 'var(--on-error)' : undefined }}>
-                {confirmState.confirmLabel ?? 'Confirmar'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </AppCtx.Provider>
+  );
+}
+
+// Renderiza o popup de confirmação — precisa ficar DENTRO de .app-root pra herdar
+// as CSS variables de tema (elas são escopadas a .app-root[data-theme], não a :root).
+export function ConfirmDialogHost() {
+  const { confirmState, closeConfirm } = useApp();
+  if (!confirmState) return null;
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 500, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+      <div onClick={() => closeConfirm(false)} style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(3px)' }} />
+      <div style={{ position: 'relative', width: '100%', maxWidth: 360, background: 'var(--surface-c-high)', borderRadius: 20, padding: '24px 22px 18px', boxShadow: '0 12px 48px rgba(0,0,0,0.35)' }}>
+        <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>{confirmState.title}</h3>
+        {confirmState.message && (
+          <p style={{ margin: '0 0 20px', fontSize: 14, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>{confirmState.message}</p>
+        )}
+        <div style={{ display: 'flex', gap: 10, marginTop: confirmState.message ? 0 : 20 }}>
+          <button onClick={() => closeConfirm(false)} className="btn btn-outlined" style={{ flex: 1, height: 44 }}>
+            {confirmState.cancelLabel ?? 'Cancelar'}
+          </button>
+          <button onClick={() => closeConfirm(true)} className="btn btn-primary" style={{ flex: 1, height: 44, background: confirmState.danger ? 'var(--error)' : undefined, color: confirmState.danger ? 'var(--on-error)' : undefined }}>
+            {confirmState.confirmLabel ?? 'Confirmar'}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
