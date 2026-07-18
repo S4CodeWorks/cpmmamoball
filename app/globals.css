@@ -113,6 +113,25 @@
   --dc-shadow-md:0 4px 16px rgba(0,0,0,.5);
   --dc-shadow-lg:0 18px 48px rgba(0,0,0,.6);
 }
+/* Aliasa os tokens Material antigos (--primary, --surface-c-*, etc.) pros novos
+   --dc-* dentro do escopo .dc-mono — assim toda a UI existente (.btn, .card-filled,
+   .chip, inputs, ConfirmDialogHost...) já usada em Times/Notícias/Competições/
+   Partidas fica monocromática automaticamente, sem reescrever cada componente. */
+.dc-mono[data-theme] {
+  --primary: var(--dc-accent); --on-primary: var(--dc-on-accent);
+  --primary-container: var(--dc-surface-3); --on-primary-container: var(--dc-text);
+  --secondary: var(--dc-text-2); --on-secondary: var(--dc-on-accent);
+  --secondary-container: var(--dc-surface-2); --on-secondary-container: var(--dc-text);
+  --tertiary: var(--dc-text-2); --tertiary-container: var(--dc-surface-2);
+  --error: var(--dc-danger); --warning: var(--dc-warn); --live: var(--dc-live);
+  --bg: var(--dc-bg); --surface: var(--dc-surface);
+  --surface-c-lowest: var(--dc-bg); --surface-c-low: var(--dc-surface-2);
+  --surface-c: var(--dc-surface-2); --surface-c-high: var(--dc-surface-3); --surface-c-highest: var(--dc-surface-4);
+  --on-surface: var(--dc-text); --on-surface-variant: var(--dc-text-2);
+  --outline: var(--dc-border-strong); --outline-variant: var(--dc-border);
+  --shadow-sm: var(--dc-shadow-sm); --shadow-md: var(--dc-shadow-md); --shadow-lg: var(--dc-shadow-lg);
+  --sans: var(--dc-sans); --mono: var(--dc-mono);
+}
 .dc-mono svg:not([fill]) { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .dc-mono input::placeholder, .dc-mono textarea::placeholder { color: var(--dc-text-3); }
 .dc-mono ::selection { background: var(--dc-accent); color: var(--dc-on-accent); }

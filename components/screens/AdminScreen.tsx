@@ -80,6 +80,15 @@ function DcCrest({ clubId, size = 34 }: { clubId: string; size?: number }) {
   return <div style={st}>{c.tag}</div>;
 }
 
+// Mesma tile monocromática, mas só com a sigla em texto (times ainda não criados — ex. inscrições pendentes)
+function DcCrestByTag({ tag, size = 48 }: { tag: string; size?: number }) {
+  return (
+    <div style={{ width: size, height: size, borderRadius: 12, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 14, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text)', flexShrink: 0 }}>
+      {tag}
+    </div>
+  );
+}
+
 // ── Dashboard ─────────────────────────────────────────────────────────────────
 
 function DcKpi({ icon, n, l, hot, color }: { icon: string; n: string; l: string; hot?: boolean; color?: string }) {
@@ -217,7 +226,7 @@ function AdminDashboard({ onSection }: { onSection: (s: Section) => void }) {
 
 // ── Inscrições ────────────────────────────────────────────────────────────────
 
-function AdminInscricoes() {
+function AdminInscricoes({ onNav }: { onNav: (page: string, param?: string | number | null) => void }) {
   const { showToast } = useApp();
   const { inscricoes, clubs, refresh } = useData();
   const [busy, setBusy] = useState<number | null>(null);
@@ -258,64 +267,83 @@ function AdminInscricoes() {
     } finally { setBusy(null); }
   };
 
+  const publicLink = (
+    <div style={{ display: 'flex', justifyContent: 'flex-end', maxWidth: 820, marginBottom: 14 }}>
+      <button onClick={() => onNav('subscription')}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 7, height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
+        <span style={{ width: 14, height: 14 }}>{I.externalLink}</span>Ver página pública de inscrição
+      </button>
+    </div>
+  );
+
   if (pendentes.length === 0) {
     return (
-      <div style={{ padding: '0 16px' }}>
-        <div className="empty">
-          <div className="empty-icon">{I.check}</div>
-          <h3 style={{ margin: '0 0 6px', fontSize: 17, color: 'var(--on-surface)', fontWeight: 700 }}>Tudo em dia</h3>
-          <p style={{ margin: 0, fontSize: 14 }}>Nenhuma inscrição aguardando análise.</p>
+      <div>
+        {publicLink}
+        <div style={{ textAlign: 'center', padding: '80px 24px', color: 'var(--dc-text-2)' }}>
+          <div style={{ width: 60, height: 60, borderRadius: 18, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', display: 'grid', placeItems: 'center', margin: '0 auto 16px', color: 'var(--dc-pos)' }}>
+            <span style={{ width: 26, height: 26 }}>{I.check}</span>
+          </div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--dc-text)' }}>Tudo em dia</div>
+          <div style={{ fontSize: 13.5, marginTop: 6 }}>Nenhuma inscrição aguardando análise.</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-      {pendentes.map(it => (
-        <div key={it.id} className="card-filled" style={{ padding: 0 }}>
-          <div style={{ padding: '16px 16px 12px', display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--surface-c-high)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 14 }}>{it.tag}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 15, fontWeight: 700 }}>{it.nome}</div>
-              <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Capitão: {it.capitao} · {new Date(it.created_at).toLocaleDateString('pt-BR')}</div>
+    <div>
+      {publicLink}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 820 }}>
+        {pendentes.map(it => (
+          <div key={it.id} style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>
+              <DcCrestByTag tag={it.tag} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--dc-text)' }}>{it.nome}</div>
+                <div style={{ fontSize: 12.5, color: 'var(--dc-text-3)' }}>Capitão {it.capitao} · enviado {new Date(it.created_at).toLocaleDateString('pt-BR')}</div>
+              </div>
+              <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--dc-warn)', background: 'var(--dc-warn-bg)', padding: '4px 10px', borderRadius: 99, flexShrink: 0 }}>Pendente</span>
+            </div>
+            {(it.jogadores.length > 0 || it.roster) && (
+              <>
+                <button onClick={() => setExpanded(expanded === it.id ? null : it.id)}
+                  style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', border: 'none', borderTop: '1px solid var(--dc-border)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
+                  <span>{expanded === it.id ? 'Ocultar elenco' : `Ver elenco (${it.jogadores.length || 'texto livre'})`}</span>
+                  <span style={{ width: 16, height: 16, transform: expanded === it.id ? 'rotate(180deg)' : '', transition: 'transform .2s' }}>{I.chevD}</span>
+                </button>
+                {expanded === it.id && (
+                  it.jogadores.length > 0 ? (
+                    <div style={{ background: 'var(--dc-surface-2)', borderTop: '1px solid var(--dc-border)' }}>
+                      {it.jogadores.map((j, i) => (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', padding: '10px 18px', borderTop: i ? '1px solid var(--dc-border)' : 'none' }}>
+                          {it.capitao.trim().toLowerCase() === j.nick.trim().toLowerCase() && (
+                            <span style={{ fontSize: 9.5, fontWeight: 800, letterSpacing: '0.04em', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', padding: '2px 7px', borderRadius: 99 }}>CAP</span>
+                          )}
+                          <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--dc-text)' }}>{j.nick}</span>
+                          <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>#{j.game_id}</span>
+                          {j.discord && <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>{j.discord}</span>}
+                          {j.posicao && <span style={{ fontSize: 10, fontWeight: 700, background: 'var(--dc-surface-3)', color: 'var(--dc-text-2)', padding: '2px 8px', borderRadius: 99 }}>{j.posicao}</span>}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ padding: '12px 18px', background: 'var(--dc-surface-2)', borderTop: '1px solid var(--dc-border)', fontFamily: 'var(--dc-mono)', fontSize: 12.5, lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--dc-text-2)' }}>{it.roster}</div>
+                  )
+                )}
+              </>
+            )}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, padding: '14px 18px', borderTop: '1px solid var(--dc-border)' }}>
+              <button disabled={busy === it.id} onClick={() => handle(it.id, 'recusado')}
+                style={{ height: 42, borderRadius: 10, border: '1px solid var(--dc-border-2)', background: 'var(--dc-surface)', color: 'var(--dc-text)', fontSize: 13.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>Recusar</button>
+              <button disabled={busy === it.id} onClick={() => handle(it.id, 'aprovado')}
+                style={{ height: 42, borderRadius: 10, border: 'none', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', fontSize: 13.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
+                {busy === it.id ? '...' : it.jogadores.length > 0 ? 'Aprovar e criar time' : 'Aprovar'}
+              </button>
             </div>
           </div>
-          {(it.jogadores.length > 0 || it.roster) && (
-            <>
-              <button onClick={() => setExpanded(expanded === it.id ? null : it.id)} className="tap"
-                style={{ width: '100%', padding: '10px 16px', borderTop: '1px solid var(--outline-variant)', color: 'var(--primary)', fontSize: 13, fontWeight: 600, textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                {expanded === it.id ? 'Ocultar elenco' : `Ver elenco enviado${it.jogadores.length > 0 ? ` (${it.jogadores.length})` : ''}`}
-                <span style={{ width: 18, height: 18, transform: expanded === it.id ? 'rotate(180deg)' : '', transition: 'transform .2s' }}>{I.chevD}</span>
-              </button>
-              {expanded === it.id && (
-                it.jogadores.length > 0 ? (
-                  <div style={{ background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
-                    {it.jogadores.map((j, i) => (
-                      <div key={i} style={{ padding: '10px 18px', borderTop: i ? '1px solid var(--outline-variant)' : 'none', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 13.5, fontWeight: 600 }}>{j.nick}</span>
-                        <span className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>#{j.game_id}</span>
-                        {j.discord && <span className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Discord: {j.discord}</span>}
-                        {j.posicao && (
-                          <span style={{ fontSize: 10, background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', padding: '2px 8px', borderRadius: 999, fontWeight: 700 }}>{j.posicao}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div style={{ padding: '12px 18px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)', fontFamily: 'var(--mono)', fontSize: 12.5, lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--on-surface-variant)' }}>{it.roster}</div>
-                )
-              )}
-            </>
-          )}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, padding: '12px 16px', borderTop: '1px solid var(--outline-variant)' }}>
-            <button disabled={busy === it.id} onClick={() => handle(it.id, 'recusado')} className="btn btn-outlined" style={{ height: 42 }}>Recusar</button>
-            <button disabled={busy === it.id} onClick={() => handle(it.id, 'aprovado')} className="btn btn-primary" style={{ height: 42 }}>
-              {busy === it.id ? '...' : it.jogadores.length > 0 ? 'Aprovar e criar time' : 'Aprovar'}
-            </button>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -2388,7 +2416,7 @@ export function AdminScreen({ onBack, onNav }: NavProps) {
   const sectionView = (
     <>
       {section === 'dashboard'   && <AdminDashboard  onSection={setSection} />}
-      {section === 'inscricoes'  && <AdminInscricoes />}
+      {section === 'inscricoes'  && <AdminInscricoes onNav={onNav} />}
       {section === 'times'       && <AdminTimes />}
       {section === 'partidas'    && <AdminPartidas />}
       {section === 'noticias'    && <AdminNoticias />}

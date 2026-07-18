@@ -161,8 +161,9 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
   if (isFullBleed) {
     return (
-      <div className="app-root" data-theme={resolvedTheme}>
+      <div className="app-root dc-mono" data-theme={resolvedTheme} style={{ position: 'relative', minHeight: '100dvh' }}>
         {initialLoad ? <InitialLoading /> : view}
+        <Toast />
         <ConfirmDialogHost />
       </div>
     );
