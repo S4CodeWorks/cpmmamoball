@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'CPM MamoBall · Mobile 2026',
+  title: 'CPM MamoBall',
   description: 'Copa MamoBall — plataforma oficial da liga',
 };
 
