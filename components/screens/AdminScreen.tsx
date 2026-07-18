@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
 import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
@@ -2194,9 +2195,114 @@ function AdminCompeticoes() {
 
 // ── Shell principal ───────────────────────────────────────────────────────────
 
+const NAV_GERAL: Section[] = ['dashboard', 'inscricoes', 'times'];
+const NAV_COMPETICAO: Section[] = ['partidas', 'noticias', 'competicoes'];
+const SECTION_SUB: Record<Section, string> = {
+  dashboard: 'Visão geral da liga',
+  inscricoes: 'Times aguardando aprovação',
+  times: 'Clubes e elenco',
+  partidas: 'Calendário e resultados',
+  noticias: 'Publicações da federação',
+  competicoes: 'Ligas e inscrições de clubes',
+};
+
+function AdminSidebar({ section, setSection, pendentes, isDesktop, mobileOpen, onCloseMobile }: {
+  section: Section; setSection: (s: Section) => void; pendentes: number;
+  isDesktop: boolean; mobileOpen: boolean; onCloseMobile: () => void;
+}) {
+  const { resolvedTheme, setTheme } = useApp();
+  const { user, signOut } = useAuth();
+
+  const navBtnStyle = (id: Section): React.CSSProperties => ({
+    display: 'flex', alignItems: 'center', gap: 11, width: '100%', height: 40, padding: '0 12px',
+    borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 13.5, fontFamily: 'var(--dc-sans)',
+    background: section === id ? 'var(--dc-surface-3)' : 'transparent',
+    color: section === id ? 'var(--dc-text)' : 'var(--dc-text-2)', fontWeight: section === id ? 700 : 500,
+  });
+
+  const NavGroup = ({ title, ids, close }: { title: string; ids: Section[]; close?: boolean }) => (
+    <>
+      <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.09em', color: 'var(--dc-text-3)', padding: '12px 12px 8px' }}>{title}</div>
+      {ids.map(id => {
+        const s = SECTIONS.find(x => x.id === id)!;
+        return (
+          <button key={id} onClick={() => { setSection(id); if (close) onCloseMobile(); }} style={navBtnStyle(id)}>
+            <span style={{ width: 19, height: 19, flexShrink: 0, display: 'grid', placeItems: 'center' }}>{I[s.icon]}</span>
+            <span style={{ flex: 1, textAlign: 'left' }}>{s.label}</span>
+            {id === 'inscricoes' && pendentes > 0 && (
+              <span style={{ fontSize: 10.5, fontWeight: 700, color: '#fff', background: 'var(--dc-live)', padding: '2px 7px', borderRadius: 99 }}>{pendentes}</span>
+            )}
+          </button>
+        );
+      })}
+    </>
+  );
+
+  if (isDesktop) {
+    return (
+      <aside style={{ display: 'flex', flexDirection: 'column', width: 264, flexShrink: 0, background: 'var(--dc-panel)', borderRight: '1px solid var(--dc-border)', height: '100dvh' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '22px 20px 20px' }}>
+          <div style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 17, letterSpacing: '-0.03em' }}>C</div>
+          <div style={{ lineHeight: 1.1 }}>
+            <div style={{ fontWeight: 700, fontSize: 14.5, letterSpacing: '-0.02em', color: 'var(--dc-text)' }}>CPM Admin</div>
+            <div style={{ fontSize: 11, color: 'var(--dc-text-3)', fontWeight: 500 }}>MamoBall · staff</div>
+          </div>
+        </div>
+        <div style={{ padding: '2px 12px 0', flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <NavGroup title="GERAL" ids={NAV_GERAL} />
+          <NavGroup title="COMPETIÇÃO" ids={NAV_COMPETICAO} />
+        </div>
+        <div style={{ padding: 12, borderTop: '1px solid var(--dc-border)' }}>
+          <div style={{ display: 'flex', background: 'var(--dc-surface-2)', borderRadius: 11, padding: 3, gap: 2, marginBottom: 10 }}>
+            <button onClick={() => setTheme('light')}
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, height: 32, borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 12.5, fontWeight: 600, fontFamily: 'var(--dc-sans)', background: resolvedTheme === 'light' ? 'var(--dc-surface)' : 'transparent', color: resolvedTheme === 'light' ? 'var(--dc-text)' : 'var(--dc-text-3)', boxShadow: resolvedTheme === 'light' ? 'var(--dc-shadow-sm)' : 'none' }}>
+              <span style={{ width: 15, height: 15 }}>{I.sun}</span>Claro
+            </button>
+            <button onClick={() => setTheme('dark')}
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, height: 32, borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 12.5, fontWeight: 600, fontFamily: 'var(--dc-sans)', background: resolvedTheme === 'dark' ? 'var(--dc-surface)' : 'transparent', color: resolvedTheme === 'dark' ? 'var(--dc-text)' : 'var(--dc-text-3)', boxShadow: resolvedTheme === 'dark' ? 'var(--dc-shadow-sm)' : 'none' }}>
+              <span style={{ width: 15, height: 15 }}>{I.moon}</span>Escuro
+            </button>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 8px' }}>
+            <div style={{ width: 32, height: 32, borderRadius: 99, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border)', display: 'grid', placeItems: 'center', fontWeight: 700, fontSize: 13, color: 'var(--dc-text)' }}>
+              {(user?.email?.[0] ?? '?').toUpperCase()}
+            </div>
+            <div style={{ flex: 1, minWidth: 0, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{user?.email ?? 'Staff'}</div>
+              <div style={{ fontSize: 11, color: 'var(--dc-text-3)' }}>★ Administrador</div>
+            </div>
+            <button onClick={() => signOut()} title="Sair"
+              style={{ width: 30, height: 30, borderRadius: 8, border: 'none', background: 'transparent', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
+              <span style={{ width: 16, height: 16 }}>{I.signOut}</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    );
+  }
+
+  if (!mobileOpen) return null;
+  return (
+    <>
+      <div onClick={onCloseMobile} style={{ position: 'fixed', inset: 0, zIndex: 80, background: 'rgba(0,0,0,.45)', animation: 'dcInFade .18s ease' }} />
+      <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, zIndex: 81, width: 250, background: 'var(--dc-panel)', borderRight: '1px solid var(--dc-border)', animation: 'dcInUp .22s ease', display: 'flex', flexDirection: 'column', padding: '16px 12px', gap: 2, overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '6px 10px 16px' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 16 }}>C</div>
+          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--dc-text)' }}>CPM Admin</div>
+        </div>
+        <NavGroup title="GERAL" ids={NAV_GERAL} close />
+        <NavGroup title="COMPETIÇÃO" ids={NAV_COMPETICAO} close />
+      </div>
+    </>
+  );
+}
+
 export function AdminScreen({ onBack, onNav }: NavProps) {
   const [section, setSection] = useState<Section>('dashboard');
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { inscricoes } = useData();
+  const { resolvedTheme } = useApp();
+  const isDesktop = useIsDesktop();
   const pendentes = inscricoes.filter(i => i.status === 'pendente').length;
   const active = SECTIONS.find(s => s.id === section)!;
 
@@ -2212,35 +2318,44 @@ export function AdminScreen({ onBack, onNav }: NavProps) {
   );
 
   return (
-    <>
-      <TopAppBar showBack onBack={onBack} title={`Admin · ${active.label}`}
-        rightExtras={<button className="icon-btn" onClick={() => onNav('search')} title="Buscar">{I.search}</button>}
-      />
+    <div className="app-root dc-mono" data-theme={resolvedTheme}
+      style={{ display: 'flex', height: '100dvh', width: '100%', overflow: 'hidden', background: 'var(--dc-bg)', color: 'var(--dc-text)', fontFamily: 'var(--dc-sans)', position: 'relative' }}>
 
-      {/* Mobile: pills horizontais */}
-      <div className="admin-tabs">
-        {SECTIONS.map(s => (
-          <button key={s.id} onClick={() => setSection(s.id)} className={`admin-tab tap${section === s.id ? ' is-active' : ''}`}>
-            <span style={{ width: 18, height: 18 }}>{I[s.icon]}</span>
-            {s.label}
-            {s.id === 'inscricoes' && pendentes > 0 && <span className="badge">{pendentes}</span>}
-          </button>
-        ))}
-      </div>
+      <AdminSidebar section={section} setSection={setSection} pendentes={pendentes}
+        isDesktop={isDesktop} mobileOpen={mobileNavOpen} onCloseMobile={() => setMobileNavOpen(false)} />
 
-      {/* Desktop: sidebar fixa + conteúdo */}
-      <div className="admin-shell">
-        <nav className="admin-sidebar" aria-label="Seções do painel admin">
-          {SECTIONS.map(s => (
-            <button key={s.id} onClick={() => setSection(s.id)} className={`admin-sidebar-item tap${section === s.id ? ' is-active' : ''}`}>
-              <span className="icon">{I[s.icon]}</span>
-              {s.label}
-              {s.id === 'inscricoes' && pendentes > 0 && <span className="badge">{pendentes}</span>}
+      <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: isDesktop ? '14px 28px' : '12px 16px', borderBottom: '1px solid var(--dc-border)', background: 'var(--dc-surface)', position: 'sticky', top: 0, zIndex: 20, minHeight: 66 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0, flex: 1 }}>
+            {!isDesktop && (
+              <button onClick={() => setMobileNavOpen(true)} title="Menu"
+                style={{ display: 'grid', placeItems: 'center', width: 40, height: 40, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text)', cursor: 'pointer', flexShrink: 0 }}>
+                <span style={{ width: 20, height: 20 }}>{I.hamburger}</span>
+              </button>
+            )}
+            <button onClick={onBack} title="Voltar ao app"
+              style={{ display: 'grid', placeItems: 'center', width: 40, height: 40, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', cursor: 'pointer', flexShrink: 0 }}>
+              <span style={{ width: 18, height: 18 }}>{I.back}</span>
             </button>
-          ))}
-        </nav>
-        <div className="admin-body">{sectionView}</div>
-      </div>
-    </>
+            <div style={{ minWidth: 0 }}>
+              <h1 style={{ margin: 0, fontSize: 19, fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{active.label}</h1>
+              <div style={{ fontSize: 12.5, color: 'var(--dc-text-3)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{SECTION_SUB[section]}</div>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+            <button onClick={() => onNav('search')} title="Buscar"
+              style={{ width: 38, height: 38, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', display: 'grid', placeItems: 'center', cursor: 'pointer', flexShrink: 0 }}>
+              <span style={{ width: 17, height: 17 }}>{I.search}</span>
+            </button>
+          </div>
+        </header>
+
+        <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
+          <div style={{ maxWidth: 1180, margin: '0 auto', width: '100%', padding: isDesktop ? '28px 28px 60px' : '20px 16px 48px' }}>
+            {sectionView}
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
