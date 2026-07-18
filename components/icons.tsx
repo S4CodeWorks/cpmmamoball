@@ -43,4 +43,7 @@ export const I: Record<string, React.ReactNode> = {
   trash:    <svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>,
   dashboard:<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>,
   ball:     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3l3 6-3 3-3-3 3-6zM3 12l6 3 3-3-3-3-6 3z"/></svg>,
+  alertTriangle: <svg viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4M12 17.5v.01"/></svg>,
+  externalLink: <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>,
+  hamburger: <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>,
 };

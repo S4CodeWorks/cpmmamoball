@@ -75,6 +75,57 @@
   --shadow-lg: 0 16px 40px rgba(0,0,0,.5);
 }
 
+/* =============== DC-MONO — tema monocromático 2026 (Admin + Inscrição) ======
+   Escopo próprio, independente da paleta verde do app público (.app-root):
+   as duas telas redesenhadas usam esses tokens, o resto do site não muda. */
+.dc-mono {
+  --dc-sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --dc-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+  font-family: var(--dc-sans);
+}
+.dc-mono[data-theme="light"] {
+  --dc-bg:#ffffff; --dc-surface:#ffffff; --dc-panel:#fafafa;
+  --dc-surface-2:#f4f4f5; --dc-surface-3:#ececee; --dc-surface-4:#e2e2e5;
+  --dc-border:#e7e7ea; --dc-border-2:#dcdce0; --dc-border-strong:#c9c9ce;
+  --dc-text:#09090b; --dc-text-2:#5f5f68; --dc-text-3:#9b9ba3;
+  --dc-accent:#09090b; --dc-on-accent:#ffffff;
+  --dc-pos:#15803d; --dc-pos-bg:#e9f4ec;
+  --dc-warn:#a25a00; --dc-warn-bg:#fbf1e2;
+  --dc-danger:#c2410c; --dc-danger-bg:#fbeae2;
+  --dc-live:#dc2626; --dc-live-bg:#fbe6e6;
+  --dc-ring:rgba(9,9,11,.10);
+  --dc-shadow-sm:0 1px 2px rgba(9,9,11,.05);
+  --dc-shadow-md:0 4px 16px rgba(9,9,11,.07);
+  --dc-shadow-lg:0 18px 48px rgba(9,9,11,.13);
+}
+.dc-mono[data-theme="dark"] {
+  --dc-bg:#08080a; --dc-surface:#0d0d0f; --dc-panel:#0f0f12;
+  --dc-surface-2:#161619; --dc-surface-3:#1e1e22; --dc-surface-4:#28282e;
+  --dc-border:#222226; --dc-border-2:#2c2c32; --dc-border-strong:#3a3a42;
+  --dc-text:#fafafa; --dc-text-2:#a0a0aa; --dc-text-3:#6a6a74;
+  --dc-accent:#fafafa; --dc-on-accent:#09090b;
+  --dc-pos:#4ade80; --dc-pos-bg:#12291c;
+  --dc-warn:#f0b866; --dc-warn-bg:#2a2012;
+  --dc-danger:#fb9a6b; --dc-danger-bg:#2a1a12;
+  --dc-live:#ff6b5e; --dc-live-bg:#2a1414;
+  --dc-ring:rgba(255,255,255,.14);
+  --dc-shadow-sm:0 1px 2px rgba(0,0,0,.5);
+  --dc-shadow-md:0 4px 16px rgba(0,0,0,.5);
+  --dc-shadow-lg:0 18px 48px rgba(0,0,0,.6);
+}
+.dc-mono svg:not([fill]) { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dc-mono input::placeholder, .dc-mono textarea::placeholder { color: var(--dc-text-3); }
+.dc-mono ::selection { background: var(--dc-accent); color: var(--dc-on-accent); }
+.dc-mono a { color: var(--dc-text); text-decoration: none; }
+.dc-mono a:hover { color: var(--dc-text-2); }
+.dc-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 23px; border-radius: 999px; background: var(--dc-surface-3); border: 1px solid var(--dc-border); position: relative; cursor: pointer; flex-shrink: 0; padding: 0; transition: background .15s; }
+.dc-toggle.on { background: var(--dc-accent); border-color: var(--dc-accent); }
+.dc-toggle .dc-thumb { position: absolute; left: 2px; width: 16px; height: 16px; border-radius: 999px; background: var(--dc-on-accent); transition: transform .15s; }
+.dc-toggle.on .dc-thumb { transform: translateX(17px); background: var(--dc-surface); }
+@keyframes dcInUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes dcInFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dcSlideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
 :root {
   --sans: 'Roboto Flex', 'Roboto', system-ui, sans-serif;
   --mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;

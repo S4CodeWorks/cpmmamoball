@@ -477,50 +477,53 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
 }
 
 // ===================== SUBSCRIPTION =====================
-export function SubscriptionScreen({ onBack, presetCompId }: { onBack?: () => void; presetCompId?: string | number | null }) {
-  const { showToast } = useApp();
+// Página pública de inscrição — visual próprio (monocromático 2026), fora do
+// chrome do app (ver PhoneShell FULL_BLEED_PAGES). Design: Inscricao Publica.dc.html
+export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
+  onBack?: () => void; onNav?: (page: string, param?: string | number | null) => void;
+  presetCompId?: string | number | null;
+}) {
+  const { showToast, resolvedTheme, setTheme } = useApp();
   const { competitions, activeComp } = useData();
   const [step, setStep] = useState<'form' | 'sending' | 'success'>('form');
-  const [logo, setLogo] = useState(false);
   const [nome, setNome] = useState('');
   const [tag, setTag] = useState('');
-  const [capitao, setCapitao] = useState('');
-  const [jogadores, setJogadores] = useState<InscricaoJogador[]>([{ ...BLANK_JOGADOR }]);
-  const [compId, setCompId] = useState<string>('');
-  const [attempted, setAttempted] = useState(false);
+  const [capNick, setCapNick] = useState('');
+  const [capId, setCapId] = useState('');
+  const [capDiscord, setCapDiscord] = useState('');
+  const [agree, setAgree] = useState(false);
+  const [jogadores, setJogadores] = useState<InscricaoJogador[]>([{ ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }]);
+  const [compId, setCompId] = useState('');
+  const [sentInfo, setSentInfo] = useState<{ nome: string; tag: string; count: number } | null>(null);
 
-  // default to o parâmetro recebido (ex: vindo do card de inscrição de uma notícia), senão activeComp
   const selectedComp = compId || (presetCompId ? String(presetCompId) : '') || activeComp?.id || competitions[0]?.id || '';
   const openComps = competitions.filter(c => c.status === 'inscricoes' || c.status === 'em_andamento');
 
   const updateJogador = (i: number, patch: Partial<InscricaoJogador>) =>
     setJogadores(js => js.map((j, idx) => idx === i ? { ...j, ...patch } : j));
   const addJogador = () => setJogadores(js => [...js, { ...BLANK_JOGADOR }]);
-  const removeJogador = (i: number) => setJogadores(js => js.filter((_, idx) => idx !== i));
+  const removeJogador = (i: number) => setJogadores(js => js.length > 1 ? js.filter((_, idx) => idx !== i) : js);
+
+  const rosterDone = jogadores.filter(j => j.nick.trim() && j.game_id.trim()).length;
+  const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
 
   const handleSubmit = async () => {
-    setAttempted(true);
-    if (!nome.trim() || !tag.trim() || !capitao.trim() || !selectedComp) {
-      showToast('Preencha os campos obrigatórios destacados em vermelho');
-      return;
-    }
-    // Linha só conta se o usuário começou a preenchê-la — mas aí precisa ter nick + ID
+    if (!nome.trim() || !tag.trim()) { showToast('Preencha o nome e a sigla do time'); return; }
+    if (!capNick.trim() || !capId.trim()) { showToast('Preencha os dados do capitão'); return; }
     const tocadas = jogadores.filter(j => j.nick.trim() || j.game_id.trim());
     const incompleta = tocadas.find(j => !j.nick.trim() || !j.game_id.trim());
-    if (incompleta) {
-      showToast('Cada jogador precisa de Nick e ID do jogo preenchidos');
-      return;
-    }
+    if (incompleta) { showToast('Cada jogador precisa de Nick e ID do jogo preenchidos'); return; }
+    if (tocadas.length < 3) { showToast('O elenco precisa de pelo menos 3 jogadores completos'); return; }
+    if (!agree) { showToast('Confirme que leu o regulamento'); return; }
+    if (!selectedComp) { showToast('Selecione uma competição'); return; }
+
     const jogadoresValidos = tocadas.map(j => ({
-      nick: j.nick.trim(),
-      game_id: j.game_id.trim(),
-      discord: j.discord?.trim() || null,
-      posicao: j.posicao || null,
+      nick: j.nick.trim(), game_id: j.game_id.trim(),
+      discord: j.discord?.trim() || null, posicao: j.posicao || null,
     }));
 
     setStep('sending');
     try {
-      // Anti-multi: barra o envio se algum ID do jogo já pertence a outro jogador cadastrado
       const taken = await fetchTakenGameIds(jogadoresValidos.map(j => j.game_id));
       if (taken.length > 0) {
         showToast(`ID já cadastrado em outro time: ${taken.join(', ')}`);
@@ -529,11 +532,11 @@ export function SubscriptionScreen({ onBack, presetCompId }: { onBack?: () => vo
       }
       await createInscricao({
         competition_id: selectedComp,
-        nome: nome.trim(),
-        tag: tag.trim(),
-        capitao: capitao.trim(),
+        nome: nome.trim(), tag: tag.trim(),
+        capitao: capNick.trim(), capitao_game_id: capId.trim(), capitao_discord: capDiscord.trim(),
         jogadores: jogadoresValidos,
       });
+      setSentInfo({ nome: nome.trim(), tag: tag.trim(), count: tocadas.length });
       setStep('success');
     } catch {
       showToast('Erro ao enviar inscrição. Tente novamente.');
@@ -541,145 +544,216 @@ export function SubscriptionScreen({ onBack, presetCompId }: { onBack?: () => vo
     }
   };
 
-  if (step === 'success') {
+  const reset = () => {
+    setStep('form'); setSentInfo(null);
+    setNome(''); setTag(''); setCapNick(''); setCapId(''); setCapDiscord(''); setAgree(false);
+    setJogadores([{ ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }]);
+  };
+
+  const inputStyle: React.CSSProperties = { width: '100%', height: 48, padding: '0 15px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 13, color: 'var(--dc-text)', fontSize: 14.5, outline: 'none', fontFamily: 'var(--dc-sans)' };
+  const labelStyle: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, color: 'var(--dc-text-2)', marginBottom: 7 };
+
+  const header = (
+    <header style={{ position: 'sticky', top: 0, zIndex: 30, background: 'color-mix(in srgb, var(--dc-bg) 85%, transparent)', backdropFilter: 'blur(14px)', borderBottom: '1px solid var(--dc-border)' }}>
+      <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 14, padding: '14px 24px' }}>
+        <button onClick={() => onBack?.()} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, background: 'none', border: 'none', cursor: 'pointer' }}>
+          <div style={{ width: 30, height: 30, borderRadius: 9, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 15 }}>C</div>
+          <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: '-0.01em', color: 'var(--dc-text)' }}>CPM MamoBall</span>
+        </button>
+        <button onClick={() => onNav?.('rules')} style={{ fontSize: 13, fontWeight: 600, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer' }}>Regulamento</button>
+        <button onClick={() => onNav?.('admin')} style={{ fontSize: 13, fontWeight: 600, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer' }}>Painel</button>
+        <button onClick={toggleTheme} title="Alternar tema"
+          style={{ width: 34, height: 34, borderRadius: 9, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
+          <span style={{ width: 15, height: 15 }}>{resolvedTheme === 'dark' ? I.sun : I.moon}</span>
+        </button>
+      </div>
+    </header>
+  );
+
+  const footer = (
+    <footer style={{ borderTop: '1px solid var(--dc-border)', padding: '22px 24px', textAlign: 'center' }}>
+      <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>CPM MamoBall © 2026 · feito pela comunidade</span>
+    </footer>
+  );
+
+  if (step === 'success' && sentInfo) {
     return (
-      <>
-        <TopAppBar title="Inscrição enviada" showBack onBack={onBack} />
-        <div style={{ padding: '40px 24px 0', textAlign: 'center' }}>
-          <div style={{ width: 72, height: 72, borderRadius: 24, background: 'var(--primary-container)', color: 'var(--on-primary-container)', margin: '0 auto 14px', display: 'grid', placeItems: 'center' }}>
-            <span style={{ width: 36, height: 36 }}>{I.check}</span>
+      <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
+        {header}
+        <main style={{ flex: 1, width: '100%' }}>
+          <div style={{ maxWidth: 520, margin: '0 auto', padding: '90px 24px 80px', textAlign: 'center', animation: 'dcSlideUp .35s cubic-bezier(.2,.9,.3,1)' }}>
+            <div style={{ width: 74, height: 74, borderRadius: 24, background: 'var(--dc-pos-bg)', color: 'var(--dc-pos)', display: 'grid', placeItems: 'center', margin: '0 auto 26px' }}>
+              <span style={{ width: 34, height: 34 }}>{I.check}</span>
+            </div>
+            <h1 style={{ margin: 0, fontSize: 'clamp(28px,5vw,38px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1 }}>Inscrição enviada!</h1>
+            <p style={{ margin: '16px auto 0', fontSize: 15, color: 'var(--dc-text-2)', lineHeight: 1.6, maxWidth: 400 }}>
+              O <strong style={{ color: 'var(--dc-text)' }}>{sentInfo.nome}</strong> entrou na fila de análise da staff. Você recebe a resposta no Discord do capitão em até <strong style={{ color: 'var(--dc-text)' }}>48 horas</strong>.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600 }}>
+                <span style={{ fontFamily: 'var(--dc-mono)', fontWeight: 700 }}>{sentInfo.tag}</span>{sentInfo.nome}
+              </span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 14px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600 }}>
+                {sentInfo.count} jogadores
+              </span>
+            </div>
+            <button onClick={reset} style={{ marginTop: 34, height: 46, padding: '0 24px', borderRadius: 12, border: '1px solid var(--dc-border-2)', background: 'var(--dc-surface)', color: 'var(--dc-text)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
+              Enviar outra inscrição
+            </button>
           </div>
-          <h2 style={{ margin: '0 0 8px', fontSize: 22, fontWeight: 800 }}>Tudo certo!</h2>
-          <p style={{ margin: '0 0 28px', fontSize: 14.5, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>Sua inscrição foi enviada para análise. Vamos avisar você por aqui assim que tiver retorno do staff.</p>
-          <button className="btn btn-primary" onClick={onBack} style={{ width: '100%' }}>Voltar para o início</button>
-        </div>
-      </>
+        </main>
+        {footer}
+      </div>
     );
   }
 
   if (openComps.length === 0 && competitions.length > 0) {
     return (
-      <>
-        <TopAppBar title="Inscrever time" showBack onBack={onBack} />
-        <div className="empty" style={{ padding: '40px 24px' }}>
-          <div className="empty-icon">{I.calendar}</div>
-          <h3 style={{ margin: '0 0 8px', fontSize: 18, fontWeight: 700 }}>Inscrições fechadas</h3>
-          <p style={{ margin: 0, fontSize: 14, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>Nenhuma competição está aberta para inscrições no momento. Fique de olho nos avisos oficiais.</p>
-        </div>
-      </>
+      <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
+        {header}
+        <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <div style={{ textAlign: 'center', maxWidth: 380 }}>
+            <div style={{ width: 60, height: 60, borderRadius: 20, background: 'var(--dc-surface-2)', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', margin: '0 auto 18px' }}>
+              <span style={{ width: 26, height: 26 }}>{I.calendar}</span>
+            </div>
+            <h2 style={{ margin: '0 0 8px', fontSize: 20, fontWeight: 800 }}>Inscrições fechadas</h2>
+            <p style={{ margin: 0, fontSize: 14, color: 'var(--dc-text-2)', lineHeight: 1.5 }}>Nenhuma competição está aberta pra inscrições no momento. Fique de olho nos avisos oficiais.</p>
+          </div>
+        </main>
+        {footer}
+      </div>
     );
   }
 
-  // Progresso dos campos fixos obrigatórios (competição, nome, tag, capitão)
-  const requiredVals = [selectedComp, nome.trim(), tag.trim(), capitao.trim()];
-  const requiredDone = requiredVals.filter(Boolean).length;
-  const requiredTotal = requiredVals.length;
-  const compInvalid = attempted && !selectedComp;
-
   return (
-    <>
-      <TopAppBar title="Inscrever time" showBack onBack={onBack} />
-      <div style={{ padding: '0 20px' }}>
-        <p style={{ margin: '0 0 16px', fontSize: 14.5, color: 'var(--on-surface-variant)', lineHeight: 1.55 }}>Preencha os dados do seu time. A análise do staff leva até 48h.</p>
-
-        {/* Progresso */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--on-surface-variant)' }}>Campos obrigatórios</span>
-            <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: requiredDone === requiredTotal ? 'var(--primary)' : 'var(--on-surface-variant)' }}>{requiredDone}/{requiredTotal}</span>
+    <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
+      {header}
+      <main style={{ flex: 1, width: '100%' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: '72px 24px 48px', textAlign: 'center' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 15px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600, color: 'var(--dc-text-2)' }}>
+            <span style={{ width: 7, height: 7, borderRadius: 99, background: 'var(--dc-pos)' }} />
+            Inscrições abertas
           </div>
-          <div style={{ height: 6, background: 'var(--surface-c-high)', borderRadius: 999, overflow: 'hidden' }}>
-            <div style={{ width: `${(requiredDone / requiredTotal) * 100}%`, height: '100%', background: requiredDone === requiredTotal ? 'var(--primary)' : 'var(--warning)', borderRadius: 999, transition: 'width .25s' }} />
-          </div>
+          <h1 style={{ margin: '22px 0 0', fontSize: 'clamp(32px,6vw,52px)', fontWeight: 800, letterSpacing: '-0.035em', lineHeight: 1.05 }}>
+            Inscreva seu time na<br />Copa MamoBall {activeComp?.edicao ?? ''}
+          </h1>
+          <p style={{ margin: '18px auto 0', fontSize: 16, color: 'var(--dc-text-2)', lineHeight: 1.6, maxWidth: 440 }}>
+            Monte o elenco, indique o capitão e envie. A staff analisa cada inscrição em até 48 horas.
+          </p>
         </div>
 
-        {/* Competição */}
-        {openComps.length > 1 && (
-          <div style={{ marginBottom: 18 }}>
-            <FieldLabel required>Competição</FieldLabel>
-            <select className="input" value={selectedComp} onChange={e => setCompId(e.target.value)}
-              style={{ borderColor: compInvalid ? 'var(--error)' : undefined, background: compInvalid ? 'color-mix(in srgb, var(--error) 7%, var(--surface-c))' : undefined }}>
-              {openComps.map(c => (
-                <option key={c.id} value={c.id}>{c.nome} {c.edicao}</option>
-              ))}
-            </select>
-            {compInvalid && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--error)', fontWeight: 600, marginTop: 5 }}>
-                <span style={{ width: 13, height: 13 }}>{I.close}</span>Selecione uma competição
+        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 20px 90px' }}>
+          <div style={{ border: '1px solid var(--dc-border)', borderRadius: 24, background: 'var(--dc-surface)', boxShadow: 'var(--dc-shadow-lg)', overflow: 'hidden' }}>
+
+            {/* 01 O time */}
+            <div style={{ padding: '30px 30px 26px' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>01</span>
+                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>O time</span>
+                {openComps.length > 1 && (
+                  <select value={selectedComp} onChange={e => setCompId(e.target.value)}
+                    style={{ marginLeft: 'auto', height: 32, padding: '0 10px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 9, color: 'var(--dc-text)', fontSize: 12.5, fontFamily: 'var(--dc-sans)' }}>
+                    {openComps.map(c => <option key={c.id} value={c.id}>{c.nome} {c.edicao}</option>)}
+                  </select>
+                )}
               </div>
-            )}
-          </div>
-        )}
-
-        <div style={{ marginBottom: 22 }}>
-          <FieldLabel>Logo do time</FieldLabel>
-          <button onClick={() => { setLogo(true); showToast('Imagem selecionada'); }} className="tap"
-            style={{ width: '100%', padding: 16, background: 'var(--surface-c)', borderRadius: 'var(--r-md)', border: '1px dashed ' + (logo ? 'var(--primary)' : 'var(--outline)'), display: 'flex', alignItems: 'center', gap: 14, textAlign: 'left' }}>
-            <span style={{ width: 52, height: 52, borderRadius: 14, background: logo ? 'var(--primary-container)' : 'var(--surface-c-high)', color: logo ? 'var(--on-primary-container)' : 'var(--on-surface-variant)', display: 'grid', placeItems: 'center' }}>{logo ? I.check : I.plus}</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>{logo ? 'logo-time.png' : 'Anexar imagem'}</div>
-              <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{logo ? 'Toque para trocar' : 'PNG, JPG ou SVG · até 2 MB'}</div>
-            </div>
-          </button>
-        </div>
-
-        <FormField label="Nome do time" required value={nome} onChange={setNome}
-          placeholder="Nome do clube" invalid={attempted && !nome.trim()} style={{ marginBottom: 18 }} />
-
-        <FormField label="Tag (até 4 letras)" required value={tag} onChange={v => setTag(v.toUpperCase())}
-          placeholder="Sigla" maxLength={4} invalid={attempted && !tag.trim()}
-          inputStyle={{ textTransform: 'uppercase' }} style={{ marginBottom: 18 }} />
-
-        <FormField label="Nick do capitão" required value={capitao} onChange={setCapitao}
-          placeholder="Nick do capitão" invalid={attempted && !capitao.trim()} style={{ marginBottom: 18 }} />
-
-        <div style={{ marginBottom: 24 }}>
-          <label className="field-label" style={{ marginBottom: 12, display: 'block' }}>Elenco</label>
-
-          {jogadores.map((j, i) => {
-            const rowTouched = j.nick.trim() !== '' || j.game_id.trim() !== '';
-            const nickInvalid = attempted && rowTouched && !j.nick.trim();
-            const idInvalid = attempted && rowTouched && !j.game_id.trim();
-            return (
-              <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: 14, background: 'var(--surface-c)', borderRadius: 'var(--r-md)', marginBottom: 10 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--on-surface-variant)' }}>Jogador {i + 1}</span>
-                  {jogadores.length > 1 && (
-                    <button onClick={() => removeJogador(i)} className="icon-btn" style={{ width: 28, height: 28, color: 'var(--error)' }} title="Remover">{I.trash}</button>
-                  )}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+                <div style={{ flex: '1 1 260px' }}>
+                  <div style={labelStyle}>Nome do time</div>
+                  <input value={nome} onChange={e => setNome(e.target.value)} placeholder="Ex.: Estrela Polar FC" style={inputStyle} />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                  <FormField label="Nick" required value={j.nick} onChange={v => updateJogador(i, { nick: v })} invalid={nickInvalid} />
-                  <FormField label="ID do jogo" required value={j.game_id} onChange={v => updateJogador(i, { game_id: v })} invalid={idInvalid} />
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                  <div>
-                    <FieldLabel style={{ marginBottom: 4, fontSize: 12 }}>Discord</FieldLabel>
-                    <input className="input" value={j.discord ?? ''}
-                      onChange={e => updateJogador(i, { discord: e.target.value })} />
+                <div style={{ flex: '0 1 170px', minWidth: 150 }}>
+                  <div style={labelStyle}>Sigla</div>
+                  <div style={{ position: 'relative' }}>
+                    <input value={tag} onChange={e => setTag(e.target.value.toUpperCase().slice(0, 4))} placeholder="EPF" maxLength={4}
+                      style={{ ...inputStyle, padding: '0 60px 0 15px', fontFamily: 'var(--dc-mono)', textTransform: 'uppercase', letterSpacing: '0.06em' }} />
+                    <span style={{ position: 'absolute', right: 7, top: 7, width: 34, height: 34, borderRadius: 9, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontFamily: 'var(--dc-mono)', fontSize: 10.5, fontWeight: 700 }}>
+                      {(tag || '···').toUpperCase().slice(0, 4)}
+                    </span>
                   </div>
-                  <div>
-                    <FieldLabel style={{ marginBottom: 4, fontSize: 12 }}>Posição</FieldLabel>
-                    <select className="input" value={j.posicao ?? ''} onChange={e => updateJogador(i, { posicao: (e.target.value || null) as InscricaoJogador['posicao'] })}>
-                      <option value="">Sem posição</option>
+                </div>
+              </div>
+            </div>
+
+            {/* 02 Capitão */}
+            <div style={{ padding: '26px 30px', borderTop: '1px solid var(--dc-border)' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>02</span>
+                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>Capitão</span>
+                <span style={{ fontSize: 12, color: 'var(--dc-text-3)' }}>é quem recebe o contato da staff</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+                <div style={{ flex: '1 1 160px' }}>
+                  <div style={labelStyle}>Nick</div>
+                  <input value={capNick} onChange={e => setCapNick(e.target.value)} placeholder="Seu nick" style={inputStyle} />
+                </div>
+                <div style={{ flex: '1 1 160px' }}>
+                  <div style={labelStyle}>ID no jogo</div>
+                  <input value={capId} onChange={e => setCapId(e.target.value)} placeholder="EPF#9001" style={{ ...inputStyle, fontFamily: 'var(--dc-mono)' }} />
+                </div>
+                <div style={{ flex: '1 1 160px' }}>
+                  <div style={labelStyle}>Discord</div>
+                  <input value={capDiscord} onChange={e => setCapDiscord(e.target.value)} placeholder="usuario" style={{ ...inputStyle, fontFamily: 'var(--dc-mono)' }} />
+                </div>
+              </div>
+            </div>
+
+            {/* 03 Elenco */}
+            <div style={{ padding: '26px 30px', borderTop: '1px solid var(--dc-border)' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>03</span>
+                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>Elenco</span>
+                <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text-2)', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', padding: '3px 10px', borderRadius: 99 }}>
+                  {rosterDone} / mín. 3
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {jogadores.map((j, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11, color: 'var(--dc-text-3)', width: 18, textAlign: 'center', flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
+                    <input value={j.nick} onChange={e => updateJogador(i, { nick: e.target.value })} placeholder="Nick"
+                      style={{ flex: '1 1 120px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-sans)', minWidth: 0 }} />
+                    <input value={j.game_id} onChange={e => updateJogador(i, { game_id: e.target.value })} placeholder="ID#0000"
+                      style={{ flex: '1 1 110px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-mono)', minWidth: 0 }} />
+                    <select value={j.posicao ?? ''} onChange={e => updateJogador(i, { posicao: (e.target.value || null) as InscricaoJogador['posicao'] })}
+                      style={{ flex: '0 1 120px', height: 44, padding: '0 9px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13, outline: 'none', fontFamily: 'var(--dc-sans)', cursor: 'pointer' }}>
+                      <option value="">Posição</option>
                       {POSICOES.map(p => <option key={p} value={p}>{p}</option>)}
                     </select>
+                    <button onClick={() => removeJogador(i)} disabled={jogadores.length <= 1} title="Remover linha"
+                      style={{ width: 38, height: 44, borderRadius: 12, border: 'none', background: 'transparent', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', cursor: jogadores.length > 1 ? 'pointer' : 'default', opacity: jogadores.length > 1 ? 1 : 0.3, flexShrink: 0 }}>
+                      <span style={{ width: 15, height: 15 }}>{I.close}</span>
+                    </button>
                   </div>
-                </div>
+                ))}
               </div>
-            );
-          })}
+              <button onClick={addJogador}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', height: 44, borderRadius: 12, border: '1px dashed var(--dc-border-strong)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 12, fontFamily: 'var(--dc-sans)' }}>
+                <span style={{ width: 15, height: 15 }}>{I.plus}</span>Adicionar jogador
+              </button>
+            </div>
 
-          <button onClick={addJogador} className="btn btn-tonal" style={{ height: 42, fontSize: 13.5, width: '100%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <span style={{ width: 16, height: 16 }}>{I.plus}</span>Adicionar jogador
-          </button>
+            {/* confirm */}
+            <div style={{ padding: '26px 30px 30px', borderTop: '1px solid var(--dc-border)', background: 'var(--dc-surface-2)' }}>
+              <button onClick={() => setAgree(a => !a)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0, fontFamily: 'var(--dc-sans)' }}>
+                <span style={{ width: 21, height: 21, borderRadius: 7, border: agree ? 'none' : '1.5px solid var(--dc-border-strong)', background: agree ? 'var(--dc-accent)' : 'var(--dc-surface)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', flexShrink: 0, marginTop: 1, transition: 'all .12s' }}>
+                  {agree && <span style={{ width: 13, height: 13 }}>{I.check}</span>}
+                </span>
+                <span style={{ fontSize: 13, color: 'var(--dc-text-2)', lineHeight: 1.55 }}>
+                  Li e concordo com o <span onClick={e => { e.stopPropagation(); onNav?.('rules'); }} style={{ color: 'var(--dc-text)', fontWeight: 600, textDecoration: 'underline' }}>regulamento oficial</span> da competição e confirmo que todos os IDs informados são reais.
+                </span>
+              </button>
+              <button onClick={handleSubmit} disabled={step === 'sending'}
+                style={{ width: '100%', height: 52, borderRadius: 14, border: 'none', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 20, fontFamily: 'var(--dc-sans)', letterSpacing: '-0.01em', opacity: step === 'sending' ? 0.65 : 1 }}>
+                {step === 'sending' ? 'Enviando…' : 'Enviar inscrição'}
+              </button>
+              <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--dc-text-3)', marginTop: 12 }}>Resposta da staff em até 48h · sem taxa de inscrição</div>
+            </div>
+          </div>
         </div>
-        <button onClick={handleSubmit} disabled={step === 'sending'} className="btn btn-primary" style={{ width: '100%', height: 52, opacity: step === 'sending' ? 0.65 : 1 }}>
-          {step === 'sending' ? 'Enviando…' : 'Enviar para análise'}
-        </button>
-        <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 14 }}>Ao enviar, você concorda com o regulamento oficial da CPM.</div>
-      </div>
-    </>
+      </main>
+      {footer}
+    </div>
   );
 }
 

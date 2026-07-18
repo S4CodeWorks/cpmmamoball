@@ -31,6 +31,8 @@ export interface Inscricao {
   nome: string;
   tag: string;
   capitao: string;
+  capitao_game_id: string;
+  capitao_discord: string;
   roster: string;
   jogadores: InscricaoJogador[];
   status: 'pendente' | 'aprovado' | 'recusado';
@@ -589,6 +591,8 @@ export interface InscricaoInput {
   nome: string;
   tag: string;
   capitao: string;
+  capitao_game_id?: string;
+  capitao_discord?: string;
   roster?: string;
   jogadores: InscricaoJogador[];
 }
@@ -599,6 +603,8 @@ export async function createInscricao(i: InscricaoInput) {
     nome: i.nome,
     tag: i.tag,
     capitao: i.capitao,
+    capitao_game_id: i.capitao_game_id ?? '',
+    capitao_discord: i.capitao_discord ?? '',
     roster: i.roster ?? '',
     jogadores: i.jogadores,
     status: 'pendente',

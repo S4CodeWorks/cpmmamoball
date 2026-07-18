@@ -158,6 +158,8 @@ CREATE TABLE IF NOT EXISTS inscricoes (
   nome            text NOT NULL,             -- nome do clube candidato
   tag             text NOT NULL,
   capitao         text NOT NULL,             -- nick do capitão
+  capitao_game_id text NOT NULL DEFAULT '',  -- ID do jogo do capitão
+  capitao_discord text NOT NULL DEFAULT '',  -- discord do capitão
   roster          text NOT NULL DEFAULT '',  -- legado — lista de jogadores em texto livre
   jogadores       jsonb NOT NULL DEFAULT '[]'::jsonb, -- [{nick, game_id, discord, posicao}] — ainda sem club_id, time não existe
   status          text NOT NULL DEFAULT 'pendente'

@@ -134,7 +134,7 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
     case 'settings':     view = <SettingsScreen onBack={onBack} onNav={onNav} />; break;
     case 'subscription':
       view = isLoggedIn
-        ? <SubscriptionScreen onBack={onBack} presetCompId={current.param as string | null} />
+        ? <SubscriptionScreen onBack={onBack} onNav={onNav} presetCompId={current.param as string | null} />
         : <AuthGate onSuccess={() => { /* stay on subscription */ }} />;
       break;
     case 'rules':        view = <RulesScreen onBack={onBack} />; break;
@@ -151,8 +151,22 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
   // Páginas de conta/config não se beneficiam do container largo — ficam mais
   // legíveis numa coluna estreita centralizada no desktop (ver .d-narrow).
-  const NARROW_PAGES: Page[] = ['more', 'saved', 'profile', 'settings', 'subscription', 'rules', 'support', 'search', 'login'];
+  const NARROW_PAGES: Page[] = ['more', 'saved', 'profile', 'settings', 'rules', 'support', 'search', 'login'];
   const isNarrow = NARROW_PAGES.includes(p);
+
+  // Páginas com identidade visual própria (design monocromático 2026) — não
+  // usam o chrome do app (DesktopHeader/BottomNav), cuidam da própria navegação.
+  const FULL_BLEED_PAGES: Page[] = ['subscription'];
+  const isFullBleed = FULL_BLEED_PAGES.includes(p);
+
+  if (isFullBleed) {
+    return (
+      <div className="app-root" data-theme={resolvedTheme}>
+        {initialLoad ? <InitialLoading /> : view}
+        <ConfirmDialogHost />
+      </div>
+    );
+  }
 
   return (
     <div className="app-root" data-theme={resolvedTheme}>
