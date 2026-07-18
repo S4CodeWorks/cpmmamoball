@@ -154,21 +154,6 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
   const NARROW_PAGES: Page[] = ['more', 'saved', 'profile', 'settings', 'rules', 'support', 'search', 'login'];
   const isNarrow = NARROW_PAGES.includes(p);
 
-  // Páginas com identidade visual própria (design monocromático 2026) — não
-  // usam o chrome do app (DesktopHeader/BottomNav), cuidam da própria navegação.
-  const FULL_BLEED_PAGES: Page[] = ['subscription'];
-  const isFullBleed = FULL_BLEED_PAGES.includes(p);
-
-  if (isFullBleed) {
-    return (
-      <div className="app-root dc-mono" data-theme={resolvedTheme} style={{ position: 'relative', minHeight: '100dvh' }}>
-        {initialLoad ? <InitialLoading /> : view}
-        <Toast />
-        <ConfirmDialogHost />
-      </div>
-    );
-  }
-
   return (
     <div className="app-root" data-theme={resolvedTheme}>
       <div className="app-main">

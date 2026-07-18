@@ -478,13 +478,15 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
 }
 
 // ===================== SUBSCRIPTION =====================
-// Página pública de inscrição — visual próprio (monocromático 2026), fora do
-// chrome do app (ver PhoneShell FULL_BLEED_PAGES). Design: Inscricao Publica.dc.html
+// Página pública de inscrição — usa os mesmos componentes/tokens do resto do
+// app (TopAppBar, card-filled, FormField) e o chrome padrão (DesktopHeader/
+// BottomNav), com layout de duas colunas no desktop (.d-split) e um resumo
+// lateral que acompanha o preenchimento.
 export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   onBack?: () => void; onNav?: (page: string, param?: string | number | null) => void;
   presetCompId?: string | number | null;
 }) {
-  const { showToast, resolvedTheme, setTheme } = useApp();
+  const { showToast } = useApp();
   const { competitions, activeComp } = useData();
   const [step, setStep] = useState<'form' | 'sending' | 'success'>('form');
   const [nome, setNome] = useState('');
@@ -493,6 +495,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   const [capId, setCapId] = useState('');
   const [capDiscord, setCapDiscord] = useState('');
   const [agree, setAgree] = useState(false);
+  const [attempted, setAttempted] = useState(false);
   const MIN_JOGADORES = 5;
   const MAX_JOGADORES = 10;
   const [jogadores, setJogadores] = useState<InscricaoJogador[]>(
@@ -509,18 +512,19 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   const addJogador = () => setJogadores(js => js.length >= MAX_JOGADORES ? js : [...js, { ...BLANK_JOGADOR }]);
   const removeJogador = (i: number) => setJogadores(js => js.length > 1 ? js.filter((_, idx) => idx !== i) : js);
 
-  const rosterDone = jogadores.filter(j => j.nick.trim() && j.game_id.trim()).length;
-  const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  const tocadas = jogadores.filter(j => j.nick.trim() && j.game_id.trim());
+  const rosterDone = tocadas.length;
 
   const handleSubmit = async () => {
-    if (!nome.trim() || !tag.trim()) { showToast('Preencha o nome e a sigla do time'); return; }
-    if (!capNick.trim() || !capId.trim()) { showToast('Preencha os dados do capitão'); return; }
-    const tocadas = jogadores.filter(j => j.nick.trim() || j.game_id.trim());
-    const incompleta = tocadas.find(j => !j.nick.trim() || !j.game_id.trim());
+    setAttempted(true);
+    if (!nome.trim() || !tag.trim() || !capNick.trim() || !capId.trim() || !selectedComp) {
+      showToast('Preencha os campos obrigatórios destacados em vermelho');
+      return;
+    }
+    const incompleta = jogadores.find(j => (j.nick.trim() || j.game_id.trim()) && (!j.nick.trim() || !j.game_id.trim()));
     if (incompleta) { showToast('Cada jogador precisa de Nick e ID do jogo preenchidos'); return; }
-    if (tocadas.length < MIN_JOGADORES) { showToast(`O elenco precisa de pelo menos ${MIN_JOGADORES} jogadores completos`); return; }
+    if (rosterDone < MIN_JOGADORES) { showToast(`O elenco precisa de pelo menos ${MIN_JOGADORES} jogadores completos`); return; }
     if (!agree) { showToast('Confirme que leu o regulamento'); return; }
-    if (!selectedComp) { showToast('Selecione uma competição'); return; }
 
     const jogadoresValidos = tocadas.map(j => ({
       nick: j.nick.trim(), game_id: j.game_id.trim(),
@@ -541,7 +545,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
         capitao: capNick.trim(), capitao_game_id: capId.trim(), capitao_discord: capDiscord.trim(),
         jogadores: jogadoresValidos,
       });
-      setSentInfo({ nome: nome.trim(), tag: tag.trim(), count: tocadas.length });
+      setSentInfo({ nome: nome.trim(), tag: tag.trim(), count: rosterDone });
       setStep('success');
     } catch {
       showToast('Erro ao enviar inscrição. Tente novamente.');
@@ -549,214 +553,193 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
     }
   };
 
-  const reset = () => {
-    setStep('form'); setSentInfo(null);
-    setNome(''); setTag(''); setCapNick(''); setCapId(''); setCapDiscord(''); setAgree(false);
-    setJogadores(Array.from({ length: MIN_JOGADORES }, () => ({ ...BLANK_JOGADOR })));
-  };
-
-  const inputStyle: React.CSSProperties = { width: '100%', height: 48, padding: '0 15px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 13, color: 'var(--dc-text)', fontSize: 14.5, outline: 'none', fontFamily: 'var(--dc-sans)' };
-  const labelStyle: React.CSSProperties = { fontSize: 12.5, fontWeight: 600, color: 'var(--dc-text-2)', marginBottom: 7 };
-
-  const header = (
-    <header style={{ position: 'sticky', top: 0, zIndex: 30, background: 'color-mix(in srgb, var(--dc-bg) 85%, transparent)', backdropFilter: 'blur(14px)', borderBottom: '1px solid var(--dc-border)' }}>
-      <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 14, padding: '14px 24px' }}>
-        <button onClick={() => onBack?.()} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, background: 'none', border: 'none', cursor: 'pointer' }}>
-          <div style={{ width: 30, height: 30, borderRadius: 9, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 15 }}>C</div>
-          <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: '-0.01em', color: 'var(--dc-text)' }}>CPM MamoBall</span>
-        </button>
-        <button onClick={() => onNav?.('rules')} style={{ fontSize: 13, fontWeight: 600, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer' }}>Regulamento</button>
-        <button onClick={() => onNav?.('admin')} style={{ fontSize: 13, fontWeight: 600, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer' }}>Painel</button>
-        <button onClick={toggleTheme} title="Alternar tema"
-          style={{ width: 34, height: 34, borderRadius: 9, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
-          <span style={{ width: 15, height: 15 }}>{resolvedTheme === 'dark' ? I.sun : I.moon}</span>
-        </button>
-      </div>
-    </header>
-  );
-
-  const footer = (
-    <footer style={{ borderTop: '1px solid var(--dc-border)', padding: '22px 24px', textAlign: 'center' }}>
-      <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>CPM MamoBall © 2026 · feito pela comunidade</span>
-    </footer>
-  );
-
   if (step === 'success' && sentInfo) {
     return (
-      <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
-        {header}
-        <main style={{ flex: 1, width: '100%' }}>
-          <div style={{ maxWidth: 520, margin: '0 auto', padding: '90px 24px 80px', textAlign: 'center', animation: 'dcSlideUp .35s cubic-bezier(.2,.9,.3,1)' }}>
-            <div style={{ width: 74, height: 74, borderRadius: 24, background: 'var(--dc-pos-bg)', color: 'var(--dc-pos)', display: 'grid', placeItems: 'center', margin: '0 auto 26px' }}>
-              <span style={{ width: 34, height: 34 }}>{I.check}</span>
-            </div>
-            <h1 style={{ margin: 0, fontSize: 'clamp(28px,5vw,38px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1 }}>Inscrição enviada!</h1>
-            <p style={{ margin: '16px auto 0', fontSize: 15, color: 'var(--dc-text-2)', lineHeight: 1.6, maxWidth: 400 }}>
-              O <strong style={{ color: 'var(--dc-text)' }}>{sentInfo.nome}</strong> entrou na fila de análise da staff. Você recebe a resposta no Discord do capitão em até <strong style={{ color: 'var(--dc-text)' }}>48 horas</strong>.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600 }}>
-                <span style={{ fontFamily: 'var(--dc-mono)', fontWeight: 700 }}>{sentInfo.tag}</span>{sentInfo.nome}
-              </span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 14px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600 }}>
-                {sentInfo.count} jogadores
-              </span>
-            </div>
-            <button onClick={reset} style={{ marginTop: 34, height: 46, padding: '0 24px', borderRadius: 12, border: '1px solid var(--dc-border-2)', background: 'var(--dc-surface)', color: 'var(--dc-text)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
-              Enviar outra inscrição
-            </button>
+      <>
+        <TopAppBar title="Inscrição enviada" showBack onBack={onBack} />
+        <div style={{ padding: '40px 24px 0', textAlign: 'center', maxWidth: 420, margin: '0 auto' }}>
+          <div style={{ width: 72, height: 72, borderRadius: 24, background: 'var(--primary-container)', color: 'var(--on-primary-container)', margin: '0 auto 14px', display: 'grid', placeItems: 'center' }}>
+            <span style={{ width: 36, height: 36 }}>{I.check}</span>
           </div>
-        </main>
-        {footer}
-      </div>
+          <h2 style={{ margin: '0 0 8px', fontSize: 22, fontWeight: 800 }}>Tudo certo!</h2>
+          <p style={{ margin: '0 0 20px', fontSize: 14.5, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>
+            O <strong style={{ color: 'var(--on-surface)' }}>{sentInfo.nome}</strong> entrou na fila de análise. A resposta chega em até 48h.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
+            <span className="chip">{sentInfo.tag} · {sentInfo.nome}</span>
+            <span className="chip">{sentInfo.count} jogadores</span>
+          </div>
+          <button className="btn btn-primary" onClick={onBack} style={{ width: '100%' }}>Voltar para o início</button>
+        </div>
+      </>
     );
   }
 
   if (openComps.length === 0 && competitions.length > 0) {
     return (
-      <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
-        {header}
-        <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <div style={{ textAlign: 'center', maxWidth: 380 }}>
-            <div style={{ width: 60, height: 60, borderRadius: 20, background: 'var(--dc-surface-2)', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', margin: '0 auto 18px' }}>
-              <span style={{ width: 26, height: 26 }}>{I.calendar}</span>
-            </div>
-            <h2 style={{ margin: '0 0 8px', fontSize: 20, fontWeight: 800 }}>Inscrições fechadas</h2>
-            <p style={{ margin: 0, fontSize: 14, color: 'var(--dc-text-2)', lineHeight: 1.5 }}>Nenhuma competição está aberta pra inscrições no momento. Fique de olho nos avisos oficiais.</p>
-          </div>
-        </main>
-        {footer}
-      </div>
+      <>
+        <TopAppBar title="Inscrever time" showBack onBack={onBack} />
+        <div className="empty" style={{ padding: '40px 24px' }}>
+          <div className="empty-icon">{I.calendar}</div>
+          <h3 style={{ margin: '0 0 8px', fontSize: 18, fontWeight: 700 }}>Inscrições fechadas</h3>
+          <p style={{ margin: 0, fontSize: 14, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>Nenhuma competição está aberta para inscrições no momento. Fique de olho nos avisos oficiais.</p>
+        </div>
+      </>
     );
   }
 
+  const requiredVals = [selectedComp, nome.trim(), tag.trim(), capNick.trim(), capId.trim()];
+  const requiredDone = requiredVals.filter(Boolean).length;
+  const requiredTotal = requiredVals.length;
+  const compInvalid = attempted && !selectedComp;
+  const selectedCompObj = openComps.find(c => c.id === selectedComp);
+
   return (
-    <div className="dc-mono" data-theme={resolvedTheme} style={{ minHeight: '100dvh', background: 'var(--dc-bg)', color: 'var(--dc-text)', display: 'flex', flexDirection: 'column' }}>
-      {header}
-      <main style={{ flex: 1, width: '100%' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: '72px 24px 48px', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 15px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', fontSize: 12.5, fontWeight: 600, color: 'var(--dc-text-2)' }}>
-            <span style={{ width: 7, height: 7, borderRadius: 99, background: 'var(--dc-pos)' }} />
-            Inscrições abertas
-          </div>
-          <h1 style={{ margin: '22px 0 0', fontSize: 'clamp(32px,6vw,52px)', fontWeight: 800, letterSpacing: '-0.035em', lineHeight: 1.05 }}>
-            Inscreva seu time na<br />Copa MamoBall {activeComp?.edicao ?? ''}
-          </h1>
-          <p style={{ margin: '18px auto 0', fontSize: 16, color: 'var(--dc-text-2)', lineHeight: 1.6, maxWidth: 440 }}>
-            Monte o elenco, indique o capitão e envie. A staff analisa cada inscrição em até 48 horas.
-          </p>
-        </div>
+    <>
+      <TopAppBar title="Inscrever time" showBack onBack={onBack} />
+      <div className="d-split" style={{ padding: '0 20px 32px' }}>
+        <div>
+          <p style={{ margin: '0 0 16px', fontSize: 14.5, color: 'var(--on-surface-variant)', lineHeight: 1.55 }}>Preencha os dados do seu time. A análise do staff leva até 48h.</p>
 
-        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 20px 90px' }}>
-          <div style={{ border: '1px solid var(--dc-border)', borderRadius: 24, background: 'var(--dc-surface)', boxShadow: 'var(--dc-shadow-lg)', overflow: 'hidden' }}>
-
-            {/* 01 O time */}
-            <div style={{ padding: '30px 30px 26px' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>01</span>
-                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>O time</span>
-                {openComps.length > 1 && (
-                  <Select title="Competição" value={selectedComp} onChange={setCompId}
-                    style={{ marginLeft: 'auto', height: 32, padding: '0 10px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 9, color: 'var(--dc-text)', fontSize: 12.5, fontFamily: 'var(--dc-sans)', width: 'auto' }}
-                    options={openComps.map(c => ({ value: c.id, label: `${c.nome} ${c.edicao}` }))} />
-                )}
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
-                <div style={{ flex: '1 1 260px' }}>
-                  <div style={labelStyle}>Nome do time</div>
-                  <input value={nome} onChange={e => setNome(e.target.value)} placeholder="Ex.: Estrela Polar FC" style={inputStyle} />
+          {openComps.length > 1 && (
+            <div style={{ marginBottom: 18 }}>
+              <FieldLabel required>Competição</FieldLabel>
+              <Select title="Competição" value={selectedComp} onChange={setCompId} placeholder="Selecione"
+                options={openComps.map(c => ({ value: c.id, label: `${c.nome} ${c.edicao}` }))}
+                style={compInvalid ? { borderColor: 'var(--error)', background: 'color-mix(in srgb, var(--error) 7%, var(--surface-c))' } : undefined} />
+              {compInvalid && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--error)', fontWeight: 600, marginTop: 5 }}>
+                  <span style={{ width: 13, height: 13 }}>{I.close}</span>Selecione uma competição
                 </div>
-                <div style={{ flex: '0 1 170px', minWidth: 150 }}>
-                  <div style={labelStyle}>Sigla</div>
-                  <div style={{ position: 'relative' }}>
-                    <input value={tag} onChange={e => setTag(e.target.value.toUpperCase().slice(0, 4))} placeholder="EPF" maxLength={4}
-                      style={{ ...inputStyle, padding: '0 60px 0 15px', fontFamily: 'var(--dc-mono)', textTransform: 'uppercase', letterSpacing: '0.06em' }} />
-                    <span style={{ position: 'absolute', right: 7, top: 7, width: 34, height: 34, borderRadius: 9, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontFamily: 'var(--dc-mono)', fontSize: 10.5, fontWeight: 700 }}>
-                      {(tag || '···').toUpperCase().slice(0, 4)}
-                    </span>
+              )}
+            </div>
+          )}
+
+          <FormField label="Nome do time" required value={nome} onChange={setNome}
+            placeholder="Nome do clube" invalid={attempted && !nome.trim()} style={{ marginBottom: 18 }} />
+
+          <FormField label="Tag (até 4 letras)" required value={tag} onChange={v => setTag(v.toUpperCase())}
+            placeholder="Sigla" maxLength={4} invalid={attempted && !tag.trim()}
+            inputStyle={{ textTransform: 'uppercase' }} style={{ marginBottom: 18 }} />
+
+          <div style={{ marginBottom: 10 }}>
+            <label className="field-label" style={{ marginBottom: 2, display: 'block' }}>Capitão</label>
+            <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>É quem recebe o contato do staff</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
+            <FormField label="Nick" required value={capNick} onChange={setCapNick} invalid={attempted && !capNick.trim()} />
+            <FormField label="ID do jogo" required value={capId} onChange={setCapId} invalid={attempted && !capId.trim()} />
+          </div>
+          <div style={{ marginBottom: 22 }}>
+            <FieldLabel>Discord</FieldLabel>
+            <input className="input" value={capDiscord} onChange={e => setCapDiscord(e.target.value)} />
+          </div>
+
+          <div style={{ marginBottom: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+              <label className="field-label" style={{ margin: 0 }}>Elenco</label>
+              <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: rosterDone >= MIN_JOGADORES ? 'var(--primary)' : 'var(--on-surface-variant)' }}>
+                {rosterDone}/{jogadores.length} · mín. {MIN_JOGADORES}, máx. {MAX_JOGADORES}
+              </span>
+            </div>
+
+            {jogadores.map((j, i) => {
+              const rowTouched = j.nick.trim() !== '' || j.game_id.trim() !== '';
+              const nickInvalid = attempted && rowTouched && !j.nick.trim();
+              const idInvalid = attempted && rowTouched && !j.game_id.trim();
+              return (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: 14, background: 'var(--surface-c)', borderRadius: 'var(--r-md)', marginBottom: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--on-surface-variant)' }}>Jogador {i + 1}</span>
+                    {jogadores.length > 1 && (
+                      <button onClick={() => removeJogador(i)} className="icon-btn" style={{ width: 28, height: 28, color: 'var(--error)' }} title="Remover">{I.trash}</button>
+                    )}
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                    <FormField label="Nick" required value={j.nick} onChange={v => updateJogador(i, { nick: v })} invalid={nickInvalid} />
+                    <FormField label="ID do jogo" required value={j.game_id} onChange={v => updateJogador(i, { game_id: v })} invalid={idInvalid} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                    <div>
+                      <FieldLabel style={{ marginBottom: 4, fontSize: 12 }}>Discord</FieldLabel>
+                      <input className="input" value={j.discord ?? ''}
+                        onChange={e => updateJogador(i, { discord: e.target.value })} />
+                    </div>
+                    <div>
+                      <FieldLabel style={{ marginBottom: 4, fontSize: 12 }}>Posição</FieldLabel>
+                      <Select title="Posição" placeholder="Sem posição" value={j.posicao ?? ''}
+                        onChange={v => updateJogador(i, { posicao: (v || null) as InscricaoJogador['posicao'] })}
+                        options={POSICOES.map(p => ({ value: p, label: p }))} />
+                    </div>
                   </div>
                 </div>
+              );
+            })}
+
+            <button onClick={addJogador} disabled={jogadores.length >= MAX_JOGADORES} className="btn btn-tonal"
+              style={{ height: 42, fontSize: 13.5, width: '100%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: jogadores.length >= MAX_JOGADORES ? 0.5 : 1 }}>
+              <span style={{ width: 16, height: 16 }}>{I.plus}</span>{jogadores.length >= MAX_JOGADORES ? 'Limite de 10 jogadores' : 'Adicionar jogador'}
+            </button>
+          </div>
+
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer', marginBottom: 20 }}>
+            <input type="checkbox" checked={agree} onChange={e => setAgree(e.target.checked)}
+              style={{ width: 18, height: 18, marginTop: 1, accentColor: 'var(--primary)', flexShrink: 0 }} />
+            <span style={{ fontSize: 13, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>
+              Li e concordo com o{' '}
+              <button type="button" onClick={() => onNav?.('rules')}
+                style={{ color: 'var(--primary)', fontWeight: 600, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline' }}>
+                regulamento oficial
+              </button>{' '}
+              e confirmo que os IDs informados são reais.
+            </span>
+          </label>
+
+          <button onClick={handleSubmit} disabled={step === 'sending'} className="btn btn-primary" style={{ width: '100%', height: 52, opacity: step === 'sending' ? 0.65 : 1 }}>
+            {step === 'sending' ? 'Enviando…' : 'Enviar para análise'}
+          </button>
+        </div>
+
+        {/* Desktop: resumo lateral acompanha o preenchimento */}
+        <div>
+          <div className="card-elev" style={{ padding: 20, position: 'sticky', top: 84 }}>
+            <div className="eyebrow eyebrow-acc" style={{ marginBottom: 14 }}>RESUMO</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
+              <span style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--surface-c-high)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 14, fontFamily: 'var(--mono)', flexShrink: 0 }}>
+                {tag || '···'}
+              </span>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 15, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{nome || 'Nome do time'}</div>
+                <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {selectedCompObj ? `${selectedCompObj.nome} ${selectedCompObj.edicao}` : 'Selecione a competição'}
+                </div>
               </div>
             </div>
 
-            {/* 02 Capitão */}
-            <div style={{ padding: '26px 30px', borderTop: '1px solid var(--dc-border)' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>02</span>
-                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>Capitão</span>
-                <span style={{ fontSize: 12, color: 'var(--dc-text-3)' }}>é quem recebe o contato da staff</span>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
-                <div style={{ flex: '1 1 160px' }}>
-                  <div style={labelStyle}>Nick</div>
-                  <input value={capNick} onChange={e => setCapNick(e.target.value)} placeholder="Seu nick" style={inputStyle} />
-                </div>
-                <div style={{ flex: '1 1 160px' }}>
-                  <div style={labelStyle}>ID no jogo</div>
-                  <input value={capId} onChange={e => setCapId(e.target.value)} placeholder="EPF#9001" style={{ ...inputStyle, fontFamily: 'var(--dc-mono)' }} />
-                </div>
-                <div style={{ flex: '1 1 160px' }}>
-                  <div style={labelStyle}>Discord</div>
-                  <input value={capDiscord} onChange={e => setCapDiscord(e.target.value)} placeholder="usuario" style={{ ...inputStyle, fontFamily: 'var(--dc-mono)' }} />
-                </div>
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--on-surface-variant)' }}>Campos obrigatórios</span>
+              <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: requiredDone === requiredTotal ? 'var(--primary)' : 'var(--on-surface-variant)' }}>{requiredDone}/{requiredTotal}</span>
+            </div>
+            <div style={{ height: 6, background: 'var(--surface-c-high)', borderRadius: 999, overflow: 'hidden', marginBottom: 18 }}>
+              <div style={{ width: `${(requiredDone / requiredTotal) * 100}%`, height: '100%', background: requiredDone === requiredTotal ? 'var(--primary)' : 'var(--warning)', borderRadius: 999, transition: 'width .25s' }} />
             </div>
 
-            {/* 03 Elenco */}
-            <div style={{ padding: '26px 30px', borderTop: '1px solid var(--dc-border)' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>03</span>
-                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>Elenco</span>
-                <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text-2)', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', padding: '3px 10px', borderRadius: 99 }}>
-                  {rosterDone}/{jogadores.length} · mín. {MIN_JOGADORES}, máx. {MAX_JOGADORES}
-                </span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {jogadores.map((j, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11, color: 'var(--dc-text-3)', width: 18, textAlign: 'center', flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
-                    <input value={j.nick} onChange={e => updateJogador(i, { nick: e.target.value })} placeholder="Nick"
-                      style={{ flex: '1 1 120px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-sans)', minWidth: 0 }} />
-                    <input value={j.game_id} onChange={e => updateJogador(i, { game_id: e.target.value })} placeholder="ID#0000"
-                      style={{ flex: '1 1 110px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-mono)', minWidth: 0 }} />
-                    <Select title="Posição" placeholder="Posição" value={j.posicao ?? ''}
-                      onChange={v => updateJogador(i, { posicao: (v || null) as InscricaoJogador['posicao'] })}
-                      style={{ flex: '0 1 120px', height: 44, padding: '0 9px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13, fontFamily: 'var(--dc-sans)' }}
-                      options={POSICOES.map(p => ({ value: p, label: p }))} />
-                    <button onClick={() => removeJogador(i)} disabled={jogadores.length <= 1} title="Remover linha"
-                      style={{ width: 38, height: 44, borderRadius: 12, border: 'none', background: 'transparent', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', cursor: jogadores.length > 1 ? 'pointer' : 'default', opacity: jogadores.length > 1 ? 1 : 0.3, flexShrink: 0 }}>
-                      <span style={{ width: 15, height: 15 }}>{I.close}</span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <button onClick={addJogador} disabled={jogadores.length >= MAX_JOGADORES}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', height: 44, borderRadius: 12, border: '1px dashed var(--dc-border-strong)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 13, fontWeight: 600, cursor: jogadores.length >= MAX_JOGADORES ? 'default' : 'pointer', opacity: jogadores.length >= MAX_JOGADORES ? 0.5 : 1, marginTop: 12, fontFamily: 'var(--dc-sans)' }}>
-                <span style={{ width: 15, height: 15 }}>{I.plus}</span>{jogadores.length >= MAX_JOGADORES ? 'Limite de 10 jogadores' : 'Adicionar jogador'}
-              </button>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '8px 0', borderTop: '1px solid var(--outline-variant)' }}>
+              <span style={{ color: 'var(--on-surface-variant)' }}>Capitão</span>
+              <span style={{ fontWeight: 600 }}>{capNick || '—'}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '8px 0', borderTop: '1px solid var(--outline-variant)' }}>
+              <span style={{ color: 'var(--on-surface-variant)' }}>Jogadores completos</span>
+              <span style={{ fontWeight: 600, color: rosterDone >= MIN_JOGADORES ? 'var(--primary)' : 'var(--warning)' }}>{rosterDone} (mín. {MIN_JOGADORES})</span>
             </div>
 
-            {/* confirm */}
-            <div style={{ padding: '26px 30px 30px', borderTop: '1px solid var(--dc-border)', background: 'var(--dc-surface-2)' }}>
-              <button onClick={() => setAgree(a => !a)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0, fontFamily: 'var(--dc-sans)' }}>
-                <span style={{ width: 21, height: 21, borderRadius: 7, border: agree ? 'none' : '1.5px solid var(--dc-border-strong)', background: agree ? 'var(--dc-accent)' : 'var(--dc-surface)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', flexShrink: 0, marginTop: 1, transition: 'all .12s' }}>
-                  {agree && <span style={{ width: 13, height: 13 }}>{I.check}</span>}
-                </span>
-                <span style={{ fontSize: 13, color: 'var(--dc-text-2)', lineHeight: 1.55 }}>
-                  Li e concordo com o <span onClick={e => { e.stopPropagation(); onNav?.('rules'); }} style={{ color: 'var(--dc-text)', fontWeight: 600, textDecoration: 'underline' }}>regulamento oficial</span> da competição e confirmo que todos os IDs informados são reais.
-                </span>
-              </button>
-              <button onClick={handleSubmit} disabled={step === 'sending'}
-                style={{ width: '100%', height: 52, borderRadius: 14, border: 'none', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 20, fontFamily: 'var(--dc-sans)', letterSpacing: '-0.01em', opacity: step === 'sending' ? 0.65 : 1 }}>
-                {step === 'sending' ? 'Enviando…' : 'Enviar inscrição'}
-              </button>
-              <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--dc-text-3)', marginTop: 12 }}>Resposta da staff em até 48h · sem taxa de inscrição</div>
+            <div style={{ marginTop: 16, fontSize: 12, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>
+              Resposta da staff em até 48h · sem taxa de inscrição.
             </div>
           </div>
         </div>
-      </main>
-      {footer}
-    </div>
+      </div>
+    </>
   );
 }
 
