@@ -7,7 +7,7 @@ import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { Crest } from '@/components/ui/Crest';
-import { FieldLabel, usePagination, PageBar } from '@/components/ui/Primitives';
+import { FieldLabel, usePagination, PageBar, Modal } from '@/components/ui/Primitives';
 import { Select } from '@/components/ui/Select';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
@@ -366,7 +366,7 @@ function RosterPanel({
     <div style={{ padding: '0 16px 80px' }}>
       {/* Panel header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 16 }}>
-        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }} title="Voltar">{I.chevL ?? I.back ?? '←'}</button>
+        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
         <Crest id={club.id} size={44} radius={12} />
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 16, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{club.nome}</div>
@@ -1532,61 +1532,58 @@ function AdminPartidas() {
         </>
       )}
 
-      {/* Form: nova partida / editar dados de partida existente */}
-      {adding && (
-        <div className="card-filled" style={{ padding: '20px 16px', marginBottom: 16 }}>
-          <div className="eyebrow eyebrow-acc" style={{ marginBottom: 18 }}>{editingDetailsId !== null ? 'EDITAR PARTIDA' : 'NOVA PARTIDA'}</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {/* Modal: nova partida / editar dados de partida existente */}
+      <Modal open={adding} onClose={cancelAddWithConfirm} title={editingDetailsId !== null ? 'Editar partida' : 'Nova partida'}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
-            <TeamPickerButton
-              label="Mandante"
-              value={addForm.home_id}
-              onChange={v => setAddForm(f => ({ ...f, home_id: v }))}
-              clubs={clubs} clubById={clubById}
-              exclude={addForm.away_id}
-            />
+          <TeamPickerButton
+            label="Mandante"
+            value={addForm.home_id}
+            onChange={v => setAddForm(f => ({ ...f, home_id: v }))}
+            clubs={clubs} clubById={clubById}
+            exclude={addForm.away_id}
+          />
 
-            <TeamPickerButton
-              label="Visitante"
-              value={addForm.away_id}
-              onChange={v => setAddForm(f => ({ ...f, away_id: v }))}
-              clubs={clubs} clubById={clubById}
-              exclude={addForm.home_id}
-            />
+          <TeamPickerButton
+            label="Visitante"
+            value={addForm.away_id}
+            onChange={v => setAddForm(f => ({ ...f, away_id: v }))}
+            clubs={clubs} clubById={clubById}
+            exclude={addForm.home_id}
+          />
 
-            <DateTimePickerButton
-              label={editingDetailsId !== null ? 'Nova data e hora (opcional)' : 'Data e hora'}
-              value={{ dateISO: addForm.dateISO, hour: addForm.hour, minute: addForm.minute }}
-              onChange={v => setAddForm(f => ({ ...f, dateISO: v.dateISO, hour: v.hour, minute: v.minute }))}
-            />
-            {editingDetailsId !== null && (
-              <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: -8 }}>
-                Data atual: {matches.find(x => x.id === editingDetailsId)?.date} — deixe em branco pra manter.
-              </div>
-            )}
+          <DateTimePickerButton
+            label={editingDetailsId !== null ? 'Nova data e hora (opcional)' : 'Data e hora'}
+            value={{ dateISO: addForm.dateISO, hour: addForm.hour, minute: addForm.minute }}
+            onChange={v => setAddForm(f => ({ ...f, dateISO: v.dateISO, hour: v.hour, minute: v.minute }))}
+          />
+          {editingDetailsId !== null && (
+            <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: -8 }}>
+              Data atual: {matches.find(x => x.id === editingDetailsId)?.date} — deixe em branco pra manter.
+            </div>
+          )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-              <div>
-                <label className="field-label">Rodada</label>
-                <input type="number" className="input" value={addForm.rodada} min={1}
-                  onChange={e => setAddForm(f => ({ ...f, rodada: Number(e.target.value) }))} />
-              </div>
-              <div>
-                <FieldLabel>Fase</FieldLabel>
-                <input className="input" value={addForm.stage} placeholder={`Rodada ${addForm.rodada}`}
-                  onChange={e => setAddForm(f => ({ ...f, stage: e.target.value }))} />
-              </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            <div>
+              <label className="field-label">Rodada</label>
+              <input type="number" className="input" value={addForm.rodada} min={1}
+                onChange={e => setAddForm(f => ({ ...f, rodada: Number(e.target.value) }))} />
+            </div>
+            <div>
+              <FieldLabel>Fase</FieldLabel>
+              <input className="input" value={addForm.stage} placeholder={`Rodada ${addForm.rodada}`}
+                onChange={e => setAddForm(f => ({ ...f, stage: e.target.value }))} />
             </div>
           </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 10, marginTop: 18 }}>
-            <button onClick={cancelAddWithConfirm} className="btn btn-outlined" style={{ height: 48 }}>Cancelar</button>
-            <button disabled={busy} onClick={editingDetailsId !== null ? saveDetails : addMatch} className="btn btn-primary" style={{ height: 48 }}>
-              {busy ? 'Salvando...' : editingDetailsId !== null ? 'Salvar alterações' : 'Criar partida'}
-            </button>
-          </div>
         </div>
-      )}
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 10, marginTop: 18 }}>
+          <button onClick={cancelAddWithConfirm} className="btn btn-outlined" style={{ height: 48 }}>Cancelar</button>
+          <button disabled={busy} onClick={editingDetailsId !== null ? saveDetails : addMatch} className="btn btn-primary" style={{ height: 48 }}>
+            {busy ? 'Salvando...' : editingDetailsId !== null ? 'Salvar alterações' : 'Criar partida'}
+          </button>
+        </div>
+      </Modal>
 
       {/* Lista de partidas agrupadas por rodada */}
       {loadingMatches ? (
@@ -1945,7 +1942,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
     <div style={{ padding: '0 16px 80px' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 4 }}>
-        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }}>←</button>
+        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
         <div>
           <div style={{ fontSize: 15, fontWeight: 700 }}>{comp.nome}</div>
           <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>

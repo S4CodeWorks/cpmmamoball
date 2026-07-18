@@ -5,6 +5,29 @@ import { useApp } from '@/contexts/AppContext';
 import { Select } from './Select';
 import type { Match, FormResult } from '@/lib/types';
 
+// Modal centralizado — formulários "importantes" (ex: nova partida) usam isso
+// em vez de aparecer inline na página, pra ficar claro que é uma ação à parte.
+export function Modal({ open, onClose, title, children, maxWidth = 480 }: {
+  open: boolean; onClose: () => void; title: string; children: React.ReactNode; maxWidth?: number;
+}) {
+  if (!open) return null;
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(3px)' }} />
+      <div style={{ position: 'relative', width: '100%', maxWidth, maxHeight: '88dvh', display: 'flex', flexDirection: 'column', background: 'var(--surface-c-high)', borderRadius: 22, boxShadow: '0 12px 48px rgba(0,0,0,0.35)', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 20px', borderBottom: '1px solid var(--outline-variant)', flexShrink: 0 }}>
+          <span style={{ fontSize: 17, fontWeight: 700 }}>{title}</span>
+          <button onClick={onClose}
+            style={{ width: 32, height: 32, borderRadius: 999, background: 'var(--surface-c-highest)', border: 'none', cursor: 'pointer', fontSize: 17, fontWeight: 700, color: 'var(--on-surface-variant)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+            ✕
+          </button>
+        </div>
+        <div style={{ padding: 20, overflowY: 'auto' }}>{children}</div>
+      </div>
+    </div>
+  );
+}
+
 // Label de campo de formulário — marca obrigatoriedade com um ponto colorido
 // em vez de asterisco. Ausência do ponto = campo opcional.
 export function FieldLabel({ children, required, style }: {
