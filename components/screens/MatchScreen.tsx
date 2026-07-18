@@ -12,6 +12,7 @@ import { Crest } from '@/components/ui/Crest';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers } from '@/lib/db';
 import { shareLink } from '@/lib/share';
+import { pathForPage } from '@/lib/routes';
 import type { Club, Match } from '@/lib/types';
 
 interface Props {
@@ -239,7 +240,7 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
       <SheetItem icon="share" label="Compartilhar" meta={`${home.tag} vs ${away.tag} · ${m.stage}`}
         onClick={async () => {
           close();
-          const r = await shareLink({ title: `${home.tag} vs ${away.tag}`, text: `${home.tag} vs ${away.tag} · ${m.stage} · CPM MamoBall` });
+          const r = await shareLink({ title: `${home.tag} vs ${away.tag}`, text: `${home.tag} vs ${away.tag} · ${m.stage} · CPM MamoBall`, url: `${window.location.origin}${pathForPage('match', m.id)}` });
           if (r === 'copied') showToast('Link copiado');
           else if (r === 'failed') showToast('Não foi possível compartilhar');
         }} />

@@ -137,6 +137,24 @@ export async function fetchClubs(): Promise<Club[]> {
   return (data ?? []).map(rowToClub);
 }
 
+export async function fetchClubById(id: string): Promise<Club | null> {
+  const { data, error } = await supabase.from('clubs').select('*').eq('id', id).maybeSingle();
+  if (error) throw error;
+  return data ? rowToClub(data) : null;
+}
+
+export async function fetchMatchById(id: number): Promise<Match | null> {
+  const { data, error } = await supabase.from('matches').select('*').eq('id', id).maybeSingle();
+  if (error) throw error;
+  return data ? rowToMatch(data) : null;
+}
+
+export async function fetchNewsById(id: string): Promise<NewsItem | null> {
+  const { data, error } = await supabase.from('news').select('*').eq('id', id).maybeSingle();
+  if (error) throw error;
+  return data ? rowToNews(data) : null;
+}
+
 export async function fetchCompetitions(): Promise<Competition[]> {
   const { data, error } = await supabase
     .from('competitions')

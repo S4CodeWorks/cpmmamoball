@@ -12,6 +12,7 @@ import { Crest } from '@/components/ui/Crest';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers } from '@/lib/db';
 import { shareLink } from '@/lib/share';
+import { pathForPage } from '@/lib/routes';
 import type { Player } from '@/lib/types';
 
 interface Props {
@@ -78,7 +79,7 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
         onClick={() => { toggleFav(c.id); showToast(isFav ? `${c.tag} removido dos favoritos` : `${c.tag} adicionado aos favoritos`); }} />
       <SheetItem icon="share" label="Compartilhar" onClick={async () => {
         close();
-        const r = await shareLink({ title: c.nome, text: `${c.nome} (${c.tag}) · CPM MamoBall` });
+        const r = await shareLink({ title: c.nome, text: `${c.nome} (${c.tag}) · CPM MamoBall`, url: `${window.location.origin}${pathForPage('club', c.id)}` });
         if (r === 'copied') showToast('Link copiado');
         else if (r === 'failed') showToast('Não foi possível compartilhar');
       }} />

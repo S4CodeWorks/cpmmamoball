@@ -8,6 +8,7 @@ import { TopAppBar } from '@/components/ui/TopAppBar';
 import { SheetItem } from '@/components/ui/Sheet';
 import { Crest } from '@/components/ui/Crest';
 import { shareLink } from '@/lib/share';
+import { pathForPage } from '@/lib/routes';
 
 interface Props {
   onNav: (page: string, param?: string | number | null) => void;
@@ -161,7 +162,7 @@ export function ArticleScreen({ onBack, onNav, articleId }: Props) {
         onClick={() => { toggleBookmark(bk); showToast(isB ? 'Removido dos salvos' : 'Artigo salvo'); }} />
       <SheetItem icon="share" label="Compartilhar" onClick={async () => {
         close();
-        const r = await shareLink({ title: n.title, text: `${n.title} · CPM MamoBall` });
+        const r = await shareLink({ title: n.title, text: `${n.title} · CPM MamoBall`, url: `${window.location.origin}${pathForPage('article', n.id)}` });
         if (r === 'copied') showToast('Link copiado');
         else if (r === 'failed') showToast('Não foi possível compartilhar');
       }} />

@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { pathForPage } from '@/lib/routes';
 import { AppProvider, useApp, ConfirmDialogHost } from '@/contexts/AppContext';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { DataProvider, useData } from '@/contexts/DataContext';
@@ -50,15 +51,22 @@ function InitialLoading() {
 
 // ─── App router ───────────────────────────────────────────────────────────────
 
-function AppRoot({ initialPage }: { initialPage?: string }) {
+function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialParam?: string | number | null }) {
   const { resolvedTheme } = useApp();
   const { isStaff, isLoggedIn } = useAuth();
   const { initialLoad } = useData();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const [stack, setStack] = useState<HistoryEntry[]>([
-    { page: (initialPage as Page) || 'home', param: null, extra: null },
-  ]);
+  // Deep link: seed com Home por baixo, pra o botão "voltar" ter pra onde ir
+  // mesmo quando a pessoa abre o link direto (sem ter navegado dentro do app).
+  const [stack, setStack] = useState<HistoryEntry[]>(() => {
+    const page = (initialPage as Page) || 'home';
+    if (page === 'home') return [{ page: 'home', param: null, extra: null }];
+    return [
+      { page: 'home', param: null, extra: null },
+      { page, param: initialParam ?? null, extra: null },
+    ];
+  });
   const current = stack[stack.length - 1];
 
   const onNav = (
@@ -72,8 +80,13 @@ function AppRoot({ initialPage }: { initialPage?: string }) {
     });
   };
 
-  const onBack = () =>
-    setStack(s => (s.length > 1 ? s.slice(0, -1) : s));
+  const popStack = () => setStack(s => (s.length > 1 ? s.slice(0, -1) : s));
+
+  // Delega pro histórico real do navegador — o listener de popstate abaixo
+  // reflete a mudança de volta no stack em memória, sem duplicar entradas.
+  const onBack = () => {
+    if (stack.length > 1) window.history.back();
+  };
 
   const onTab = (id: string) => {
     if (current.page === id) {
@@ -85,6 +98,22 @@ function AppRoot({ initialPage }: { initialPage?: string }) {
       if (scrollRef.current) scrollRef.current.scrollTop = 0;
     });
   };
+
+  // Mantém a URL do navegador em sincronia com a tela atual, pra páginas que
+  // têm rota real (partida/clube/notícia) — permite copiar o link da barra de
+  // endereço e volta do navegador funcionar mesmo sem recarregar a página.
+  useEffect(() => {
+    const path = pathForPage(current.page, current.param) ?? '/';
+    if (window.location.pathname !== path) {
+      window.history.pushState({ depth: stack.length }, '', path);
+    }
+  }, [current.page, current.param, stack.length]);
+
+  useEffect(() => {
+    const onPopState = () => popStack();
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   const p = current.page;
   let view: React.ReactNode;
@@ -142,12 +171,12 @@ function AppRoot({ initialPage }: { initialPage?: string }) {
 
 // ─── Shell (exported) ─────────────────────────────────────────────────────────
 
-export function PhoneShell({ initialPage }: { initialPage?: string }) {
+export function PhoneShell({ initialPage, initialParam }: { initialPage?: string; initialParam?: string | number | null }) {
   return (
     <AppProvider>
       <AuthProvider>
         <DataProvider>
-          <AppRoot initialPage={initialPage} />
+          <AppRoot initialPage={initialPage} initialParam={initialParam} />
         </DataProvider>
       </AuthProvider>
     </AppProvider>

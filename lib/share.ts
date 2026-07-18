@@ -1,10 +1,8 @@
 /**
  * Compartilhamento real — usa a Web Share API nativa (menu de compartilhar do
  * sistema) quando disponível, com fallback pra copiar o link no clipboard.
- *
- * Nota: o app ainda não tem URLs por tela (navegação é só client-side em
- * memória), então o link compartilhado aponta pra home — título/texto que
- * identificam a partida/clube/notícia específica compensam por enquanto.
+ * Passe `url` com o caminho real (ver lib/routes.ts) pra partida/clube/notícia
+ * gerarem preview (banner) automático quando colados no WhatsApp etc.
  */
 
 export type ShareResult = 'shared' | 'copied' | 'cancelled' | 'failed';
