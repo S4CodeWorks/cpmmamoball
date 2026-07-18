@@ -9,6 +9,7 @@ import { SheetItem } from '@/components/ui/Sheet';
 import { FormDots } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
+import { ColorMesh } from '@/components/ui/ColorMesh';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers } from '@/lib/db';
 import { shareLink } from '@/lib/share';
@@ -50,7 +51,7 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
   const nextM = clubMatches.find(m => m.status === 'agendado');
   const recent = clubMatches.filter(m => m.status === 'finalizado');
   const [tab, setTab] = useState('visao');
-  const { favClubs, toggleFav, showToast } = useApp();
+  const { favClubs, toggleFav, showToast, resolvedTheme } = useApp();
   const isFav = favClubs.has(c.id);
   const isDesktop = useIsDesktop();
 
@@ -225,7 +226,9 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
   return (
     <>
       {/* Sticky club hero */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: `radial-gradient(560px 260px at 12% -10%, ${c.color}59 0%, transparent 60%), radial-gradient(480px 240px at 95% 10%, ${c.color2}40 0%, transparent 55%), linear-gradient(180deg, ${c.color}26 0%, transparent 75%), var(--surface)`, borderBottom: '1px solid var(--outline-variant)' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)', borderBottom: '1px solid var(--outline-variant)' }}>
+        <ColorMesh colors={[c.color, c.color2]} opacity={resolvedTheme === 'dark' ? 0.32 : 0.5} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
         <TopAppBar showBack onBack={onBack} title=""
           rightExtras={
             <button className={`icon-btn${isFav ? ' is-on' : ''}`}
@@ -244,7 +247,8 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
             <div className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '12px 8px 14px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
+        </div>
+        <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '12px 8px 14px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
           <StatBlock n={row?.P ?? 0} l="Pontos" big />
           <StatBlock n={row?.J ?? 0} l="Jogos" />
           <StatBlock n={row?.V ?? 0} l="Vitórias" />

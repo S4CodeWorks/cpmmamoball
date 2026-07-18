@@ -493,7 +493,11 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   const [capId, setCapId] = useState('');
   const [capDiscord, setCapDiscord] = useState('');
   const [agree, setAgree] = useState(false);
-  const [jogadores, setJogadores] = useState<InscricaoJogador[]>([{ ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }]);
+  const MIN_JOGADORES = 5;
+  const MAX_JOGADORES = 10;
+  const [jogadores, setJogadores] = useState<InscricaoJogador[]>(
+    Array.from({ length: MIN_JOGADORES }, () => ({ ...BLANK_JOGADOR }))
+  );
   const [compId, setCompId] = useState('');
   const [sentInfo, setSentInfo] = useState<{ nome: string; tag: string; count: number } | null>(null);
 
@@ -502,7 +506,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
 
   const updateJogador = (i: number, patch: Partial<InscricaoJogador>) =>
     setJogadores(js => js.map((j, idx) => idx === i ? { ...j, ...patch } : j));
-  const addJogador = () => setJogadores(js => [...js, { ...BLANK_JOGADOR }]);
+  const addJogador = () => setJogadores(js => js.length >= MAX_JOGADORES ? js : [...js, { ...BLANK_JOGADOR }]);
   const removeJogador = (i: number) => setJogadores(js => js.length > 1 ? js.filter((_, idx) => idx !== i) : js);
 
   const rosterDone = jogadores.filter(j => j.nick.trim() && j.game_id.trim()).length;
@@ -514,7 +518,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
     const tocadas = jogadores.filter(j => j.nick.trim() || j.game_id.trim());
     const incompleta = tocadas.find(j => !j.nick.trim() || !j.game_id.trim());
     if (incompleta) { showToast('Cada jogador precisa de Nick e ID do jogo preenchidos'); return; }
-    if (tocadas.length < 3) { showToast('O elenco precisa de pelo menos 3 jogadores completos'); return; }
+    if (tocadas.length < MIN_JOGADORES) { showToast(`O elenco precisa de pelo menos ${MIN_JOGADORES} jogadores completos`); return; }
     if (!agree) { showToast('Confirme que leu o regulamento'); return; }
     if (!selectedComp) { showToast('Selecione uma competição'); return; }
 
@@ -548,7 +552,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   const reset = () => {
     setStep('form'); setSentInfo(null);
     setNome(''); setTag(''); setCapNick(''); setCapId(''); setCapDiscord(''); setAgree(false);
-    setJogadores([{ ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }, { ...BLANK_JOGADOR }]);
+    setJogadores(Array.from({ length: MIN_JOGADORES }, () => ({ ...BLANK_JOGADOR })));
   };
 
   const inputStyle: React.CSSProperties = { width: '100%', height: 48, padding: '0 15px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 13, color: 'var(--dc-text)', fontSize: 14.5, outline: 'none', fontFamily: 'var(--dc-sans)' };
@@ -704,7 +708,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
                 <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>03</span>
                 <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>Elenco</span>
                 <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text-2)', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', padding: '3px 10px', borderRadius: 99 }}>
-                  {rosterDone} / mín. 3
+                  {rosterDone}/{jogadores.length} · mín. {MIN_JOGADORES}, máx. {MAX_JOGADORES}
                 </span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -726,9 +730,9 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
                   </div>
                 ))}
               </div>
-              <button onClick={addJogador}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', height: 44, borderRadius: 12, border: '1px dashed var(--dc-border-strong)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 12, fontFamily: 'var(--dc-sans)' }}>
-                <span style={{ width: 15, height: 15 }}>{I.plus}</span>Adicionar jogador
+              <button onClick={addJogador} disabled={jogadores.length >= MAX_JOGADORES}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', height: 44, borderRadius: 12, border: '1px dashed var(--dc-border-strong)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 13, fontWeight: 600, cursor: jogadores.length >= MAX_JOGADORES ? 'default' : 'pointer', opacity: jogadores.length >= MAX_JOGADORES ? 0.5 : 1, marginTop: 12, fontFamily: 'var(--dc-sans)' }}>
+                <span style={{ width: 15, height: 15 }}>{I.plus}</span>{jogadores.length >= MAX_JOGADORES ? 'Limite de 10 jogadores' : 'Adicionar jogador'}
               </button>
             </div>
 

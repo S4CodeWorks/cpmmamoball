@@ -9,6 +9,7 @@ import { SheetItem } from '@/components/ui/Sheet';
 import { SectionHead, FormDots } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
+import { ColorMesh } from '@/components/ui/ColorMesh';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import type { Match, Club } from '@/lib/types';
 
@@ -31,25 +32,28 @@ function SideHero({ club, score, right }: { club: Club; score: number | null; ri
 
 function FeaturedMatch({ m, onClick }: { m: Match; onClick: () => void }) {
   const { clubById } = useData();
+  const { resolvedTheme } = useApp();
   const home = clubById(m.home), away = clubById(m.away);
   if (!home || !away) return null;
   return (
     <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left' }}>
       <div style={{
         position: 'relative', borderRadius: 'var(--r-2xl)', padding: '20px 22px',
-        background: `radial-gradient(420px 240px at 18% 25%, ${home.color}47, transparent 60%), radial-gradient(300px 180px at 8% 55%, ${home.color2}2e, transparent 55%), radial-gradient(420px 240px at 82% 75%, ${away.color}47, transparent 60%), radial-gradient(300px 180px at 92% 45%, ${away.color2}2e, transparent 55%), var(--surface-c)`,
-        overflow: 'hidden',
+        background: 'var(--surface-c)', overflow: 'hidden',
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-          <span className="chip chip-acc">{m.date}</span>
-          <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10 }}>
-          <SideHero club={home} score={m.scoreH} />
-          <div style={{ textAlign: 'center', color: 'var(--on-surface-variant)' }}>
-            <div className="mono" style={{ fontSize: 13 }}>vs</div>
+        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.28 : 0.42} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
+            <span className="chip chip-acc">{m.date}</span>
+            <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
           </div>
-          <SideHero club={away} score={m.scoreA} right />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10 }}>
+            <SideHero club={home} score={m.scoreH} />
+            <div style={{ textAlign: 'center', color: 'var(--on-surface-variant)' }}>
+              <div className="mono" style={{ fontSize: 13 }}>vs</div>
+            </div>
+            <SideHero club={away} score={m.scoreA} right />
+          </div>
         </div>
       </div>
     </button>

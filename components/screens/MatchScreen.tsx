@@ -9,6 +9,7 @@ import { SheetItem } from '@/components/ui/Sheet';
 import { SectionHead } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
+import { ColorMesh } from '@/components/ui/ColorMesh';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers } from '@/lib/db';
 import { shareLink } from '@/lib/share';
@@ -223,7 +224,7 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
   const away = clubById(m.away)!;
   const isSched = m.status === 'agendado';
   const [tab, setTab] = useState('resumo');
-  const { bookmarks, toggleBookmark, notifs, toggleNotif, showToast } = useApp();
+  const { bookmarks, toggleBookmark, notifs, toggleNotif, showToast, resolvedTheme } = useApp();
   const isDesktop = useIsDesktop();
   const matchKey = 'match:' + m.id;
   const isBookmarked = bookmarks.has(matchKey);
@@ -252,7 +253,9 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
   return (
     <>
       {/* Sticky match hero */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: `radial-gradient(420px 240px at 15% 30%, ${home.color}47, transparent 60%), radial-gradient(320px 200px at 5% 60%, ${home.color2}2e, transparent 55%), radial-gradient(420px 240px at 85% 70%, ${away.color}47, transparent 60%), radial-gradient(320px 200px at 95% 40%, ${away.color2}2e, transparent 55%), var(--surface)`, borderBottom: '1px solid var(--outline-variant)' }}>
+      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)', borderBottom: '1px solid var(--outline-variant)' }}>
+        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.3 : 0.46} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
         <TopAppBar showBack onBack={onBack} title="" menu={menu} />
         <div style={{ padding: '0 16px 24px' }}>
           <div style={{ textAlign: 'center', marginBottom: 14 }}>
@@ -280,6 +283,7 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
             </div>
             <TeamHead club={away} winner={!isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0) ? true : isSched ? undefined : false} onClick={() => onNav('club', away.id)} />
           </div>
+        </div>
         </div>
       </div>
 

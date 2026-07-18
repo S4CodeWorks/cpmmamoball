@@ -293,6 +293,7 @@ function RosterPanel({
 
   const submitAdd = async () => {
     if (!form.nick || !form.game_id) { showToast('Nick e ID são obrigatórios'); return; }
+    if (players.length >= 10) { showToast('Limite de 10 jogadores por time atingido'); return; }
     setBusy(true);
     try {
       await createPlayer({ club_id: club.id, nick: form.nick, game_id: form.game_id, discord: form.discord || null, posicao: form.posicao || null, is_captain: form.is_captain });
@@ -419,9 +420,15 @@ function RosterPanel({
       )}
 
       {mode === 'list' && (
-        <button onClick={openAdd} className="btn btn-tonal" style={{ height: 44, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center' }}>
-          <span style={{ width: 18, height: 18 }}>{I.plus}</span>Adicionar jogador
-        </button>
+        <>
+          <button onClick={openAdd} disabled={players.length >= 10} className="btn btn-tonal"
+            style={{ height: 44, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', opacity: players.length >= 10 ? 0.5 : 1 }}>
+            <span style={{ width: 18, height: 18 }}>{I.plus}</span>Adicionar jogador
+          </button>
+          <div style={{ textAlign: 'center', fontSize: 11.5, color: players.length < 5 ? 'var(--warning)' : 'var(--on-surface-variant)', marginTop: 8 }}>
+            {players.length}/10 jogadores {players.length < 5 ? `· mínimo 5 pra competir` : ''}
+          </div>
+        </>
       )}
     </div>
   );
