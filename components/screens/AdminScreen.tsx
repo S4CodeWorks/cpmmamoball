@@ -7,7 +7,7 @@ import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { Crest } from '@/components/ui/Crest';
-import { FieldLabel } from '@/components/ui/Primitives';
+import { FieldLabel, usePagination, PageBar } from '@/components/ui/Primitives';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
 import { uploadClubLogo, deleteClubLogo } from '@/lib/storage';
@@ -258,6 +258,7 @@ function RosterPanel({
   const [editingPlayer, setEditingPlayer] = useState<Player | null>(null);
   const [form, setForm] = useState(BLANK_PLAYER_FORM);
   const [busy, setBusy] = useState(false);
+  const rosterPage = usePagination(players, 15);
 
   const reload = () => {
     setLoading(true);
@@ -381,29 +382,34 @@ function RosterPanel({
           <p style={{ margin: '0 0 16px', fontSize: 14 }}>Nenhum jogador cadastrado.</p>
         </div>
       ) : (
-        <div className="card-filled" style={{ marginBottom: 12 }}>
-          {players.map((p, i) => (
-            <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '1fr 34px 34px', alignItems: 'center', gap: 8, padding: '12px 14px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-              <div style={{ minWidth: 0 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                  {p.is_captain && (
-                    <span style={{ fontSize: 10, background: 'var(--primary-container)', color: 'var(--on-primary-container)', padding: '2px 8px', borderRadius: 999, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0 }}>CAP</span>
-                  )}
-                  <span style={{ fontSize: 14.5, fontWeight: 600 }}>{p.nick}</span>
-                  {p.posicao && (
-                    <span style={{ fontSize: 10, background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', padding: '2px 8px', borderRadius: 999, fontWeight: 700, flexShrink: 0 }}>{p.posicao}</span>
-                  )}
+        <>
+          <div className="card-filled" style={{ marginBottom: 4 }}>
+            {rosterPage.pageItems.map((p, i) => (
+              <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '1fr 34px 34px', alignItems: 'center', gap: 8, padding: '12px 14px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    {p.is_captain && (
+                      <span style={{ fontSize: 10, background: 'var(--primary-container)', color: 'var(--on-primary-container)', padding: '2px 8px', borderRadius: 999, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0 }}>CAP</span>
+                    )}
+                    <span style={{ fontSize: 14.5, fontWeight: 600 }}>{p.nick}</span>
+                    {p.posicao && (
+                      <span style={{ fontSize: 10, background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', padding: '2px 8px', borderRadius: 999, fontWeight: 700, flexShrink: 0 }}>{p.posicao}</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 3, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                    <span className="mono">#{p.game_id}</span>
+                    {p.discord && <span className="mono">Discord: {p.discord}</span>}
+                  </div>
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 3, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  <span className="mono">#{p.game_id}</span>
-                  {p.discord && <span className="mono">Discord: {p.discord}</span>}
-                </div>
+                <button onClick={() => openEdit(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
+                <button onClick={() => remove(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
               </div>
-              <button onClick={() => openEdit(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
-              <button onClick={() => remove(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          <PageBar page={rosterPage.page} totalPages={rosterPage.totalPages} onPage={rosterPage.setPage}
+            pageSize={rosterPage.pageSize} onPageSize={rosterPage.setPageSize} rangeLabel={rosterPage.rangeLabel}
+            pageSizeOptions={[15, 30, 50]} />
+        </>
       )}
 
       {mode === 'list' && (
@@ -1376,8 +1382,11 @@ function AdminPartidas() {
   const rodadas = Object.keys(byRodada).map(Number).sort((a, b) => b - a);
   const allRodadas = [...new Set(matches.map(m => m.rodada))].sort((a, b) => b - a);
   const rodadaRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const rodadaPagination = usePagination(rodadas, 5);
   const jumpToRodada = (r: number) => {
     setQuery(''); setStatusFilter('todas');
+    const idx = rodadas.indexOf(r);
+    if (idx >= 0) rodadaPagination.setPage(Math.floor(idx / rodadaPagination.pageSize) + 1);
     requestAnimationFrame(() => rodadaRefs.current[r]?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
 
@@ -1626,7 +1635,8 @@ function AdminPartidas() {
           <p style={{ margin: 0, fontSize: 14 }}>Nenhuma partida encontrada.</p>
         </div>
       ) : (
-        rodadas.map(rodada => (
+        <>
+        {rodadaPagination.pageItems.map(rodada => (
           <div key={rodada} ref={el => { rodadaRefs.current[rodada] = el; }} style={{ marginBottom: 20 }}>
             <div className="eyebrow" style={{ padding: '4px 2px 10px' }}>RODADA {rodada}</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1690,7 +1700,12 @@ function AdminPartidas() {
               })}
             </div>
           </div>
-        ))
+        ))}
+        <PageBar page={rodadaPagination.page} totalPages={rodadaPagination.totalPages} onPage={rodadaPagination.setPage}
+          pageSize={rodadaPagination.pageSize} onPageSize={rodadaPagination.setPageSize}
+          rangeLabel={rodadas.length === 0 ? '0 rodadas' : `rodadas ${rodadaPagination.rangeLabel}`}
+          pageSizeOptions={[3, 5, 10, 20]} />
+        </>
       )}
 
       {selectedComp && (
@@ -1721,6 +1736,7 @@ function AdminNoticias() {
   const { news, competitions, clubById, refresh } = useData();
   const [adding, setAdding] = useState(false);
   const [busy, setBusy] = useState(false);
+  const newsPage = usePagination(news, 10);
   const BLANK_NEWS_FORM = { title: '', body: '', category: 'noticia' as NewsCategory, competitionId: '', matchId: null as number | null };
   const [form, setForm] = useState(BLANK_NEWS_FORM);
   const formSnapshot = useRef(JSON.stringify(BLANK_NEWS_FORM));
@@ -1860,17 +1876,21 @@ function AdminNoticias() {
           <p style={{ margin: '0 0 16px', fontSize: 14 }}>Clique em "+ Nova notícia" para publicar.</p>
         </div>
       ) : (
-        <div className="card-filled">
-          {news.map((n, i) => (
-            <div key={n.id} className="list-row" style={{ borderTop: 'none', borderBottom: i < news.length - 1 ? '1px solid var(--outline-variant)' : 'none' }}>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.3 }}>{n.title}</div>
-                <div style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>{NEWS_CATEGORIES.find(c => c.value === n.category)?.label ?? n.tag} · {n.date}</div>
+        <>
+          <div className="card-filled">
+            {newsPage.pageItems.map((n, i) => (
+              <div key={n.id} className="list-row" style={{ borderTop: 'none', borderBottom: i < newsPage.pageItems.length - 1 ? '1px solid var(--outline-variant)' : 'none' }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.3 }}>{n.title}</div>
+                  <div style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>{NEWS_CATEGORIES.find(c => c.value === n.category)?.label ?? n.tag} · {n.date}</div>
+                </div>
+                <button onClick={() => remove(n.id, n.title)} className="icon-btn" style={{ width: 36, height: 36, color: 'var(--error)' }}>{I.trash}</button>
               </div>
-              <button onClick={() => remove(n.id, n.title)} className="icon-btn" style={{ width: 36, height: 36, color: 'var(--error)' }}>{I.trash}</button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          <PageBar page={newsPage.page} totalPages={newsPage.totalPages} onPage={newsPage.setPage}
+            pageSize={newsPage.pageSize} onPageSize={newsPage.setPageSize} rangeLabel={newsPage.rangeLabel} />
+        </>
       )}
       <button onClick={openAdd} className="fab"><span style={{ width: 22, height: 22 }}>{I.plus}</span>Nova notícia</button>
     </div>
