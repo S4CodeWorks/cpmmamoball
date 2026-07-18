@@ -92,8 +92,6 @@ function rowToMatch(r: Record<string, unknown>): Match {
     stage:   r.stage    as string,
     home_scorers: (r.home_scorers as GoalEntry[] | null) ?? [],
     away_scorers: (r.away_scorers as GoalEntry[] | null) ?? [],
-    home_assists: (r.home_assists as string[] | null) ?? [],
-    away_assists: (r.away_assists as string[] | null) ?? [],
     is_wo:   (r.is_wo   as boolean | null) ?? false,
   };
 }
@@ -466,8 +464,6 @@ export interface MatchInput {
   status?: Match['status'];
   home_scorers?: GoalEntry[];
   away_scorers?: GoalEntry[];
-  home_assists?: string[];
-  away_assists?: string[];
   is_wo?: boolean;
 }
 

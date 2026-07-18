@@ -83,9 +83,9 @@ function Resumo({ m, home, away, isSched }: { m: Match; home: Club; away: Club; 
   }
 
   // Intercalar gols de cada lado para exibição cronológica (sem tempo → só alternamos)
-  type Ev = { side: 'home' | 'away'; nick: string; own_goal?: boolean };
-  const homeGoals: Ev[] = m.home_scorers.map(g => ({ side: 'home', nick: g.nick, own_goal: g.own_goal }));
-  const awayGoals: Ev[] = m.away_scorers.map(g => ({ side: 'away', nick: g.nick, own_goal: g.own_goal }));
+  type Ev = { side: 'home' | 'away'; nick: string; own_goal?: boolean; assist?: string | null };
+  const homeGoals: Ev[] = m.home_scorers.map(g => ({ side: 'home', nick: g.nick, own_goal: g.own_goal, assist: g.assist }));
+  const awayGoals: Ev[] = m.away_scorers.map(g => ({ side: 'away', nick: g.nick, own_goal: g.own_goal, assist: g.assist }));
   const events: Ev[] = [];
   const maxLen = Math.max(homeGoals.length, awayGoals.length);
   for (let i = 0; i < maxLen; i++) {
@@ -107,6 +107,7 @@ function Resumo({ m, home, away, isSched }: { m: Match; home: Club; away: Club; 
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 14, fontWeight: 600 }}>{e.nick}{e.own_goal && <span style={{ color: 'var(--error)', fontWeight: 700 }}> (contra)</span>}</div>
                   {gameIds[e.nick] && <div className="mono" style={{ fontSize: 10.5, color: 'var(--on-surface-variant)' }}>#{gameIds[e.nick]}</div>}
+                  {e.assist && <div style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>🎯 {e.assist}</div>}
                 </div>
                 <Crest id={isHome ? crestClubId : home.id} size={20} />
               </div>
@@ -120,6 +121,7 @@ function Resumo({ m, home, away, isSched }: { m: Match; home: Club; away: Club; 
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600 }}>{e.nick}{e.own_goal && <span style={{ color: 'var(--error)', fontWeight: 700 }}> (contra)</span>}</div>
                   {gameIds[e.nick] && <div className="mono" style={{ fontSize: 10.5, color: 'var(--on-surface-variant)' }}>#{gameIds[e.nick]}</div>}
+                  {e.assist && <div style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>🎯 {e.assist}</div>}
                 </div>
               </div>
             </div>

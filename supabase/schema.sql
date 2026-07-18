@@ -83,10 +83,8 @@ CREATE TABLE IF NOT EXISTS matches (
   rodada          int  NOT NULL,
   date_str        text NOT NULL,             -- ex: "28/05/2026 às 21:00"
   stage           text NOT NULL,             -- ex: "Fase de Grupos", "Final"
-  home_scorers    jsonb NOT NULL DEFAULT '[]'::jsonb, -- [{nick, own_goal?}] goleadores do time da casa
-  away_scorers    jsonb NOT NULL DEFAULT '[]'::jsonb, -- [{nick, own_goal?}] goleadores do visitante
-  home_assists    jsonb NOT NULL DEFAULT '[]'::jsonb, -- nicks — assistências do time da casa (opcional, agregado)
-  away_assists    jsonb NOT NULL DEFAULT '[]'::jsonb, -- nicks — assistências do visitante (opcional, agregado)
+  home_scorers    jsonb NOT NULL DEFAULT '[]'::jsonb, -- [{nick, own_goal?, assist?}] goleadores do time da casa
+  away_scorers    jsonb NOT NULL DEFAULT '[]'::jsonb, -- [{nick, own_goal?, assist?}] goleadores do visitante
   is_wo           boolean DEFAULT false,     -- walkover (vitória administrativa)
   created_at      timestamptz DEFAULT now()
 );

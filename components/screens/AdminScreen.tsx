@@ -955,6 +955,7 @@ function ScorerSection({ label, tag, players, oppPlayers, goals, onChange, targe
   targetCount: number;
 }) {
   const [open, setOpen] = useState(false);
+  const [assistForIndex, setAssistForIndex] = useState<number | null>(null);
 
   const ownCounts: Record<string, number> = {};
   const ogCounts: Record<string, number> = {};
@@ -971,9 +972,13 @@ function ScorerSection({ label, tag, players, oppPlayers, goals, onChange, targe
     next.splice(goals.length - 1 - idx, 1);
     onChange(next);
   };
+  const removeGoalAt = (index: number) => onChange(goals.filter((_, i) => i !== index));
+  const setAssistAt = (index: number, assist: string | null) =>
+    onChange(goals.map((g, i) => i === index ? { ...g, assist } : g));
 
   const identified = goals.length;
   const complete = targetCount > 0 && identified >= targetCount;
+  const assistTarget = assistForIndex !== null ? goals[assistForIndex] : null;
 
   return (
     <div style={{ marginTop: 18 }}>
@@ -984,26 +989,28 @@ function ScorerSection({ label, tag, players, oppPlayers, goals, onChange, targe
         </span>
       </div>
 
-      {/* Chips dos artilheiros atuais */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
-        {Object.entries(ownCounts).map(([nick, count]) => (
-          <button key={'own-' + nick} onClick={() => removeGoal(nick, false)}
-            style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, background: 'var(--primary-container)', border: 'none' }}>
-            <span style={{ width: 15, height: 15 }}>{I.ball}</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--on-primary-container)' }}>{nick}</span>
-            {count > 1 && <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--primary)' }}>×{count}</span>}
-          </button>
-        ))}
-        {Object.entries(ogCounts).map(([nick, count]) => (
-          <button key={'og-' + nick} onClick={() => removeGoal(nick, true)}
-            style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, background: 'color-mix(in srgb, var(--error) 16%, transparent)', border: 'none' }}>
-            <span style={{ width: 15, height: 15, color: 'var(--error)' }}>{I.ball}</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--error)' }}>{nick} (contra)</span>
-            {count > 1 && <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--error)' }}>×{count}</span>}
-          </button>
+      {/* Um cartão por gol — dá pra atribuir assistência a cada um individualmente */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
+        {goals.map((g, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 14, background: g.own_goal ? 'color-mix(in srgb, var(--error) 12%, transparent)' : 'var(--primary-container)' }}>
+            <span style={{ width: 15, height: 15, flexShrink: 0, color: g.own_goal ? 'var(--error)' : 'var(--on-primary-container)' }}>{I.ball}</span>
+            <span style={{ fontSize: 13, fontWeight: 700, color: g.own_goal ? 'var(--error)' : 'var(--on-primary-container)', whiteSpace: 'nowrap' }}>
+              {g.nick}{g.own_goal ? ' (contra)' : ''}
+            </span>
+            {!g.own_goal && (
+              <button onClick={() => setAssistForIndex(i)}
+                style={{ fontSize: 11.5, fontWeight: 600, color: g.assist ? 'var(--primary)' : 'var(--on-surface-variant)', background: 'transparent', border: 'none', textDecoration: g.assist ? 'none' : 'underline', cursor: 'pointer', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {g.assist ? `🎯 ${g.assist}` : '+ assistência'}
+              </button>
+            )}
+            <button onClick={() => removeGoalAt(i)}
+              style={{ marginLeft: 'auto', width: 22, height: 22, flexShrink: 0, borderRadius: 999, background: 'transparent', border: 'none', fontSize: 15, fontWeight: 700, color: 'var(--on-surface-variant)', cursor: 'pointer' }}>
+              ×
+            </button>
+          </div>
         ))}
         <button onClick={() => setOpen(true)}
-          style={{ padding: '7px 16px', borderRadius: 20, background: 'transparent', border: '1.5px dashed var(--outline-variant)', fontSize: 13, color: 'var(--on-surface-variant)', fontWeight: 600 }}>
+          style={{ padding: '7px 16px', borderRadius: 20, background: 'transparent', border: '1.5px dashed var(--outline-variant)', fontSize: 13, color: 'var(--on-surface-variant)', fontWeight: 600, alignSelf: 'flex-start' }}>
           + Gol
         </button>
       </div>
@@ -1017,49 +1024,19 @@ function ScorerSection({ label, tag, players, oppPlayers, goals, onChange, targe
             onAdd={n => addGoal(n, true)} onRemove={n => removeGoal(n, true)} />
         </div>
       </PickerSheet>
-    </div>
-  );
-}
 
-// Assistências — opcional e agregado (não vinculado a um gol específico).
-// Só jogadores do próprio time entram, já que assistência sempre vem de um companheiro.
-function AssistSection({ label, tag, players, nicks, onChange }: {
-  label: string; tag: string; players: Player[]; nicks: string[];
-  onChange: (n: string[]) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const counts: Record<string, number> = {};
-  nicks.forEach(n => { counts[n] = (counts[n] ?? 0) + 1; });
-
-  const addAssist = (nick: string) => onChange([...nicks, nick]);
-  const removeAssist = (nick: string) => {
-    const idx = [...nicks].reverse().findIndex(n => n === nick);
-    if (idx === -1) return;
-    const next = [...nicks];
-    next.splice(nicks.length - 1 - idx, 1);
-    onChange(next);
-  };
-
-  return (
-    <div style={{ marginTop: 14 }}>
-      <span className="field-label" style={{ marginBottom: 10, display: 'block' }}>{label}</span>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {Object.entries(counts).map(([nick, count]) => (
-          <button key={nick} onClick={() => removeAssist(nick)}
-            style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, background: 'var(--secondary-container)', border: 'none' }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--on-secondary-container)' }}>{nick}</span>
-            {count > 1 && <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--on-secondary-container)' }}>×{count}</span>}
+      <PickerSheet open={assistForIndex !== null} onClose={() => setAssistForIndex(null)} title={`Assistência — gol de ${assistTarget?.nick ?? ''}`}>
+        <div style={{ paddingBottom: 32 }}>
+          <button onClick={() => { if (assistForIndex !== null) setAssistAt(assistForIndex, null); setAssistForIndex(null); }}
+            style={{ width: '100%', textAlign: 'left', padding: '13px 18px', fontSize: 13, fontWeight: 600, color: 'var(--on-surface-variant)', background: 'none', border: 'none', borderBottom: '1px solid var(--outline-variant)' }}>
+            Sem assistência
           </button>
-        ))}
-        <button onClick={() => setOpen(true)}
-          style={{ padding: '7px 16px', borderRadius: 20, background: 'transparent', border: '1.5px dashed var(--outline-variant)', fontSize: 13, color: 'var(--on-surface-variant)', fontWeight: 600 }}>
-          + Assistência
-        </button>
-      </div>
-
-      <PickerSheet open={open} onClose={() => setOpen(false)} title={label}>
-        <div style={{ paddingBottom: 32, display: 'flex' }}>
-          <ScorerColumn title={tag} players={players} counts={counts} onAdd={addAssist} onRemove={removeAssist} />
+          {players.filter(p => p.nick !== assistTarget?.nick).map(p => (
+            <button key={p.id} onClick={() => { if (assistForIndex !== null) setAssistAt(assistForIndex, p.nick); setAssistForIndex(null); }}
+              style={{ width: '100%', textAlign: 'left', padding: '13px 18px', fontSize: 13.5, fontWeight: 600, background: assistTarget?.assist === p.nick ? 'var(--primary-container)' : 'none', color: assistTarget?.assist === p.nick ? 'var(--on-primary-container)' : 'var(--on-surface)', border: 'none', borderBottom: '1px solid var(--outline-variant)' }}>
+              {p.nick}
+            </button>
+          ))}
         </div>
       </PickerSheet>
     </div>
@@ -1080,24 +1057,24 @@ async function recalcScorers(competitionId: string, allMatches: Match[]): Promis
     // clubId = time que é DONO desse array de gols (não necessariamente de quem marcou —
     // gol contra fica registrado aqui mas pertence ao elenco do adversário e não conta
     // pra artilharia pessoal de ninguém, só engrossa o placar do time dono).
-    const processTeam = (goals: GoalEntry[], assists: string[], clubId: string) => {
+    const processTeam = (goals: GoalEntry[], clubId: string) => {
       const seen = new Set<string>();
       for (const g of goals) {
         if (g.own_goal) continue; // gol contra não entra na artilharia pessoal
         if (!map[g.nick]) map[g.nick] = { club_id: clubId, goals: 0, assists: 0, jogos: 0 };
         map[g.nick].goals += 1;
         seen.add(g.nick);
-      }
-      for (const nick of assists) {
-        if (!map[nick]) map[nick] = { club_id: clubId, goals: 0, assists: 0, jogos: 0 };
-        map[nick].assists += 1;
-        seen.add(nick);
+        if (g.assist) {
+          if (!map[g.assist]) map[g.assist] = { club_id: clubId, goals: 0, assists: 0, jogos: 0 };
+          map[g.assist].assists += 1;
+          seen.add(g.assist);
+        }
       }
       // Conta 1 jogo por partida, independente de quantos gols/assistências fez
       seen.forEach(nick => { map[nick].jogos += 1; });
     };
-    processTeam(m.home_scorers, m.home_assists, m.home);
-    processTeam(m.away_scorers, m.away_assists, m.away);
+    processTeam(m.home_scorers, m.home);
+    processTeam(m.away_scorers, m.away);
   }
 
   // Busca o ID do jogo de cada artilheiro (exibido como selo abaixo do nick na Tabela)
@@ -1217,8 +1194,6 @@ function AdminPartidas() {
   const [scoreA, setScoreA] = useState(0);
   const [homeScorers, setHomeScorers] = useState<GoalEntry[]>([]);
   const [awayScorers, setAwayScorers] = useState<GoalEntry[]>([]);
-  const [homeAssists, setHomeAssists] = useState<string[]>([]);
-  const [awayAssists, setAwayAssists] = useState<string[]>([]);
   const [isWO, setIsWO] = useState(false);
   const [homePlayers, setHomePlayers] = useState<Player[]>([]);
   const [awayPlayers, setAwayPlayers] = useState<Player[]>([]);
@@ -1277,14 +1252,11 @@ function AdminPartidas() {
     setScoreA(m.scoreA ?? 0);
     setHomeScorers(m.home_scorers ?? []);
     setAwayScorers(m.away_scorers ?? []);
-    setHomeAssists(m.home_assists ?? []);
-    setAwayAssists(m.away_assists ?? []);
     setIsWO(m.is_wo ?? false);
     setEditing(m.id);
     editorSnapshot.current = JSON.stringify({
       scoreH: m.scoreH ?? 0, scoreA: m.scoreA ?? 0,
       homeScorers: m.home_scorers ?? [], awayScorers: m.away_scorers ?? [],
-      homeAssists: m.home_assists ?? [], awayAssists: m.away_assists ?? [],
       isWO: m.is_wo ?? false,
     });
     setLoadingPlayers(true);
@@ -1295,7 +1267,7 @@ function AdminPartidas() {
   };
 
   const closeEditor = async () => {
-    const current = JSON.stringify({ scoreH, scoreA, homeScorers, awayScorers, homeAssists, awayAssists, isWO });
+    const current = JSON.stringify({ scoreH, scoreA, homeScorers, awayScorers, isWO });
     if (current !== editorSnapshot.current) {
       if (!await confirm({ title: 'Descartar alterações?', message: 'Você tem alterações não salvas nesse resultado.', confirmLabel: 'Descartar', danger: true })) return;
     }
@@ -1309,8 +1281,7 @@ function AdminPartidas() {
       // 1. Salva o resultado na partida
       await updateMatch(editing, {
         score_h: scoreH, score_a: scoreA, status: 'finalizado',
-        home_scorers: homeScorers, away_scorers: awayScorers,
-        home_assists: homeAssists, away_assists: awayAssists, is_wo: isWO,
+        home_scorers: homeScorers, away_scorers: awayScorers, is_wo: isWO,
       });
 
       // 2. Re-busca todas as partidas da competição (já com o resultado recém salvo)
@@ -1407,7 +1378,7 @@ function AdminPartidas() {
 
         {/* W.O. toggle */}
         <button
-          onClick={() => { const next = !isWO; setIsWO(next); if (next) { setHomeScorers([]); setAwayScorers([]); setHomeAssists([]); setAwayAssists([]); } }}
+          onClick={() => { const next = !isWO; setIsWO(next); if (next) { setHomeScorers([]); setAwayScorers([]); } }}
           style={{ width: '100%', height: 44, borderRadius: 'var(--r-md)', marginBottom: 16, border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 14, background: isWO ? 'color-mix(in srgb, var(--error) 15%, transparent)' : 'var(--surface-c-high)', color: isWO ? 'var(--error)' : 'var(--on-surface-variant)', outline: isWO ? '1.5px solid var(--error)' : 'none' }}>
           {isWO ? '⚠ W.O. Ativado — toque para desativar' : 'Marcar como W.O.'}
         </button>
@@ -1447,44 +1418,26 @@ function AdminPartidas() {
           ) : (
             <>
               {scoreH > 0 && (
-                <>
-                  <ScorerSection
-                    label={`Gols — ${home.tag}`}
-                    tag={home.tag}
-                    players={homePlayers}
-                    oppPlayers={awayPlayers}
-                    goals={homeScorers}
-                    onChange={setHomeScorers}
-                    targetCount={scoreH}
-                  />
-                  <AssistSection
-                    label={`Assistências — ${home.tag}`}
-                    tag={home.tag}
-                    players={homePlayers}
-                    nicks={homeAssists}
-                    onChange={setHomeAssists}
-                  />
-                </>
+                <ScorerSection
+                  label={`Gols — ${home.tag}`}
+                  tag={home.tag}
+                  players={homePlayers}
+                  oppPlayers={awayPlayers}
+                  goals={homeScorers}
+                  onChange={setHomeScorers}
+                  targetCount={scoreH}
+                />
               )}
               {scoreA > 0 && (
-                <>
-                  <ScorerSection
-                    label={`Gols — ${away.tag}`}
-                    tag={away.tag}
-                    players={awayPlayers}
-                    oppPlayers={homePlayers}
-                    goals={awayScorers}
-                    onChange={setAwayScorers}
-                    targetCount={scoreA}
-                  />
-                  <AssistSection
-                    label={`Assistências — ${away.tag}`}
-                    tag={away.tag}
-                    players={awayPlayers}
-                    nicks={awayAssists}
-                    onChange={setAwayAssists}
-                  />
-                </>
+                <ScorerSection
+                  label={`Gols — ${away.tag}`}
+                  tag={away.tag}
+                  players={awayPlayers}
+                  oppPlayers={homePlayers}
+                  goals={awayScorers}
+                  onChange={setAwayScorers}
+                  targetCount={scoreA}
+                />
               )}
             </>
           )

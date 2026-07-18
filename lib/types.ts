@@ -35,9 +35,12 @@ export interface Standing {
 
 // Um gol dentro de home_scorers/away_scorers — se own_goal, o nick pertence ao
 // elenco do time ADVERSÁRIO daquele array (marcou contra o próprio time).
+// assist (opcional) é o nick de um companheiro do PRÓPRIO artilheiro que deu
+// o passe pra esse gol específico — nunca se aplica a gol contra.
 export interface GoalEntry {
   nick: string;
   own_goal?: boolean;
+  assist?: string | null;
 }
 
 export interface Match {
@@ -52,8 +55,6 @@ export interface Match {
   stage: string;
   home_scorers: GoalEntry[];
   away_scorers: GoalEntry[];
-  home_assists: string[];
-  away_assists: string[];
   is_wo: boolean;
 }
 

@@ -650,34 +650,16 @@ export function SubscriptionScreen({ onBack, presetCompId }: { onBack?: () => vo
 }
 
 // ===================== RULES =====================
+// Conteúdo removido a pedido — texto era fictício/placeholder. Volta quando
+// tiver o regulamento oficial definido (idealmente editável pelo Admin).
 export function RulesScreen({ onBack }: { onBack?: () => void }) {
-  const sections = [
-    { n: '1', t: 'Times elegíveis', items: ['FBM aceita times sD+', 'CPM aceita Séries CBM ou WK CBM'] },
-    { n: '2', t: 'Elenco', items: ['Não aceitamos jogadores irregulares ou multi-clubes', 'Atualização de elenco permitida entre a 1ª e a 2ª fase'] },
-    { n: '3', t: 'Partidas', items: ['Quando estiver -1 em campo, pause imediato', 'Substituições só com bola no meio', 'W.O. de 15 minutos. Após isso, W.O. automático'] },
-    { n: '4', t: 'Fair play', items: ['Gravação obrigatória do fair (até 7 min após o lance)', 'Sem xingamento ou preconceito · punição imediata'] },
-    { n: '5', t: 'Formato', items: ['O módulo do campeonato é EQUAL, não clássico', 'Transmissões oficiais em semifinais, finais e clássicos'] },
-  ];
   return (
     <>
-      <TopAppBar large title="Regulamento" subhead="CPM & FBM · 2026" showBack onBack={onBack} />
-      <div style={{ padding: '0 16px 0' }}>
-        {sections.map(sec => (
-          <div key={sec.n} style={{ marginBottom: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, paddingLeft: 4 }}>
-              <span style={{ width: 26, height: 26, borderRadius: 999, background: 'var(--primary)', color: 'var(--on-primary)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 13 }}>{sec.n}</span>
-              <h3 style={{ margin: 0, fontSize: 15.5, fontWeight: 700 }}>{sec.t}</h3>
-            </div>
-            <div className="card-filled">
-              {sec.items.map((it, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '14px 18px', borderTop: i ? '1px solid var(--outline-variant)' : 'none', fontSize: 14, lineHeight: 1.5 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--primary)', marginTop: 8, flexShrink: 0 }} />
-                  <span style={{ color: 'var(--on-surface)' }}>{it}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+      <TopAppBar large title="Regulamento" showBack onBack={onBack} />
+      <div className="empty" style={{ marginTop: 24 }}>
+        <div className="empty-icon">{I.rules}</div>
+        <h3 style={{ margin: '0 0 6px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>Em preparação</h3>
+        <p style={{ margin: 0, fontSize: 14 }}>O regulamento oficial ainda está sendo definido.</p>
       </div>
     </>
   );
