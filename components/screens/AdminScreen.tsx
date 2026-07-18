@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
 import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
@@ -69,156 +68,68 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'competicoes', label: 'Competições', icon: 'trophy' },
 ];
 
-// Crest monocromático do design (tile com sigla mono), com fallback pra logo real quando existir.
-function DcCrest({ clubId, size = 34 }: { clubId: string; size?: number }) {
-  const { clubById } = useData();
-  const c = clubById(clubId);
-  const r = size <= 26 ? 7 : 9;
-  const st: React.CSSProperties = { width: size, height: size, borderRadius: r, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontWeight: 700, fontSize: size <= 26 ? 9.5 : 11.5, letterSpacing: '-0.02em', color: size <= 26 ? 'var(--dc-text-2)' : 'var(--dc-text)', fontFamily: 'var(--dc-mono)', flexShrink: 0, overflow: 'hidden' };
-  if (!c) return <div style={st} />;
-  if (c.logo_url) return <img src={c.logo_url} alt={c.nome} style={{ ...st, objectFit: 'cover' }} />;
-  return <div style={st}>{c.tag}</div>;
+function DashStat({ n, l, hot }: { n: string; l: string; hot?: boolean }) {
+  return (
+    <div style={{ padding: '16px 18px', borderRadius: 'var(--r-lg)', background: hot ? 'color-mix(in srgb, var(--live) 14%, var(--surface-c))' : 'var(--surface-c)', border: hot ? '1px solid color-mix(in srgb, var(--live) 26%, transparent)' : '1px solid transparent' }}>
+      <div className="mono tabular" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, color: hot ? 'var(--live)' : 'var(--on-surface)' }}>{n}</div>
+      <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 6 }}>{l}</div>
+    </div>
+  );
 }
 
-// Mesma tile monocromática, mas só com a sigla em texto (times ainda não criados — ex. inscrições pendentes)
-function DcCrestByTag({ tag, size = 48 }: { tag: string; size?: number }) {
+function AdminAction({ icon, label, sub, onClick, last, badge }: { icon: string; label: string; sub: string; onClick: () => void; last?: boolean; badge?: boolean }) {
   return (
-    <div style={{ width: size, height: size, borderRadius: 12, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 14, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text)', flexShrink: 0 }}>
-      {tag}
-    </div>
+    <button onClick={onClick} className="tap"
+      style={{ width: '100%', textAlign: 'left', display: 'grid', gridTemplateColumns: '44px 1fr 24px', alignItems: 'center', gap: 14, padding: '14px 16px', borderBottom: last ? 'none' : '1px solid var(--outline-variant)' }}>
+      <span style={{ width: 40, height: 40, borderRadius: 12, background: badge ? 'color-mix(in srgb, var(--live) 18%, transparent)' : 'var(--surface-c-high)', color: badge ? 'var(--live)' : 'var(--on-surface)', display: 'grid', placeItems: 'center', position: 'relative' }}>
+        {I[icon]}
+        {badge && <span style={{ position: 'absolute', top: -4, right: -4, background: 'var(--live)', color: '#fff', width: 16, height: 16, borderRadius: 999, fontSize: 10, fontWeight: 700, display: 'grid', placeItems: 'center', border: '2px solid var(--surface-c)' }}>!</span>}
+      </span>
+      <div>
+        <div style={{ fontSize: 14.5, fontWeight: 600 }}>{label}</div>
+        <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{sub}</div>
+      </div>
+      <span style={{ color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
+    </button>
   );
 }
 
 // ── Dashboard ─────────────────────────────────────────────────────────────────
 
-function DcKpi({ icon, n, l, hot, color }: { icon: string; n: string; l: string; hot?: boolean; color?: string }) {
-  return (
-    <div style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', padding: '16px 18px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-        <span style={{ width: 34, height: 34, borderRadius: 9, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', color: 'var(--dc-text-2)', display: 'grid', placeItems: 'center' }}>{I[icon]}</span>
-        {hot && <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--dc-live)', background: 'var(--dc-live-bg)', padding: '3px 8px', borderRadius: 99, letterSpacing: '0.02em' }}>AÇÃO</span>}
-      </div>
-      <div style={{ fontFamily: 'var(--dc-mono)', fontSize: 30, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1, color: color ?? 'var(--dc-text)' }}>{n}</div>
-      <div style={{ fontSize: 12.5, color: 'var(--dc-text-2)', marginTop: 7, fontWeight: 500 }}>{l}</div>
-    </div>
-  );
-}
-
 function AdminDashboard({ onSection }: { onSection: (s: Section) => void }) {
-  const { clubs, matches, standings, inscricoes, activeComp, clubById } = useData();
-  const isDesktop = useIsDesktop();
-  const pendentes = inscricoes.filter(i => i.status === 'pendente');
-  const semResultado = matches.filter(m => m.status === 'agendado');
-  const upcoming = [...semResultado].sort((a, b) => a.rodada - b.rodada).slice(0, 4);
-  const top5 = standings.slice(0, 5);
+  const { clubs, matches, news, standings, inscricoes, activeComp } = useData();
+  const pendentes = inscricoes.filter(i => i.status === 'pendente').length;
+  const semResultado = matches.filter(m => m.status === 'agendado').length;
 
   return (
-    <div style={{ animation: 'dcInFade .25s ease' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 20 }}>
-        {activeComp ? (
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 99, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)' }}>
-            <span style={{ width: 8, height: 8, borderRadius: 99, background: 'var(--dc-pos)', flexShrink: 0 }} />
-            <span style={{ fontWeight: 700, fontSize: 13, color: 'var(--dc-text)' }}>{activeComp.nome} · {activeComp.edicao}</span>
-            <span style={{ color: 'var(--dc-text-3)', fontSize: 12.5 }}>·</span>
-            <span style={{ color: 'var(--dc-text-2)', fontSize: 12.5 }}>{rodadaLabel(activeComp.rodada_atual, activeComp.total_rodadas)}</span>
+    <div style={{ padding: '0 16px' }}>
+      <h2 style={{ margin: '0 0 14px', fontSize: 22, fontWeight: 700 }}>Painel Admin</h2>
+      {activeComp ? (
+        <div style={{ padding: '12px 16px', borderRadius: 'var(--r-lg)', background: 'color-mix(in srgb, var(--primary) 8%, var(--surface-c))', marginBottom: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--primary)' }}>{activeComp.nome} · {activeComp.edicao}</div>
+            <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{rodadaLabel(activeComp.rodada_atual, activeComp.total_rodadas)}</div>
           </div>
-        ) : (
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 99, background: 'var(--dc-warn-bg)', color: 'var(--dc-warn)', fontSize: 13, fontWeight: 600 }}>
-            Nenhuma competição ativa
-          </div>
-        )}
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? 'repeat(4,1fr)' : 'repeat(2,1fr)', gap: 14, marginBottom: 20 }}>
-        <DcKpi icon="shield" n={String(clubs.length)} l="Clubes cadastrados" />
-        <DcKpi icon="trophy" n={String(standings.length)} l="Na classificação" />
-        <DcKpi icon="ball" n={String(matches.length)} l="Partidas" />
-        <DcKpi icon="ticket" n={String(pendentes.length)} l="Inscrições pendentes" hot={pendentes.length > 0} color={pendentes.length > 0 ? 'var(--dc-live)' : undefined} />
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: isDesktop ? '1.5fr 1fr' : '1fr', gap: 16, alignItems: 'start' }}>
-        {/* Próximas partidas */}
-        <div style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', overflow: 'hidden' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', borderBottom: '1px solid var(--dc-border)' }}>
-            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-0.01em', color: 'var(--dc-text)' }}>Próximas partidas</div>
-            <button onClick={() => onSection('partidas')} style={{ fontSize: 12.5, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Ver todas →</button>
-          </div>
-          {upcoming.length === 0 ? (
-            <div style={{ padding: '28px 18px', textAlign: 'center', fontSize: 13, color: 'var(--dc-text-3)' }}>Nenhuma partida agendada.</div>
-          ) : upcoming.map(m => {
-            const home = clubById(m.home), away = clubById(m.away);
-            return (
-              <button key={m.id} onClick={() => onSection('partidas')}
-                style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 12, padding: '14px 18px', border: 'none', borderTop: '1px solid var(--dc-border)', background: 'transparent', cursor: 'pointer', textAlign: 'left', color: 'var(--dc-text)', fontFamily: 'var(--dc-sans)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-end', minWidth: 0 }}>
-                  <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{home?.nome ?? '?'}</span>
-                  <DcCrest clubId={m.home} />
-                </div>
-                <div style={{ textAlign: 'center', flexShrink: 0 }}>
-                  <div style={{ fontFamily: 'var(--dc-mono)', fontSize: 11, color: 'var(--dc-text-3)', fontWeight: 500 }}>{m.date}</div>
-                  <div style={{ fontSize: 10, color: 'var(--dc-text-3)', marginTop: 2 }}>Rod. {m.rodada}</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-                  <DcCrest clubId={m.away} />
-                  <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{away?.nome ?? '?'}</span>
-                </div>
-              </button>
-            );
-          })}
+          <span className="chip" style={{ background: 'var(--primary-container)', color: 'var(--on-primary-container)', height: 26, padding: '0 10px', fontSize: 11 }}>Em andamento</span>
         </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Inscrições pendentes */}
-          <div style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', borderBottom: '1px solid var(--dc-border)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--dc-text)' }}>Inscrições</span>
-                <span style={{ minWidth: 20, height: 20, padding: '0 6px', borderRadius: 99, background: pendentes.length > 0 ? 'var(--dc-live)' : 'var(--dc-surface-3)', color: pendentes.length > 0 ? '#fff' : 'var(--dc-text-2)', fontSize: 11, fontWeight: 800, display: 'inline-grid', placeItems: 'center' }}>{pendentes.length}</span>
-              </div>
-              <button onClick={() => onSection('inscricoes')} style={{ fontSize: 12.5, color: 'var(--dc-text-2)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Analisar →</button>
-            </div>
-            {pendentes.length === 0 ? (
-              <div style={{ padding: '24px 18px', textAlign: 'center', fontSize: 13, color: 'var(--dc-text-3)' }}>Tudo em dia.</div>
-            ) : pendentes.slice(0, 3).map(p => (
-              <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 18px', borderTop: '1px solid var(--dc-border)' }}>
-                <div style={{ width: 34, height: 34, borderRadius: 9, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border-2)', display: 'grid', placeItems: 'center', fontWeight: 700, fontSize: 11.5, fontFamily: 'var(--dc-mono)', color: 'var(--dc-text)', flexShrink: 0 }}>{p.tag}</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{p.nome}</div>
-                  <div style={{ fontSize: 11, color: 'var(--dc-text-3)' }}>{p.capitao} · {p.jogadores.length} jogadores</div>
-                </div>
-                <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--dc-warn)', background: 'var(--dc-warn-bg)', padding: '3px 9px', borderRadius: 99, flexShrink: 0 }}>Pendente</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Classificação top 5 */}
-          <div style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', borderBottom: '1px solid var(--dc-border)' }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--dc-text)' }}>Classificação</span>
-              <span style={{ fontSize: 11.5, color: 'var(--dc-text-3)' }}>top 5</span>
-            </div>
-            {top5.length === 0 ? (
-              <div style={{ padding: '24px 18px', textAlign: 'center', fontSize: 13, color: 'var(--dc-text-3)' }}>Sem dados ainda.</div>
-            ) : (
-              <div style={{ padding: '4px 0' }}>
-                {top5.map((t, i) => {
-                  const c = clubById(t.club);
-                  return (
-                    <div key={t.club} style={{ display: 'grid', gridTemplateColumns: '20px 1fr auto auto', alignItems: 'center', gap: 12, padding: '8px 18px' }}>
-                      <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, color: 'var(--dc-text-3)', fontWeight: 600, textAlign: 'center' }}>{i + 1}</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 9, minWidth: 0 }}>
-                        <DcCrest clubId={t.club} size={24} />
-                        <span style={{ fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{c?.nome ?? '?'}</span>
-                      </div>
-                      <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11, color: 'var(--dc-text-3)' }}>{t.J}j</span>
-                      <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 13, fontWeight: 700, minWidth: 26, textAlign: 'right', color: 'var(--dc-text)' }}>{t.P}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+      ) : (
+        <div style={{ padding: '12px 16px', borderRadius: 'var(--r-lg)', background: 'color-mix(in srgb, var(--warning) 10%, var(--surface-c))', marginBottom: 14 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--warning)' }}>Nenhuma competição ativa</div>
+          <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Crie uma competição para começar.</div>
         </div>
+      )}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
+        <DashStat n={String(clubs.length)}    l="Clubes cadastrados" />
+        <DashStat n={String(standings.length)} l="Na classificação" />
+        <DashStat n={String(matches.length)}  l="Partidas" />
+        <DashStat n={String(pendentes)}        l="Inscrições pendentes" hot={pendentes > 0} />
+      </div>
+      <div className="eyebrow" style={{ padding: '12px 4px 10px' }}>AÇÕES RÁPIDAS</div>
+      <div className="card-filled">
+        <AdminAction icon="ticket"  label="Aprovar inscrições"    sub={pendentes > 0 ? `${pendentes} pendentes` : 'Nenhuma pendente'} onClick={() => onSection('inscricoes')} badge={pendentes > 0} />
+        <AdminAction icon="ball"    label="Lançar resultado"      sub={`${semResultado} agendados`} onClick={() => onSection('partidas')} />
+        <AdminAction icon="news"    label="Publicar notícia"      sub="Editor rápido" onClick={() => onSection('noticias')} />
+        <AdminAction icon="trophy"  label="Gerenciar competições" sub={`${activeComp ? '1 ativa' : 'Nenhuma ativa'}`} onClick={() => onSection('competicoes')} last />
       </div>
     </div>
   );
@@ -226,7 +137,7 @@ function AdminDashboard({ onSection }: { onSection: (s: Section) => void }) {
 
 // ── Inscrições ────────────────────────────────────────────────────────────────
 
-function AdminInscricoes({ onNav }: { onNav: (page: string, param?: string | number | null) => void }) {
+function AdminInscricoes() {
   const { showToast } = useApp();
   const { inscricoes, clubs, refresh } = useData();
   const [busy, setBusy] = useState<number | null>(null);
@@ -267,83 +178,64 @@ function AdminInscricoes({ onNav }: { onNav: (page: string, param?: string | num
     } finally { setBusy(null); }
   };
 
-  const publicLink = (
-    <div style={{ display: 'flex', justifyContent: 'flex-end', maxWidth: 820, marginBottom: 14 }}>
-      <button onClick={() => onNav('subscription')}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 7, height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
-        <span style={{ width: 14, height: 14 }}>{I.externalLink}</span>Ver página pública de inscrição
-      </button>
-    </div>
-  );
-
   if (pendentes.length === 0) {
     return (
-      <div>
-        {publicLink}
-        <div style={{ textAlign: 'center', padding: '80px 24px', color: 'var(--dc-text-2)' }}>
-          <div style={{ width: 60, height: 60, borderRadius: 18, background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', display: 'grid', placeItems: 'center', margin: '0 auto 16px', color: 'var(--dc-pos)' }}>
-            <span style={{ width: 26, height: 26 }}>{I.check}</span>
-          </div>
-          <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--dc-text)' }}>Tudo em dia</div>
-          <div style={{ fontSize: 13.5, marginTop: 6 }}>Nenhuma inscrição aguardando análise.</div>
+      <div style={{ padding: '0 16px' }}>
+        <div className="empty">
+          <div className="empty-icon">{I.check}</div>
+          <h3 style={{ margin: '0 0 6px', fontSize: 17, color: 'var(--on-surface)', fontWeight: 700 }}>Tudo em dia</h3>
+          <p style={{ margin: 0, fontSize: 14 }}>Nenhuma inscrição aguardando análise.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div>
-      {publicLink}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 820 }}>
-        {pendentes.map(it => (
-          <div key={it.id} style={{ border: '1px solid var(--dc-border)', borderRadius: 16, background: 'var(--dc-surface)', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>
-              <DcCrestByTag tag={it.tag} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--dc-text)' }}>{it.nome}</div>
-                <div style={{ fontSize: 12.5, color: 'var(--dc-text-3)' }}>Capitão {it.capitao} · enviado {new Date(it.created_at).toLocaleDateString('pt-BR')}</div>
-              </div>
-              <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--dc-warn)', background: 'var(--dc-warn-bg)', padding: '4px 10px', borderRadius: 99, flexShrink: 0 }}>Pendente</span>
-            </div>
-            {(it.jogadores.length > 0 || it.roster) && (
-              <>
-                <button onClick={() => setExpanded(expanded === it.id ? null : it.id)}
-                  style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', border: 'none', borderTop: '1px solid var(--dc-border)', background: 'transparent', color: 'var(--dc-text-2)', fontSize: 12.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
-                  <span>{expanded === it.id ? 'Ocultar elenco' : `Ver elenco (${it.jogadores.length || 'texto livre'})`}</span>
-                  <span style={{ width: 16, height: 16, transform: expanded === it.id ? 'rotate(180deg)' : '', transition: 'transform .2s' }}>{I.chevD}</span>
-                </button>
-                {expanded === it.id && (
-                  it.jogadores.length > 0 ? (
-                    <div style={{ background: 'var(--dc-surface-2)', borderTop: '1px solid var(--dc-border)' }}>
-                      {it.jogadores.map((j, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', padding: '10px 18px', borderTop: i ? '1px solid var(--dc-border)' : 'none' }}>
-                          {it.capitao.trim().toLowerCase() === j.nick.trim().toLowerCase() && (
-                            <span style={{ fontSize: 9.5, fontWeight: 800, letterSpacing: '0.04em', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', padding: '2px 7px', borderRadius: 99 }}>CAP</span>
-                          )}
-                          <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--dc-text)' }}>{j.nick}</span>
-                          <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>#{j.game_id}</span>
-                          {j.discord && <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 11.5, color: 'var(--dc-text-3)' }}>{j.discord}</span>}
-                          {j.posicao && <span style={{ fontSize: 10, fontWeight: 700, background: 'var(--dc-surface-3)', color: 'var(--dc-text-2)', padding: '2px 8px', borderRadius: 99 }}>{j.posicao}</span>}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div style={{ padding: '12px 18px', background: 'var(--dc-surface-2)', borderTop: '1px solid var(--dc-border)', fontFamily: 'var(--dc-mono)', fontSize: 12.5, lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--dc-text-2)' }}>{it.roster}</div>
-                  )
-                )}
-              </>
-            )}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, padding: '14px 18px', borderTop: '1px solid var(--dc-border)' }}>
-              <button disabled={busy === it.id} onClick={() => handle(it.id, 'recusado')}
-                style={{ height: 42, borderRadius: 10, border: '1px solid var(--dc-border-2)', background: 'var(--dc-surface)', color: 'var(--dc-text)', fontSize: 13.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>Recusar</button>
-              <button disabled={busy === it.id} onClick={() => handle(it.id, 'aprovado')}
-                style={{ height: 42, borderRadius: 10, border: 'none', background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', fontSize: 13.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--dc-sans)' }}>
-                {busy === it.id ? '...' : it.jogadores.length > 0 ? 'Aprovar e criar time' : 'Aprovar'}
-              </button>
+    <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {pendentes.map(it => (
+        <div key={it.id} className="card-filled" style={{ padding: 0 }}>
+          <div style={{ padding: '16px 16px 12px', display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--surface-c-high)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 14 }}>{it.tag}</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>{it.nome}</div>
+              <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Capitão: {it.capitao} · {new Date(it.created_at).toLocaleDateString('pt-BR')}</div>
             </div>
           </div>
-        ))}
-      </div>
+          {(it.jogadores.length > 0 || it.roster) && (
+            <>
+              <button onClick={() => setExpanded(expanded === it.id ? null : it.id)} className="tap"
+                style={{ width: '100%', padding: '10px 16px', borderTop: '1px solid var(--outline-variant)', color: 'var(--primary)', fontSize: 13, fontWeight: 600, textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                {expanded === it.id ? 'Ocultar elenco' : `Ver elenco enviado${it.jogadores.length > 0 ? ` (${it.jogadores.length})` : ''}`}
+                <span style={{ width: 18, height: 18, transform: expanded === it.id ? 'rotate(180deg)' : '', transition: 'transform .2s' }}>{I.chevD}</span>
+              </button>
+              {expanded === it.id && (
+                it.jogadores.length > 0 ? (
+                  <div style={{ background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
+                    {it.jogadores.map((j, i) => (
+                      <div key={i} style={{ padding: '10px 18px', borderTop: i ? '1px solid var(--outline-variant)' : 'none', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 13.5, fontWeight: 600 }}>{j.nick}</span>
+                        <span className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>#{j.game_id}</span>
+                        {j.discord && <span className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Discord: {j.discord}</span>}
+                        {j.posicao && (
+                          <span style={{ fontSize: 10, background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', padding: '2px 8px', borderRadius: 999, fontWeight: 700 }}>{j.posicao}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ padding: '12px 18px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)', fontFamily: 'var(--mono)', fontSize: 12.5, lineHeight: 1.7, whiteSpace: 'pre-wrap', color: 'var(--on-surface-variant)' }}>{it.roster}</div>
+                )
+              )}
+            </>
+          )}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, padding: '12px 16px', borderTop: '1px solid var(--outline-variant)' }}>
+            <button disabled={busy === it.id} onClick={() => handle(it.id, 'recusado')} className="btn btn-outlined" style={{ height: 42 }}>Recusar</button>
+            <button disabled={busy === it.id} onClick={() => handle(it.id, 'aprovado')} className="btn btn-primary" style={{ height: 42 }}>
+              {busy === it.id ? '...' : it.jogadores.length > 0 ? 'Aprovar e criar time' : 'Aprovar'}
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -2302,121 +2194,16 @@ function AdminCompeticoes() {
 
 // ── Shell principal ───────────────────────────────────────────────────────────
 
-const NAV_GERAL: Section[] = ['dashboard', 'inscricoes', 'times'];
-const NAV_COMPETICAO: Section[] = ['partidas', 'noticias', 'competicoes'];
-const SECTION_SUB: Record<Section, string> = {
-  dashboard: 'Visão geral da liga',
-  inscricoes: 'Times aguardando aprovação',
-  times: 'Clubes e elenco',
-  partidas: 'Calendário e resultados',
-  noticias: 'Publicações da federação',
-  competicoes: 'Ligas e inscrições de clubes',
-};
-
-function AdminSidebar({ section, setSection, pendentes, isDesktop, mobileOpen, onCloseMobile }: {
-  section: Section; setSection: (s: Section) => void; pendentes: number;
-  isDesktop: boolean; mobileOpen: boolean; onCloseMobile: () => void;
-}) {
-  const { resolvedTheme, setTheme } = useApp();
-  const { user, signOut } = useAuth();
-
-  const navBtnStyle = (id: Section): React.CSSProperties => ({
-    display: 'flex', alignItems: 'center', gap: 11, width: '100%', height: 40, padding: '0 12px',
-    borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 13.5, fontFamily: 'var(--dc-sans)',
-    background: section === id ? 'var(--dc-surface-3)' : 'transparent',
-    color: section === id ? 'var(--dc-text)' : 'var(--dc-text-2)', fontWeight: section === id ? 700 : 500,
-  });
-
-  const NavGroup = ({ title, ids, close }: { title: string; ids: Section[]; close?: boolean }) => (
-    <>
-      <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.09em', color: 'var(--dc-text-3)', padding: '12px 12px 8px' }}>{title}</div>
-      {ids.map(id => {
-        const s = SECTIONS.find(x => x.id === id)!;
-        return (
-          <button key={id} onClick={() => { setSection(id); if (close) onCloseMobile(); }} style={navBtnStyle(id)}>
-            <span style={{ width: 19, height: 19, flexShrink: 0, display: 'grid', placeItems: 'center' }}>{I[s.icon]}</span>
-            <span style={{ flex: 1, textAlign: 'left' }}>{s.label}</span>
-            {id === 'inscricoes' && pendentes > 0 && (
-              <span style={{ fontSize: 10.5, fontWeight: 700, color: '#fff', background: 'var(--dc-live)', padding: '2px 7px', borderRadius: 99 }}>{pendentes}</span>
-            )}
-          </button>
-        );
-      })}
-    </>
-  );
-
-  if (isDesktop) {
-    return (
-      <aside style={{ display: 'flex', flexDirection: 'column', width: 264, flexShrink: 0, background: 'var(--dc-panel)', borderRight: '1px solid var(--dc-border)', height: '100dvh' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '22px 20px 20px' }}>
-          <div style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 17, letterSpacing: '-0.03em' }}>C</div>
-          <div style={{ lineHeight: 1.1 }}>
-            <div style={{ fontWeight: 700, fontSize: 14.5, letterSpacing: '-0.02em', color: 'var(--dc-text)' }}>CPM Admin</div>
-            <div style={{ fontSize: 11, color: 'var(--dc-text-3)', fontWeight: 500 }}>MamoBall · staff</div>
-          </div>
-        </div>
-        <div style={{ padding: '2px 12px 0', flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <NavGroup title="GERAL" ids={NAV_GERAL} />
-          <NavGroup title="COMPETIÇÃO" ids={NAV_COMPETICAO} />
-        </div>
-        <div style={{ padding: 12, borderTop: '1px solid var(--dc-border)' }}>
-          <div style={{ display: 'flex', background: 'var(--dc-surface-2)', borderRadius: 11, padding: 3, gap: 2, marginBottom: 10 }}>
-            <button onClick={() => setTheme('light')}
-              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, height: 32, borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 12.5, fontWeight: 600, fontFamily: 'var(--dc-sans)', background: resolvedTheme === 'light' ? 'var(--dc-surface)' : 'transparent', color: resolvedTheme === 'light' ? 'var(--dc-text)' : 'var(--dc-text-3)', boxShadow: resolvedTheme === 'light' ? 'var(--dc-shadow-sm)' : 'none' }}>
-              <span style={{ width: 15, height: 15 }}>{I.sun}</span>Claro
-            </button>
-            <button onClick={() => setTheme('dark')}
-              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, height: 32, borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 12.5, fontWeight: 600, fontFamily: 'var(--dc-sans)', background: resolvedTheme === 'dark' ? 'var(--dc-surface)' : 'transparent', color: resolvedTheme === 'dark' ? 'var(--dc-text)' : 'var(--dc-text-3)', boxShadow: resolvedTheme === 'dark' ? 'var(--dc-shadow-sm)' : 'none' }}>
-              <span style={{ width: 15, height: 15 }}>{I.moon}</span>Escuro
-            </button>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 8px' }}>
-            <div style={{ width: 32, height: 32, borderRadius: 99, background: 'var(--dc-surface-3)', border: '1px solid var(--dc-border)', display: 'grid', placeItems: 'center', fontWeight: 700, fontSize: 13, color: 'var(--dc-text)' }}>
-              {(user?.email?.[0] ?? '?').toUpperCase()}
-            </div>
-            <div style={{ flex: 1, minWidth: 0, lineHeight: 1.2 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{user?.email ?? 'Staff'}</div>
-              <div style={{ fontSize: 11, color: 'var(--dc-text-3)' }}>★ Administrador</div>
-            </div>
-            <button onClick={() => signOut()} title="Sair"
-              style={{ width: 30, height: 30, borderRadius: 8, border: 'none', background: 'transparent', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
-              <span style={{ width: 16, height: 16 }}>{I.signOut}</span>
-            </button>
-          </div>
-        </div>
-      </aside>
-    );
-  }
-
-  if (!mobileOpen) return null;
-  return (
-    <>
-      <div onClick={onCloseMobile} style={{ position: 'fixed', inset: 0, zIndex: 80, background: 'rgba(0,0,0,.45)', animation: 'dcInFade .18s ease' }} />
-      <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, zIndex: 81, width: 250, background: 'var(--dc-panel)', borderRight: '1px solid var(--dc-border)', animation: 'dcInUp .22s ease', display: 'flex', flexDirection: 'column', padding: '16px 12px', gap: 2, overflowY: 'auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '6px 10px 16px' }}>
-          <div style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--dc-accent)', color: 'var(--dc-on-accent)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 16 }}>C</div>
-          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--dc-text)' }}>CPM Admin</div>
-        </div>
-        <NavGroup title="GERAL" ids={NAV_GERAL} close />
-        <NavGroup title="COMPETIÇÃO" ids={NAV_COMPETICAO} close />
-      </div>
-    </>
-  );
-}
-
 export function AdminScreen({ onBack, onNav }: NavProps) {
   const [section, setSection] = useState<Section>('dashboard');
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { inscricoes } = useData();
-  const { resolvedTheme } = useApp();
-  const isDesktop = useIsDesktop();
   const pendentes = inscricoes.filter(i => i.status === 'pendente').length;
   const active = SECTIONS.find(s => s.id === section)!;
 
   const sectionView = (
     <>
       {section === 'dashboard'   && <AdminDashboard  onSection={setSection} />}
-      {section === 'inscricoes'  && <AdminInscricoes onNav={onNav} />}
+      {section === 'inscricoes'  && <AdminInscricoes />}
       {section === 'times'       && <AdminTimes />}
       {section === 'partidas'    && <AdminPartidas />}
       {section === 'noticias'    && <AdminNoticias />}
@@ -2425,44 +2212,35 @@ export function AdminScreen({ onBack, onNav }: NavProps) {
   );
 
   return (
-    <div className="app-root dc-mono" data-theme={resolvedTheme}
-      style={{ display: 'flex', height: '100dvh', width: '100%', overflow: 'hidden', background: 'var(--dc-bg)', color: 'var(--dc-text)', fontFamily: 'var(--dc-sans)', position: 'relative' }}>
+    <>
+      <TopAppBar showBack onBack={onBack} title={`Admin · ${active.label}`}
+        rightExtras={<button className="icon-btn" onClick={() => onNav('search')} title="Buscar">{I.search}</button>}
+      />
 
-      <AdminSidebar section={section} setSection={setSection} pendentes={pendentes}
-        isDesktop={isDesktop} mobileOpen={mobileNavOpen} onCloseMobile={() => setMobileNavOpen(false)} />
+      {/* Mobile: pills horizontais */}
+      <div className="admin-tabs">
+        {SECTIONS.map(s => (
+          <button key={s.id} onClick={() => setSection(s.id)} className={`admin-tab tap${section === s.id ? ' is-active' : ''}`}>
+            <span style={{ width: 18, height: 18 }}>{I[s.icon]}</span>
+            {s.label}
+            {s.id === 'inscricoes' && pendentes > 0 && <span className="badge">{pendentes}</span>}
+          </button>
+        ))}
+      </div>
 
-      <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: isDesktop ? '14px 28px' : '12px 16px', borderBottom: '1px solid var(--dc-border)', background: 'var(--dc-surface)', position: 'sticky', top: 0, zIndex: 20, minHeight: 66 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0, flex: 1 }}>
-            {!isDesktop && (
-              <button onClick={() => setMobileNavOpen(true)} title="Menu"
-                style={{ display: 'grid', placeItems: 'center', width: 40, height: 40, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text)', cursor: 'pointer', flexShrink: 0 }}>
-                <span style={{ width: 20, height: 20 }}>{I.hamburger}</span>
-              </button>
-            )}
-            <button onClick={onBack} title="Voltar ao app"
-              style={{ display: 'grid', placeItems: 'center', width: 40, height: 40, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', cursor: 'pointer', flexShrink: 0 }}>
-              <span style={{ width: 18, height: 18 }}>{I.back}</span>
+      {/* Desktop: sidebar fixa + conteúdo */}
+      <div className="admin-shell">
+        <nav className="admin-sidebar" aria-label="Seções do painel admin">
+          {SECTIONS.map(s => (
+            <button key={s.id} onClick={() => setSection(s.id)} className={`admin-sidebar-item tap${section === s.id ? ' is-active' : ''}`}>
+              <span className="icon">{I[s.icon]}</span>
+              {s.label}
+              {s.id === 'inscricoes' && pendentes > 0 && <span className="badge">{pendentes}</span>}
             </button>
-            <div style={{ minWidth: 0 }}>
-              <h1 style={{ margin: 0, fontSize: 19, fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--dc-text)' }}>{active.label}</h1>
-              <div style={{ fontSize: 12.5, color: 'var(--dc-text-3)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{SECTION_SUB[section]}</div>
-            </div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-            <button onClick={() => onNav('search')} title="Buscar"
-              style={{ width: 38, height: 38, borderRadius: 10, border: '1px solid var(--dc-border)', background: 'var(--dc-surface)', color: 'var(--dc-text-2)', display: 'grid', placeItems: 'center', cursor: 'pointer', flexShrink: 0 }}>
-              <span style={{ width: 17, height: 17 }}>{I.search}</span>
-            </button>
-          </div>
-        </header>
-
-        <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
-          <div style={{ maxWidth: 1180, margin: '0 auto', width: '100%', padding: isDesktop ? '28px 28px 60px' : '20px 16px 48px' }}>
-            {sectionView}
-          </div>
-        </div>
-      </main>
-    </div>
+          ))}
+        </nav>
+        <div className="admin-body">{sectionView}</div>
+      </div>
+    </>
   );
 }

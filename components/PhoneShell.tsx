@@ -156,7 +156,7 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
   // Páginas com identidade visual própria (design monocromático 2026) — não
   // usam o chrome do app (DesktopHeader/BottomNav), cuidam da própria navegação.
-  const FULL_BLEED_PAGES: Page[] = ['subscription', 'admin'];
+  const FULL_BLEED_PAGES: Page[] = ['subscription'];
   const isFullBleed = FULL_BLEED_PAGES.includes(p);
 
   if (isFullBleed) {
