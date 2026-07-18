@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
 import { createInscricao, fetchTakenGameIds, searchPlayers, type InscricaoJogador } from '@/lib/db';
 import { shareLink } from '@/lib/share';
+import { isPushSupported, getPushSubscription, subscribeToPush, unsubscribeFromPush } from '@/lib/push';
 import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
 import { SectionHead, FieldLabel } from '@/components/ui/Primitives';
@@ -371,8 +372,32 @@ export function ProfileScreen({ onBack, onNav }: NavProps) {
 
 // ===================== SETTINGS =====================
 export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: NavProps['onNav'] }) {
-  const { theme, setTheme, resolvedTheme, notifs, toggleNotif } = useApp();
+  const { theme, setTheme, resolvedTheme, notifs, toggleNotif, showToast } = useApp();
   const { competitions } = useData();
+  const { user } = useAuth();
+
+  const [pushOn, setPushOn] = useState(false);
+  const [pushBusy, setPushBusy] = useState(false);
+  const [pushSupported, setPushSupported] = useState(true);
+
+  useEffect(() => {
+    setPushSupported(isPushSupported());
+    getPushSubscription().then(sub => setPushOn(!!sub));
+  }, []);
+
+  const togglePush = async () => {
+    setPushBusy(true);
+    try {
+      if (pushOn) {
+        await unsubscribeFromPush();
+        setPushOn(false);
+      } else {
+        const ok = await subscribeToPush(user?.id ?? null);
+        setPushOn(ok);
+        if (!ok) showToast('Não foi possível ativar — verifique a permissão de notificações do navegador');
+      }
+    } finally { setPushBusy(false); }
+  };
 
   function ThemeRow({ icon, label, meta, on, onClick, last }: { icon: string; label: string; meta?: string; on: boolean; onClick: () => void; last?: boolean }) {
     return (
@@ -415,6 +440,15 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
       <div style={{ padding: '24px 16px 0' }}>
         <div className="eyebrow" style={{ padding: '4px 4px 10px' }}>NOTIFICAÇÕES</div>
         <div className="card-filled">
+          {pushSupported && (
+            <div className="list-row" style={{ borderBottom: '1px solid var(--outline-variant)', borderTop: 'none' }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 14.5, fontWeight: 600 }}>Notificações no aparelho</div>
+                <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Resultado saiu, time aprovado e mais — direto no seu navegador</div>
+              </div>
+              <button onClick={togglePush} disabled={pushBusy} className={`toggle${pushOn ? ' is-on' : ''}`} style={{ opacity: pushBusy ? 0.6 : 1 }}><span className="thumb" /></button>
+            </div>
+          )}
           {competitions.length === 0 ? (
             <div style={{ padding: '16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhuma competição cadastrada ainda.</div>
           ) : competitions.map(c => (

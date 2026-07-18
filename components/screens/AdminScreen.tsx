@@ -11,6 +11,8 @@ import { FieldLabel, usePagination, PageBar } from '@/components/ui/Primitives';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
 import { uploadClubLogo, deleteClubLogo } from '@/lib/storage';
+import { sendBroadcast } from '@/lib/push';
+import { pathForPage } from '@/lib/routes';
 import {
   createClub, updateClub, deleteClub,
   createCompetition, updateCompetition, deleteCompetition,
@@ -166,6 +168,10 @@ function AdminInscricoes() {
       }
       await updateInscricaoStatus(id, action);
       showToast(action === 'aprovado' ? 'Time aprovado e criado!' : 'Inscrição recusada');
+      if (action === 'aprovado') {
+        const it = inscricoes.find(x => x.id === id);
+        if (it) sendBroadcast({ title: `${it.nome} entrou na competição!`, body: `Time ${it.tag} foi aprovado.`, url: '/' });
+      }
       refresh();
     } catch (e) {
       showToast('Erro: ' + (e instanceof Error ? e.message : String(e)));
@@ -1291,6 +1297,15 @@ function AdminPartidas() {
       await recalcStandings(compId, freshMatches);
 
       showToast('Resultado salvo!');
+      const m = matches.find(x => x.id === editing);
+      const home = m && clubById(m.home), away = m && clubById(m.away);
+      if (home && away && !isWO) {
+        sendBroadcast({
+          title: `${home.tag} ${scoreH} × ${scoreA} ${away.tag}`,
+          body: 'Resultado saiu — toque pra ver os detalhes',
+          url: pathForPage('match', editing) ?? '/',
+        });
+      }
       setEditing(null);
       reloadMatches(); refresh();
     } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
