@@ -12,6 +12,7 @@ import { TopAppBar } from '@/components/ui/TopAppBar';
 import { SectionHead, FieldLabel } from '@/components/ui/Primitives';
 import { Crest } from '@/components/ui/Crest';
 import { MatchTile } from '@/components/ui/MatchTile';
+import { Select } from '@/components/ui/Select';
 
 const POSICOES = ['GK', 'VL', 'PV/ATK', 'MC'] as const;
 const BLANK_JOGADOR: InscricaoJogador = { nick: '', game_id: '', discord: '', posicao: null };
@@ -651,10 +652,9 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
                 <span style={{ fontFamily: 'var(--dc-mono)', fontSize: 12, fontWeight: 600, color: 'var(--dc-text-3)' }}>01</span>
                 <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em' }}>O time</span>
                 {openComps.length > 1 && (
-                  <select value={selectedComp} onChange={e => setCompId(e.target.value)}
-                    style={{ marginLeft: 'auto', height: 32, padding: '0 10px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 9, color: 'var(--dc-text)', fontSize: 12.5, fontFamily: 'var(--dc-sans)' }}>
-                    {openComps.map(c => <option key={c.id} value={c.id}>{c.nome} {c.edicao}</option>)}
-                  </select>
+                  <Select title="Competição" value={selectedComp} onChange={setCompId}
+                    style={{ marginLeft: 'auto', height: 32, padding: '0 10px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 9, color: 'var(--dc-text)', fontSize: 12.5, fontFamily: 'var(--dc-sans)', width: 'auto' }}
+                    options={openComps.map(c => ({ value: c.id, label: `${c.nome} ${c.edicao}` }))} />
                 )}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
@@ -715,11 +715,10 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
                       style={{ flex: '1 1 120px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-sans)', minWidth: 0 }} />
                     <input value={j.game_id} onChange={e => updateJogador(i, { game_id: e.target.value })} placeholder="ID#0000"
                       style={{ flex: '1 1 110px', height: 44, padding: '0 13px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13.5, outline: 'none', fontFamily: 'var(--dc-mono)', minWidth: 0 }} />
-                    <select value={j.posicao ?? ''} onChange={e => updateJogador(i, { posicao: (e.target.value || null) as InscricaoJogador['posicao'] })}
-                      style={{ flex: '0 1 120px', height: 44, padding: '0 9px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13, outline: 'none', fontFamily: 'var(--dc-sans)', cursor: 'pointer' }}>
-                      <option value="">Posição</option>
-                      {POSICOES.map(p => <option key={p} value={p}>{p}</option>)}
-                    </select>
+                    <Select title="Posição" placeholder="Posição" value={j.posicao ?? ''}
+                      onChange={v => updateJogador(i, { posicao: (v || null) as InscricaoJogador['posicao'] })}
+                      style={{ flex: '0 1 120px', height: 44, padding: '0 9px', background: 'var(--dc-surface-2)', border: '1px solid var(--dc-border)', borderRadius: 12, color: 'var(--dc-text)', fontSize: 13, fontFamily: 'var(--dc-sans)' }}
+                      options={POSICOES.map(p => ({ value: p, label: p }))} />
                     <button onClick={() => removeJogador(i)} disabled={jogadores.length <= 1} title="Remover linha"
                       style={{ width: 38, height: 44, borderRadius: 12, border: 'none', background: 'transparent', color: 'var(--dc-text-3)', display: 'grid', placeItems: 'center', cursor: jogadores.length > 1 ? 'pointer' : 'default', opacity: jogadores.length > 1 ? 1 : 0.3, flexShrink: 0 }}>
                       <span style={{ width: 15, height: 15 }}>{I.close}</span>

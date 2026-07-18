@@ -8,6 +8,7 @@ import { TopAppBar } from '@/components/ui/TopAppBar';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { Crest } from '@/components/ui/Crest';
 import { FieldLabel, usePagination, PageBar } from '@/components/ui/Primitives';
+import { Select } from '@/components/ui/Select';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
 import { uploadClubLogo, deleteClubLogo } from '@/lib/storage';
@@ -342,10 +343,9 @@ function RosterPanel({
           </div>
           <div>
             <FieldLabel>Posição</FieldLabel>
-            <select className="input" value={form.posicao} onChange={e => setForm(s => ({ ...s, posicao: e.target.value as Position | '' }))}>
-              <option value="">Sem posição</option>
-              {POSICOES.map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
+            <Select title="Posição" value={form.posicao} placeholder="Sem posição"
+              onChange={v => setForm(s => ({ ...s, posicao: v as Position | '' }))}
+              options={[{ value: '', label: 'Sem posição' }, ...POSICOES.map(p => ({ value: p, label: p }))]} />
           </div>
         </div>
         <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: 13, padding: '2px 0' }}>
@@ -564,7 +564,7 @@ function AdminTimes() {
     <button type="button" onClick={() => triggerLogo('form')} className="tap"
       style={{ width: 64, height: 64, borderRadius: 14, background: 'var(--surface-c-high)', overflow: 'hidden', display: 'grid', placeItems: 'center', flexShrink: 0, border: '2px dashed var(--outline-variant)' }}>
       {currentEditLogo
-        ? <img src={currentEditLogo} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ? <img src={currentEditLogo} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         : <span style={{ color: 'var(--on-surface-variant)', width: 22, height: 22 }}>{I.plus}</span>}
     </button>
   );
@@ -637,7 +637,7 @@ function AdminTimes() {
               <div key={c.id} className="tap"
                 style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 10px 10px 12px', borderRadius: 'var(--r-lg)', background: isSel ? 'var(--primary-container)' : 'var(--surface-c)', transition: 'background .15s' }}>
                 {/* Logo */}
-                <button onClick={() => triggerLogo(c.id)} className="tap" style={{ width: 44, height: 44, borderRadius: 12, overflow: 'hidden', display: 'grid', placeItems: 'center', flexShrink: 0 }} title="Alterar logo">
+                <button onClick={() => triggerLogo(c.id)} className="tap" style={{ width: 44, height: 44, display: 'grid', placeItems: 'center', flexShrink: 0 }} title="Alterar logo">
                   {uploadingLogoFor === c.id ? <span style={{ fontSize: 9, color: 'var(--on-surface-variant)' }}>...</span> : <Crest id={c.id} size={44} radius={12} />}
                 </button>
                 {/* Name — click to open roster */}
@@ -1774,20 +1774,18 @@ function AdminNoticias() {
             </div>
             <div>
               <label className="field-label">Categoria</label>
-              <select className="input" value={form.category}
-                onChange={e => setForm(s => ({ ...s, category: e.target.value as NewsCategory, competitionId: '', matchId: null }))}>
-                {NEWS_CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
-              </select>
+              <Select title="Categoria" value={form.category}
+                onChange={v => setForm(s => ({ ...s, category: v as NewsCategory, competitionId: '', matchId: null }))}
+                options={NEWS_CATEGORIES.map(c => ({ value: c.value, label: c.label }))} />
             </div>
 
             {form.category === 'resultado' && (
               <>
                 <div>
                   <label className="field-label">Competição</label>
-                  <select className="input" value={form.competitionId} onChange={e => setForm(s => ({ ...s, competitionId: e.target.value, matchId: null }))}>
-                    <option value="">Selecione...</option>
-                    {competitions.map(c => <option key={c.id} value={c.id}>{c.nome} {c.edicao}</option>)}
-                  </select>
+                  <Select title="Competição" placeholder="Selecione..." value={form.competitionId}
+                    onChange={v => setForm(s => ({ ...s, competitionId: v, matchId: null }))}
+                    options={competitions.map(c => ({ value: c.id, label: `${c.nome} ${c.edicao}` }))} />
                 </div>
                 {form.competitionId && (
                   <div>
@@ -1797,13 +1795,12 @@ function AdminNoticias() {
                     ) : matchOptions.length === 0 ? (
                       <div style={{ fontSize: 13, color: 'var(--on-surface-variant)', padding: '8px 0' }}>Nenhuma partida encerrada nessa competição.</div>
                     ) : (
-                      <select className="input" value={form.matchId ?? ''} onChange={e => setForm(s => ({ ...s, matchId: Number(e.target.value) }))}>
-                        <option value="">Selecione...</option>
-                        {matchOptions.map(m => {
+                      <Select title="Partida" placeholder="Selecione..." value={form.matchId != null ? String(form.matchId) : ''}
+                        onChange={v => setForm(s => ({ ...s, matchId: Number(v) }))}
+                        options={matchOptions.map(m => {
                           const home = clubById(m.home), away = clubById(m.away);
-                          return <option key={m.id} value={m.id}>{home?.tag ?? m.home} {m.scoreH} × {m.scoreA} {away?.tag ?? m.away} — {m.stage}</option>;
-                        })}
-                      </select>
+                          return { value: String(m.id), label: `${home?.tag ?? m.home} ${m.scoreH} × ${m.scoreA} ${away?.tag ?? m.away} — ${m.stage}` };
+                        })} />
                     )}
                   </div>
                 )}
@@ -1816,10 +1813,9 @@ function AdminNoticias() {
                 {openCompsForInscricoes.length === 0 ? (
                   <div style={{ fontSize: 13, color: 'var(--on-surface-variant)', padding: '8px 0' }}>Nenhuma competição com inscrições abertas no momento.</div>
                 ) : (
-                  <select className="input" value={form.competitionId} onChange={e => setForm(s => ({ ...s, competitionId: e.target.value }))}>
-                    <option value="">Selecione...</option>
-                    {openCompsForInscricoes.map(c => <option key={c.id} value={c.id}>{c.nome} {c.edicao}</option>)}
-                  </select>
+                  <Select title="Competição" placeholder="Selecione..." value={form.competitionId}
+                    onChange={v => setForm(s => ({ ...s, competitionId: v }))}
+                    options={openCompsForInscricoes.map(c => ({ value: c.id, label: `${c.nome} ${c.edicao}` }))} />
                 )}
               </div>
             )}
@@ -2105,9 +2101,9 @@ function AdminCompeticoes() {
         <div><label className="field-label">Edição / Temporada</label><input className="input" value={form.edicao} onChange={e => setForm(s => ({ ...s, edicao: e.target.value }))} placeholder="Ano ou temporada" /></div>
         <div>
           <label className="field-label">Status</label>
-          <select className="input" value={form.status} onChange={e => setForm(s => ({ ...s, status: e.target.value as Competition['status'] }))}>
-            {(Object.keys(STATUS_LABELS) as Competition['status'][]).map(k => <option key={k} value={k}>{STATUS_LABELS[k]}</option>)}
-          </select>
+          <Select title="Status" value={form.status}
+            onChange={v => setForm(s => ({ ...s, status: v as Competition['status'] }))}
+            options={(Object.keys(STATUS_LABELS) as Competition['status'][]).map(k => ({ value: k, label: STATUS_LABELS[k] }))} />
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: rodadasLivres ? '1fr' : '1fr 1fr', gap: 10 }}>

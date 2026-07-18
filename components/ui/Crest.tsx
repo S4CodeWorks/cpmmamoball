@@ -19,14 +19,15 @@ export function Crest({ id, size = 40, radius }: CrestProps) {
   const r = radius ?? Math.round(size * 0.28);
 
   if (c.logo_url && !imgError) {
+    // Logo real: sempre a imagem original, sem crop nem borda/máscara —
+    // objectFit "contain" garante que ela nunca é cortada, mesmo se não for quadrada.
     return (
       <img
         src={c.logo_url}
         alt={c.nome}
         style={{
           width: size, height: size,
-          borderRadius: r,
-          objectFit: 'cover',
+          objectFit: 'contain',
           flexShrink: 0,
           display: 'block',
         }}

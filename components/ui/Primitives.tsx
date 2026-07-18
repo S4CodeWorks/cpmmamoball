@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
+import { Select } from './Select';
 import type { Match, FormResult } from '@/lib/types';
 
 // Label de campo de formulário — marca obrigatoriedade com um ponto colorido
@@ -95,10 +96,9 @@ export function PageBar({ page, totalPages, onPage, pageSize, onPageSize, rangeL
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12.5, color: 'var(--on-surface-variant)' }}>
         {rangeLabel && <span>{rangeLabel}</span>}
         {onPageSize && pageSize && (
-          <select className="input" value={pageSize} onChange={e => onPageSize(Number(e.target.value))}
-            style={{ height: 30, padding: '0 8px', fontSize: 12.5, width: 'auto' }}>
-            {(pageSizeOptions ?? [10, 25, 50, 100]).map(n => <option key={n} value={n}>{n}/página</option>)}
-          </select>
+          <Select title="Itens por página" value={String(pageSize)} onChange={v => onPageSize(Number(v))}
+            style={{ height: 30, padding: '0 8px', fontSize: 12.5, width: 'auto' }}
+            options={(pageSizeOptions ?? [10, 25, 50, 100]).map(n => ({ value: String(n), label: `${n}/página` }))} />
         )}
       </div>
       {totalPages > 1 && (

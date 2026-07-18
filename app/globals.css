@@ -615,7 +615,7 @@ a { color: inherit; text-decoration: none; }
 
 /* FAB */
 .fab {
-  position: absolute;
+  position: fixed;
   bottom: 96px; right: 16px;
   height: 56px;
   padding: 0 20px;
