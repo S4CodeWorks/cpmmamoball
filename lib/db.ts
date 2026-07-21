@@ -84,6 +84,7 @@ function rowToStanding(r: Record<string, unknown>): Standing {
 function rowToMatch(r: Record<string, unknown>): Match {
   return {
     id:      r.id       as number,
+    competition_id: r.competition_id as string,
     home:    r.home_id  as string,
     away:    r.away_id  as string,
     scoreH:  r.score_h  as number | null,

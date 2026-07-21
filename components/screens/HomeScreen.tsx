@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
@@ -10,8 +11,10 @@ import { SectionHead, FormDots } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
 import { ColorMesh } from '@/components/ui/ColorMesh';
+import { CompetitionPills } from '@/components/ui/CompetitionPills';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
-import type { Match, Club } from '@/lib/types';
+import { fetchMatches, fetchStandings } from '@/lib/db';
+import type { Match, Club, Standing } from '@/lib/types';
 
 interface Props { onNav: (page: string, param?: string | number | null, extra?: string | null) => void; }
 
@@ -60,8 +63,8 @@ function FeaturedMatch({ m, onClick }: { m: Match; onClick: () => void }) {
   );
 }
 
-function StandingsMini({ onNav }: { onNav: Props['onNav'] }) {
-  const { standings, clubById } = useData();
+function StandingsMini({ onNav, standings }: { onNav: Props['onNav']; standings: Standing[] }) {
+  const { clubById } = useData();
   const isDesktop = useIsDesktop();
   // Desktop tem mais espaço vertical na coluna lateral — mostra mais linhas da tabela
   const top5 = standings.slice(0, isDesktop ? 8 : 5);
@@ -120,8 +123,28 @@ function StandingsMini({ onNav }: { onNav: Props['onNav'] }) {
 export function HomeScreen({ onNav }: Props) {
   const { showToast, theme, setTheme, resolvedTheme } = useApp();
   const { isLoggedIn, profile, user, signOut } = useAuth();
-  const { matches, standings: _standings, news, clubById } = useData();
+  const { matches: ctxMatches, standings: ctxStandings, competitions, activeComp, news, clubById } = useData();
   const isDesktop = useIsDesktop();
+
+  // Seletor de competição — evita que uma competição recém-criada "roube" a Home
+  // de outra que já tem jogos/tabela (ver DataContext: activeComp escolhe só 1).
+  const [selComp, setSelComp] = useState<string | null>(null);
+  const selectedId = selComp ?? activeComp?.id ?? competitions[0]?.id ?? null;
+  const isActiveComp = selectedId === activeComp?.id;
+  const [local, setLocal] = useState<{ matches: Match[]; standings: Standing[] } | null>(null);
+
+  useEffect(() => {
+    if (!selectedId || isActiveComp) { setLocal(null); return; }
+    let cancelled = false;
+    Promise.all([fetchMatches(selectedId), fetchStandings(selectedId)])
+      .then(([matches, standings]) => { if (!cancelled) setLocal({ matches, standings }); })
+      .catch(() => { if (!cancelled) setLocal({ matches: [], standings: [] }); });
+    return () => { cancelled = true; };
+  }, [selectedId, isActiveComp]);
+
+  const matches   = isActiveComp ? ctxMatches   : (local?.matches ?? []);
+  const standings = isActiveComp ? ctxStandings : (local?.standings ?? []);
+
   const greeting = isLoggedIn
     ? `Olá, ${profile?.nick || user?.email?.split('@')[0] || 'jogador'}`
     : 'Bem-vindo';
@@ -165,6 +188,11 @@ export function HomeScreen({ onNav }: Props) {
     <>
       <TopAppBar large title={greeting} subhead="Federação CPM · 2026" menu={menu} />
 
+      {/* Pills de competição — só quando há mais de uma cadastrada */}
+      {competitions.length > 1 && (
+        <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setSelComp} />
+      )}
+
       {/* Featured match — full width */}
       <section style={{ padding: '8px 16px 0' }}>
         {upcoming[0] && <FeaturedMatch m={upcoming[0]} onClick={() => onNav('match', upcoming[0].id)} />}
@@ -188,7 +216,7 @@ export function HomeScreen({ onNav }: Props) {
         {/* Right column: classificação */}
         <div>
           <SectionHead title="Classificação" more="Tabela completa" onMore={() => onNav('tournaments')} />
-          <StandingsMini onNav={onNav} />
+          <StandingsMini onNav={onNav} standings={standings} />
         </div>
       </div>
 

@@ -45,6 +45,7 @@ export interface GoalEntry {
 
 export interface Match {
   id: number;
+  competition_id: string;
   home: string;
   away: string;
   scoreH: number | null;

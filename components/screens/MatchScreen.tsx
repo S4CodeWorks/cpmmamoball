@@ -11,7 +11,7 @@ import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
 import { ColorMesh } from '@/components/ui/ColorMesh';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
-import { fetchPlayers } from '@/lib/db';
+import { fetchPlayers, fetchMatchById, fetchMatches } from '@/lib/db';
 import { shareLink } from '@/lib/share';
 import { pathForPage } from '@/lib/routes';
 import type { Club, Match } from '@/lib/types';
@@ -217,9 +217,28 @@ function H2H({ m }: { m: Match }) {
 }
 
 export function MatchScreen({ onNav, onBack, matchId }: Props) {
-  const { matches, clubById, activeComp } = useData();
-  const m = matches.find(x => x.id === matchId) || matches[0];
+  const { matches: ctxMatches, clubById, competitions } = useData();
+  // A partida pode pertencer a uma competição diferente da "ativa" do contexto
+  // (ex: clicada a partir do seletor de competições da Home) — busca local, por
+  // id e depois pelas demais partidas da mesma competição, quando não está
+  // entre as partidas já carregadas globalmente.
+  const [localData, setLocalData] = useState<{ match: Match; competitionMatches: Match[] } | null>(null);
+  const foundInCtx = ctxMatches.find(x => x.id === matchId);
+
+  useEffect(() => {
+    if (foundInCtx || matchId == null) { setLocalData(null); return; }
+    let cancelled = false;
+    fetchMatchById(matchId).then(async match => {
+      if (!match || cancelled) return;
+      const competitionMatches = await fetchMatches(match.competition_id).catch(() => [match]);
+      if (!cancelled) setLocalData({ match, competitionMatches });
+    }).catch(() => { if (!cancelled) setLocalData(null); });
+    return () => { cancelled = true; };
+  }, [matchId, foundInCtx]);
+
+  const m = foundInCtx ?? localData?.match ?? null;
   if (!m) return <div className="empty"><p>Partida não encontrada.</p></div>;
+  const matchesForRodada = foundInCtx ? ctxMatches : (localData?.competitionMatches ?? []);
   const home = clubById(m.home)!;
   const away = clubById(m.away)!;
   const isSched = m.status === 'agendado';
@@ -229,7 +248,7 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
   const matchKey = 'match:' + m.id;
   const isBookmarked = bookmarks.has(matchKey);
   const isNotif = notifs.has(matchKey);
-  const otherMatches = matches.filter(x => x.rodada === m.rodada && x.id !== m.id).slice(0, 3);
+  const otherMatches = matchesForRodada.filter(x => x.rodada === m.rodada && x.id !== m.id).slice(0, 3);
 
   const menu = (close: () => void) => (
     <>
@@ -260,7 +279,7 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
         <div style={{ padding: '0 16px 24px' }}>
           <div style={{ textAlign: 'center', marginBottom: 14 }}>
             <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              {activeComp?.nome ?? 'Liga'} · {m.stage}
+              {competitions.find(c => c.id === m.competition_id)?.nome ?? 'Liga'} · {m.stage}
             </span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>

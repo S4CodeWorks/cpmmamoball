@@ -7,6 +7,7 @@ import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
 import { SheetItem } from '@/components/ui/Sheet';
 import { Crest } from '@/components/ui/Crest';
+import { CompetitionPills } from '@/components/ui/CompetitionPills';
 import { shareLink } from '@/lib/share';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchStandings, fetchScorers } from '@/lib/db';
@@ -266,15 +267,7 @@ export function TournamentsScreen({ onNav, initialTab }: Props) {
       )}
 
       {/* Pills de competição */}
-      <div style={{ padding: '0 16px 16px', display: 'flex', gap: 8, overflowX: 'auto' }} className="hide-scrollbar">
-        {competitions.map(c => (
-          <button key={c.id} onClick={() => setComp(c.id)} className="tap"
-            style={{ flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 8, height: 38, padding: '0 16px', borderRadius: 999, background: selectedId === c.id ? 'var(--secondary-container)' : 'transparent', color: selectedId === c.id ? 'var(--on-secondary-container)' : 'var(--on-surface)', border: '1px solid ' + (selectedId === c.id ? 'transparent' : 'var(--outline-variant)'), fontWeight: selectedId === c.id ? 700 : 500, fontSize: 13.5, whiteSpace: 'nowrap' }}>
-            {c.status === 'em_andamento' && <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--primary)' }} />}
-            {c.nome} {c.edicao}
-          </button>
-        ))}
-      </div>
+      <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setComp} />
 
       {/* Barra de progresso da competição selecionada */}
       {(() => {
