@@ -198,7 +198,7 @@ export function SavedScreen({ onNav, onBack }: NavProps) {
 
 // ===================== PROFILE =====================
 export function ProfileScreen({ onBack, onNav }: NavProps) {
-  const { showToast } = useApp();
+  const { showToast, showError } = useApp();
   const { user, profile, isStaff, signOut, updateNick } = useAuth();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -222,7 +222,7 @@ export function ProfileScreen({ onBack, onNav }: NavProps) {
       showToast('Perfil atualizado!');
       setEditing(false);
     } catch (e) {
-      showToast('Erro ao salvar: ' + (e instanceof Error ? e.message : String(e)));
+      showToast('Erro ao salvar: ' + (e instanceof Error ? e.message : String(e)), { variant: 'error' });
     } finally { setSavingNick(false); }
   };
 
@@ -242,7 +242,7 @@ export function ProfileScreen({ onBack, onNav }: NavProps) {
       showToast('Conta excluída com sucesso');
       onBack?.();
     } catch {
-      showToast('Erro ao excluir conta. Tente novamente.');
+      showToast('Erro ao excluir conta. Tente novamente.', { variant: 'error' });
       setDeleting(false);
       setShowDeleteModal(false);
     }
@@ -486,7 +486,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
   onBack?: () => void; onNav?: (page: string, param?: string | number | null) => void;
   presetCompId?: string | number | null;
 }) {
-  const { showToast } = useApp();
+  const { showToast, showError } = useApp();
   const { competitions, activeComp } = useData();
   const [step, setStep] = useState<'form' | 'sending' | 'success'>('form');
   const [nome, setNome] = useState('');
@@ -548,7 +548,7 @@ export function SubscriptionScreen({ onBack, onNav, presetCompId }: {
       setSentInfo({ nome: nome.trim(), tag: tag.trim(), count: rosterDone });
       setStep('success');
     } catch {
-      showToast('Erro ao enviar inscrição. Tente novamente.');
+      showToast('Erro ao enviar inscrição. Tente novamente.', { variant: 'error' });
       setStep('form');
     }
   };

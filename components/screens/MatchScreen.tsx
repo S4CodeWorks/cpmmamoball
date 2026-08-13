@@ -10,6 +10,7 @@ import { SectionHead } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
 import { ColorMesh } from '@/components/ui/ColorMesh';
+import { Skeleton, SkeletonMatchHero, SkeletonList } from '@/components/ui/Skeleton';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers, fetchMatchById, fetchMatches } from '@/lib/db';
 import { shareLink } from '@/lib/share';
@@ -223,21 +224,37 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
   // id e depois pelas demais partidas da mesma competição, quando não está
   // entre as partidas já carregadas globalmente.
   const [localData, setLocalData] = useState<{ match: Match; competitionMatches: Match[] } | null>(null);
+  const [loadingMatch, setLoadingMatch] = useState(false);
   const foundInCtx = ctxMatches.find(x => x.id === matchId);
 
   useEffect(() => {
-    if (foundInCtx || matchId == null) { setLocalData(null); return; }
+    if (foundInCtx || matchId == null) { setLocalData(null); setLoadingMatch(false); return; }
     let cancelled = false;
+    setLoadingMatch(true);
     fetchMatchById(matchId).then(async match => {
-      if (!match || cancelled) return;
+      if (cancelled) return;
+      if (!match) { setLocalData(null); return; }
       const competitionMatches = await fetchMatches(match.competition_id).catch(() => [match]);
       if (!cancelled) setLocalData({ match, competitionMatches });
-    }).catch(() => { if (!cancelled) setLocalData(null); });
+    }).catch(() => { if (!cancelled) setLocalData(null); })
+      .finally(() => { if (!cancelled) setLoadingMatch(false); });
     return () => { cancelled = true; };
   }, [matchId, foundInCtx]);
 
   const m = foundInCtx ?? localData?.match ?? null;
-  if (!m) return <div className="empty"><p>Partida não encontrada.</p></div>;
+  if (!m) {
+    if (loadingMatch) {
+      return (
+        <div aria-busy="true" aria-label="Carregando partida">
+          <SkeletonMatchHero />
+          <div style={{ padding: '16px' }}>
+            <SkeletonList rows={4} />
+          </div>
+        </div>
+      );
+    }
+    return <div className="empty"><p>Partida não encontrada.</p></div>;
+  }
   const matchesForRodada = foundInCtx ? ctxMatches : (localData?.competitionMatches ?? []);
   const home = clubById(m.home)!;
   const away = clubById(m.away)!;

@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { ABBREV } from '@/lib/data';
 import { useData } from '@/contexts/DataContext';
+
+// Escudo genérico — usado sempre que o clube não tem logo cadastrada, ou
+// quando a imagem da logo real falha ao carregar.
+const GENERIC_CREST = '/escudo-generico.png';
 
 interface CrestProps {
   id: string;
@@ -10,45 +13,27 @@ interface CrestProps {
   radius?: number;
 }
 
-export function Crest({ id, size = 40, radius }: CrestProps) {
+export function Crest({ id, size = 40 }: CrestProps) {
   const { clubById } = useData();
   const [imgError, setImgError] = useState(false);
   const c = clubById(id);
   if (!c) return null;
 
-  const r = radius ?? Math.round(size * 0.28);
+  const src = (c.logo_url && !imgError) ? c.logo_url : GENERIC_CREST;
 
-  if (c.logo_url && !imgError) {
-    // Logo real: sempre a imagem original, sem crop nem borda/máscara —
-    // objectFit "contain" garante que ela nunca é cortada, mesmo se não for quadrada.
-    return (
-      <img
-        src={c.logo_url}
-        alt={c.nome}
-        style={{
-          width: size, height: size,
-          objectFit: 'contain',
-          flexShrink: 0,
-          display: 'block',
-        }}
-        onError={() => setImgError(true)}
-      />
-    );
-  }
-
+  // Logo real: sempre a imagem original, sem crop nem borda/máscara —
+  // objectFit "contain" garante que ela nunca é cortada, mesmo se não for quadrada.
   return (
-    <div
-      className="crest"
+    <img
+      src={src}
+      alt={c.nome}
       style={{
         width: size, height: size,
-        background: c.color, color: c.color2,
-        borderRadius: r,
-        fontSize: Math.max(10, Math.round(size * 0.32)),
+        objectFit: 'contain',
         flexShrink: 0,
+        display: 'block',
       }}
-      aria-label={c.nome}
-    >
-      <span>{ABBREV(c)}</span>
-    </div>
+      onError={() => setImgError(true)}
+    />
   );
 }

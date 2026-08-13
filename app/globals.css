@@ -471,10 +471,10 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   flex-shrink: 0;
   color: var(--on-surface);
-  transition: background-color .15s;
+  transition: background-color .3s cubic-bezier(.05,0,0,1);
 }
-.icon-btn:hover { background: color-mix(in srgb, var(--on-surface) 6%, transparent); }
-.icon-btn:active { background: color-mix(in srgb, var(--on-surface) 12%, transparent); }
+.icon-btn:hover { background: color-mix(in srgb, var(--on-surface) 10%, transparent); }
+.icon-btn:active { background: color-mix(in srgb, var(--on-surface) 14%, transparent); transition: none; }
 .icon-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
 .icon-btn .dot {
   position: absolute; top: 10px; right: 10px;
@@ -583,11 +583,45 @@ a { color: inherit; text-decoration: none; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
 
-@keyframes pulseScale {
-  0%, 100% { transform: scale(1);   opacity: 1;  }
-  50%      { transform: scale(.9);  opacity: .6; }
+/* ===== Skeleton loading — Fluid modern shimmer ===== */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface-c-high) 85%, var(--surface-c));
+  display: block;
+  border-radius: 8px;
+  animation: skeleton-pulse 2.4s ease-in-out infinite;
 }
-.loading-pulse { animation: pulseScale 1.3s ease-in-out infinite; }
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--on-surface) 4%, transparent) 25%,
+    color-mix(in srgb, var(--on-surface) 14%, transparent) 50%,
+    color-mix(in srgb, var(--on-surface) 4%, transparent) 75%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.65; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  .skeleton::after { animation: none; }
+}
 
 /* ===== Buttons ===== */
 .btn {
@@ -608,10 +642,20 @@ a { color: inherit; text-decoration: none; }
 .btn-primary { background: var(--primary); color: var(--on-primary); }
 .btn-primary:hover { background: color-mix(in srgb, var(--primary) 92%, white); }
 .btn-tonal { background: var(--secondary-container); color: var(--on-secondary-container); }
-.btn-outlined { background: transparent; color: var(--on-surface); box-shadow: inset 0 0 0 1px var(--outline); }
+/* Preenchimento tonal em vez de contorno — mesma técnica do YouTube (fill fraco
+   em repouso, intensifica no hover, achata no press), sem borda nenhuma. */
+.btn-outlined {
+  background: color-mix(in srgb, var(--on-surface) 9%, transparent);
+  color: var(--on-surface);
+  transition: background-color .3s cubic-bezier(.05,0,0,1), transform .1s;
+}
+.btn-outlined:hover { background: color-mix(in srgb, var(--on-surface) 15%, transparent); }
+.btn-outlined:active { background: color-mix(in srgb, var(--on-surface) 11%, transparent); transition: none; }
 .btn-text { background: transparent; color: var(--primary); padding: 0 12px; }
 .btn-text:hover { background: color-mix(in srgb, var(--primary) 8%, transparent); }
-.btn-danger { background: color-mix(in srgb, var(--error) 16%, transparent); color: var(--error); }
+.btn-danger { background: color-mix(in srgb, var(--error) 16%, transparent); color: var(--error); transition: background-color .3s cubic-bezier(.05,0,0,1); }
+.btn-danger:hover { background: color-mix(in srgb, var(--error) 22%, transparent); }
+.btn-danger:active { background: color-mix(in srgb, var(--error) 18%, transparent); transition: none; }
 
 /* FAB */
 .fab {
@@ -714,13 +758,14 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.06em;
 }
 
-/* Tap layer */
+/* Tap layer — preenchimento tonal fraco no hover/press, igual ao resto do app */
 .tap {
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  transition: background-color .15s, transform .1s;
+  transition: background-color .3s cubic-bezier(.05,0,0,1), transform .1s;
 }
-.tap:active { transform: scale(.985); }
+.tap:hover { background-color: color-mix(in srgb, var(--on-surface) 5%, transparent); }
+.tap:active { background-color: color-mix(in srgb, var(--on-surface) 9%, transparent); transform: scale(.985); transition: transform .1s; }
 
 /* Form dot */
 .formdot {
@@ -912,6 +957,41 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(40%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes confirm-in { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.confirm-backdrop { animation: fadeIn .2s ease; }
+.confirm-card { animation: confirm-in .2s cubic-bezier(.05,0,0,1); }
+@media (prefers-reduced-motion: reduce) {
+  .snackbar, .confirm-backdrop, .confirm-card { animation: none !important; }
+}
+
+/* ===== Snackbar (Material 3) — sucesso/erro, com ação opcional ===== */
+.snackbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: var(--r-lg);
+  padding: 12px 10px 12px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  background: var(--surface-c-highest);
+  color: var(--on-surface);
+  box-shadow: var(--shadow-lg);
+  animation: slideUp .25s cubic-bezier(.05,0,0,1);
+}
+.snackbar-icon {
+  width: 20px; height: 20px; flex-shrink: 0;
+  display: grid; place-items: center;
+}
+.snackbar-icon svg { width: 18px; height: 18px; }
+.snackbar.is-error { background: color-mix(in srgb, var(--error) 16%, var(--surface-c-highest)); }
+.snackbar-action {
+  margin-left: auto; flex-shrink: 0;
+  background: none; border: none;
+  font-weight: 700; font-size: 12.5px; letter-spacing: 0.03em;
+  cursor: pointer; padding: 6px 10px; border-radius: 8px;
+  transition: background-color .3s cubic-bezier(.05,0,0,1);
+}
+.snackbar-action:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
 
 /* Toggle switch */
 .toggle {

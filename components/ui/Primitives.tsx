@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { Select } from './Select';
+import { I } from '@/components/icons';
 import type { Match, FormResult } from '@/lib/types';
 
 // Modal centralizado — formulários "importantes" (ex: nova partida) usam isso
@@ -145,20 +146,29 @@ export function PageBar({ page, totalPages, onPage, pageSize, onPageSize, rangeL
 }
 
 export function Toast() {
-  const { toast } = useApp();
+  const { toast, hideToast } = useApp();
   if (!toast) return null;
+  const isError = toast.variant === 'error';
   return (
-    <div style={{
-      position: 'absolute',
-      bottom: 96, left: 16, right: 16,
-      zIndex: 70,
-      background: 'var(--surface-c-highest)',
-      color: 'var(--on-surface)',
-      padding: '14px 18px',
-      borderRadius: 12,
-      fontSize: 14, fontWeight: 500,
-      boxShadow: 'var(--shadow-md)',
-      animation: 'slideUp .2s ease',
-    }}>{toast}</div>
+    <div
+      className={`snackbar${isError ? ' is-error' : ''}`}
+      role={isError ? 'alert' : 'status'}
+      aria-live={isError ? 'assertive' : 'polite'}
+      style={{ position: 'absolute', bottom: 96, left: 16, right: 16, zIndex: 70 }}
+    >
+      <span className="snackbar-icon" style={{ color: isError ? 'var(--error)' : 'var(--primary)' }}>
+        {isError ? I.alertTriangle : I.check}
+      </span>
+      {toast.msg}
+      {toast.action && (
+        <button
+          className="snackbar-action"
+          style={{ color: isError ? 'var(--error)' : 'var(--primary)' }}
+          onClick={() => { toast.action?.onClick(); hideToast(); }}
+        >
+          {toast.action.label.toUpperCase()}
+        </button>
+      )}
+    </div>
   );
 }

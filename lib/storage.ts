@@ -23,16 +23,19 @@ export async function uploadClubLogo(clubId: string, file: File): Promise<string
   const ext = extFor(file);
   const path = `clubs/${clubId}.${ext}`;
 
-  // Remove qualquer versão com a outra extensão (ex: troca de jpg comprimido
-  // por png transparente) pra não deixar arquivo órfão no bucket.
-  const otherExt = EXTENSIONS.find(e => e !== ext);
-  if (otherExt) await supabase.storage.from(BUCKET).remove([`clubs/${clubId}.${otherExt}`]);
-
   const { error } = await supabase.storage
     .from(BUCKET)
     .upload(path, file, { upsert: true, contentType: file.type });
 
   if (error) throw error;
+
+  // Só agora que o novo arquivo está garantido no bucket, limpa a versão com a
+  // outra extensão (ex: troca de jpg comprimido por png transparente) — se essa
+  // limpeza falhar, o clube fica com um arquivo órfão, mas nunca sem logo nenhum.
+  const otherExt = EXTENSIONS.find(e => e !== ext);
+  if (otherExt) {
+    await supabase.storage.from(BUCKET).remove([`clubs/${clubId}.${otherExt}`]).catch(() => {});
+  }
 
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
   // Append versão para invalidar CDN cache na substituição
@@ -41,8 +44,9 @@ export async function uploadClubLogo(clubId: string, file: File): Promise<string
 
 /**
  * Remove o logo de um clube do storage.
- * Silencia erros (arquivo pode não existir).
+ * Não lança (arquivo pode legitimamente não existir), mas registra erros reais.
  */
 export async function deleteClubLogo(clubId: string): Promise<void> {
-  await supabase.storage.from(BUCKET).remove(EXTENSIONS.map(e => `clubs/${clubId}.${e}`));
+  const { error } = await supabase.storage.from(BUCKET).remove(EXTENSIONS.map(e => `clubs/${clubId}.${e}`));
+  if (error) console.warn('deleteClubLogo:', error.message);
 }

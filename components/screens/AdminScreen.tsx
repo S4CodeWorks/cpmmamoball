@@ -8,12 +8,14 @@ import { TopAppBar } from '@/components/ui/TopAppBar';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { Crest } from '@/components/ui/Crest';
 import { FieldLabel, usePagination, PageBar, Modal } from '@/components/ui/Primitives';
+import { Skeleton, SkeletonList, SkeletonRow, SkeletonAdminTable } from '@/components/ui/Skeleton';
 import { Select } from '@/components/ui/Select';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
 import { uploadClubLogo, deleteClubLogo } from '@/lib/storage';
 import { sendBroadcast } from '@/lib/push';
 import { pathForPage } from '@/lib/routes';
+import { POSICOES, MAX_ROSTER, MIN_ROSTER, CURRENT_SEASON_EDICAO, DEFAULT_TOTAL_RODADAS } from '@/lib/constants';
 import {
   createClub, updateClub, deleteClub,
   createCompetition, updateCompetition, deleteCompetition,
@@ -27,8 +29,6 @@ import {
 } from '@/lib/db';
 import type { Competition } from '@/lib/db';
 import type { Club, Player, Match, Position, GoalEntry, NewsCategory } from '@/lib/types';
-
-const POSICOES: Position[] = ['GK', 'VL', 'PV/ATK', 'MC'];
 
 interface NavProps {
   onNav: (page: string, param?: string | number | null) => void;
@@ -139,7 +139,7 @@ function AdminDashboard({ onSection }: { onSection: (s: Section) => void }) {
 // ── Inscrições ────────────────────────────────────────────────────────────────
 
 function AdminInscricoes() {
-  const { showToast } = useApp();
+  const { showToast, showError } = useApp();
   const { inscricoes, clubs, refresh } = useData();
   const [busy, setBusy] = useState<number | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null);
@@ -175,7 +175,7 @@ function AdminInscricoes() {
       }
       refresh();
     } catch (e) {
-      showToast('Erro: ' + (e instanceof Error ? e.message : String(e)));
+      showError(e);
     } finally { setBusy(null); }
   };
 
@@ -250,15 +250,13 @@ const BLANK_PLAYER_FORM = { nick: '', game_id: '', discord: '', posicao: '' as P
 function RosterPanel({
   club,
   onBack,
-  showToast,
   refresh: _refresh,
 }: {
   club: Club;
   onBack: () => void;
-  showToast: (msg: string) => void;
   refresh: () => void;
 }) {
-  const { confirm } = useApp();
+  const { confirm, showToast, showError } = useApp();
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState<'list' | 'add' | 'edit'>('list');
@@ -271,7 +269,7 @@ function RosterPanel({
     setLoading(true);
     fetchPlayers(club.id)
       .then(setPlayers)
-      .catch(() => showToast('Erro ao carregar jogadores'))
+      .catch(() => showToast('Erro ao carregar jogadores', { variant: 'error' }))
       .finally(() => setLoading(false));
   };
 
@@ -293,13 +291,13 @@ function RosterPanel({
 
   const submitAdd = async () => {
     if (!form.nick || !form.game_id) { showToast('Nick e ID são obrigatórios'); return; }
-    if (players.length >= 10) { showToast('Limite de 10 jogadores por time atingido'); return; }
+    if (players.length >= MAX_ROSTER) { showToast(`Limite de ${MAX_ROSTER} jogadores por time atingido`); return; }
     setBusy(true);
     try {
       await createPlayer({ club_id: club.id, nick: form.nick, game_id: form.game_id, discord: form.discord || null, posicao: form.posicao || null, is_captain: form.is_captain });
       showToast('Jogador adicionado!');
       cancel(); reload();
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBusy(false); }
   };
 
@@ -310,14 +308,14 @@ function RosterPanel({
       await updatePlayer(editingPlayer.id, { nick: form.nick, game_id: form.game_id, discord: form.discord || null, posicao: form.posicao || null, is_captain: form.is_captain });
       showToast('Jogador atualizado!');
       cancel(); reload();
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBusy(false); }
   };
 
   const remove = async (p: Player) => {
     if (!await confirm({ title: `Remover "${p.nick}"?`, danger: true, confirmLabel: 'Remover' })) return;
     try { await deletePlayer(p.id); showToast(`${p.nick} removido`); reload(); }
-    catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e) { showError(e); }
   };
 
   const playerForm = (
@@ -382,7 +380,7 @@ function RosterPanel({
 
       {/* Player list */}
       {loading ? (
-        <div style={{ padding: '20px 0', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando elenco...</div>
+        <SkeletonList rows={4} />
       ) : players.length === 0 && mode === 'list' ? (
         <div className="empty" style={{ paddingTop: 32 }}>
           <div className="empty-icon">{I.shield}</div>
@@ -421,12 +419,12 @@ function RosterPanel({
 
       {mode === 'list' && (
         <>
-          <button onClick={openAdd} disabled={players.length >= 10} className="btn btn-tonal"
-            style={{ height: 44, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', opacity: players.length >= 10 ? 0.5 : 1 }}>
+          <button onClick={openAdd} disabled={players.length >= MAX_ROSTER} className="btn btn-tonal"
+            style={{ height: 44, fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', opacity: players.length >= MAX_ROSTER ? 0.5 : 1 }}>
             <span style={{ width: 18, height: 18 }}>{I.plus}</span>Adicionar jogador
           </button>
-          <div style={{ textAlign: 'center', fontSize: 11.5, color: players.length < 5 ? 'var(--warning)' : 'var(--on-surface-variant)', marginTop: 8 }}>
-            {players.length}/10 jogadores {players.length < 5 ? `· mínimo 5 pra competir` : ''}
+          <div style={{ textAlign: 'center', fontSize: 11.5, color: players.length < MIN_ROSTER ? 'var(--warning)' : 'var(--on-surface-variant)', marginTop: 8 }}>
+            {players.length}/{MAX_ROSTER} jogadores {players.length < MIN_ROSTER ? `· mínimo ${MIN_ROSTER} pra competir` : ''}
           </div>
         </>
       )}
@@ -435,7 +433,7 @@ function RosterPanel({
 }
 
 function AdminTimes() {
-  const { showToast, confirm } = useApp();
+  const { showToast, showError, confirm } = useApp();
   const { clubs, refresh } = useData();
   const isDesktop = useIsDesktop();
 
@@ -479,7 +477,7 @@ function AdminTimes() {
         setPendingLogoPreview(URL.createObjectURL(compressed));
         const [color, color2] = await extractCrestColors(compressed);
         setClubForm(s => ({ ...s, color, color2 }));
-      } catch { showToast('Erro ao processar imagem'); }
+      } catch { showToast('Erro ao processar imagem', { variant: 'error' }); }
     } else {
       setUploadingLogoFor(target);
       try {
@@ -489,7 +487,7 @@ function AdminTimes() {
         try { colors = await extractCrestColors(compressed); } catch { /* mantém cores atuais se falhar */ }
         await updateClub(target, colors ? { logo_url: url, color: colors[0], color2: colors[1] } : { logo_url: url });
         showToast('Logo atualizado!'); refresh();
-      } catch (err) { showToast('Erro: ' + (err instanceof Error ? err.message : String(err))); }
+      } catch (err) { showError(err); }
       finally { setUploadingLogoFor(null); }
     }
   };
@@ -538,7 +536,7 @@ function AdminTimes() {
       }
       showToast(`${clubForm.nome} cadastrado!`);
       resetClubForm(); refresh();
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBusyClub(false); }
   };
 
@@ -550,18 +548,21 @@ function AdminTimes() {
       if (pendingLogoFile) { const url = await uploadClubLogo(editingClub.id, pendingLogoFile); patch.logo_url = url; }
       await updateClub(editingClub.id, patch);
       showToast('Clube atualizado!'); resetClubForm(); refresh();
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBusyClub(false); }
   };
 
   const removeClub = async (id: string, nome: string) => {
     if (!await confirm({ title: `Remover "${nome}"?`, message: 'Isso apaga todos os dados do clube.', danger: true, confirmLabel: 'Remover' })) return;
     try {
-      await deleteClubLogo(id); await deleteClub(id);
+      // Apaga o registro primeiro — se falhar (ex: clube com partidas vinculadas,
+      // que a FK impede de remover), o logo continua intacto em vez de órfão.
+      await deleteClub(id);
+      await deleteClubLogo(id);
       showToast(`${nome} removido`);
       if (selectedClubId === id) setSelectedClubId(null);
       refresh();
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
   };
 
   // ─── Shared: logo preview box for forms ─────────────────────────────
@@ -684,7 +685,7 @@ function AdminTimes() {
         </div>
         <div style={{ overflowY: 'auto' }}>
           {selectedClub
-            ? <RosterPanel key={selectedClub.id} club={selectedClub} onBack={() => setSelectedClubId(null)} showToast={showToast} refresh={refresh} />
+            ? <RosterPanel key={selectedClub.id} club={selectedClub} onBack={() => setSelectedClubId(null)} refresh={refresh} />
             : emptyRoster}
         </div>
       </div>
@@ -693,7 +694,7 @@ function AdminTimes() {
 
   // Mobile: lista ou painel de elenco
   if (selectedClub) {
-    return <RosterPanel key={selectedClub.id} club={selectedClub} onBack={() => setSelectedClubId(null)} showToast={showToast} refresh={refresh} />;
+    return <RosterPanel key={selectedClub.id} club={selectedClub} onBack={() => setSelectedClubId(null)} refresh={refresh} />;
   }
   return <div style={{ paddingTop: 4 }}>{clubListPanel}</div>;
 }
@@ -708,6 +709,16 @@ function fmtFromParts(dateISO: string, hour: number, minute: number): string {
   const DAYS   = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
   const MONTHS = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   return `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} · ${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')}`;
+}
+
+// Timestamp real (ISO) das mesmas partes usadas em fmtFromParts — usado só
+// pra ordenar partidas de competições diferentes no feed da Home; o texto
+// exibido continua vindo de date_str/fmtFromParts.
+function isoFromParts(dateISO: string, hour: number, minute: number): string | null {
+  if (!dateISO) return null;
+  const d = new Date(dateISO + 'T00:00:00');
+  d.setHours(hour, minute, 0, 0);
+  return isNaN(d.getTime()) ? null : d.toISOString();
 }
 
 // ScoreEditor com botões grandes para mobile
@@ -1173,7 +1184,7 @@ type AddMatchForm = {
 };
 
 function AdminPartidas() {
-  const { showToast, confirm } = useApp();
+  const { showToast, showError, confirm } = useApp();
   const { clubs, competitions, activeComp, clubById, refresh } = useData();
 
   // ── Competição selecionada ──
@@ -1189,7 +1200,7 @@ function AdminPartidas() {
     setLoadingMatches(true);
     fetchMatches(compId)
       .then(setMatches)
-      .catch(() => showToast('Erro ao carregar partidas'))
+      .catch(() => showToast('Erro ao carregar partidas', { variant: 'error' }))
       .finally(() => setLoadingMatches(false));
   };
 
@@ -1251,12 +1262,15 @@ function AdminPartidas() {
       await updateMatch(editingDetailsId, {
         home_id: addForm.home_id, away_id: addForm.away_id, rodada: addForm.rodada,
         stage: addForm.stage || `Rodada ${addForm.rodada}`,
-        ...(addForm.dateISO ? { date_str: fmtFromParts(addForm.dateISO, addForm.hour, addForm.minute) } : {}),
+        ...(addForm.dateISO ? {
+          date_str: fmtFromParts(addForm.dateISO, addForm.hour, addForm.minute),
+          scheduled_at: isoFromParts(addForm.dateISO, addForm.hour, addForm.minute),
+        } : {}),
       });
       showToast('Partida atualizada!');
       setAdding(false); setEditingDetailsId(null);
       reloadMatches(); refresh();
-    } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e: unknown) { showError(e); }
     finally { setBusy(false); }
   };
 
@@ -1295,6 +1309,7 @@ function AdminPartidas() {
       await updateMatch(editing, {
         score_h: scoreH, score_a: scoreA, status: 'finalizado',
         home_scorers: homeScorers, away_scorers: awayScorers, is_wo: isWO,
+        finalized_at: new Date().toISOString(),
       });
 
       // 2. Re-busca todas as partidas da competição (já com o resultado recém salvo)
@@ -1315,7 +1330,7 @@ function AdminPartidas() {
       }
       setEditing(null);
       reloadMatches(); refresh();
-    } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e: unknown) { showError(e); }
     finally { setBusy(false); }
   };
 
@@ -1332,13 +1347,14 @@ function AdminPartidas() {
         away_id: addForm.away_id,
         rodada: addForm.rodada,
         date_str: fmtFromParts(addForm.dateISO, addForm.hour, addForm.minute),
+        scheduled_at: isoFromParts(addForm.dateISO, addForm.hour, addForm.minute),
         stage: addForm.stage || `Rodada ${addForm.rodada}`,
       });
       showToast('Partida criada!');
       setAdding(false);
       setAddForm(blankForm());
       reloadMatches(); refresh();
-    } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e: unknown) { showError(e); }
     finally { setBusy(false); }
   };
 
@@ -1353,7 +1369,7 @@ function AdminPartidas() {
       showToast('Partida removida');
       reloadMatches(); refresh();
     }
-    catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e: unknown) { showError(e); }
   };
 
   // ── Busca por time + atalho de rodada ──
@@ -1432,7 +1448,7 @@ function AdminPartidas() {
         {/* Artilheiros — aparece sozinho conforme o placar, opcional pra salvar */}
         {!isWO && (
           loadingPlayers ? (
-            <div style={{ padding: '16px 0', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando elencos…</div>
+            <div style={{ marginTop: 16 }} className="card-filled"><SkeletonRow /><div style={{ borderTop: '1px solid var(--outline-variant)' }}><SkeletonRow /></div></div>
           ) : scoreH === 0 && scoreA === 0 ? (
             <div style={{ padding: '18px 16px', marginTop: 16, background: 'var(--surface-c)', borderRadius: 'var(--r-lg)', fontSize: 13, color: 'var(--on-surface-variant)', textAlign: 'center' }}>
               Marque o placar acima pra identificar os artilheiros (opcional).
@@ -1594,7 +1610,7 @@ function AdminPartidas() {
 
       {/* Lista de partidas agrupadas por rodada */}
       {loadingMatches ? (
-        <div style={{ padding: '24px 0', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando partidas...</div>
+        <SkeletonList rows={5} />
       ) : matches.length === 0 && !adding ? (
         <div className="empty">
           <div className="empty-icon">{I.ball}</div>
@@ -1704,7 +1720,7 @@ function todayDateStr(): string {
 }
 
 function AdminNoticias() {
-  const { showToast, confirm } = useApp();
+  const { showToast, showError, confirm } = useApp();
   const { news, competitions, clubById, refresh } = useData();
   const [adding, setAdding] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -1756,14 +1772,14 @@ function AdminNoticias() {
       setAdding(false);
       refresh();
     } catch (e: unknown) {
-      showToast('Erro: ' + (e instanceof Error ? e.message : String(e)));
+      showError(e);
     } finally { setBusy(false); }
   };
 
   const remove = async (id: string, title: string) => {
     if (!await confirm({ title: `Remover "${title}"?`, danger: true, confirmLabel: 'Remover' })) return;
     try { await deleteNews(id); showToast('Notícia removida'); refresh(); }
-    catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e: unknown) { showError(e); }
   };
 
   return (
@@ -1795,7 +1811,7 @@ function AdminNoticias() {
                   <div>
                     <label className="field-label">Partida</label>
                     {loadingMatches ? (
-                      <div style={{ fontSize: 13, color: 'var(--on-surface-variant)', padding: '8px 0' }}>Carregando partidas...</div>
+                      <Skeleton height={52} radius={12} />
                     ) : matchOptions.length === 0 ? (
                       <div style={{ fontSize: 13, color: 'var(--on-surface-variant)', padding: '8px 0' }}>Nenhuma partida encerrada nessa competição.</div>
                     ) : (
@@ -1872,7 +1888,7 @@ const STATUS_LABELS: Record<Competition['status'], string> = {
 };
 
 const BLANK_COMP: Omit<Competition, 'id'> & { id: string } = {
-  id: '', nome: '', edicao: '2026', status: 'planejado', rodada_atual: 0, total_rodadas: 22,
+  id: '', nome: '', edicao: CURRENT_SEASON_EDICAO, status: 'planejado', rodada_atual: 0, total_rodadas: DEFAULT_TOTAL_RODADAS,
 };
 
 function rodadaLabel(atual: number, total: number): string {
@@ -1882,7 +1898,7 @@ function rodadaLabel(atual: number, total: number): string {
 
 // Sub-componente: inscreve/remove clubes (e todo o elenco) de uma competição
 function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => void }) {
-  const { showToast, confirm } = useApp();
+  const { showToast, showError, confirm } = useApp();
   const { clubs } = useData();
   const [enrolledIds, setEnrolledIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -1893,14 +1909,14 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
   useEffect(() => {
     fetchClubsInCompetition(comp.id)
       .then(setEnrolledIds)
-      .catch(() => showToast('Erro ao carregar clubes'))
+      .catch(() => showToast('Erro ao carregar clubes', { variant: 'error' }))
       .finally(() => setLoading(false));
   }, [comp.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const enrollOne = async (clubId: string) => {
     setBusyFor(clubId);
     try { await enrollClubWithRoster(clubId, comp.id); setEnrolledIds(ids => [...ids, clubId]); }
-    catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e) { showError(e); }
     finally { setBusyFor(null); }
   };
 
@@ -1908,7 +1924,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
     if (!await confirm({ title: `Remover "${nome}" da competição?`, message: 'O elenco do time sai da competição (partidas e resultados já lançados não são apagados).', confirmLabel: 'Remover', danger: true })) return;
     setBusyFor(clubId);
     try { await unenrollClubWithRoster(clubId, comp.id); setEnrolledIds(ids => ids.filter(id => id !== clubId)); }
-    catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e) { showError(e); }
     finally { setBusyFor(null); }
   };
 
@@ -1923,7 +1939,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
       await Promise.all(missing.map(c => enrollClubWithRoster(c.id, comp.id)));
       setEnrolledIds(ids => [...ids, ...missing.map(c => c.id)]);
       showToast('Todos os times foram inscritos!');
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBulkBusy(false); }
   };
 
@@ -1935,7 +1951,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
       await Promise.all(enrolledIds.map(id => unenrollClubWithRoster(id, comp.id)));
       setEnrolledIds([]);
       showToast('Todos os times foram removidos');
-    } catch (e) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e) { showError(e); }
     finally { setBulkBusy(false); }
   };
 
@@ -1979,13 +1995,13 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 16 }}>
             <button disabled={bulkBusy || clubs.length === enrolledCount} onClick={enrollAll} className="btn btn-tonal" style={{ height: 38, fontSize: 12.5 }}>Inscrever todos</button>
-            <button disabled={bulkBusy || enrolledCount === 0} onClick={unenrollAll} className="btn btn-outlined" style={{ height: 38, fontSize: 12.5, color: 'var(--error)', borderColor: 'var(--error)' }}>Remover todos</button>
+            <button disabled={bulkBusy || enrolledCount === 0} onClick={unenrollAll} className="btn btn-danger" style={{ height: 38, fontSize: 12.5 }}>Remover todos</button>
           </div>
         </>
       )}
 
       {loading ? (
-        <div style={{ padding: '20px 0', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando...</div>
+        <SkeletonList rows={5} />
       ) : clubs.length === 0 ? (
         <div className="empty">
           <div className="empty-icon">{I.shield}</div>
@@ -2032,7 +2048,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
 }
 
 function AdminCompeticoes() {
-  const { showToast, confirm } = useApp();
+  const { showToast, showError, confirm } = useApp();
   const { competitions, refresh } = useData();
   const [adding, setAdding] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
@@ -2074,7 +2090,7 @@ function AdminCompeticoes() {
       await createCompetition(payload);
       showToast(`${form.nome} criada!`);
       resetComp(); refresh();
-    } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e: unknown) { showError(e); }
     finally { setBusy(false); }
   };
 
@@ -2085,14 +2101,14 @@ function AdminCompeticoes() {
       const { id, ...patch } = { ...form, total_rodadas: rodadasLivres ? 0 : form.total_rodadas };
       await updateCompetition(id, patch);
       showToast('Competição atualizada!'); resetComp(); refresh();
-    } catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    } catch (e: unknown) { showError(e); }
     finally { setBusy(false); }
   };
 
   const remove = async (id: string, nome: string) => {
     if (!await confirm({ title: `Remover "${nome}"?`, message: 'Todos os dados (partidas, classificação) serão excluídos.', danger: true, confirmLabel: 'Remover' })) return;
     try { await deleteCompetition(id); showToast(`${nome} removida`); refresh(); }
-    catch (e: unknown) { showToast('Erro: ' + (e instanceof Error ? e.message : String(e))); }
+    catch (e: unknown) { showError(e); }
   };
 
   const compFormFields = () => (
@@ -2196,11 +2212,15 @@ function AdminCompeticoes() {
 
 export function AdminScreen({ onBack, onNav }: NavProps) {
   const [section, setSection] = useState<Section>('dashboard');
-  const { inscricoes } = useData();
+  const { inscricoes, loading } = useData();
   const pendentes = inscricoes.filter(i => i.status === 'pendente').length;
   const active = SECTIONS.find(s => s.id === section)!;
 
-  const sectionView = (
+  const sectionView = loading ? (
+    <div style={{ padding: '16px' }}>
+      <SkeletonAdminTable rows={5} />
+    </div>
+  ) : (
     <>
       {section === 'dashboard'   && <AdminDashboard  onSection={setSection} />}
       {section === 'inscricoes'  && <AdminInscricoes />}

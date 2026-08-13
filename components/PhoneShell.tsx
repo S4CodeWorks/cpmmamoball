@@ -8,6 +8,8 @@ import { DataProvider, useData } from '@/contexts/DataContext';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { DesktopHeader } from '@/components/ui/DesktopHeader';
 import { Toast } from '@/components/ui/Primitives';
+import { CookieBanner } from '@/components/ui/CookieBanner';
+import { Skeleton, SkeletonHeroMatch, SkeletonMatchCard, SkeletonStandingsTable } from '@/components/ui/Skeleton';
 import { HomeScreen } from '@/components/screens/HomeScreen';
 import { TournamentsScreen } from '@/components/screens/TournamentsScreen';
 import { JogosScreen } from '@/components/screens/JogosScreen';
@@ -39,12 +41,53 @@ function UnauthorizedScreen({ onBack }: { onBack: () => void }) {
 }
 
 // ─── Carregamento inicial — evita mostrar "vazio" antes dos dados chegarem ────
+// Réplica pixel-a-pixel da Home real (TopAppBar + destaque + partidas +
+// classificação, ver components/screens/HomeScreen.tsx) — desktop ganha o
+// mesmo split de 2 colunas de graça, reaproveitando a classe .d-split.
 
 function InitialLoading() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', gap: 14 }}>
-      <div className="loading-pulse" style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--primary)', color: 'var(--on-primary)', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 20 }}>C</div>
-      <div style={{ fontSize: 13, color: 'var(--on-surface-variant)', fontWeight: 600 }}>Carregando…</div>
+    <div aria-busy="true" aria-label="Carregando">
+      {/* Cabeçalho grande, igual ao TopAppBar large */}
+      <div style={{ padding: '4px 20px 20px' }}>
+        <Skeleton width={110} height={12} style={{ marginBottom: 10 }} />
+        <Skeleton width={180} height={30} />
+      </div>
+
+      {/* Partida em destaque */}
+      <section style={{ padding: '8px 16px 0' }}>
+        <SkeletonHeroMatch />
+      </section>
+
+      {/* Desktop: 2 colunas (igual .d-split da Home) · Mobile: empilhado */}
+      <div className="d-split">
+        <div>
+          <div className="section-head"><Skeleton width={150} height={16} /></div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
+            <SkeletonMatchCard />
+            <SkeletonMatchCard />
+          </div>
+        </div>
+        <div>
+          <div className="section-head"><Skeleton width={120} height={16} /></div>
+          <div style={{ padding: '0 16px' }}>
+            <SkeletonStandingsTable rows={5} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Erro no carregamento inicial — nunca deixa o usuário preso no skeleton ────
+
+function InitialLoadError({ message, onRetry }: { message: string; onRetry: () => void }) {
+  return (
+    <div className="empty" style={{ paddingTop: 80 }}>
+      <div className="empty-icon" style={{ color: 'var(--error)' }}>{I.alertTriangle}</div>
+      <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700 }}>Não deu pra carregar</h3>
+      <p style={{ margin: '0 0 20px', fontSize: 14, lineHeight: 1.5, maxWidth: 280, marginInline: 'auto' }}>{message}</p>
+      <button onClick={onRetry} className="btn btn-primary">Tentar de novo</button>
     </div>
   );
 }
@@ -54,7 +97,7 @@ function InitialLoading() {
 function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialParam?: string | number | null }) {
   const { resolvedTheme } = useApp();
   const { isStaff, isLoggedIn } = useAuth();
-  const { initialLoad } = useData();
+  const { initialLoad, error, refresh } = useData();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Deep link: seed com Home por baixo, pra o botão "voltar" ter pra onde ir
@@ -159,9 +202,10 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
       <div className="app-main">
         <DesktopHeader page={current.page} param={current.param} onTab={onTab} onNav={onNav} />
         <div className={`scroll${isNarrow ? ' d-narrow' : ''}`} ref={scrollRef}>
-          {initialLoad ? <InitialLoading /> : view}
+          {initialLoad ? <InitialLoading /> : error ? <InitialLoadError message={error} onRetry={refresh} /> : view}
         </div>
         <Toast />
+        <CookieBanner />
         <BottomNav page={current.page} onNav={onTab} />
       </div>
       <ConfirmDialogHost />

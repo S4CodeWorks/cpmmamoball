@@ -8,6 +8,7 @@ import { TopAppBar } from '@/components/ui/TopAppBar';
 import { SheetItem } from '@/components/ui/Sheet';
 import { Crest } from '@/components/ui/Crest';
 import { CompetitionPills } from '@/components/ui/CompetitionPills';
+import { Skeleton, SkeletonList, SkeletonStandingsTable, SkeletonScorersList } from '@/components/ui/Skeleton';
 import { shareLink } from '@/lib/share';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchStandings, fetchScorers } from '@/lib/db';
@@ -76,7 +77,7 @@ function Classificacao({ onNav, compId, activeCompId }: { onNav: Props['onNav'];
   const standings = local ?? ctxStandings;
 
   if (loading) {
-    return <div style={{ padding: '24px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando classificação…</div>;
+    return <div style={{ padding: '0 16px' }}><SkeletonStandingsTable rows={6} /></div>;
   }
 
   if (standings.length === 0) {
@@ -168,7 +169,24 @@ function Artilharia({ onNav, compId, activeCompId }: { onNav: Props['onNav']; co
   const scorers = local ?? ctxScorers;
 
   if (loading) {
-    return <div style={{ padding: '24px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando artilharia…</div>;
+    return (
+      <div style={{ padding: '0 16px' }}>
+        <div className="card-filled" style={{ padding: '20px 16px 26px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', alignItems: 'end', gap: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <Skeleton width={44} height={44} circle /><Skeleton width={50} height={72} radius={12} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <Skeleton width={56} height={56} circle /><Skeleton width={50} height={96} radius={12} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <Skeleton width={44} height={44} circle /><Skeleton width={50} height={58} radius={12} />
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: 12 }}><SkeletonList rows={3} /></div>
+      </div>
+    );
   }
 
   if (scorers.length === 0) {
@@ -223,7 +241,7 @@ function Artilharia({ onNav, compId, activeCompId }: { onNav: Props['onNav']; co
 // ── TournamentsScreen ─────────────────────────────────────────────────────────
 export function TournamentsScreen({ onNav, initialTab }: Props) {
   const [tab, setTab] = useState(initialTab || 'classificacao');
-  const { notifs, toggleNotif, showToast } = useApp();
+  const { notifs, toggleNotif, favComps, toggleFavComp, showToast } = useApp();
   const { competitions, activeComp } = useData();
   const [comp, setComp] = useState<string | null>(null);
 
@@ -235,12 +253,16 @@ export function TournamentsScreen({ onNav, initialTab }: Props) {
 
   const notifKey = 'comp:' + selectedId;
   const isNotif  = notifs.has(notifKey);
+  const isFavComp = favComps.has(selectedId ?? '');
 
   const menu = (close: () => void) => (
     <>
       <SheetItem icon={isNotif ? 'bell' : 'bellOff'} label={isNotif ? 'Notificações ativadas' : 'Receber notificações'}
         meta="Avisamos sobre novos jogos e resultados" on={isNotif}
         onClick={() => { toggleNotif(notifKey); showToast(isNotif ? 'Notificações desativadas' : 'Notificações ativadas'); }} />
+      <SheetItem icon={isFavComp ? 'starFilled' : 'star'} label={isFavComp ? 'Competição favoritada' : 'Favoritar competição'}
+        meta="Prioriza essa competição na sua Home" on={isFavComp}
+        onClick={() => { if (selectedId) { toggleFavComp(selectedId); showToast(isFavComp ? 'Removida dos favoritos' : 'Adicionada aos favoritos'); } }} />
       <SheetItem icon="share" label="Compartilhar competição" onClick={async () => {
         close();
         const sel = competitions.find(c => c.id === selectedId);
@@ -267,7 +289,7 @@ export function TournamentsScreen({ onNav, initialTab }: Props) {
       )}
 
       {/* Pills de competição */}
-      <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setComp} />
+      <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setComp} favIds={favComps} onToggleFav={toggleFavComp} />
 
       {/* Barra de progresso da competição selecionada */}
       {(() => {

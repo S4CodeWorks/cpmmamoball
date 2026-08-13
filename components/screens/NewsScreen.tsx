@@ -10,6 +10,8 @@ import { Crest } from '@/components/ui/Crest';
 import { shareLink } from '@/lib/share';
 import { pathForPage } from '@/lib/routes';
 
+import { SkeletonNewsCard, SkeletonArticleBody } from '@/components/ui/Skeleton';
+
 interface Props {
   onNav: (page: string, param?: string | number | null) => void;
   onBack?: () => void;
@@ -26,7 +28,21 @@ const CATS: { value: string; label: string }[] = [
 
 export function NewsScreen({ onNav }: { onNav: Props['onNav'] }) {
   const [active, setActive] = useState('todas');
-  const { news } = useData();
+  const { news, loading } = useData();
+
+  if (loading) {
+    return (
+      <>
+        <TopAppBar large title="Notícias" subhead="Cobertura oficial CPM" />
+        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <SkeletonNewsCard />
+          <SkeletonNewsCard />
+          <SkeletonNewsCard />
+        </div>
+      </>
+    );
+  }
+
   const filtered = active === 'todas' ? news : news.filter(n => n.category === active);
   const featured = filtered[0];
   const list = filtered.slice(1);
@@ -149,7 +165,19 @@ function ArticleSubscriptionCard({ competitionId, onNav }: { competitionId: stri
 }
 
 export function ArticleScreen({ onBack, onNav, articleId }: Props) {
-  const { news } = useData();
+  const { news, loading } = useData();
+
+  if (loading) {
+    return (
+      <div aria-busy="true" aria-label="Carregando artigo">
+        <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)' }}>
+          <TopAppBar showBack onBack={onBack} title="" />
+        </div>
+        <SkeletonArticleBody />
+      </div>
+    );
+  }
+
   const n = news.find(x => x.id === articleId) ?? news[0];
   const { bookmarks, toggleBookmark, showToast } = useApp();
   if (!n) return <div className="empty"><p>Artigo não encontrado.</p></div>;

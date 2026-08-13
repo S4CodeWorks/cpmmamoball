@@ -39,9 +39,10 @@ interface MatchTileProps {
   m: Match;
   onClick?: () => void;
   showStage?: boolean;
+  compTag?: string;
 }
 
-export function MatchTile({ m, onClick, showStage = true }: MatchTileProps) {
+export function MatchTile({ m, onClick, showStage = true, compTag }: MatchTileProps) {
   const { clubById } = useData();
   const home = clubById(m.home);
   const away = clubById(m.away);
@@ -62,9 +63,14 @@ export function MatchTile({ m, onClick, showStage = true }: MatchTileProps) {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <StatusBadge m={m} compact />
-        {showStage && (
-          <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {compTag && (
+            <span className="chip" style={{ height: 20, padding: '0 8px', fontSize: 10.5 }}>{compTag}</span>
+          )}
+          {showStage && (
+            <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
+          )}
+        </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         <TeamLine club={home} score={m.scoreH} faded={isSched} winner={!isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0)} />

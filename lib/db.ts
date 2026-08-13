@@ -37,6 +37,7 @@ export interface Inscricao {
   jogadores: InscricaoJogador[];
   status: 'pendente' | 'aprovado' | 'recusado';
   created_at: string;
+  reviewed_at: string | null;
 }
 
 // ── Helpers de mapeamento ─────────────────────────────────────────────────
@@ -96,6 +97,8 @@ function rowToMatch(r: Record<string, unknown>): Match {
     home_scorers: (r.home_scorers as GoalEntry[] | null) ?? [],
     away_scorers: (r.away_scorers as GoalEntry[] | null) ?? [],
     is_wo:   (r.is_wo   as boolean | null) ?? false,
+    finalizedAt: (r.finalized_at as string | null | undefined) ?? null,
+    scheduledAt: (r.scheduled_at as string | null | undefined) ?? null,
   };
 }
 
@@ -185,6 +188,34 @@ export async function fetchMatches(competitionId: string): Promise<Match[]> {
     .order('created_at', { ascending: true });
   if (error) throw error;
   return (data ?? []).map(rowToMatch);
+}
+
+// Partidas de várias competições de uma vez — usado pelo feed personalizado
+// da Home (competições favoritadas). A ordenação "de verdade" por data fica a
+// cargo de lib/homeFeed.ts; aqui é só o mesmo fallback do fetchMatches.
+export async function fetchMatchesForCompetitions(competitionIds: string[]): Promise<Match[]> {
+  if (competitionIds.length === 0) return [];
+  const { data, error } = await supabase
+    .from('matches')
+    .select('*')
+    .in('competition_id', competitionIds)
+    .order('rodada', { ascending: false })
+    .order('created_at', { ascending: true });
+  if (error) throw error;
+  return (data ?? []).map(rowToMatch);
+}
+
+// Inscrições aprovadas de várias competições de uma vez — idem, feed da Home.
+export async function fetchApprovedInscricoesForCompetitions(competitionIds: string[]): Promise<Inscricao[]> {
+  if (competitionIds.length === 0) return [];
+  const { data, error } = await supabase
+    .from('inscricoes')
+    .select('*')
+    .in('competition_id', competitionIds)
+    .eq('status', 'aprovado')
+    .order('reviewed_at', { ascending: false, nullsFirst: false });
+  if (error) throw error;
+  return (data ?? []) as Inscricao[];
 }
 
 export async function fetchScorers(competitionId: string): Promise<Scorer[]> {
@@ -397,16 +428,6 @@ export async function unenrollClub(clubId: string, competitionId: string): Promi
   if (error) throw error;
 }
 
-export async function fetchPlayersInCompetition(clubId: string, competitionId: string): Promise<string[]> {
-  const { data, error } = await supabase
-    .from('player_competitions')
-    .select('player_id')
-    .eq('competition_id', competitionId);
-  if (error) throw error;
-  const allIds = (data ?? []).map(r => (r as { player_id: string }).player_id);
-  return allIds;
-}
-
 // Inscreve o clube, cria entrada de classificação zerada e enrola todos os jogadores
 export async function enrollClubWithRoster(clubId: string, competitionId: string): Promise<void> {
   await enrollClub(clubId, competitionId);
@@ -468,6 +489,8 @@ export interface MatchInput {
   home_scorers?: GoalEntry[];
   away_scorers?: GoalEntry[];
   is_wo?: boolean;
+  finalized_at?: string | null;
+  scheduled_at?: string | null;
 }
 
 export async function createMatch(m: MatchInput) {
@@ -581,7 +604,9 @@ export async function deleteNews(id: string) {
 // ── Escrita — Inscrições ──────────────────────────────────────────────────
 
 export async function updateInscricaoStatus(id: number, status: 'aprovado' | 'recusado') {
-  const { error } = await supabase.from('inscricoes').update({ status }).eq('id', id);
+  const { error } = await supabase.from('inscricoes')
+    .update({ status, reviewed_at: new Date().toISOString() })
+    .eq('id', id);
   if (error) throw error;
 }
 

@@ -6,6 +6,8 @@ import { I } from '@/components/icons';
 import { TopAppBar } from '@/components/ui/TopAppBar';
 import { MatchTile } from '@/components/ui/MatchTile';
 
+import { SkeletonMatchCard } from '@/components/ui/Skeleton';
+
 interface Props {
   onNav: (page: string, param?: string | number | null) => void;
   initialTab?: string | null;
@@ -14,7 +16,28 @@ interface Props {
 export function JogosScreen({ onNav, initialTab }: Props) {
   const [tab, setTab] = useState(initialTab || 'hoje');
   useEffect(() => { if (initialTab) setTab(initialTab); }, [initialTab]);
-  const { matches } = useData();
+  const { matches, loading } = useData();
+
+  if (loading) {
+    return (
+      <>
+        <TopAppBar large title="Jogos" subhead="Agenda da temporada" />
+        <div className="tabs">
+          {[{ id: 'hoje', label: 'Hoje' }, { id: 'proximos', label: 'Próximos' }, { id: 'resultados', label: 'Resultados' }].map(t => (
+            <button key={t.id} onClick={() => setTab(t.id)} className={tab === t.id ? 'is-active' : ''}>{t.label}</button>
+          ))}
+        </div>
+        <div style={{ padding: '16px 16px 0' }}>
+          <div className="d-match-grid">
+            <SkeletonMatchCard />
+            <SkeletonMatchCard />
+            <SkeletonMatchCard />
+            <SkeletonMatchCard />
+          </div>
+        </div>
+      </>
+    );
+  }
 
   const today    = matches.filter(m => m.date.startsWith('Hoje') && m.status === 'agendado');
   const upcoming = matches.filter(m => m.status === 'agendado' && !m.date.startsWith('Hoje'));

@@ -57,6 +57,8 @@ export interface Match {
   home_scorers: GoalEntry[];
   away_scorers: GoalEntry[];
   is_wo: boolean;
+  finalizedAt: string | null;
+  scheduledAt: string | null;
 }
 
 export interface Scorer {

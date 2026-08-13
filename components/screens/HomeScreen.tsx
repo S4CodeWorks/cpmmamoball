@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
@@ -12,9 +12,12 @@ import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
 import { ColorMesh } from '@/components/ui/ColorMesh';
 import { CompetitionPills } from '@/components/ui/CompetitionPills';
+import { SkeletonHeroMatch, SkeletonMatchCard, SkeletonStandingsTable } from '@/components/ui/Skeleton';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
-import { fetchMatches, fetchStandings } from '@/lib/db';
+import { fetchMatches, fetchStandings, fetchMatchesForCompetitions, fetchApprovedInscricoesForCompetitions } from '@/lib/db';
+import { buildHomeFeed, type FeaturedMoment } from '@/lib/homeFeed';
 import type { Match, Club, Standing } from '@/lib/types';
+import type { Inscricao } from '@/lib/db';
 
 interface Props { onNav: (page: string, param?: string | number | null, extra?: string | null) => void; }
 
@@ -33,7 +36,7 @@ function SideHero({ club, score, right }: { club: Club; score: number | null; ri
   );
 }
 
-function FeaturedMatch({ m, onClick }: { m: Match; onClick: () => void }) {
+function FeaturedMatch({ m, variant, onClick }: { m: Match; variant: 'scheduled' | 'result'; onClick: () => void }) {
   const { clubById } = useData();
   const { resolvedTheme } = useApp();
   const home = clubById(m.home), away = clubById(m.away);
@@ -47,7 +50,7 @@ function FeaturedMatch({ m, onClick }: { m: Match; onClick: () => void }) {
         <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.28 : 0.42} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-            <span className="chip chip-acc">{m.date}</span>
+            <span className="chip chip-acc">{variant === 'result' ? `Resultado · ${m.date}` : m.date}</span>
             <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10 }}>
@@ -63,7 +66,46 @@ function FeaturedMatch({ m, onClick }: { m: Match; onClick: () => void }) {
   );
 }
 
-function StandingsMini({ onNav, standings }: { onNav: Props['onNav']; standings: Standing[] }) {
+function FeaturedInscricao({ inscricao, competitionName, onClick }: { inscricao: Inscricao; competitionName: string; onClick: () => void }) {
+  return (
+    <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left' }}>
+      <div style={{ borderRadius: 'var(--r-2xl)', padding: '20px 22px', background: 'var(--surface-c)', display: 'flex', alignItems: 'center', gap: 16 }}>
+        <span style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--primary-container)', color: 'var(--on-primary-container)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+          {I.check}
+        </span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="eyebrow eyebrow-acc">Novo time · {competitionName}</div>
+          <div style={{ fontSize: 17, fontWeight: 700, marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {inscricao.tag} entrou na competição
+          </div>
+        </div>
+        <span style={{ width: 22, height: 22, flexShrink: 0, color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
+      </div>
+    </button>
+  );
+}
+
+function FeaturedMoment({ moment, onNav }: { moment: FeaturedMoment; onNav: Props['onNav'] }) {
+  if (moment.kind === 'none') return null;
+  if (moment.kind === 'inscricao') {
+    return (
+      <FeaturedInscricao
+        inscricao={moment.inscricao}
+        competitionName={moment.competition.nome}
+        onClick={() => onNav('tournaments', moment.competition.id)}
+      />
+    );
+  }
+  return (
+    <FeaturedMatch
+      m={moment.match}
+      variant={moment.kind === 'result' ? 'result' : 'scheduled'}
+      onClick={() => onNav('match', moment.match.id)}
+    />
+  );
+}
+
+function StandingsMini({ onNav, standings, title }: { onNav: Props['onNav']; standings: Standing[]; title?: string }) {
   const { clubById } = useData();
   const isDesktop = useIsDesktop();
   // Desktop tem mais espaço vertical na coluna lateral — mostra mais linhas da tabela
@@ -71,6 +113,9 @@ function StandingsMini({ onNav, standings }: { onNav: Props['onNav']; standings:
   return (
     <div style={{ padding: '0 16px' }}>
       <div className="card-filled">
+        {title && (
+          <div style={{ padding: '12px 16px 0', fontSize: 12.5, fontWeight: 600, color: 'var(--on-surface-variant)' }}>{title}</div>
+        )}
         <div style={{
           display: 'grid', gridTemplateColumns: '28px 1fr 38px 40px',
           padding: '12px 16px 8px',
@@ -121,39 +166,79 @@ function StandingsMini({ onNav, standings }: { onNav: Props['onNav']; standings:
 }
 
 export function HomeScreen({ onNav }: Props) {
-  const { showToast, theme, setTheme, resolvedTheme } = useApp();
+  const { showToast, theme, setTheme, resolvedTheme, favComps, toggleFavComp } = useApp();
   const { isLoggedIn, profile, user, signOut } = useAuth();
   const { matches: ctxMatches, standings: ctxStandings, competitions, activeComp, news, clubById } = useData();
   const isDesktop = useIsDesktop();
 
-  // Seletor de competição — evita que uma competição recém-criada "roube" a Home
-  // de outra que já tem jogos/tabela (ver DataContext: activeComp escolhe só 1).
+  // Ids favoritados que ainda existem entre as competições carregadas (uma
+  // competição pode ter sido removida depois de favoritada).
+  const favIds = useMemo(
+    () => [...favComps].filter(id => competitions.some(c => c.id === id)),
+    [favComps, competitions],
+  );
+  const hasFavorites = favIds.length > 0;
+
+  // Seletor de competição — só usado no caminho SEM favoritos (comportamento
+  // de hoje, preservado como fallback pra visitantes/usuários sem favoritos).
   const [selComp, setSelComp] = useState<string | null>(null);
   const selectedId = selComp ?? activeComp?.id ?? competitions[0]?.id ?? null;
   const isActiveComp = selectedId === activeComp?.id;
   const [local, setLocal] = useState<{ matches: Match[]; standings: Standing[] } | null>(null);
 
   useEffect(() => {
-    if (!selectedId || isActiveComp) { setLocal(null); return; }
+    if (hasFavorites || !selectedId || isActiveComp) { setLocal(null); return; }
     let cancelled = false;
     Promise.all([fetchMatches(selectedId), fetchStandings(selectedId)])
       .then(([matches, standings]) => { if (!cancelled) setLocal({ matches, standings }); })
       .catch(() => { if (!cancelled) setLocal({ matches: [], standings: [] }); });
     return () => { cancelled = true; };
-  }, [selectedId, isActiveComp]);
+  }, [hasFavorites, selectedId, isActiveComp]);
 
-  const matches   = isActiveComp ? ctxMatches   : (local?.matches ?? []);
-  const standings = isActiveComp ? ctxStandings : (local?.standings ?? []);
+  // Caminho COM favoritos: busca em lote as partidas + inscrições aprovadas
+  // de todas as competições favoritadas, e a tabela da primeira favoritada.
+  const [favData, setFavData] = useState<{ matches: Match[]; inscricoes: Inscricao[]; standings: Standing[] } | null>(null);
+  useEffect(() => {
+    if (!hasFavorites) { setFavData(null); return; }
+    let cancelled = false;
+    Promise.all([
+      fetchMatchesForCompetitions(favIds),
+      fetchApprovedInscricoesForCompetitions(favIds),
+      fetchStandings(favIds[0]),
+    ]).then(([matches, inscricoes, standings]) => { if (!cancelled) setFavData({ matches, inscricoes, standings }); })
+      .catch(() => { if (!cancelled) setFavData({ matches: [], inscricoes: [], standings: [] }); });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasFavorites, favIds.join(',')]);
+
+  // Enquanto a busca em lote das favoritas ainda está em voo, favData é null —
+  // não é o mesmo que "sem dados", então não deve disparar o empty-state.
+  const favLoading = hasFavorites && favData === null;
+
+  const matches = hasFavorites ? (favData?.matches ?? []) : (isActiveComp ? ctxMatches : (local?.matches ?? []));
+  const standings = hasFavorites ? (favData?.standings ?? []) : (isActiveComp ? ctxStandings : (local?.standings ?? []));
+
+  const feed = useMemo(() => buildHomeFeed({
+    competitions,
+    matches,
+    approvedInscricoes: hasFavorites ? (favData?.inscricoes ?? []) : [],
+  }), [competitions, matches, hasFavorites, favData]);
 
   const greeting = isLoggedIn
     ? `Olá, ${profile?.nick || user?.email?.split('@')[0] || 'jogador'}`
     : 'Bem-vindo';
   // Desktop tem mais espaço na coluna esquerda — mostra mais partidas
   const listSize = isDesktop ? 5 : 3;
-  const upcoming = matches.filter(m => m.status === 'agendado').slice(0, listSize);
-  const recent = matches.filter(m => m.status === 'finalizado').slice(0, listSize);
+  const upcoming = feed.upcoming.slice(0, listSize);
+  const recent = feed.recent.slice(0, listSize);
   const featuredNews = news[0];
   const extraNews = news.slice(1, 3);
+
+  // Só mostra a tag de competição em cada card quando há 2+ favoritadas
+  // mescladas na mesma lista — com 1 só (ou sem favoritos) é redundante.
+  const showCompTag = hasFavorites && favIds.length > 1;
+  const compName = (id: string) => competitions.find(c => c.id === id)?.nome;
+  const standingsTitle = hasFavorites ? competitions.find(c => c.id === favIds[0])?.nome : undefined;
 
   const menu = (close: () => void) => (
     <>
@@ -171,7 +256,7 @@ export function HomeScreen({ onNav }: Props) {
     </>
   );
 
-  if (!featuredNews && upcoming.length === 0 && recent.length === 0) {
+  if (!featuredNews && feed.featured.kind === 'none' && !favLoading) {
     return (
       <>
         <TopAppBar large title={greeting} subhead="Federação CPM · 2026" menu={menu} />
@@ -188,14 +273,15 @@ export function HomeScreen({ onNav }: Props) {
     <>
       <TopAppBar large title={greeting} subhead="Federação CPM · 2026" menu={menu} />
 
-      {/* Pills de competição — só quando há mais de uma cadastrada */}
-      {competitions.length > 1 && (
-        <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setSelComp} />
+      {/* Pills de competição — só no caminho sem favoritos (com favoritos, as
+          listas já mesclam todas as competições relevantes de uma vez) */}
+      {!hasFavorites && competitions.length > 1 && (
+        <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setSelComp}
+          favIds={favComps} onToggleFav={toggleFavComp} />
       )}
-
-      {/* Featured match — full width */}
+      {/* Momento em destaque — full width */}
       <section style={{ padding: '8px 16px 0' }}>
-        {upcoming[0] && <FeaturedMatch m={upcoming[0]} onClick={() => onNav('match', upcoming[0].id)} />}
+        {favLoading ? <SkeletonHeroMatch /> : <FeaturedMoment moment={feed.featured} onNav={onNav} />}
       </section>
 
       {/* Desktop split: left = matches, right = standings */}
@@ -204,19 +290,31 @@ export function HomeScreen({ onNav }: Props) {
         <div>
           <SectionHead title="Próximas partidas" more="Ver tudo" onMore={() => onNav('jogos')} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
-            {upcoming.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} />)}
+            {favLoading ? (
+              <><SkeletonMatchCard /><SkeletonMatchCard /></>
+            ) : (
+              upcoming.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} compTag={showCompTag ? compName(m.competition_id) : undefined} />)
+            )}
           </div>
 
           <SectionHead title="Últimos resultados" more="Histórico" onMore={() => onNav('jogos', null, 'resultados')} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
-            {recent.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} />)}
+            {favLoading ? (
+              <><SkeletonMatchCard /><SkeletonMatchCard /></>
+            ) : (
+              recent.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} compTag={showCompTag ? compName(m.competition_id) : undefined} />)
+            )}
           </div>
         </div>
 
         {/* Right column: classificação */}
         <div>
           <SectionHead title="Classificação" more="Tabela completa" onMore={() => onNav('tournaments')} />
-          <StandingsMini onNav={onNav} standings={standings} />
+          {favLoading ? (
+            <div style={{ padding: '0 16px' }}><SkeletonStandingsTable rows={5} /></div>
+          ) : (
+            <StandingsMini onNav={onNav} standings={standings} title={standingsTitle} />
+          )}
         </div>
       </div>
 

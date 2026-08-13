@@ -10,6 +10,7 @@ import { FormDots } from '@/components/ui/Primitives';
 import { MatchTile } from '@/components/ui/MatchTile';
 import { Crest } from '@/components/ui/Crest';
 import { ColorMesh } from '@/components/ui/ColorMesh';
+import { SkeletonRow, SkeletonClubHero, SkeletonList } from '@/components/ui/Skeleton';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import { fetchPlayers } from '@/lib/db';
 import { shareLink } from '@/lib/share';
@@ -41,7 +42,19 @@ function Info({ k, v, last }: { k: string; v: React.ReactNode; last?: boolean })
 }
 
 export function ClubScreen({ onNav, onBack, clubId }: Props) {
-  const { clubs, standings, matches, scorers, activeComp, clubById } = useData();
+  const { clubs, standings, matches, scorers, activeComp, clubById, loading } = useData();
+
+  if (loading) {
+    return (
+      <div aria-busy="true" aria-label="Carregando clube">
+        <SkeletonClubHero />
+        <div style={{ padding: '16px' }}>
+          <SkeletonList rows={5} />
+        </div>
+      </div>
+    );
+  }
+
   const c = clubById(clubId || '') || clubs[0];
   if (!c) return <div className="empty"><p>Clube não encontrado.</p></div>;
 
@@ -141,7 +154,7 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
     <div style={{ padding: '0 16px' }}>
       <div className="card-filled">
         {loadingPlayers ? (
-          <div style={{ padding: '20px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Carregando elenco...</div>
+          <>{Array.from({ length: 4 }).map((_, i) => <div key={i} style={{ borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}><SkeletonRow /></div>)}</>
         ) : players.length === 0 ? (
           <div style={{ padding: '20px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhum jogador cadastrado.</div>
         ) : (
