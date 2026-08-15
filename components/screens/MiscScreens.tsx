@@ -251,7 +251,7 @@ export function ProfileScreen({ onBack, onNav }: NavProps) {
   return (
     <>
       <TopAppBar title="Meu perfil" showBack onBack={onBack}
-        rightExtras={<button className="icon-btn" onClick={() => onNav('settings')}>{I.cog}</button>}
+        rightExtras={<button className="icon-btn" aria-label="Configurações" onClick={() => onNav('settings')}>{I.cog}</button>}
       />
       <div style={{ padding: '8px 16px 0', textAlign: 'center' }}>
         <div style={{ width: 96, height: 96, borderRadius: 999, background: 'var(--primary)', color: 'var(--on-primary)', margin: '0 auto', display: 'grid', placeItems: 'center', fontSize: 36, fontWeight: 800 }}>{initial}</div>
@@ -422,7 +422,7 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
           <div style={{ fontSize: 14.5, fontWeight: 600 }}>{label}</div>
           <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{meta}</div>
         </div>
-        <button onClick={() => toggleNotif(id)} className={`toggle${on ? ' is-on' : ''}`}><span className="thumb" /></button>
+        <button aria-label={on ? `Desativar notificação para ${label}` : `Ativar notificação para ${label}`} aria-pressed={on} onClick={() => toggleNotif(id)} className={`toggle${on ? ' is-on' : ''}`}><span className="thumb" /></button>
       </div>
     );
   }
@@ -447,7 +447,7 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
                 <div style={{ fontSize: 14.5, fontWeight: 600 }}>Notificações no aparelho</div>
                 <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Resultado saiu, time aprovado e mais — direto no seu navegador</div>
               </div>
-              <button onClick={togglePush} disabled={pushBusy} className={`toggle${pushOn ? ' is-on' : ''}`} style={{ opacity: pushBusy ? 0.6 : 1 }}><span className="thumb" /></button>
+              <button aria-label={pushOn ? 'Desativar notificações no aparelho' : 'Ativar notificações no aparelho'} aria-pressed={pushOn} onClick={togglePush} disabled={pushBusy} className={`toggle${pushOn ? ' is-on' : ''}`} style={{ opacity: pushBusy ? 0.6 : 1 }}><span className="thumb" /></button>
             </div>
           )}
           {competitions.length === 0 ? (
@@ -822,7 +822,7 @@ export function SearchScreen({ onBack, onNav }: NavProps) {
             <span style={{ color: 'var(--on-surface-variant)', width: 20, height: 20 }}>{I.search}</span>
             <input autoFocus value={q} onChange={e => setQ(e.target.value)} placeholder="Buscar clube, jogador, notícia…"
               style={{ flex: 1, border: 0, background: 'transparent', outline: 0, fontSize: 15, color: 'var(--on-surface)', fontFamily: 'var(--sans)' }} />
-            {q && <button onClick={() => setQ('')} style={{ width: 24, height: 24, color: 'var(--on-surface-variant)' }}>{I.close}</button>}
+            {q && <button onClick={() => setQ('')} aria-label="Limpar busca" style={{ width: 24, height: 24, color: 'var(--on-surface-variant)' }}>{I.close}</button>}
           </div>
         </div>
       </div>
