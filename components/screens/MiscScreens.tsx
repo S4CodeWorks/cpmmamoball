@@ -251,7 +251,7 @@ export function ProfileScreen({ onBack, onNav }: NavProps) {
   return (
     <>
       <TopAppBar title="Meu perfil" showBack onBack={onBack}
-        rightExtras={<button className="icon-btn" onClick={() => onNav('settings')}>{I.cog}</button>}
+        rightExtras={<button className="icon-btn" aria-label="Configurações" onClick={() => onNav('settings')}>{I.cog}</button>}
       />
       <div style={{ padding: '8px 16px 0', textAlign: 'center' }}>
         <div style={{ width: 96, height: 96, borderRadius: 999, background: 'var(--primary)', color: 'var(--on-primary)', margin: '0 auto', display: 'grid', placeItems: 'center', fontSize: 36, fontWeight: 800 }}>{initial}</div>
@@ -817,12 +817,12 @@ export function SearchScreen({ onBack, onNav }: NavProps) {
     <>
       <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)' }}>
         <div style={{ display: 'flex', alignItems: 'center', padding: '10px 8px 14px', gap: 8 }}>
-          <button className="icon-btn" onClick={onBack}>{I.back}</button>
+          <button className="icon-btn" aria-label="Voltar" onClick={onBack}>{I.back}</button>
           <div style={{ flex: 1, height: 48, background: 'var(--surface-c)', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px' }}>
             <span style={{ color: 'var(--on-surface-variant)', width: 20, height: 20 }}>{I.search}</span>
             <input autoFocus value={q} onChange={e => setQ(e.target.value)} placeholder="Buscar clube, jogador, notícia…"
               style={{ flex: 1, border: 0, background: 'transparent', outline: 0, fontSize: 15, color: 'var(--on-surface)', fontFamily: 'var(--sans)' }} />
-            {q && <button onClick={() => setQ('')} style={{ width: 24, height: 24, color: 'var(--on-surface-variant)' }}>{I.close}</button>}
+            {q && <button aria-label="Limpar busca" onClick={() => setQ('')} style={{ width: 24, height: 24, color: 'var(--on-surface-variant)' }}>{I.close}</button>}
           </div>
         </div>
       </div>
