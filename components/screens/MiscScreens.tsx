@@ -422,7 +422,15 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
           <div style={{ fontSize: 14.5, fontWeight: 600 }}>{label}</div>
           <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{meta}</div>
         </div>
-        <button onClick={() => toggleNotif(id)} className={`toggle${on ? ' is-on' : ''}`}><span className="thumb" /></button>
+        <button
+          onClick={() => toggleNotif(id)}
+          className={`toggle${on ? ' is-on' : ''}`}
+          role="switch"
+          aria-checked={on}
+          aria-label={`Receber notificações de: ${label}`}
+        >
+          <span className="thumb" />
+        </button>
       </div>
     );
   }
@@ -447,7 +455,17 @@ export function SettingsScreen({ onBack, onNav }: { onBack?: () => void; onNav: 
                 <div style={{ fontSize: 14.5, fontWeight: 600 }}>Notificações no aparelho</div>
                 <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>Resultado saiu, time aprovado e mais — direto no seu navegador</div>
               </div>
-              <button onClick={togglePush} disabled={pushBusy} className={`toggle${pushOn ? ' is-on' : ''}`} style={{ opacity: pushBusy ? 0.6 : 1 }}><span className="thumb" /></button>
+              <button
+                onClick={togglePush}
+                disabled={pushBusy}
+                className={`toggle${pushOn ? ' is-on' : ''}`}
+                style={{ opacity: pushBusy ? 0.6 : 1 }}
+                role="switch"
+                aria-checked={pushOn}
+                aria-label="Ativar notificações no aparelho"
+              >
+                <span className="thumb" />
+              </button>
             </div>
           )}
           {competitions.length === 0 ? (
