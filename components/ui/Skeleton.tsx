@@ -142,51 +142,73 @@ export function SkeletonMatchCard({ delay = 0 }: { delay?: number }) {
 
 export function SkeletonHeroMatch() {
   return (
-    <div className="skeleton-card">
-      {/* Faixa Superior Integrada */}
+    <div
+      className="skeleton-card"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'minmax(115px, 140px) 1fr',
+      }}
+    >
+      {/* Canhoto do Ingresso */}
       <div
         style={{
+          padding: '20px 16px',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '14px 20px 12px',
-          borderBottom: '1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent)',
+          gap: 16,
+          borderRight: '1.5px dashed color-mix(in srgb, var(--outline-variant) 80%, transparent)',
+          background: 'color-mix(in srgb, var(--surface) 35%, transparent)',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Skeleton width={3} height={14} radius={2} delay={0} />
-          <Skeleton width={110} height={12} radius={4} delay={0.02} />
-          <Skeleton width={70} height={12} radius={4} delay={0.04} />
+        <div>
+          <Skeleton width="80%" height={14} radius={4} delay={0} style={{ marginBottom: 6 }} />
+          <Skeleton width="55%" height={11} radius={4} delay={0.03} />
         </div>
-        <Skeleton width={90} height={12} radius={4} delay={0.06} />
+        <div>
+          <Skeleton width={44} height={16} radius={4} delay={0.06} style={{ marginBottom: 6 }} />
+          <Skeleton width={64} height={11} radius={4} delay={0.09} />
+        </div>
       </div>
 
-      {/* Arena Principal */}
-      <div style={{ padding: '22px 22px 18px' }}>
+      {/* Corpo do Ingresso */}
+      <div
+        style={{
+          padding: '20px 22px 18px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          gap: 18,
+        }}
+      >
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
-          {/* Time Mandante */}
+          {/* Mandante */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <SkeletonAvatar size={58} radius={18} delay={0.08} />
-            <Skeleton width={48} height={14} radius={5} delay={0.12} />
-            <Skeleton width={68} height={10} radius={4} delay={0.16} />
+            <SkeletonAvatar size={54} radius={16} delay={0.06} />
+            <Skeleton width={44} height={14} radius={5} delay={0.1} />
+            <Skeleton width={60} height={10} radius={4} delay={0.14} />
           </div>
-          {/* Placar Central */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '0 6px' }}>
-            <Skeleton width={38} height={46} radius={10} delay={0.1} />
-            <Skeleton width={8} height={18} radius={3} delay={0.12} />
-            <Skeleton width={38} height={46} radius={10} delay={0.14} />
+          {/* Placar Central com Linha */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: '0 4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Skeleton width={32} height={40} radius={8} delay={0.08} />
+              <Skeleton width={6} height={14} radius={2} delay={0.1} />
+              <Skeleton width={32} height={40} radius={8} delay={0.12} />
+            </div>
+            <Skeleton width={48} height={2} radius={1} delay={0.14} />
+            <Skeleton width={36} height={10} radius={4} delay={0.16} />
           </div>
-          {/* Time Visitante */}
+          {/* Visitante */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <SkeletonAvatar size={58} radius={18} delay={0.08} />
-            <Skeleton width={48} height={14} radius={5} delay={0.12} />
-            <Skeleton width={68} height={10} radius={4} delay={0.16} />
+            <SkeletonAvatar size={54} radius={16} delay={0.06} />
+            <Skeleton width={44} height={14} radius={5} delay={0.1} />
+            <Skeleton width={60} height={10} radius={4} delay={0.14} />
           </div>
         </div>
 
-        {/* Mini footer */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, paddingTop: 12, borderTop: '1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent)' }}>
-          <Skeleton width={180} height={12} radius={6} delay={0.18} />
+        {/* Botão de Ação */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Skeleton width={160} height={28} radius={999} delay={0.18} />
         </div>
       </div>
     </div>

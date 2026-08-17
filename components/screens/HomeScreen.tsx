@@ -32,125 +32,142 @@ function FeaturedMatch({ m, variant, onClick }: { m: Match; variant: 'scheduled'
   const isHomeWinner = !isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0);
   const isAwayWinner = !isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0);
 
+  // Status semântico no canhoto
+  const statusLabel = m.is_wo ? 'W.O.' : isSched ? 'Agendado' : 'Final';
+  const statusColor = m.is_wo ? 'var(--error)' : isSched ? 'var(--warning)' : 'var(--primary)';
+
   return (
     <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left', display: 'block' }}>
       <div
+        className="match-ticket"
         style={{
           position: 'relative',
           borderRadius: 'var(--r-2xl)',
           background: 'var(--surface-c)',
           border: '1px solid color-mix(in srgb, var(--outline-variant) 70%, transparent)',
           overflow: 'hidden',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(115px, 140px) 1fr',
         }}
       >
-        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.32 : 0.48} />
+        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.28 : 0.44} />
 
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* Faixa Superior Integrada: Status Estilizado + Torneio & Rodada */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '14px 20px 12px',
-              borderBottom: '1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent)',
-              background: 'color-mix(in srgb, var(--surface) 40%, transparent)',
-            }}
-          >
-            {/* Status Estilizado com Acento Vertical e Tipografia Nítida */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span
-                style={{
-                  width: 3,
-                  height: 14,
-                  borderRadius: 2,
-                  background: m.is_wo ? 'var(--error)' : isSched ? 'var(--warning)' : 'var(--primary)',
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                className="mono"
-                style={{
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: m.is_wo ? 'var(--error)' : isSched ? 'var(--warning)' : 'var(--primary)',
-                }}
-              >
-                {m.is_wo ? 'VITÓRIA POR W.O.' : isSched ? 'PARTIDA AGENDADA' : 'RESULTADO FINAL'}
-              </span>
-              <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)', letterSpacing: '0.04em' }}>
-                · {m.date}
-              </span>
+        {/* ── Canhoto do Ingresso (Left Stub) ── */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            padding: '20px 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: 16,
+            borderRight: '1.5px dashed color-mix(in srgb, var(--outline-variant) 80%, transparent)',
+            background: 'color-mix(in srgb, var(--surface) 35%, transparent)',
+          }}
+        >
+          {/* Topo do Canhoto: Competição + Rodada */}
+          <div>
+            <div style={{ fontSize: 13.5, fontWeight: 700, lineHeight: 1.2, color: 'var(--on-surface)', wordBreak: 'break-word' }}>
+              {comp?.nome ?? 'Liga'}
             </div>
-
-            {/* Torneio & Rodada */}
-            <div
-              className="mono"
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: 'var(--on-surface)',
-              }}
-            >
-              {comp?.nome ?? 'Liga'} <span style={{ color: 'var(--on-surface-variant)', fontWeight: 500 }}>· {m.stage}</span>
+            <div className="mono" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>
+              {m.stage}
             </div>
           </div>
 
-          {/* Arena do Confronto: Time Mandante + Placar Central + Time Visitante */}
-          <div style={{ padding: '22px 22px 18px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
-              {/* Time Mandante */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isAwayWinner ? 0.65 : 1 }}>
-                <Crest id={home.id} size={58} radius={18} />
-                <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{home.tag}</div>
-                  <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{home.nome}</div>
-                </div>
-              </div>
+          {/* Base do Canhoto: Status + Data */}
+          <div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: statusColor, lineHeight: 1.1 }}>
+              {statusLabel}
+            </div>
+            <div className="mono tabular" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>
+              {m.date}
+            </div>
+          </div>
+        </div>
 
-              {/* Módulo Central do Placar */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: '0 6px' }}>
-                {isSched ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                    <span className="mono" style={{ fontSize: 26, fontWeight: 800, color: 'var(--on-surface-variant)', letterSpacing: '-0.04em' }}>VS</span>
-                    <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--primary)', background: 'color-mix(in srgb, var(--primary) 12%, transparent)', padding: '2px 8px', borderRadius: 6 }}>
-                      {m.date.split('·')[1]?.trim() ?? 'Em breve'}
-                    </span>
-                  </div>
-                ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span className="mono tabular" style={{ fontSize: 52, fontWeight: 900, letterSpacing: '-0.06em', lineHeight: 1, color: isHomeWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
+        {/* ── Corpo do Ingresso (Ticket Body) ── */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            padding: '20px 22px 18px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: 18,
+          }}
+        >
+          {/* Confronto Central */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
+            {/* Time Mandante */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isAwayWinner ? 0.65 : 1 }}>
+              <Crest id={home.id} size={54} radius={16} />
+              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
+                <div style={{ fontSize: 14.5, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.1 }}>{home.tag}</div>
+                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 110 }}>{home.nome}</div>
+              </div>
+            </div>
+
+            {/* Hub Central de Placar com Linha do Tempo */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 4px' }}>
+              {isSched ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  <span className="mono" style={{ fontSize: 32, fontWeight: 800, color: 'var(--on-surface-variant)', letterSpacing: '-0.04em', lineHeight: 1 }}>VS</span>
+                  <div style={{ width: 44, height: 2, background: 'color-mix(in srgb, var(--outline-variant) 70%, transparent)', margin: '4px 0 6px' }} />
+                  <span className="mono tabular" style={{ fontSize: 11, fontWeight: 600, color: 'var(--on-surface-variant)' }}>
+                    {m.date.split('·')[1]?.trim() ?? 'Em breve'}
+                  </span>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span className="mono tabular" style={{ fontSize: 44, fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1, color: isHomeWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
                       {m.scoreH}
                     </span>
-                    <span className="mono" style={{ fontSize: 24, fontWeight: 300, color: 'var(--outline)', lineHeight: 1 }}>:</span>
-                    <span className="mono tabular" style={{ fontSize: 52, fontWeight: 900, letterSpacing: '-0.06em', lineHeight: 1, color: isAwayWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
+                    <span className="mono" style={{ fontSize: 24, fontWeight: 300, color: 'var(--outline)', lineHeight: 1 }}>-</span>
+                    <span className="mono tabular" style={{ fontSize: 44, fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1, color: isAwayWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
                       {m.scoreA}
                     </span>
                   </div>
-                )}
-              </div>
-
-              {/* Time Visitante */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isHomeWinner ? 0.65 : 1 }}>
-                <Crest id={away.id} size={58} radius={18} />
-                <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{away.tag}</div>
-                  <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{away.nome}</div>
+                  <div style={{ width: 56, height: 2, background: 'color-mix(in srgb, var(--outline-variant) 70%, transparent)', margin: '6px 0' }} />
+                  <span className="mono tabular" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>
+                    {m.date.split('·')[1]?.trim() ?? 'Final'}
+                  </span>
                 </div>
-              </div>
+              )}
             </div>
 
-            {/* Barra de ação / detalhes */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6, marginTop: 18, paddingTop: 12, borderTop: '1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent)' }}>
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--on-surface-variant)' }}>
-                {isSched ? 'Ver prévia e histórico do confronto' : 'Ver escalações e resumo do jogo'}
-              </span>
-              <span style={{ width: 14, height: 14, color: 'var(--on-surface-variant)', display: 'inline-flex' }}>{I.chevR}</span>
+            {/* Time Visitante */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isHomeWinner ? 0.65 : 1 }}>
+              <Crest id={away.id} size={54} radius={16} />
+              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
+                <div style={{ fontSize: 14.5, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.1 }}>{away.tag}</div>
+                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 110 }}>{away.nome}</div>
+              </div>
             </div>
+          </div>
+
+          {/* Botão de Ação Estilizado */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 18px',
+                borderRadius: 999,
+                border: '1px solid var(--outline-variant)',
+                background: 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                fontSize: 12,
+                fontWeight: 600,
+                color: 'var(--on-surface)',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              {isSched ? 'Ver prévia do confronto' : 'Ver escalações e resumo'} ›
+            </span>
           </div>
         </div>
       </div>
