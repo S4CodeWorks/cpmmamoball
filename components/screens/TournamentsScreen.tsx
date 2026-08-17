@@ -171,20 +171,7 @@ function Artilharia({ onNav, compId, activeCompId }: { onNav: Props['onNav']; co
   if (loading) {
     return (
       <div style={{ padding: '0 16px' }}>
-        <div className="card-filled" style={{ padding: '20px 16px 26px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', alignItems: 'end', gap: 10 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <Skeleton width={44} height={44} circle /><Skeleton width={50} height={72} radius={12} />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <Skeleton width={56} height={56} circle /><Skeleton width={50} height={96} radius={12} />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <Skeleton width={44} height={44} circle /><Skeleton width={50} height={58} radius={12} />
-            </div>
-          </div>
-        </div>
-        <div style={{ marginTop: 12 }}><SkeletonList rows={3} /></div>
+        <SkeletonScorersList rows={3} />
       </div>
     );
   }

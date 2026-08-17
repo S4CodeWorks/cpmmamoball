@@ -29,10 +29,10 @@ export function JogosScreen({ onNav, initialTab }: Props) {
         </div>
         <div style={{ padding: '16px 16px 0' }}>
           <div className="d-match-grid">
-            <SkeletonMatchCard />
-            <SkeletonMatchCard />
-            <SkeletonMatchCard />
-            <SkeletonMatchCard />
+            <SkeletonMatchCard delay={0} />
+            <SkeletonMatchCard delay={0.06} />
+            <SkeletonMatchCard delay={0.12} />
+            <SkeletonMatchCard delay={0.18} />
           </div>
         </div>
       </>

@@ -583,39 +583,64 @@ a { color: inherit; text-decoration: none; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
 
-/* ===== Skeleton loading — Fluid modern shimmer ===== */
+/* ===== Skeleton loading — Ultra-Modern Fluid Glassmorphic Shimmer ===== */
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: color-mix(in srgb, var(--surface-c-high) 85%, var(--surface-c));
+  background: color-mix(in srgb, var(--surface-c-high) 88%, var(--surface-c));
   display: block;
   border-radius: 8px;
-  animation: skeleton-pulse 2.4s ease-in-out infinite;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--on-surface) 5.5%, transparent);
+  animation:
+    skeleton-appear 0.25s ease-out forwards,
+    skeleton-pulse 2.2s ease-in-out infinite;
+  animation-delay: 0s, var(--sk-delay, 0s);
+  will-change: opacity;
 }
+
 .skeleton::after {
   content: '';
   position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
+  inset: -100% 0;
+  width: 200%;
+  height: 300%;
+  top: -100%;
+  left: -50%;
+  transform: translateX(-100%) rotate(15deg);
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--on-surface) 4%, transparent) 25%,
-    color-mix(in srgb, var(--on-surface) 14%, transparent) 50%,
-    color-mix(in srgb, var(--on-surface) 4%, transparent) 75%,
+    color-mix(in srgb, var(--on-surface) 2%, transparent) 20%,
+    color-mix(in srgb, var(--on-surface) 16%, transparent) 50%,
+    color-mix(in srgb, var(--on-surface) 2%, transparent) 80%,
     transparent 100%
   );
-  animation: skeleton-shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: skeleton-shimmer 1.9s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: var(--sk-delay, 0s);
+  pointer-events: none;
+}
+
+.skeleton-card {
+  background: var(--surface-c);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--on-surface) 4%, transparent);
+  position: relative;
 }
 
 @keyframes skeleton-shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0%   { transform: translateX(-100%) rotate(15deg); }
+  100% { transform: translateX(100%) rotate(15deg); }
 }
 
 @keyframes skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.65; }
+  0%, 100% { opacity: 0.95; }
+  50%      { opacity: 0.60; }
+}
+
+@keyframes skeleton-appear {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

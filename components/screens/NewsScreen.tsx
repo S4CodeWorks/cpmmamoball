@@ -35,9 +35,9 @@ export function NewsScreen({ onNav }: { onNav: Props['onNav'] }) {
       <>
         <TopAppBar large title="Notícias" subhead="Cobertura oficial CPM" />
         <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <SkeletonNewsCard />
-          <SkeletonNewsCard />
-          <SkeletonNewsCard />
+          <SkeletonNewsCard delay={0} />
+          <SkeletonNewsCard delay={0.08} />
+          <SkeletonNewsCard delay={0.16} />
         </div>
       </>
     );

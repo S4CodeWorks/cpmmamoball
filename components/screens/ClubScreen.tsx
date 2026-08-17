@@ -154,7 +154,7 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
     <div style={{ padding: '0 16px' }}>
       <div className="card-filled">
         {loadingPlayers ? (
-          <>{Array.from({ length: 4 }).map((_, i) => <div key={i} style={{ borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}><SkeletonRow /></div>)}</>
+          <>{Array.from({ length: 4 }).map((_, i) => <div key={i} style={{ borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}><SkeletonRow delay={i * 0.05} /></div>)}</>
         ) : players.length === 0 ? (
           <div style={{ padding: '20px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhum jogador cadastrado.</div>
         ) : (
