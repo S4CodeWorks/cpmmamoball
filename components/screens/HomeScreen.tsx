@@ -21,44 +21,105 @@ import type { Inscricao } from '@/lib/db';
 
 interface Props { onNav: (page: string, param?: string | number | null, extra?: string | null) => void; }
 
-function SideHero({ club, score, right }: { club: Club; score: number | null; right?: boolean }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: right ? 'flex-end' : 'flex-start', gap: 10 }}>
-      <Crest id={club.id} size={52} radius={14} />
-      <div style={{ textAlign: right ? 'right' : 'left' }}>
-        <div style={{ fontSize: 14, fontWeight: 700, lineHeight: 1.1 }}>{club.tag}</div>
-      </div>
-      {score == null
-        ? <span className="mono" style={{ fontSize: 28, color: 'var(--on-surface-variant)', fontWeight: 600, letterSpacing: '-0.04em', lineHeight: 1, marginTop: 2 }}>—</span>
-        : <span className="mono tabular" style={{ fontSize: 44, fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 1, marginTop: 2 }}>{score}</span>
-      }
-    </div>
-  );
-}
-
 function FeaturedMatch({ m, variant, onClick }: { m: Match; variant: 'scheduled' | 'result'; onClick: () => void }) {
-  const { clubById } = useData();
+  const { clubById, competitions } = useData();
   const { resolvedTheme } = useApp();
   const home = clubById(m.home), away = clubById(m.away);
   if (!home || !away) return null;
+
+  const comp = competitions.find(c => c.id === m.competition_id);
+  const isSched = variant === 'scheduled';
+  const isHomeWinner = !isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0);
+  const isAwayWinner = !isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0);
+
   return (
-    <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left' }}>
-      <div style={{
-        position: 'relative', borderRadius: 'var(--r-2xl)', padding: '20px 22px',
-        background: 'var(--surface-c)', overflow: 'hidden',
-      }}>
-        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.28 : 0.42} />
+    <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left', display: 'block' }}>
+      <div
+        style={{
+          position: 'relative',
+          borderRadius: 'var(--r-2xl)',
+          padding: '22px 24px 18px',
+          background: 'var(--surface-c)',
+          border: '1px solid color-mix(in srgb, var(--outline-variant) 70%, transparent)',
+          overflow: 'hidden',
+        }}
+      >
+        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.32 : 0.48} />
+
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
-            <span className="chip chip-acc">{variant === 'result' ? `Resultado · ${m.date}` : m.date}</span>
-            <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{m.stage}</span>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10 }}>
-            <SideHero club={home} score={m.scoreH} />
-            <div style={{ textAlign: 'center', color: 'var(--on-surface-variant)' }}>
-              <div className="mono" style={{ fontSize: 13 }}>vs</div>
+          {/* Cabeçalho do Card: Status Pill + Competição/Rodada */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '5px 12px',
+                borderRadius: 999,
+                background: 'color-mix(in srgb, var(--surface) 75%, transparent)',
+                border: '1px solid color-mix(in srgb, var(--outline-variant) 60%, transparent)',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: isSched ? 'var(--warning)' : 'var(--primary)' }} />
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--on-surface)' }}>
+                {isSched ? m.date : 'Resultado Final'}
+              </span>
             </div>
-            <SideHero club={away} score={m.scoreA} right />
+            <span className="mono" style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--on-surface-variant)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              {comp?.nome ?? 'Liga'} · {m.stage}
+            </span>
+          </div>
+
+          {/* Arena do Confronto: Time Mandante + Placar Esculpido + Time Visitante */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
+            {/* Time Mandante */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isAwayWinner ? 0.65 : 1 }}>
+              <Crest id={home.id} size={58} radius={18} />
+              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
+                <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{home.tag}</div>
+                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{home.nome}</div>
+              </div>
+            </div>
+
+            {/* Módulo Central do Placar */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: '0 6px' }}>
+              {isSched ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                  <span className="mono" style={{ fontSize: 26, fontWeight: 800, color: 'var(--on-surface-variant)', letterSpacing: '-0.04em' }}>VS</span>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--primary)', background: 'color-mix(in srgb, var(--primary) 12%, transparent)', padding: '2px 8px', borderRadius: 6 }}>
+                    {m.date.split('·')[1]?.trim() ?? 'Em breve'}
+                  </span>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span className="mono tabular" style={{ fontSize: 52, fontWeight: 900, letterSpacing: '-0.06em', lineHeight: 1, color: isHomeWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
+                    {m.scoreH}
+                  </span>
+                  <span className="mono" style={{ fontSize: 24, fontWeight: 300, color: 'var(--outline)', lineHeight: 1 }}>:</span>
+                  <span className="mono tabular" style={{ fontSize: 52, fontWeight: 900, letterSpacing: '-0.06em', lineHeight: 1, color: isAwayWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
+                    {m.scoreA}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Time Visitante */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isHomeWinner ? 0.65 : 1 }}>
+              <Crest id={away.id} size={58} radius={18} />
+              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
+                <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{away.tag}</div>
+                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{away.nome}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Barra de ação / detalhes */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6, marginTop: 18, paddingTop: 12, borderTop: '1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent)' }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--on-surface-variant)' }}>
+              {isSched ? 'Ver prévia e histórico do confronto' : 'Ver escalações e resumo do jogo'}
+            </span>
+            <span style={{ width: 14, height: 14, color: 'var(--on-surface-variant)', display: 'inline-flex' }}>{I.chevR}</span>
           </div>
         </div>
       </div>
