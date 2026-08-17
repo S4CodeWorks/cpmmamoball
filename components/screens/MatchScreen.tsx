@@ -288,38 +288,38 @@ export function MatchScreen({ onNav, onBack, matchId }: Props) {
 
   return (
     <>
-      {/* Sticky match hero */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)', borderBottom: '1px solid var(--outline-variant)' }}>
-        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.3 : 0.46} />
+      {/* Stadium match hero */}
+      <div className="stadium-hero">
+        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.35 : 0.48} />
         <div style={{ position: 'relative', zIndex: 1 }}>
-        <TopAppBar showBack onBack={onBack} title="" menu={menu} />
-        <div style={{ padding: '0 16px 24px' }}>
-          <div style={{ textAlign: 'center', marginBottom: 14 }}>
-            <span className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              {competitions.find(c => c.id === m.competition_id)?.nome ?? 'Liga'} · {m.stage}
-            </span>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
-            <TeamHead club={home} winner={!isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0) ? true : isSched ? undefined : false} onClick={() => onNav('club', home.id)} />
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              {!isSched && !m.is_wo && <span className="chip" style={{ height: 24, padding: '0 10px', fontSize: 11 }}>Encerrado</span>}
-              {!isSched && m.is_wo  && <span className="chip" style={{ height: 24, padding: '0 10px', fontSize: 11, background: 'color-mix(in srgb, var(--error) 15%, transparent)', color: 'var(--error)' }}>W.O.</span>}
-              {isSched ? (
-                <>
-                  <span className="mono" style={{ fontSize: 36, color: 'var(--on-surface-variant)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1 }}>vs</span>
-                  <span className="chip chip-warn" style={{ marginTop: 2 }}>{m.date}</span>
-                </>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span className="mono tabular" style={{ fontSize: 60, fontWeight: 800, letterSpacing: '-0.05em', lineHeight: 1 }}>{m.scoreH}</span>
-                  <span className="mono" style={{ fontSize: 26, color: 'var(--outline)' }}>:</span>
-                  <span className="mono tabular" style={{ fontSize: 60, fontWeight: 800, letterSpacing: '-0.05em', lineHeight: 1 }}>{m.scoreA}</span>
-                </div>
-              )}
+          <TopAppBar showBack onBack={onBack} title="" menu={menu} />
+          <div style={{ padding: '0 20px 28px' }}>
+            <div style={{ textAlign: 'center', marginBottom: 14 }}>
+              <span className="mono" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>
+                {competitions.find(c => c.id === m.competition_id)?.nome ?? 'Liga'} · {m.stage}
+              </span>
             </div>
-            <TeamHead club={away} winner={!isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0) ? true : isSched ? undefined : false} onClick={() => onNav('club', away.id)} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
+              <TeamHead club={home} winner={!isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0) ? true : isSched ? undefined : false} onClick={() => onNav('club', home.id)} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                {!isSched && !m.is_wo && <span className="chip" style={{ height: 24, padding: '0 12px', fontSize: 11 }}>Encerrado</span>}
+                {!isSched && m.is_wo  && <span className="chip" style={{ height: 24, padding: '0 12px', fontSize: 11, background: 'color-mix(in srgb, var(--error) 15%, transparent)', color: 'var(--error)' }}>W.O.</span>}
+                {isSched ? (
+                  <>
+                    <span className="mono" style={{ fontSize: 36, color: 'var(--on-surface-variant)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1 }}>vs</span>
+                    <span className="chip chip-warn" style={{ marginTop: 2 }}>{m.date}</span>
+                  </>
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span className="mono tabular" style={{ fontSize: 60, fontWeight: 800, letterSpacing: '-0.05em', lineHeight: 1 }}>{m.scoreH}</span>
+                    <span className="mono" style={{ fontSize: 26, color: 'var(--outline)' }}>:</span>
+                    <span className="mono tabular" style={{ fontSize: 60, fontWeight: 800, letterSpacing: '-0.05em', lineHeight: 1 }}>{m.scoreA}</span>
+                  </div>
+                )}
+              </div>
+              <TeamHead club={away} winner={!isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0) ? true : isSched ? undefined : false} onClick={() => onNav('club', away.id)} />
+            </div>
           </div>
-        </div>
         </div>
       </div>
 

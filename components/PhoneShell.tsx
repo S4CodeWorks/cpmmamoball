@@ -48,8 +48,8 @@ function UnauthorizedScreen({ onBack }: { onBack: () => void }) {
 function InitialLoading() {
   return (
     <div aria-busy="true" aria-label="Carregando">
-      {/* Cabeçalho grande, igual ao TopAppBar large */}
-      <div style={{ padding: '4px 20px 20px' }}>
+      {/* Cabeçalho grande, igual ao TopAppBar large (apenas no mobile) */}
+      <div className="initial-head-skeleton" style={{ padding: '4px 20px 20px' }}>
         <Skeleton width={110} height={12} style={{ marginBottom: 10 }} />
         <Skeleton width={180} height={30} />
       </div>

@@ -238,30 +238,30 @@ export function ClubScreen({ onNav, onBack, clubId }: Props) {
 
   return (
     <>
-      {/* Sticky club hero */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)', borderBottom: '1px solid var(--outline-variant)' }}>
-        <ColorMesh colors={[c.color, c.color2]} opacity={resolvedTheme === 'dark' ? 0.32 : 0.5} />
+      {/* Stadium club hero */}
+      <div className="stadium-hero">
+        <ColorMesh colors={[c.color, c.color2]} opacity={resolvedTheme === 'dark' ? 0.35 : 0.5} />
         <div style={{ position: 'relative', zIndex: 1 }}>
-        <TopAppBar showBack onBack={onBack} title=""
-          rightExtras={
-            <button className={`icon-btn${isFav ? ' is-on' : ''}`}
-              onClick={() => { toggleFav(c.id); showToast(isFav ? `${c.tag} removido dos favoritos` : `${c.tag} adicionado aos favoritos`); }}
-              aria-label="Favoritar">
-              {isFav ? I.heartFilled : I.heart}
-            </button>
-          }
-          menu={menu}
-        />
-        <div style={{ padding: '0 20px 20px', display: 'flex', alignItems: 'center', gap: 16 }}>
-          <Crest id={c.id} size={80} radius={22} />
-          <div style={{ minWidth: 0, flex: 1 }}>
-            {pos > 0 && <div className="eyebrow eyebrow-acc">#{pos} · {compName}</div>}
-            <h1 style={{ margin: '6px 0 6px', fontSize: 26, lineHeight: 1.1, fontWeight: 800, letterSpacing: '-0.02em', wordBreak: 'break-word' }}>{c.nome}</h1>
-            <div className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
+          <TopAppBar showBack onBack={onBack} title=""
+            rightExtras={
+              <button className={`icon-btn${isFav ? ' is-on' : ''}`}
+                onClick={() => { toggleFav(c.id); showToast(isFav ? `${c.tag} removido dos favoritos` : `${c.tag} adicionado aos favoritos`); }}
+                aria-label="Favoritar">
+                {isFav ? I.heartFilled : I.heart}
+              </button>
+            }
+            menu={menu}
+          />
+          <div style={{ padding: '0 24px 22px', display: 'flex', alignItems: 'center', gap: 18 }}>
+            <Crest id={c.id} size={84} radius={22} />
+            <div style={{ minWidth: 0, flex: 1 }}>
+              {pos > 0 && <div className="eyebrow eyebrow-acc">#{pos} · {compName}</div>}
+              <h1 style={{ margin: '6px 0 6px', fontSize: 26, lineHeight: 1.1, fontWeight: 800, letterSpacing: '-0.02em', wordBreak: 'break-word' }}>{c.nome}</h1>
+              <div className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
+            </div>
           </div>
         </div>
-        </div>
-        <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '12px 8px 14px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
+        <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '14px 8px 16px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
           <StatBlock n={row?.P ?? 0} l="Pontos" big />
           <StatBlock n={row?.J ?? 0} l="Jogos" />
           <StatBlock n={row?.V ?? 0} l="Vitórias" />
