@@ -78,7 +78,6 @@ function DropdownMenu({ open, onClose, anchorRef, children }: DropdownProps) {
         background:   'var(--surface-c)',
         border:       '1px solid var(--outline-variant)',
         borderRadius: 'var(--r-lg)',
-        boxShadow:    '0 8px 24px rgba(0,0,0,0.14), 0 2px 6px rgba(0,0,0,0.08)',
         minWidth: 230,
         overflow: 'hidden',
         // Animação de entrada

@@ -15,7 +15,7 @@ export function Modal({ open, onClose, title, children, maxWidth = 480 }: {
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(3px)' }} />
-      <div style={{ position: 'relative', width: '100%', maxWidth, maxHeight: '88dvh', display: 'flex', flexDirection: 'column', background: 'var(--surface-c-high)', borderRadius: 22, boxShadow: '0 12px 48px rgba(0,0,0,0.35)', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth, maxHeight: '88dvh', display: 'flex', flexDirection: 'column', background: 'var(--surface-c-high)', borderRadius: 22, border: '1px solid var(--outline-variant)', overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 20px', borderBottom: '1px solid var(--outline-variant)', flexShrink: 0 }}>
           <span style={{ fontSize: 17, fontWeight: 700 }}>{title}</span>
           <button onClick={onClose}

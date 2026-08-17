@@ -33,9 +33,9 @@
   --outline:               #75796c;
   --outline-variant:       #c5c8b9;
 
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,.12);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 4px 20px rgba(0,0,0,.06);
 }
 
 /* =============== DARK =============== */
@@ -70,9 +70,9 @@
   --outline:               #8f9384;
   --outline-variant:       #44483d;
 
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.4);
-  --shadow-lg: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 4px 24px rgba(0,0,0,.35);
 }
 
 /* =============== DC-MONO — tema monocromático 2026 (Admin + Inscrição) ======
@@ -94,9 +94,9 @@
   --dc-danger:#c2410c; --dc-danger-bg:#fbeae2;
   --dc-live:#dc2626; --dc-live-bg:#fbe6e6;
   --dc-ring:rgba(9,9,11,.10);
-  --dc-shadow-sm:0 1px 2px rgba(9,9,11,.05);
-  --dc-shadow-md:0 4px 16px rgba(9,9,11,.07);
-  --dc-shadow-lg:0 18px 48px rgba(9,9,11,.13);
+  --dc-shadow-sm:none;
+  --dc-shadow-md:none;
+  --dc-shadow-lg:0 4px 20px rgba(9,9,11,.08);
 }
 .dc-mono[data-theme="dark"] {
   --dc-bg:#08080a; --dc-surface:#0d0d0f; --dc-panel:#0f0f12;
@@ -109,9 +109,9 @@
   --dc-danger:#fb9a6b; --dc-danger-bg:#2a1a12;
   --dc-live:#ff6b5e; --dc-live-bg:#2a1414;
   --dc-ring:rgba(255,255,255,.14);
-  --dc-shadow-sm:0 1px 2px rgba(0,0,0,.5);
-  --dc-shadow-md:0 4px 16px rgba(0,0,0,.5);
-  --dc-shadow-lg:0 18px 48px rgba(0,0,0,.6);
+  --dc-shadow-sm:none;
+  --dc-shadow-md:none;
+  --dc-shadow-lg:0 4px 24px rgba(0,0,0,.45);
 }
 /* Aliasa os tokens Material antigos (--primary, --surface-c-*, etc.) pros novos
    --dc-* dentro do escopo .dc-mono — assim toda a UI existente (.btn, .card-filled,
@@ -243,7 +243,6 @@ a { color: inherit; text-decoration: none; }
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     border: 1px solid var(--outline-variant);
-    box-shadow: var(--shadow-md);
     padding: 10px 20px;
   }
 
@@ -449,7 +448,6 @@ a { color: inherit; text-decoration: none; }
     border-radius: var(--r-2xl);
     border: 1px solid color-mix(in srgb, var(--outline-variant) 75%, transparent);
     background: var(--surface-c-low);
-    box-shadow: var(--shadow-md);
     overflow: hidden;
   }
   .initial-head-skeleton {
@@ -559,7 +557,7 @@ a { color: inherit; text-decoration: none; }
 .card-elev {
   background: var(--surface-c-low);
   border-radius: var(--r-xl);
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--outline-variant);
   overflow: hidden;
 }
 .card-outlined {
