@@ -507,13 +507,15 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON inscricoes TO authenticated;
 GRANT SELECT, UPDATE ON profiles TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON push_subscriptions TO authenticated;
 
--- OBSERVAÇÃO (não corrigido aqui, só documentado): o banco de produção hoje tem
+
+-- OBSERVAÇÃO (agora corrigido): o banco de produção tinha
 -- GRANT INSERT/UPDATE/DELETE de `anon` em bookmarks/inscricoes/news/
 -- player_competitions, mais amplo do que o necessário (provavelmente de um
--- GRANT ALL rodado uma vez durante desenvolvimento). Não é uma falha de
--- segurança ativa — o RLS com FORCE ainda bloqueia porque não há nenhuma
--- policy que libere `anon` pra escrever nessas tabelas — mas vale uma limpeza
--- futura com REVOKE pra manter o princípio do menor privilégio também no GRANT.
+-- GRANT ALL rodado uma vez durante desenvolvimento). Não era uma falha de
+-- segurança ativa — o RLS com FORCE ainda bloqueava porque não há nenhuma
+-- policy que libere `anon` pra escrever nessas tabelas — mas o REVOKE abaixo
+-- mantém o princípio do menor privilégio também no GRANT.
+REVOKE INSERT, UPDATE, DELETE ON bookmarks, inscricoes, news, player_competitions FROM anon;
 
 
 -- =============================================================================
