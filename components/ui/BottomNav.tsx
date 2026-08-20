@@ -18,6 +18,8 @@ export function BottomNav({ page, onNav }: BottomNavProps) {
         return (
           <button
             key={it.id}
+            role="tab"
+            aria-selected={isActive}
             className={`bottom-nav-item tap${isActive ? ' is-active' : ''}`}
             onClick={() => onNav(it.id)}
           >
