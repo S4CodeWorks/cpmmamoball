@@ -365,7 +365,7 @@ function RosterPanel({
     <div style={{ padding: '0 16px 80px' }}>
       {/* Panel header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 16 }}>
-        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
+        <button onClick={onBack} className="icon-btn" aria-label="Voltar" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
         <Crest id={club.id} size={44} radius={12} />
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 16, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{club.nome}</div>
@@ -406,8 +406,8 @@ function RosterPanel({
                     {p.discord && <span className="mono">Discord: {p.discord}</span>}
                   </div>
                 </div>
-                <button onClick={() => openEdit(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
-                <button onClick={() => remove(p)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
+                <button onClick={() => openEdit(p)} className="icon-btn" aria-label="Editar" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
+                <button onClick={() => remove(p)} className="icon-btn" aria-label="Remover" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
               </div>
             ))}
           </div>
@@ -655,8 +655,8 @@ function AdminTimes() {
                 </button>
                 {/* Actions */}
                 <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
-                  <button onClick={() => openEditClub(c)} className="icon-btn" style={{ width: 32, height: 32, color: isSel ? 'var(--on-primary-container)' : 'var(--on-surface-variant)' }} title="Editar clube">{I.edit}</button>
-                  <button onClick={() => removeClub(c.id, c.nome)} className="icon-btn" style={{ width: 32, height: 32, color: isSel ? 'var(--on-primary-container)' : 'var(--on-surface-variant)' }} title="Remover clube">{I.trash}</button>
+                  <button onClick={() => openEditClub(c)} className="icon-btn" aria-label="Editar clube" style={{ width: 32, height: 32, color: isSel ? 'var(--on-primary-container)' : 'var(--on-surface-variant)' }} title="Editar clube">{I.edit}</button>
+                  <button onClick={() => removeClub(c.id, c.nome)} className="icon-btn" aria-label="Remover clube" style={{ width: 32, height: 32, color: isSel ? 'var(--on-primary-container)' : 'var(--on-surface-variant)' }} title="Remover clube">{I.trash}</button>
                 </div>
               </div>
             );
@@ -1676,10 +1676,10 @@ function AdminPartidas() {
                             </button>
                           )}
                           {isDone && (
-                            <button onClick={() => openEditor(m)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Corrigir resultado">{I.edit}</button>
+                            <button onClick={() => openEditor(m)} className="icon-btn" aria-label="Corrigir resultado" style={{ width: 34, height: 34, color: 'var(--primary)' }} title="Corrigir resultado">{I.edit}</button>
                           )}
-                          <button onClick={() => openEditDetails(m)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--on-surface-variant)' }} title="Editar times/data/rodada">{I.calendar}</button>
-                          <button onClick={() => remove(m.id)} className="icon-btn" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
+                          <button onClick={() => openEditDetails(m)} className="icon-btn" aria-label="Editar times, data ou rodada" style={{ width: 34, height: 34, color: 'var(--on-surface-variant)' }} title="Editar times/data/rodada">{I.calendar}</button>
+                          <button onClick={() => remove(m.id)} className="icon-btn" aria-label="Remover" style={{ width: 34, height: 34, color: 'var(--error)' }} title="Remover">{I.trash}</button>
                         </div>
                       </div>
                     </div>
@@ -1868,7 +1868,7 @@ function AdminNoticias() {
                   <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.3 }}>{n.title}</div>
                   <div style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>{NEWS_CATEGORIES.find(c => c.value === n.category)?.label ?? n.tag} · {n.date}</div>
                 </div>
-                <button onClick={() => remove(n.id, n.title)} className="icon-btn" style={{ width: 36, height: 36, color: 'var(--error)' }}>{I.trash}</button>
+                <button onClick={() => remove(n.id, n.title)} className="icon-btn" aria-label="Remover" style={{ width: 36, height: 36, color: 'var(--error)' }}>{I.trash}</button>
               </div>
             ))}
           </div>
@@ -1965,7 +1965,7 @@ function CompClubsManager({ comp, onBack }: { comp: Competition; onBack: () => v
     <div style={{ padding: '0 16px 80px' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 4 }}>
-        <button onClick={onBack} className="icon-btn" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
+        <button onClick={onBack} className="icon-btn" aria-label="Voltar" style={{ width: 36, height: 36 }} title="Voltar">{I.back}</button>
         <div>
           <div style={{ fontSize: 15, fontWeight: 700 }}>{comp.nome}</div>
           <div style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>
@@ -2183,8 +2183,8 @@ function AdminCompeticoes() {
                     <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 4 }}>{rodadaLabel(c.rodada_atual, c.total_rodadas)}</div>
                   </div>
                   <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
-                    <button onClick={() => startEdit(c)} className="icon-btn" style={{ width: 32, height: 32, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
-                    <button onClick={() => remove(c.id, c.nome)} className="icon-btn" style={{ width: 32, height: 32, color: 'var(--error)' }} title="Remover">{I.trash}</button>
+                    <button onClick={() => startEdit(c)} className="icon-btn" aria-label="Editar" style={{ width: 32, height: 32, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
+                    <button onClick={() => remove(c.id, c.nome)} className="icon-btn" aria-label="Remover" style={{ width: 32, height: 32, color: 'var(--error)' }} title="Remover">{I.trash}</button>
                   </div>
                 </div>
                 {/* Manage clubs button */}
@@ -2234,7 +2234,7 @@ export function AdminScreen({ onBack, onNav }: NavProps) {
   return (
     <>
       <TopAppBar showBack onBack={onBack} title={`Admin · ${active.label}`}
-        rightExtras={<button className="icon-btn" onClick={() => onNav('search')} title="Buscar">{I.search}</button>}
+        rightExtras={<button className="icon-btn" aria-label="Buscar" onClick={() => onNav('search')} title="Buscar">{I.search}</button>}
       />
 
       {/* Mobile: pills horizontais */}
