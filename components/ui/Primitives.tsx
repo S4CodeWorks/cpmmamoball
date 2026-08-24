@@ -19,6 +19,7 @@ export function Modal({ open, onClose, title, children, maxWidth = 480 }: {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 20px', borderBottom: '1px solid var(--outline-variant)', flexShrink: 0 }}>
           <span style={{ fontSize: 17, fontWeight: 700 }}>{title}</span>
           <button onClick={onClose}
+            aria-label="Fechar"
             style={{ width: 32, height: 32, borderRadius: 999, background: 'var(--surface-c-highest)', border: 'none', cursor: 'pointer', fontSize: 17, fontWeight: 700, color: 'var(--on-surface-variant)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
             ✕
           </button>
@@ -116,7 +117,7 @@ export function PageBar({ page, totalPages, onPage, pageSize, onPageSize, rangeL
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 2px' }}>
+    <nav aria-label="Paginação" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 2px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12.5, color: 'var(--on-surface-variant)' }}>
         {rangeLabel && <span>{rangeLabel}</span>}
         {onPageSize && pageSize && (
@@ -128,20 +129,24 @@ export function PageBar({ page, totalPages, onPage, pageSize, onPageSize, rangeL
       {totalPages > 1 && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <button onClick={() => onPage(page - 1)} disabled={page === 1}
+            aria-label="Página anterior"
             style={{ width: 30, height: 30, borderRadius: 8, border: 'none', background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', cursor: page === 1 ? 'default' : 'pointer', opacity: page === 1 ? 0.4 : 1 }}>‹</button>
           {withDots.map((n, i) => n === '…' ? (
             <span key={`d${i}`} style={{ width: 24, textAlign: 'center', fontSize: 12.5, color: 'var(--on-surface-variant)' }}>…</span>
           ) : (
             <button key={n} onClick={() => onPage(n)}
+              aria-label={`Página ${n}`}
+              aria-current={n === page ? 'page' : undefined}
               style={{ minWidth: 30, height: 30, borderRadius: 8, border: 'none', padding: '0 6px', fontSize: 12.5, fontWeight: 700, cursor: 'pointer', background: n === page ? 'var(--primary)' : 'transparent', color: n === page ? 'var(--on-primary)' : 'var(--on-surface-variant)' }}>
               {n}
             </button>
           ))}
           <button onClick={() => onPage(page + 1)} disabled={page === totalPages}
+            aria-label="Próxima página"
             style={{ width: 30, height: 30, borderRadius: 8, border: 'none', background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', cursor: page === totalPages ? 'default' : 'pointer', opacity: page === totalPages ? 0.4 : 1 }}>›</button>
         </div>
       )}
-    </div>
+    </nav>
   );
 }
 
