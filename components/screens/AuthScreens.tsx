@@ -170,6 +170,7 @@ function PasswordInput({ value, onChange, placeholder = '•••••••�
       <button
         type="button"
         onClick={() => setShow(v => !v)}
+        aria-label={show ? 'Ocultar senha' : 'Mostrar senha'}
         style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--on-surface-variant)', width: 22, height: 22 }}
       >
         {show ? I.eyeOff : I.eye}
