@@ -150,14 +150,16 @@ export function SheetItem({ icon, label, meta, onClick, on, danger }: SheetItemP
     <button
       onClick={onClick}
       className={`sheet-item${on ? ' is-on' : ''}${danger ? ' danger' : ''}`}
+      role={on != null ? 'switch' : undefined}
+      aria-checked={on != null ? on : undefined}
     >
-      <span className="ico">{I[icon] || icon}</span>
+      <span className="ico" aria-hidden="true">{I[icon] || icon}</span>
       <div style={{ flex: 1 }}>
         <div>{label}</div>
         {meta && <div className="meta">{meta}</div>}
       </div>
       {on != null && (
-        <span className={`toggle${on ? ' is-on' : ''}`} style={{ pointerEvents: 'none' }}>
+        <span className={`toggle${on ? ' is-on' : ''}`} style={{ pointerEvents: 'none' }} aria-hidden="true">
           <span className="thumb" />
         </span>
       )}
