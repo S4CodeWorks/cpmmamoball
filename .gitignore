@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (allow .env.example template)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -44,5 +45,12 @@ supabase/.temp/
 
 # typescript
 *.tsbuildinfo
+
+# automated tour / test recordings
 videos/
-.vercel
+
+# agent rules and local overrides
+.claude/
+CLAUDE.md
+AGENTS.md
+*.local

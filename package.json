@@ -1,12 +1,19 @@
 {
-  "name": "cfm-app",
-  "version": "0.1.0",
+  "name": "cpm-mamoball",
+  "version": "1.0.0",
+  "description": "Plataforma oficial da CPM MamoBall — Gestão de ligas, tabelas, súmulas e partidas em tempo real",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/S4CodeWorks/cpmmamoball.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "tour": "node scripts/tour.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
