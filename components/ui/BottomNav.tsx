@@ -20,8 +20,10 @@ export function BottomNav({ page, onNav }: BottomNavProps) {
             key={it.id}
             className={`bottom-nav-item tap${isActive ? ' is-active' : ''}`}
             onClick={() => onNav(it.id)}
+            role="tab"
+            aria-selected={isActive}
           >
-            <span className="ind">
+            <span className="ind" aria-hidden="true">
               {isActive ? I[it.filled as keyof typeof I] : I[it.icon as keyof typeof I]}
             </span>
             <span className="label">{it.label}</span>
