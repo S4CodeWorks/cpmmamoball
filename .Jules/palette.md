@@ -1,0 +1,3 @@
+## 2024-08-14 - Add ARIA labels to icon buttons and toggles
+**Learning:** The application extensively uses custom styled buttons (like `.icon-btn` and custom `.toggle` elements) which lacked foundational accessibility attributes. Specifically, the toggles were missing `role="switch"` and `aria-checked` bindings, making their state invisible to screen readers.
+**Action:** Always verify that custom interaction elements (like custom switches) have the proper ARIA roles and state attributes mapped to their current component state, and ensure icon-only buttons include descriptive `aria-label`s.
