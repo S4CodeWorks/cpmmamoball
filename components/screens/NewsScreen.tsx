@@ -203,6 +203,8 @@ export function ArticleScreen({ onBack, onNav, articleId }: Props) {
         <TopAppBar showBack onBack={onBack} title="" menu={menu}
           rightExtras={
             <button className={`icon-btn${isB ? ' is-on' : ''}`}
+              aria-label={isB ? 'Remover dos salvos' : 'Salvar artigo'}
+              aria-pressed={isB}
               onClick={() => { toggleBookmark(bk); showToast(isB ? 'Removido dos salvos' : 'Artigo salvo'); }}>
               {isB ? I.starFilled : I.star}
             </button>
