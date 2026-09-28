@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility Enhancements for Icon Buttons and Toggles
+**Learning:** Icon-only buttons and custom toggle switches were missing crucial ARIA attributes, making them inaccessible to screen readers. Specifically, eye icons for password visibility, settings cogs, back buttons, search clear buttons, and custom toggle components lacked proper labels and roles.
+**Action:** Always ensure icon-only `<button>` elements have an appropriate `aria-label` describing their function. For custom toggle switches, use `role="switch"` and dynamically set the `aria-checked` attribute to properly announce their state to assistive technologies.
