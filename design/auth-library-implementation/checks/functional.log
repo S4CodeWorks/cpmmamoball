@@ -1,0 +1,7 @@
+PASS 128 captures [
+  'password visibility; invalid credentials; retry; numeric OTP; responsive no overflow',
+  'OTP rejection and numeric sanitization',
+  'guest saved persistence; filter preserved across browser history',
+  'account favorite rollback on server failure; account read-one persists across reload',
+  'empty and removed resource states'
+]

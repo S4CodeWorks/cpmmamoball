@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
-import { createInscricao, fetchTakenGameIds, searchPlayers, type InscricaoJogador } from '@/lib/db';
+import { createInscricao, fetchTakenGameIds, type InscricaoJogador } from '@/lib/db';
 import { shareLink } from '@/lib/share';
 import { isPushSupported, getPushSubscription, subscribeToPush, unsubscribeFromPush } from '@/lib/push';
 import { I } from '@/components/icons';
@@ -123,80 +123,8 @@ export function MoreScreen({ onNav }: NavProps) {
 }
 
 // ===================== SAVED =====================
-export function SavedScreen({ onNav, onBack }: NavProps) {
-  const { favClubs, bookmarks } = useApp();
-  const { clubs, matches, news } = useData();
+export { SavedScreen } from './LibraryScreens';
 
-  const favClubList = clubs.filter(c => favClubs.has(c.id));
-  const savedMatches = matches.filter(m => bookmarks.has('match:' + m.id));
-  const savedArticles = news.filter(n => bookmarks.has('art:' + n.id));
-  const isEmpty = favClubList.length === 0 && savedMatches.length === 0 && savedArticles.length === 0;
-
-  return (
-    <>
-      <TopAppBar large title="Salvos" showBack onBack={onBack} />
-
-      {isEmpty ? (
-        <div className="empty" style={{ marginTop: 32 }}>
-          <div className="empty-icon">{I.star}</div>
-          <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>Nada salvo ainda</h3>
-          <p style={{ margin: 0, fontSize: 14 }}>Favorite clubes e salve partidas ou notícias pra encontrar tudo aqui depois.</p>
-        </div>
-      ) : (
-        <>
-          {favClubList.length > 0 && (
-            <>
-              <SectionHead title="Clubes favoritos" />
-              <div style={{ padding: '0 16px' }}>
-                <div className="card-filled">
-                  {favClubList.map((c, i) => (
-                    <button key={c.id} onClick={() => onNav('club', c.id)} className="tap"
-                      style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                      <Crest id={c.id} size={36} radius={10} />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 14, fontWeight: 600 }}>{c.nome}</div>
-                        <div className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
-                      </div>
-                      <span style={{ color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-
-          {savedMatches.length > 0 && (
-            <>
-              <SectionHead title="Partidas salvas" />
-              <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {savedMatches.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} showStage />)}
-              </div>
-            </>
-          )}
-
-          {savedArticles.length > 0 && (
-            <>
-              <SectionHead title="Notícias salvas" />
-              <div style={{ padding: '0 16px' }}>
-                <div className="card-filled">
-                  {savedArticles.map((n, i) => (
-                    <button key={n.id} onClick={() => onNav('article', n.id)} className="tap"
-                      style={{ width: '100%', textAlign: 'left', padding: '14px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                      <div className="eyebrow">{n.tag} · {n.date}</div>
-                      <div style={{ fontSize: 14, fontWeight: 600, marginTop: 4 }}>{n.title}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-        </>
-      )}
-    </>
-  );
-}
-
-// ===================== PROFILE =====================
 export function ProfileScreen({ onBack, onNav }: NavProps) {
   const { showToast, showError } = useApp();
   const { user, profile, isStaff, signOut, updateNick } = useAuth();
@@ -795,113 +723,4 @@ export function SupportScreen({ onBack }: { onBack?: () => void }) {
 }
 
 // ===================== SEARCH =====================
-export function SearchScreen({ onBack, onNav }: NavProps) {
-  const [q, setQ] = useState('');
-  const { clubs, news, clubById } = useData();
-  const filteredClubs = clubs.filter(c => !q || c.nome.toLowerCase().includes(q.toLowerCase()) || c.tag.toLowerCase().includes(q.toLowerCase()));
-  const filteredNews = news.filter(n => !q || n.title.toLowerCase().includes(q.toLowerCase()));
-  const trending = ['Clubes', 'Inscrições', 'Tabela', 'Final 2026'];
-
-  // Jogadores — busca no banco (nick ou ID do jogo), com debounce
-  const [playerResults, setPlayerResults] = useState<{ id: string; nick: string; game_id: string; club_id: string }[]>([]);
-  useEffect(() => {
-    if (!q.trim()) { setPlayerResults([]); return; }
-    let cancelled = false;
-    const t = setTimeout(() => {
-      searchPlayers(q).then(r => { if (!cancelled) setPlayerResults(r); }).catch(() => { if (!cancelled) setPlayerResults([]); });
-    }, 300);
-    return () => { cancelled = true; clearTimeout(t); };
-  }, [q]);
-
-  return (
-    <>
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', padding: '10px 8px 14px', gap: 8 }}>
-          <button className="icon-btn" onClick={onBack}>{I.back}</button>
-          <div style={{ flex: 1, height: 48, background: 'var(--surface-c)', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px' }}>
-            <span style={{ color: 'var(--on-surface-variant)', width: 20, height: 20 }}>{I.search}</span>
-            <input autoFocus value={q} onChange={e => setQ(e.target.value)} placeholder="Buscar clube, jogador, notícia…"
-              style={{ flex: 1, border: 0, background: 'transparent', outline: 0, fontSize: 15, color: 'var(--on-surface)', fontFamily: 'var(--sans)' }} />
-            {q && <button onClick={() => setQ('')} style={{ width: 24, height: 24, color: 'var(--on-surface-variant)' }}>{I.close}</button>}
-          </div>
-        </div>
-      </div>
-
-      {!q && (
-        <div style={{ padding: '4px 16px 0' }}>
-          <div className="eyebrow" style={{ paddingBottom: 10 }}>EM ALTA</div>
-          <div className="card-filled">
-            {trending.map((t, i) => (
-              <button key={t} onClick={() => setQ(t)} className="tap"
-                style={{ width: '100%', textAlign: 'left', display: 'grid', gridTemplateColumns: '32px 1fr', alignItems: 'center', gap: 12, padding: '14px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                <span className="mono tabular" style={{ fontSize: 14, color: 'var(--primary)', fontWeight: 700 }}>#{i + 1}</span>
-                <span style={{ fontSize: 14, fontWeight: 600 }}>{t}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {q && (
-        <div style={{ padding: '4px 16px' }}>
-          {filteredClubs.length > 0 && (
-            <>
-              <div className="eyebrow" style={{ padding: '8px 0 10px' }}>CLUBES · {filteredClubs.length}</div>
-              <div className="card-filled" style={{ marginBottom: 14 }}>
-                {filteredClubs.slice(0, 5).map((c, i) => (
-                  <button key={c.id} onClick={() => onNav('club', c.id)} className="tap"
-                    style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                    <Crest id={c.id} size={32} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 600 }}>{c.nome}</div>
-                      <div className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
-                    </div>
-                    <span style={{ color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-          {playerResults.length > 0 && (
-            <>
-              <div className="eyebrow" style={{ padding: '8px 0 10px' }}>JOGADORES · {playerResults.length}</div>
-              <div className="card-filled" style={{ marginBottom: 14 }}>
-                {playerResults.map((p, i) => {
-                  const c = clubById(p.club_id);
-                  return (
-                    <button key={p.id} onClick={() => onNav('club', p.club_id)} className="tap"
-                      style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                      {c ? <Crest id={c.id} size={32} /> : <span style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--surface-c-high)', display: 'grid', placeItems: 'center' }}>{I.person}</span>}
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 14, fontWeight: 600 }}>{p.nick}</div>
-                        <div className="mono" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>#{p.game_id} {c && `· ${c.tag}`}</div>
-                      </div>
-                      <span style={{ color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </>
-          )}
-          {filteredNews.length > 0 && (
-            <>
-              <div className="eyebrow" style={{ padding: '8px 0 10px' }}>NOTÍCIAS · {filteredNews.length}</div>
-              <div className="card-filled">
-                {filteredNews.slice(0, 5).map((n, i) => (
-                  <button key={n.id} onClick={() => onNav('article', n.id)} className="tap"
-                    style={{ width: '100%', textAlign: 'left', padding: '12px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                    <div className="eyebrow">{n.tag} · {n.date}</div>
-                    <div style={{ fontSize: 14, fontWeight: 600, marginTop: 4 }}>{n.title}</div>
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-          {filteredClubs.length === 0 && filteredNews.length === 0 && playerResults.length === 0 && (
-            <div className="empty">Nenhum resultado para &ldquo;{q}&rdquo;.</div>
-          )}
-        </div>
-      )}
-    </>
-  );
-}
+export { SearchScreen } from './SearchScreen';

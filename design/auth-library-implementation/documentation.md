@@ -1,0 +1,47 @@
+# Auth, Salvos and Avisos · application implementation · 2026-10-07
+
+Login, Criar conta, Recuperar senha, Salvos, Avisos and full-message detail are implemented in the real application in Light and Dark. The final independent [review](review.md) ends with **ship**, with the three material fidelity fixes resolved through two confirmation rounds. This is an ordinary extension of the approved CPM system. Earlier native-only documentation and reviews remain historical acceptance records; their implementation-pending statements are superseded for these current runtime surfaces.
+
+## Authority and source
+
+The [approved brief](brief.md), original native metadata and PNGs are the visual authority: [Login](../login-metadata.json)/[previews](../login-previews/), [Registration](../register-metadata.json)/[previews](../register-previews/), [Recovery](../recovery-metadata.json)/[previews](../recovery-previews/), [Library](../library-metadata.json)/[previews](../library-previews/) and [Dark](../auth-library-dark-metadata.json)/[previews](../auth-library-dark-previews/). Full native contexts are retained in [grounding](grounding/). The [review packet](review-packet.json) identifies exact runtime files and captures. The official logo, exported original SVG geometry and self-hosted Barlow Condensed/Manrope are reused.
+
+Reusable runtime sources are [AuthScreens](../../components/screens/AuthScreens.tsx), [LibraryScreens](../../components/screens/LibraryScreens.tsx), [auth CSS](../../app/cpm-auth.css) and [library CSS](../../app/cpm-library.css). Routing and origin return are integrated through [PhoneShell](../../components/PhoneShell.tsx); account/saved state through [AuthContext](../../contexts/AuthContext.tsx) and [AppContext](../../contexts/AppContext.tsx); notices through [LibraryContext](../../contexts/LibraryContext.tsx) and [announcements data access](../../lib/announcements.ts).
+
+## Implemented visual patterns
+
+- Auth shares the bounded desktop brand/form scaffold, compact official lockup/back control, 400px form, 44px controls, 56px fields and 12px/16px corners. Stage title uses the incumbent display role (32px/40px, weight 600); labels use Manrope (14px/20px), values (16px/24px), and stage text (12px/16px). Identity, password eye, secondary action, tracker, prior identity summary and eight-slot OTP presentation are reused across flows.
+- The scoped Dark `--cpm-auth-outline` resolves to existing approved native `auth/input-border` → `color/neutral/400` (#929BA8), with a 1px default outline and the incumbent 2px blue focus. This implements the existing native alias; it introduces no palette primitive or global border-role change. Root DESIGN frontmatter and `.impeccable/design.json` are preserved.
+- Salvos retains competition/club/match/news order, two wide columns and a complete compact sequence, wrapped filters, separate open/remove targets, real resource identity and score/time emphasis. Library content is bounded to 1280px; notices/detail to 880px.
+- Avisos places filters above read-all on the left at every width, with 16px between tools and 24px before the list. The reviewed 768px notice layout uses native 32px top padding and first-row y300; wide first-row y316 is restored. Read/unread icons, badge, date/excerpt, publisher and destination retain native hierarchy.
+- Final fidelity corrections restore native title/tracker/secondary-arrow paints, the secondary-foreground Todos icon, 20px password-requirement lock and 16px password helper spacing. Reduced motion, visible focus, accessible names and semantic form controls are implemented. Real text and an interactive security provider can change intrinsic sizes; no numerical pixel-equality claim is made.
+
+## Product and persistence
+
+Login keeps e-mail/password, show/hide, security readiness, busy/error feedback and provider reset. Registration retains nick/e-mail → one logical eight-digit OTP → password, a 60-second resend wait with at most one successful resend, minimum eight-character password and sign-out on abandonment after OTP authentication. Recovery keeps e-mail → code → new password, avoids account-existence disclosure, uses `shouldCreateUser:false`, and finishes in its active session without an added success page. These are actual Supabase Auth calls with configured Turnstile integration; controlled adapters supplied the exercised credentials/provider outcomes.
+
+Salvos resolves actual saved IDs across competitions and separates missing resources from fetch failure, with removal/undo, retry, account write rollback on failure and filter/history restoration. Account choices use existing Supabase bookmarks; the `(user_id,key)` unique constraint was verified before idempotent upsert. Guests persist choices only with accepted consent, otherwise using session memory.
+
+Avisos reads published public announcements independently of Web Push permission. Read-one/all uses own-account database history or consented guest browser storage/session memory. Guest notice storage survives reload with consent; declining consent removes persistent reading preferences. Filters, read status, complete message, typed internal destination, loading/empty/error/retry and missing-resource states are wired.
+
+[AdminAnnouncements](../../components/screens/AdminAnnouncements.tsx) supplies draft, edit and publish controls inside existing Admin. Its visual treatment is the minimal incumbent-admin integration; no new approved Figma Admin screen is claimed. Staff draft/edit/publish browser checks used a controlled API adapter. No external messaging, private targeting or push/scheduling workflow is added.
+
+## Database and authorization evidence
+
+The additive [announcement schema/RLS migration](../../supabase/announcements.sql) was applied to CPM Supabase project `edqstqzsauqxvlolarzp` (dashboard name CFM MamoBall). [Rollback-only SQL verification](../../supabase/verify-announcements.sql) succeeded against the real hosted database: anonymous readers see published notices only; read history is private and owner-writable; drafts reject member read records; members cannot publish or change their role; staff can edit/publish drafts; nick editing remains available. All test fixtures were rolled back. No sample publications, real accounts or emails were persisted.
+
+Existing advisor function-execution/search-path and leaked-password configuration warnings are recorded in [validation](validation.md); no new announcement-table/RLS finding was returned. Those unrelated service warnings were not repaired or turned into design rules.
+
+## Verification and limits
+
+The [browser manifest](../../.impeccable/review/auth-library-implementation/report.json) and [captures/contact sheets](../../.impeccable/review/auth-library-implementation/) contain 128 fixture captures spanning 320, 390, 768, 1024, 1440 and 2560px, both themes, Login, all three Registration and Recovery stages, Salvos, Avisos and detail, plus selected error/empty/unavailable states. Final recaptures include the reviewed native paint, password rhythm and tablet topology corrections. No horizontal overflow was reported. Fixtures establish bounded UI evidence; their publication and identity content is not live data.
+
+Four additional [live public reads](../../.impeccable/review/auth-library-implementation/live-report.json) show the current real empty Avisos and anonymous Salvos in both themes, without writes. [Functional checks](checks/functional.log), [library checks](checks/final-library.log) and [Dark-flow checks](checks/dark-browser.log) cover controlled registration/recovery completion, rejected credentials/code, numeric paste, visibility, removal/undo, read-all, guest/account persistence, history, empty/error/retry and write-failure rollback. The older Dark-flow log records its earlier 125-capture batch; the final manifest and confirmation review record 128.
+
+[TypeScript](checks/tsc.log) and [scoped ESLint](checks/lint.log) passed. The final refreshed isolated temporary-copy webpack production build passed (exit 0), including successful route generation; see the [build log](checks/final-build.log). The single [Impeccable detector](detector.json) returned `[]`; it was not rerun after fixes. The independent review resolved all three scored material fixes and found no visible regression from the final tablet correction; its final confirmation is scoped to those fixes and retains the initial review limits.
+
+Actual e-mail/OTP delivery, live credential sign-in and production security-provider acceptance were not tested. Adapter tests and rollback-only SQL assertions do not prove a real staff account workflow, exhaustive accessibility or security certification. No deployment occurred. The local development server is the preview.
+
+## Preserved system and historical drift
+
+The incumbent paired palette, Barlow Condensed/Manrope hierarchy, semantic binding, official artwork, flat tonal layering, bounded content and rounded controls remain the system. No normative frontmatter, sidecar, global palette or native metadata was rewritten. Historical native-only status text and earlier variable-count records remain scoped to their revisions. The broad incumbent Overview statement that other screens retain their earlier code is superseded by dated implementation entries rather than silently rewriting historical evidence. Unrelated existing service advisor warnings remain reported above; neither they nor a temporary fidelity defect becomes a reusable design rule.

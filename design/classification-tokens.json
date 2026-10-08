@@ -1,0 +1,40 @@
+{
+  "primitives": {
+    "size/classification-position": 28,
+    "size/classification-row-mobile": 136,
+    "size/classification-tie-single": 196,
+    "size/classification-tie-twoleg": 256,
+    "size/classification-bracket-single": 212,
+    "size/classification-bracket-twoleg": 272
+  },
+  "primitiveVariables": {
+    "size/classification-position": "VariableID:21:29483",
+    "size/classification-row-mobile": "VariableID:21:29484",
+    "size/classification-tie-single": "VariableID:21:29485",
+    "size/classification-tie-twoleg": "VariableID:21:29486",
+    "size/classification-bracket-single": "VariableID:21:29487",
+    "size/classification-bracket-twoleg": "VariableID:21:29488"
+  },
+  "semantic": {
+    "classification/position-width": "size/classification-position",
+    "classification/row-mobile-min": "size/classification-row-mobile",
+    "classification/row-wide-min": "size/compact-header",
+    "classification/tie-single-min": "size/classification-tie-single",
+    "classification/tie-twoleg-min": "size/classification-tie-twoleg",
+    "classification/bracket-single-min": "size/classification-bracket-single",
+    "classification/bracket-twoleg-min": "size/classification-bracket-twoleg",
+    "classification/form-compact-size": "size/icon",
+    "classification/bracket-line": "color/neutral/600"
+  },
+  "semanticVariables": {
+    "classification/position-width": "VariableID:21:29489",
+    "classification/row-mobile-min": "VariableID:21:29490",
+    "classification/row-wide-min": "VariableID:21:29491",
+    "classification/tie-single-min": "VariableID:21:29492",
+    "classification/tie-twoleg-min": "VariableID:21:29493",
+    "classification/bracket-single-min": "VariableID:21:29494",
+    "classification/bracket-twoleg-min": "VariableID:21:29495",
+    "classification/form-compact-size": "VariableID:21:29496",
+    "classification/bracket-line": "VariableID:21:29497"
+  }
+}

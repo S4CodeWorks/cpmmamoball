@@ -1,0 +1,16 @@
+/* Native classification Scorers: 21:30775 / 21:30904. */
+.cpm-scorers-list { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.cpm-scorers-list h2 { margin: 0; font: 600 28px/32px var(--cpm-font-display); letter-spacing: normal; }
+.cpm-scorers-list ol { display: flex; flex-direction: column; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.cpm-scorer-item { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 96px; padding: 16px; border-radius: 12px; background: var(--cpm-surface-card,var(--cpm-surface-header)); color: var(--cpm-text-primary); text-align: left; font-family: var(--cpm-font-ui); }
+.cpm-scorer-item.is-leader { background: var(--cpm-nav-active-bg); }
+.cpm-scorer-item:hover { background: var(--cpm-nav-hover-bg); }
+.cpm-scorer-item:focus-visible { outline: 2px solid var(--cpm-border-focus); outline-offset: -2px; }
+.cpm-scorer-position { display: grid; place-items: center; flex: 0 0 28px; height: 40px; font: 600 24px/28px var(--cpm-font-display); color: var(--cpm-text-secondary); }
+.cpm-scorer-emblem { display: grid; place-items: center; flex: 0 0 40px; height: 40px; border-radius: 12px; background: var(--cpm-surface-subtle); }
+.cpm-scorer-identity { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.cpm-scorer-identity strong { font-size: 16px; font-weight: 600; line-height: 24px; overflow-wrap: anywhere; }
+.cpm-scorer-identity > span, .cpm-scorer-score > span { font-size: 12px; line-height: 16px; color: var(--cpm-text-secondary); overflow-wrap: anywhere; }
+.cpm-scorer-score { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 48px; min-height: 64px; font-variant-numeric: tabular-nums; }
+.cpm-scorer-score b { font: 700 44px/48px var(--cpm-font-display); }
+.cpm-scorer-item.is-leader .cpm-scorer-position, .cpm-scorer-item.is-leader .cpm-scorer-score b { color: var(--cpm-nav-active-text); }

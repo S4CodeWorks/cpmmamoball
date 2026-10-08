@@ -1,0 +1,605 @@
+{
+  "nodes": [
+    {
+      "id": "4:1305",
+      "name": "Kind=loading, Layout=Desktop",
+      "type": "COMPONENT",
+      "x": 1920,
+      "y": 500,
+      "width": 856,
+      "height": 352,
+      "cornerRadius": 16,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 24,
+        "paddingRight": 24,
+        "paddingBottom": 24,
+        "paddingLeft": 24,
+        "itemSpacing": 24,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "minHeight": 352,
+      "constraints": {
+        "horizontal": "MIN",
+        "vertical": "MIN"
+      },
+      "clipsContent": false,
+      "boundVariables": {
+        "itemSpacing": [
+          "VariableID:2:27"
+        ],
+        "paddingLeft": [
+          "VariableID:2:27"
+        ],
+        "paddingTop": [
+          "VariableID:2:27"
+        ],
+        "paddingRight": [
+          "VariableID:2:27"
+        ],
+        "paddingBottom": [
+          "VariableID:2:27"
+        ],
+        "topLeftRadius": [
+          "VariableID:2:33"
+        ],
+        "topRightRadius": [
+          "VariableID:2:33"
+        ],
+        "bottomLeftRadius": [
+          "VariableID:2:33"
+        ],
+        "bottomRightRadius": [
+          "VariableID:2:33"
+        ],
+        "fills": [
+          "VariableID:2:57"
+        ]
+      },
+      "fill": "fill_nll9eq",
+      "children": [
+        {
+          "id": "4:1306",
+          "name": "Event context",
+          "type": "FRAME",
+          "x": 24,
+          "y": 24,
+          "width": 808,
+          "height": 32,
+          "fills": [],
+          "layout": {
+            "mode": "HORIZONTAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 12,
+            "primaryAxisAlignItems": "SPACE_BETWEEN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "HUG",
+          "layoutAlign": "STRETCH",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:25"
+            ],
+            "paddingLeft": [
+              "VariableID:2:22"
+            ],
+            "paddingTop": [
+              "VariableID:2:22"
+            ],
+            "paddingRight": [
+              "VariableID:2:22"
+            ],
+            "paddingBottom": [
+              "VariableID:2:22"
+            ]
+          },
+          "children": [
+            {
+              "id": "4:1307",
+              "name": "Title and competition",
+              "type": "FRAME",
+              "x": 0,
+              "y": 0,
+              "width": 808,
+              "height": 32,
+              "fills": [],
+              "layout": {
+                "mode": "VERTICAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 4,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "MIN",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutGrow": 1,
+              "clipsContent": true,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:23"
+                ],
+                "paddingLeft": [
+                  "VariableID:2:22"
+                ],
+                "paddingTop": [
+                  "VariableID:2:22"
+                ],
+                "paddingRight": [
+                  "VariableID:2:22"
+                ],
+                "paddingBottom": [
+                  "VariableID:2:22"
+                ]
+              },
+              "children": [
+                {
+                  "id": "4:1308",
+                  "name": "Carregando destaque",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 0,
+                  "width": 808,
+                  "height": 32,
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "HUG",
+                  "layoutAlign": "STRETCH",
+                  "characters": "Carregando destaque",
+                  "textAutoResize": "HEIGHT",
+                  "styleIds": {
+                    "text": "S:48d537e5c76438555977e7e694058fb9173c5e98"
+                  },
+                  "boundVariables": {
+                    "fills": [
+                      "VariableID:2:60"
+                    ],
+                    "lineHeight": [
+                      "VariableID:3:1132"
+                    ],
+                    "fontFamily": [
+                      "VariableID:4:2929"
+                    ],
+                    "fontSize": [
+                      "VariableID:3:1131"
+                    ]
+                  },
+                  "fill": "fill_12gcwut",
+                  "textStyle": "text_1wfchkh"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4:1309",
+          "name": "Skeleton content",
+          "type": "FRAME",
+          "x": 24,
+          "y": 80,
+          "width": 808,
+          "height": 140,
+          "fills": [],
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 16,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "FIXED",
+          "layoutAlign": "STRETCH",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:26"
+            ],
+            "paddingLeft": [
+              "VariableID:2:22"
+            ],
+            "paddingTop": [
+              "VariableID:2:22"
+            ],
+            "paddingRight": [
+              "VariableID:2:22"
+            ],
+            "paddingBottom": [
+              "VariableID:2:22"
+            ]
+          },
+          "children": [
+            {
+              "id": "4:1310",
+              "name": "Skeleton / Title",
+              "type": "FRAME",
+              "x": 0,
+              "y": 0,
+              "width": 180,
+              "height": 24,
+              "cornerRadius": 8,
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "paddingLeft": [
+                  "VariableID:2:22"
+                ],
+                "paddingTop": [
+                  "VariableID:2:22"
+                ],
+                "paddingRight": [
+                  "VariableID:2:22"
+                ],
+                "paddingBottom": [
+                  "VariableID:2:22"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "fills": [
+                  "VariableID:2:64"
+                ]
+              },
+              "fill": "fill_1rid605"
+            },
+            {
+              "id": "4:1311",
+              "name": "Skeleton / Match",
+              "type": "FRAME",
+              "x": 0,
+              "y": 40,
+              "width": 808,
+              "height": 64,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 24,
+                "primaryAxisAlignItems": "SPACE_BETWEEN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "FIXED",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:27"
+                ],
+                "paddingLeft": [
+                  "VariableID:2:22"
+                ],
+                "paddingTop": [
+                  "VariableID:2:22"
+                ],
+                "paddingRight": [
+                  "VariableID:2:22"
+                ],
+                "paddingBottom": [
+                  "VariableID:2:22"
+                ]
+              },
+              "children": [
+                {
+                  "id": "4:1312",
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 0,
+                  "width": 64,
+                  "height": 64,
+                  "cornerRadius": 8,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "boundVariables": {
+                    "itemSpacing": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingLeft": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingTop": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingRight": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingBottom": [
+                      "VariableID:2:22"
+                    ],
+                    "topLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "topRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "fills": [
+                      "VariableID:2:64"
+                    ]
+                  },
+                  "fill": "fill_1rid605"
+                },
+                {
+                  "id": "4:1313",
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "x": 340,
+                  "y": 0,
+                  "width": 128,
+                  "height": 64,
+                  "cornerRadius": 8,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "boundVariables": {
+                    "itemSpacing": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingLeft": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingTop": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingRight": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingBottom": [
+                      "VariableID:2:22"
+                    ],
+                    "topLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "topRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "fills": [
+                      "VariableID:2:64"
+                    ]
+                  },
+                  "fill": "fill_1rid605"
+                },
+                {
+                  "id": "4:1314",
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "x": 744,
+                  "y": 0,
+                  "width": 64,
+                  "height": 64,
+                  "cornerRadius": 8,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "boundVariables": {
+                    "itemSpacing": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingLeft": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingTop": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingRight": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingBottom": [
+                      "VariableID:2:22"
+                    ],
+                    "topLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "topRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomRightRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "fills": [
+                      "VariableID:2:64"
+                    ]
+                  },
+                  "fill": "fill_1rid605"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "VariableID:2:27": {
+      "name": "space/6",
+      "type": "FLOAT"
+    },
+    "VariableID:2:33": {
+      "name": "radius/lg",
+      "type": "FLOAT"
+    },
+    "VariableID:2:57": {
+      "name": "surface/header",
+      "type": "COLOR"
+    },
+    "VariableID:2:25": {
+      "name": "space/3",
+      "type": "FLOAT"
+    },
+    "VariableID:2:22": {
+      "name": "space/0",
+      "type": "FLOAT"
+    },
+    "VariableID:2:23": {
+      "name": "space/1",
+      "type": "FLOAT"
+    },
+    "VariableID:2:60": {
+      "name": "text/primary",
+      "type": "COLOR"
+    },
+    "VariableID:3:1132": {
+      "name": "type/line/section",
+      "type": "FLOAT"
+    },
+    "VariableID:4:2929": {
+      "name": "type/family/display",
+      "type": "STRING"
+    },
+    "VariableID:3:1131": {
+      "name": "type/size/section",
+      "type": "FLOAT"
+    },
+    "VariableID:2:26": {
+      "name": "space/4",
+      "type": "FLOAT"
+    },
+    "VariableID:2:31": {
+      "name": "radius/sm",
+      "type": "FLOAT"
+    },
+    "VariableID:2:64": {
+      "name": "border/subtle",
+      "type": "COLOR"
+    }
+  },
+  "globalVars": {
+    "styles": {
+      "fill_nll9eq": [
+        {
+          "type": "SOLID",
+          "color": "#FFFFFF"
+        }
+      ],
+      "fill_12gcwut": [
+        {
+          "type": "SOLID",
+          "color": "#11151B"
+        }
+      ],
+      "text_1wfchkh": {
+        "fontFamily": "Barlow Condensed",
+        "fontStyle": "SemiBold",
+        "fontSize": 28,
+        "lineHeight": {
+          "value": 32,
+          "unit": "PIXELS"
+        }
+      },
+      "fill_1rid605": [
+        {
+          "type": "SOLID",
+          "color": "#DFE3E8"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "nodeCount": 10,
+    "maxDepth": 4,
+    "styleCount": 4,
+    "tokenCount": 13,
+    "inlineSizeKb": 7.98,
+    "dedupedSizeKb": 7.34
+  }
+}

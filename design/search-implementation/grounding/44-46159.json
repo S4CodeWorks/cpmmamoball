@@ -1,0 +1,52 @@
+{
+  "note": "This tree serialized to ~104k chars — beyond what a tool result can deliver. Ground it section by section: call get_design_context per section nodeId (detail: full, dedupeComponents: true) and build each before moving on. Do not retry this call unscoped and do not depth-cap the whole page.",
+  "nodes": [
+    {
+      "id": "44:46159",
+      "name": "Pesquisa / Dark / Results / All / 1440",
+      "type": "FRAME",
+      "x": 0,
+      "y": 1500,
+      "width": 1440,
+      "height": 1036,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "itemSpacing": 0,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "CENTER",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "minHeight": 1000,
+      "constraints": {
+        "horizontal": "MIN",
+        "vertical": "MIN"
+      },
+      "clipsContent": true
+    }
+  ],
+  "sectionPlan": {
+    "reason": "payload-size",
+    "payloadChars": 104103,
+    "sections": [
+      {
+        "nodeId": "44:46160",
+        "name": "Header / search active",
+        "type": "INSTANCE",
+        "childCount": 1,
+        "nodes": 24
+      },
+      {
+        "nodeId": "44:46161",
+        "name": "Page gutter",
+        "type": "FRAME",
+        "childCount": 1,
+        "nodes": 133
+      }
+    ]
+  }
+}

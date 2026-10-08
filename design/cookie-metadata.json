@@ -1,0 +1,467 @@
+{
+  "version": "Cookie notice Figma v1",
+  "note": "34:40201",
+  "iconAsset": "design/assets/icons/cookie.svg",
+  "mode": "Operate",
+  "date": "2026-10-06",
+  "pages": {
+    "components": "34:36070",
+    "screens": "34:36071",
+    "states": "34:36072"
+  },
+  "icon": "34:36076",
+  "refusalSet": {
+    "ok": true,
+    "nodeId": "34:36089",
+    "name": "Cookie / Refusal",
+    "type": "COMPONENT_SET"
+  },
+  "refusalVariants": [
+    {
+      "id": "34:36077",
+      "label": "34:36078",
+      "theme": "light",
+      "state": "Default"
+    },
+    {
+      "id": "34:36079",
+      "label": "34:36080",
+      "theme": "light",
+      "state": "Hover"
+    },
+    {
+      "id": "34:36081",
+      "label": "34:36082",
+      "theme": "light",
+      "state": "Focus"
+    },
+    {
+      "id": "34:36083",
+      "label": "34:36084",
+      "theme": "dark",
+      "state": "Default"
+    },
+    {
+      "id": "34:36085",
+      "label": "34:36086",
+      "theme": "dark",
+      "state": "Hover"
+    },
+    {
+      "id": "34:36087",
+      "label": "34:36088",
+      "theme": "dark",
+      "state": "Focus"
+    }
+  ],
+  "termsSet": {
+    "ok": true,
+    "nodeId": "34:36100",
+    "name": "Cookie / Terms",
+    "type": "COMPONENT_SET"
+  },
+  "bannerSet": {
+    "ok": true,
+    "nodeId": "34:36181",
+    "name": "Cookie / Notice",
+    "type": "COMPONENT_SET"
+  },
+  "banners": [
+    {
+      "id": "34:36101",
+      "theme": "light",
+      "layout": "Wide",
+      "title": "34:36108",
+      "summary": "34:36109",
+      "icon": "34:36103",
+      "terms": "34:36111",
+      "refusal": "34:36117",
+      "accept": "34:36119",
+      "png": "design/cookie-previews/34-36101.png",
+      "nativeHeight": 166,
+      "exportHeight": 166
+    },
+    {
+      "id": "34:36121",
+      "theme": "light",
+      "layout": "Compact",
+      "title": "34:36128",
+      "summary": "34:36129",
+      "icon": "34:36123",
+      "terms": "34:36131",
+      "refusal": "34:36137",
+      "accept": "34:36139",
+      "png": "design/cookie-previews/34-36121.png",
+      "nativeHeight": 222,
+      "exportHeight": 220
+    },
+    {
+      "id": "34:36141",
+      "theme": "dark",
+      "layout": "Wide",
+      "title": "34:36148",
+      "summary": "34:36149",
+      "icon": "34:36143",
+      "terms": "34:36151",
+      "refusal": "34:36157",
+      "accept": "34:36159",
+      "png": "design/cookie-previews/34-36141.png",
+      "nativeHeight": 166,
+      "exportHeight": 166
+    },
+    {
+      "id": "34:36161",
+      "theme": "dark",
+      "layout": "Compact",
+      "title": "34:36168",
+      "summary": "34:36169",
+      "icon": "34:36163",
+      "terms": "34:36171",
+      "refusal": "34:36177",
+      "accept": "34:36179",
+      "png": "design/cookie-previews/34-36161.png",
+      "nativeHeight": 222,
+      "exportHeight": 220
+    }
+  ],
+  "previews": [
+    {
+      "id": "34:36182",
+      "banner": "34:36410",
+      "source": "4:1655",
+      "theme": "light",
+      "width": 1440,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-36182.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:36430",
+      "banner": "34:36655",
+      "source": "4:2140",
+      "theme": "light",
+      "width": 1024,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-36430.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:36675",
+      "banner": "34:36903",
+      "source": "4:2300",
+      "theme": "light",
+      "width": 2560,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-36675.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:36923",
+      "banner": "34:37135",
+      "source": "4:2463",
+      "theme": "light",
+      "width": 768,
+      "height": 1024,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-36923.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 836,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:37155",
+      "banner": "34:37367",
+      "source": "4:2606",
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "bannerHeight": 222,
+      "png": "design/cookie-previews/34-37155.png",
+      "layout": "Compact",
+      "originalPlacementBannerHeight": 220,
+      "nativeHeight": 222,
+      "originalPlacementY": 608,
+      "intendedBottomOffset": 16,
+      "provisionalNativeBottomOffset": 14
+    },
+    {
+      "id": "34:37387",
+      "banner": "34:37599",
+      "source": "4:2749",
+      "theme": "light",
+      "width": 320,
+      "height": 720,
+      "bannerHeight": 222,
+      "png": "design/cookie-previews/34-37387.png",
+      "layout": "Compact",
+      "originalPlacementBannerHeight": 220,
+      "nativeHeight": 222,
+      "originalPlacementY": 484,
+      "intendedBottomOffset": 16,
+      "provisionalNativeBottomOffset": 14
+    },
+    {
+      "id": "34:37619",
+      "banner": "34:37847",
+      "source": "8:7953",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-37619.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:37867",
+      "banner": "34:38092",
+      "source": "8:8181",
+      "theme": "dark",
+      "width": 1024,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-37867.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:38112",
+      "banner": "34:38340",
+      "source": "8:8406",
+      "theme": "dark",
+      "width": 2560,
+      "height": 900,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-38112.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 712,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:38360",
+      "banner": "34:38572",
+      "source": "8:8634",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024,
+      "bannerHeight": 166,
+      "png": "design/cookie-previews/34-38360.png",
+      "layout": "Wide",
+      "originalPlacementBannerHeight": 164,
+      "nativeHeight": 166,
+      "originalPlacementY": 836,
+      "intendedBottomOffset": 24,
+      "provisionalNativeBottomOffset": 22
+    },
+    {
+      "id": "34:38592",
+      "banner": "34:38804",
+      "source": "8:8846",
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "bannerHeight": 222,
+      "png": "design/cookie-previews/34-38592.png",
+      "layout": "Compact",
+      "originalPlacementBannerHeight": 220,
+      "nativeHeight": 222,
+      "originalPlacementY": 608,
+      "intendedBottomOffset": 16,
+      "provisionalNativeBottomOffset": 14
+    },
+    {
+      "id": "34:38824",
+      "banner": "34:39036",
+      "source": "8:9058",
+      "theme": "dark",
+      "width": 320,
+      "height": 720,
+      "bannerHeight": 222,
+      "png": "design/cookie-previews/34-38824.png",
+      "layout": "Compact",
+      "originalPlacementBannerHeight": 220,
+      "nativeHeight": 222,
+      "originalPlacementY": 484,
+      "intendedBottomOffset": 16,
+      "provisionalNativeBottomOffset": 14
+    }
+  ],
+  "states": [
+    {
+      "id": "34:39056",
+      "banner": "34:39057",
+      "theme": "light",
+      "state": "Hover",
+      "png": "design/cookie-previews/34-39056.png"
+    },
+    {
+      "id": "34:39079",
+      "banner": "34:39080",
+      "theme": "light",
+      "state": "Focus acceptance",
+      "png": "design/cookie-previews/34-39079.png"
+    },
+    {
+      "id": "34:39101",
+      "banner": "34:39102",
+      "theme": "light",
+      "state": "Focus refusal",
+      "png": "design/cookie-previews/34-39101.png"
+    },
+    {
+      "id": "34:39123",
+      "banner": "34:39124",
+      "theme": "light",
+      "state": "Focus terms",
+      "png": "design/cookie-previews/34-39123.png"
+    },
+    {
+      "id": "34:39144",
+      "banner": "34:39145",
+      "theme": "dark",
+      "state": "Hover",
+      "png": "design/cookie-previews/34-39144.png"
+    },
+    {
+      "id": "34:39167",
+      "banner": "34:39168",
+      "theme": "dark",
+      "state": "Focus acceptance",
+      "png": "design/cookie-previews/34-39167.png"
+    },
+    {
+      "id": "34:39189",
+      "banner": "34:39190",
+      "theme": "dark",
+      "state": "Focus refusal",
+      "png": "design/cookie-previews/34-39189.png"
+    },
+    {
+      "id": "34:39211",
+      "banner": "34:39212",
+      "theme": "dark",
+      "state": "Focus terms",
+      "png": "design/cookie-previews/34-39211.png"
+    }
+  ],
+  "dismissed": [
+    {
+      "id": "34:39232",
+      "source": "34:36182",
+      "theme": "light",
+      "width": 1440,
+      "png": "design/cookie-previews/34-39232.png"
+    },
+    {
+      "id": "34:39483",
+      "source": "34:37155",
+      "theme": "light",
+      "width": 390,
+      "png": "design/cookie-previews/34-39483.png"
+    },
+    {
+      "id": "34:39717",
+      "source": "34:37619",
+      "theme": "dark",
+      "width": 1440,
+      "png": "design/cookie-previews/34-39717.png"
+    },
+    {
+      "id": "34:39967",
+      "source": "34:38592",
+      "theme": "dark",
+      "width": 390,
+      "png": "design/cookie-previews/34-39967.png"
+    }
+  ],
+  "scope": "Figma only; existing site unchanged. Source consent controls local visitor storage. Account consent separate. Terms opens existing placeholder modal on eventual implementation. Native prototypes show notice dismissal only; storage/account/legal browser behavior not executed.",
+  "geometry": {
+    "wideMax": 480,
+    "widePadding": 24,
+    "compactPadding": 16,
+    "compactGutter": 16,
+    "wideOffset": 24,
+    "compactOffset": 16,
+    "radius": 16,
+    "border": 1,
+    "iconBox": 44,
+    "icon": 20,
+    "control": 44,
+    "wideHeight": 166,
+    "compactHeight": 222,
+    "heightAuthority": "Final native auto-layout HUG bounds; do not hardcode heights.",
+    "masterExportBounds": {
+      "Wide": {
+        "width": 480,
+        "height": 166
+      },
+      "Compact": {
+        "width": 358,
+        "height": 220
+      }
+    },
+    "measurementRecord": {
+      "nativeWideHeight": 166,
+      "nativeCompactHeight": 222,
+      "strokesIncludedInLayout": true,
+      "border": 1,
+      "originalPlacementHeight": {
+        "Wide": 164,
+        "Compact": 220
+      },
+      "intendedBottomOffset": {
+        "Wide": 24,
+        "Compact": 16
+      },
+      "provisionalNativeBottomOffset": {
+        "Wide": 22,
+        "Compact": 14
+      },
+      "advisory": "Final native bounds remain 166/222 after screenshots. Fresh provider PNG bounds are 480×166 Wide and 358×220 Compact, with complete visible corners. Compact native/export height differs by 2px; cause unknown. Preview y positions retain original 164/220 placement arithmetic. Exports establish visual appearance, not identical native/export pixel bounds. Ground future codegen in fresh native context and reconcile export bounds."
+    }
+  },
+  "source": {
+    "component": "components/ui/CookieBanner.tsx",
+    "consent": "contexts/AppContext.tsx"
+  },
+  "notes": "All six widths eachtheme. Original Home clone background preserved, notice absolute anchored overlay. Prototyped Aceitar/Recusar at1440/390 in both themes; otherwidths static, Terms noFigma legaloverlay.",
+  "review": {
+    "path": "design/cookie-review.md",
+    "disposition": "ship",
+    "scope": "Independent Figma visual-artifact review of 28 PNGs and native component evidence; no browser or consent execution verification. Historical measurement advisory is addressed by the separate native/export record."
+  },
+  "nativeSnapshot": "design/cookie-components-native.json",
+  "documentation": "design/cookie-documentation.md"
+}

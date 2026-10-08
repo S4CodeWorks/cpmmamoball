@@ -1,0 +1,30 @@
+{
+  "scope": "Resolved incumbent Dark token pairs, opaque paints; native contrast evidence, not browser accessibility certification",
+  "pairs": [
+    {
+      "label": "primary/card",
+      "ratio": 14.91
+    },
+    {
+      "label": "secondary/card",
+      "ratio": 9.51
+    },
+    {
+      "label": "secondary/subtle",
+      "ratio": 7.88
+    },
+    {
+      "label": "selected",
+      "ratio": 7.6
+    },
+    {
+      "label": "action",
+      "ratio": 7.79
+    },
+    {
+      "label": "blue/card",
+      "ratio": 7.21
+    }
+  ],
+  "blueOnSelected": 4.56
+}

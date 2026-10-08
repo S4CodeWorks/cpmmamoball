@@ -1,0 +1,1666 @@
+{
+  "note": "This tree serialized to ~50k chars at detail \"full\" — beyond what a tool result can deliver, so this is the same tree with its LAYOUT intact and its APPEARANCE dropped. Every frame still carries its exact layout (flex/grid mode, padding, itemSpacing/gap, alignment) and each node its sizing and constraints, and each text its characters. What is missing is colour, typography, effects and token bindings. Build the structure from the layout objects, never from x/y: emit the container and its gap/padding, not per-child margins or absolute offsets. To get what is missing, call get_design_context per section nodeId (detail: full, dedupeComponents: true) before building that section — never estimate those values from a screenshot.",
+  "nodes": [
+    {
+      "id": "4:1775",
+      "name": "Match lists",
+      "type": "FRAME",
+      "x": 0,
+      "y": 541,
+      "width": 1280,
+      "height": 336,
+      "layout": {
+        "mode": "HORIZONTAL",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "itemSpacing": 24,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "HUG",
+      "layoutAlign": "STRETCH",
+      "clipsContent": true,
+      "children": [
+        {
+          "id": "4:1776",
+          "name": "Próximos jogos",
+          "type": "INSTANCE",
+          "x": 0,
+          "y": 0,
+          "width": 628,
+          "height": 336,
+          "mainComponentId": "4:1492",
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 12,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "HUG",
+          "layoutGrow": 1,
+          "clipsContent": false,
+          "children": [
+            {
+              "id": "I4:1776;4:1493",
+              "name": "Section heading",
+              "type": "FRAME",
+              "x": 0,
+              "y": 0,
+              "width": 628,
+              "height": 44,
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 12,
+                "primaryAxisAlignItems": "SPACE_BETWEEN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "FIXED",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "I4:1776;4:1494",
+                  "name": "Próximos jogos",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 8,
+                  "width": 130,
+                  "height": 28,
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "HUG",
+                  "characters": "Próximos jogos"
+                },
+                {
+                  "id": "I4:1776;4:1495",
+                  "name": "Ver jogos",
+                  "type": "FRAME",
+                  "x": 543,
+                  "y": 0,
+                  "width": 85,
+                  "height": 44,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 12,
+                    "paddingBottom": 0,
+                    "paddingLeft": 12,
+                    "itemSpacing": 8,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1776;4:1496",
+                      "name": "Ver jogos",
+                      "type": "TEXT",
+                      "x": 12,
+                      "y": 12,
+                      "width": 61,
+                      "height": 20,
+                      "layoutSizingHorizontal": "HUG",
+                      "layoutSizingVertical": "HUG",
+                      "characters": "Ver jogos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "I4:1776;4:1497",
+              "name": "Matches",
+              "type": "FRAME",
+              "x": 0,
+              "y": 56,
+              "width": 628,
+              "height": 280,
+              "layout": {
+                "mode": "VERTICAL",
+                "paddingTop": 8,
+                "paddingRight": 16,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "MIN",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "I4:1776;4:1498",
+                  "name": "Match / Aurora FC vs Atlético Paulista",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 8,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1776;4:1499",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:3429",
+                          "name": "Club / Aurora FC",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3438",
+                              "name": "Aurora FC crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false,
+                              "children": [
+                                {
+                                  "id": "I4:1776;4:3438;3:1139",
+                                  "name": "Club / Generic crest · existing fallback",
+                                  "type": "RECTANGLE",
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 16,
+                                  "height": 18,
+                                  "constraints": {
+                                    "horizontal": "SCALE",
+                                    "vertical": "SCALE"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "id": "I4:1776;4:3456",
+                              "name": "Aurora FC",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Aurora FC",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3465",
+                          "name": "Club / Atlético Paulista",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3474",
+                              "name": "Atlético Paulista crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1776;4:3476",
+                              "name": "Atlético Paulista",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Atlético Paulista",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3477",
+                          "name": "08 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 36,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "08 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1776;4:3478",
+                      "name": "Schedule",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:1502",
+                          "name": "20h30",
+                          "type": "TEXT",
+                          "x": 7.5,
+                          "y": 6,
+                          "width": 53,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "20h30"
+                        },
+                        {
+                          "id": "I4:1776;4:3479",
+                          "name": "HORÁRIO",
+                          "type": "TEXT",
+                          "x": 8,
+                          "y": 34,
+                          "width": 52,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "HORÁRIO"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "I4:1776;4:1503",
+                  "name": "Match / União MamoBall vs Vila Esportiva",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 96,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1776;4:1504",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:3480",
+                          "name": "Club / União MamoBall",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3481",
+                              "name": "União MamoBall crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1776;4:3483",
+                              "name": "União MamoBall",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "União MamoBall",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3484",
+                          "name": "Club / Vila Esportiva",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3485",
+                              "name": "Vila Esportiva crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1776;4:3487",
+                              "name": "Vila Esportiva",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Vila Esportiva",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3488",
+                          "name": "08 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 36,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "08 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1776;4:3489",
+                      "name": "Schedule",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:1507",
+                          "name": "21h00",
+                          "type": "TEXT",
+                          "x": 9.5,
+                          "y": 6,
+                          "width": 49,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "21h00"
+                        },
+                        {
+                          "id": "I4:1776;4:3490",
+                          "name": "HORÁRIO",
+                          "type": "TEXT",
+                          "x": 8,
+                          "y": 34,
+                          "width": 52,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "HORÁRIO"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "I4:1776;4:1508",
+                  "name": "Match / Vila Esportiva vs Aurora FC",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 184,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1776;4:1509",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:3491",
+                          "name": "Club / Vila Esportiva",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3492",
+                              "name": "Vila Esportiva crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1776;4:3494",
+                              "name": "Vila Esportiva",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Vila Esportiva",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3495",
+                          "name": "Club / Aurora FC",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1776;4:3496",
+                              "name": "Aurora FC crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1776;4:3498",
+                              "name": "Aurora FC",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Aurora FC",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1776;4:3499",
+                          "name": "10 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 34,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "10 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1776;4:3500",
+                      "name": "Schedule",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1776;4:1512",
+                          "name": "20h30",
+                          "type": "TEXT",
+                          "x": 7.5,
+                          "y": 6,
+                          "width": 53,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "20h30"
+                        },
+                        {
+                          "id": "I4:1776;4:3501",
+                          "name": "HORÁRIO",
+                          "type": "TEXT",
+                          "x": 8,
+                          "y": 34,
+                          "width": 52,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "HORÁRIO"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4:1797",
+          "name": "Resultados recentes",
+          "type": "INSTANCE",
+          "x": 652,
+          "y": 0,
+          "width": 628,
+          "height": 336,
+          "mainComponentId": "4:1513",
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 12,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "HUG",
+          "layoutGrow": 1,
+          "clipsContent": false,
+          "children": [
+            {
+              "id": "I4:1797;4:1514",
+              "name": "Section heading",
+              "type": "FRAME",
+              "x": 0,
+              "y": 0,
+              "width": 628,
+              "height": 44,
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 12,
+                "primaryAxisAlignItems": "SPACE_BETWEEN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "FIXED",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "I4:1797;4:1515",
+                  "name": "Resultados recentes",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 8,
+                  "width": 174,
+                  "height": 28,
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "HUG",
+                  "characters": "Resultados recentes"
+                },
+                {
+                  "id": "I4:1797;4:1516",
+                  "name": "Ver histórico",
+                  "type": "FRAME",
+                  "x": 521,
+                  "y": 0,
+                  "width": 107,
+                  "height": 44,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 12,
+                    "paddingBottom": 0,
+                    "paddingLeft": 12,
+                    "itemSpacing": 8,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1797;4:1517",
+                      "name": "Ver histórico",
+                      "type": "TEXT",
+                      "x": 12,
+                      "y": 12,
+                      "width": 83,
+                      "height": 20,
+                      "layoutSizingHorizontal": "HUG",
+                      "layoutSizingVertical": "HUG",
+                      "characters": "Ver histórico"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "I4:1797;4:1518",
+              "name": "Matches",
+              "type": "FRAME",
+              "x": 0,
+              "y": 56,
+              "width": 628,
+              "height": 280,
+              "layout": {
+                "mode": "VERTICAL",
+                "paddingTop": 8,
+                "paddingRight": 16,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "MIN",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "I4:1797;4:1519",
+                  "name": "Match / Aurora FC vs Atlético Paulista",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 8,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1797;4:1520",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:3502",
+                          "name": "Club / Aurora FC",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3503",
+                              "name": "Aurora FC crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3505",
+                              "name": "Aurora FC",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Aurora FC",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3506",
+                          "name": "Club / Atlético Paulista",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3507",
+                              "name": "Atlético Paulista crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3509",
+                              "name": "Atlético Paulista",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Atlético Paulista",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3510",
+                          "name": "04 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 36,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "04 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1797;4:3511",
+                      "name": "Score",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:1523",
+                          "name": "3 – 1",
+                          "type": "TEXT",
+                          "x": 16,
+                          "y": 6,
+                          "width": 36,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "3 – 1"
+                        },
+                        {
+                          "id": "I4:1797;4:3512",
+                          "name": "FINAL",
+                          "type": "TEXT",
+                          "x": 18.5,
+                          "y": 34,
+                          "width": 31,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "FINAL"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "I4:1797;4:1524",
+                  "name": "Match / União MamoBall vs Vila Esportiva",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 96,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1797;4:1525",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:3513",
+                          "name": "Club / União MamoBall",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3514",
+                              "name": "União MamoBall crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3516",
+                              "name": "União MamoBall",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "União MamoBall",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3517",
+                          "name": "Club / Vila Esportiva",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3518",
+                              "name": "Vila Esportiva crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3520",
+                              "name": "Vila Esportiva",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Vila Esportiva",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3521",
+                          "name": "03 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 36,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "03 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1797;4:3522",
+                      "name": "Score",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:1528",
+                          "name": "2 – 2",
+                          "type": "TEXT",
+                          "x": 14,
+                          "y": 6,
+                          "width": 40,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "2 – 2"
+                        },
+                        {
+                          "id": "I4:1797;4:3523",
+                          "name": "FINAL",
+                          "type": "TEXT",
+                          "x": 18.5,
+                          "y": 34,
+                          "width": 31,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "FINAL"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "I4:1797;4:1529",
+                  "name": "Match / Atlético Paulista vs Vila Esportiva",
+                  "type": "FRAME",
+                  "x": 16,
+                  "y": 184,
+                  "width": 596,
+                  "height": 88,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "SPACE_BETWEEN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "I4:1797;4:1530",
+                      "name": "Teams and date",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 12,
+                      "width": 528,
+                      "height": 64,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 4,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:3524",
+                          "name": "Club / Atlético Paulista",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3525",
+                              "name": "Atlético Paulista crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3527",
+                              "name": "Atlético Paulista",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Atlético Paulista",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3528",
+                          "name": "Club / Vila Esportiva",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 24,
+                          "width": 528,
+                          "height": 20,
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I4:1797;4:3529",
+                              "name": "Vila Esportiva crest",
+                              "type": "INSTANCE",
+                              "x": 0,
+                              "y": 1,
+                              "width": 16,
+                              "height": 18,
+                              "mainComponentId": "3:1140",
+                              "deduped": true,
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": false
+                            },
+                            {
+                              "id": "I4:1797;4:3531",
+                              "name": "Vila Esportiva",
+                              "type": "TEXT",
+                              "x": 24,
+                              "y": 0,
+                              "width": 504,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Vila Esportiva",
+                              "textAutoResize": "HEIGHT"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "I4:1797;4:3532",
+                          "name": "03 out",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 48,
+                          "width": 36,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "03 out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I4:1797;4:3533",
+                      "name": "Score",
+                      "type": "FRAME",
+                      "x": 528,
+                      "y": 16,
+                      "width": 68,
+                      "height": 56,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I4:1797;4:1533",
+                          "name": "2 – 0",
+                          "type": "TEXT",
+                          "x": 14,
+                          "y": 6,
+                          "width": 40,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "2 – 0"
+                        },
+                        {
+                          "id": "I4:1797;4:3534",
+                          "name": "FINAL",
+                          "type": "TEXT",
+                          "x": 18.5,
+                          "y": 34,
+                          "width": 31,
+                          "height": 16,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "FINAL"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

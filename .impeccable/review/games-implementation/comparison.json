@@ -1,0 +1,242 @@
+[
+  {
+    "scene": "light-today-1440",
+    "figma": [
+      1280,
+      867
+    ],
+    "browser": [
+      1280,
+      867
+    ],
+    "meanChannelDelta": 0.7851066897347174
+  },
+  {
+    "scene": "light-today-1024",
+    "figma": [
+      976,
+      867
+    ],
+    "browser": [
+      976,
+      867
+    ],
+    "meanChannelDelta": 1.0296327547412407
+  },
+  {
+    "scene": "light-today-2560",
+    "figma": [
+      1280,
+      867
+    ],
+    "browser": [
+      1280,
+      867
+    ],
+    "meanChannelDelta": 0.7851259131103422
+  },
+  {
+    "scene": "light-today-768",
+    "figma": [
+      720,
+      867
+    ],
+    "browser": [
+      720,
+      867
+    ],
+    "meanChannelDelta": 1.3967095988722287
+  },
+  {
+    "scene": "light-today-390",
+    "figma": [
+      358,
+      1224
+    ],
+    "browser": [
+      358,
+      1224
+    ],
+    "meanChannelDelta": 1.7876486410827521
+  },
+  {
+    "scene": "light-today-320",
+    "figma": [
+      288,
+      1224
+    ],
+    "browser": [
+      288,
+      1224
+    ],
+    "meanChannelDelta": 2.2211669389978215
+  },
+  {
+    "scene": "light-upcoming-1440",
+    "figma": [
+      1280,
+      978
+    ],
+    "browser": [
+      1280,
+      978
+    ],
+    "meanChannelDelta": 0.7466318911895024
+  },
+  {
+    "scene": "light-upcoming-390",
+    "figma": [
+      358,
+      1324
+    ],
+    "browser": [
+      358,
+      1324
+    ],
+    "meanChannelDelta": 1.8169258834185669
+  },
+  {
+    "scene": "light-results-1440",
+    "figma": [
+      1280,
+      930
+    ],
+    "browser": [
+      1280,
+      930
+    ],
+    "meanChannelDelta": 0.8793296370967741
+  },
+  {
+    "scene": "light-results-390",
+    "figma": [
+      358,
+      1276
+    ],
+    "browser": [
+      358,
+      1276
+    ],
+    "meanChannelDelta": 1.938262902576137
+  },
+  {
+    "scene": "dark-today-1440",
+    "figma": [
+      1280,
+      867
+    ],
+    "browser": [
+      1280,
+      867
+    ],
+    "meanChannelDelta": 0.7999435313341022
+  },
+  {
+    "scene": "dark-today-1024",
+    "figma": [
+      976,
+      867
+    ],
+    "browser": [
+      976,
+      867
+    ],
+    "meanChannelDelta": 1.0490806656960439
+  },
+  {
+    "scene": "dark-today-2560",
+    "figma": [
+      1280,
+      867
+    ],
+    "browser": [
+      1280,
+      867
+    ],
+    "meanChannelDelta": 0.7999357218377547
+  },
+  {
+    "scene": "dark-today-768",
+    "figma": [
+      720,
+      867
+    ],
+    "browser": [
+      720,
+      867
+    ],
+    "meanChannelDelta": 1.4240756760220428
+  },
+  {
+    "scene": "dark-today-390",
+    "figma": [
+      358,
+      1224
+    ],
+    "browser": [
+      358,
+      1224
+    ],
+    "meanChannelDelta": 1.8169333686298852
+  },
+  {
+    "scene": "dark-today-320",
+    "figma": [
+      288,
+      1224
+    ],
+    "browser": [
+      288,
+      1224
+    ],
+    "meanChannelDelta": 2.2574654668966354
+  },
+  {
+    "scene": "dark-upcoming-1440",
+    "figma": [
+      1280,
+      978
+    ],
+    "browser": [
+      1280,
+      978
+    ],
+    "meanChannelDelta": 0.7562486686264486
+  },
+  {
+    "scene": "dark-upcoming-390",
+    "figma": [
+      358,
+      1324
+    ],
+    "browser": [
+      358,
+      1324
+    ],
+    "meanChannelDelta": 1.84429062093875
+  },
+  {
+    "scene": "dark-results-1440",
+    "figma": [
+      1280,
+      930
+    ],
+    "browser": [
+      1280,
+      930
+    ],
+    "meanChannelDelta": 0.8738827284946237
+  },
+  {
+    "scene": "dark-results-390",
+    "figma": [
+      358,
+      1276
+    ],
+    "browser": [
+      358,
+      1276
+    ],
+    "meanChannelDelta": 1.9365356999001768
+  }
+]

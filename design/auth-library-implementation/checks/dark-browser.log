@@ -1,0 +1,7 @@
+PASS 125 captures [
+  'dark register complete',
+  'dark recovery complete',
+  'dark remove undo',
+  'dark mark all read',
+  'password visibility; invalid credentials; retry; numeric OTP; responsive no overflow'
+]

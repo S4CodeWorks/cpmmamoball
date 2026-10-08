@@ -5,7 +5,7 @@
  * Disponível em toda a árvore via <AuthProvider>.
  */
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import type { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 
@@ -48,17 +48,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isStaff:    false,
   });
 
+  const sessionEpoch=useRef(0);
+
   // Carrega perfil do Supabase depois de obter o user
   const loadProfile = useCallback(async (userId: string) => {
-    const { data } = await supabase
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+    try { const { data } = await supabase
       .from('profiles')
       .select('nick, role')
       .eq('id', userId)
-      .single();
+      .abortSignal(controller.signal).single();
     return data as Profile | null;
+    } finally {clearTimeout(timer);}
   }, []);
 
   const applySession = useCallback(async (session: Session | null) => {
+    const epoch=++sessionEpoch.current;
     if (!session?.user) {
       setState({
         user: null, session: null, profile: null,
@@ -66,7 +71,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       return;
     }
-    const profile = await loadProfile(session.user.id);
+    const profile = await loadProfile(session.user.id).catch(()=>null);
+    if(epoch!==sessionEpoch.current)return;
     setState({
       user:       session.user,
       session,
@@ -79,15 +85,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Inicializa — obtém sessão existente e escuta mudanças
   useEffect(() => {
+    let receivedEvent=false;
     supabase.auth.getSession().then(({ data: { session } }) => {
-      applySession(session);
+      if(!receivedEvent)void applySession(session);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      applySession(session);
+      receivedEvent=true;void applySession(session);
     });
 
-    return () => subscription.unsubscribe();
+    const invalidate=()=>{sessionEpoch.current++;};
+    return () => {invalidate();subscription.unsubscribe();};
   }, [applySession]);
 
   // ── Ações ────────────────────────────────────────────────────────────────────
@@ -116,10 +124,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const updateNick = useCallback(async (nick: string) => {
-    if (!state.user) return;
-    await supabase.from('profiles').update({ nick }).eq('id', state.user.id);
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) throw authError ?? new Error('Entre novamente');
+    const { error } = await supabase.from('profiles').update({ nick }).eq('id', user.id);
+    if (error) throw error;
     setState(s => s.profile ? { ...s, profile: { ...s.profile, nick } } : s);
-  }, [state.user]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ ...state, signIn, signUp, signOut, updateNick }}>

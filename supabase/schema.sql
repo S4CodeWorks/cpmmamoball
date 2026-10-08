@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS competitions (
                   CHECK (status IN ('planejado', 'inscricoes', 'em_andamento', 'encerrado')),
   rodada_atual    int  NOT NULL DEFAULT 0,
   total_rodadas   int  NOT NULL DEFAULT 22,
+  classification_format text NOT NULL DEFAULT 'league'
+                  CHECK (classification_format IN ('league', 'knockout_single', 'knockout_two_leg')),
   created_at      timestamptz DEFAULT now()
 );
 
@@ -92,6 +94,41 @@ CREATE TABLE IF NOT EXISTS matches (
   created_at      timestamptz DEFAULT now(),
   finalized_at    timestamptz,               -- quando o resultado foi lançado (distinto de created_at = agendamento)
   scheduled_at    timestamptz                -- data+hora real da partida, pra ordenar entre competições diferentes
+);
+
+-- Chave estruturada explicitamente. Fases nunca são inferidas de matches.stage.
+-- A vaga só avança por placar decidido ou BYE; empate permanece pendente.
+CREATE TABLE IF NOT EXISTS competition_bracket_ties (
+  id                    uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  competition_id        text NOT NULL REFERENCES competitions(id) ON DELETE CASCADE,
+  stage_order           int NOT NULL CHECK (stage_order > 0),
+  stage_name            text NOT NULL CHECK (char_length(stage_name) BETWEEN 2 AND 48),
+  tie_order             int NOT NULL CHECK (tie_order > 0),
+  home_club_id          text REFERENCES clubs(id) ON DELETE RESTRICT,
+  away_club_id          text REFERENCES clubs(id) ON DELETE RESTRICT,
+  home_source_tie_id    uuid,
+  away_source_tie_id    uuid,
+  first_leg_match_id    bigint REFERENCES matches(id) ON DELETE SET NULL,
+  second_leg_match_id   bigint REFERENCES matches(id) ON DELETE SET NULL,
+  is_bye                boolean NOT NULL DEFAULT false,
+  created_at            timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (competition_id, stage_order, tie_order),
+  UNIQUE (id, competition_id),
+  FOREIGN KEY (home_source_tie_id, competition_id)
+    REFERENCES competition_bracket_ties(id, competition_id) ON DELETE RESTRICT,
+  FOREIGN KEY (away_source_tie_id, competition_id)
+    REFERENCES competition_bracket_ties(id, competition_id) ON DELETE RESTRICT,
+  CHECK (first_leg_match_id IS DISTINCT FROM second_leg_match_id),
+  CHECK (
+    (NOT is_bye
+      AND num_nonnulls(home_club_id, home_source_tie_id) = 1
+      AND num_nonnulls(away_club_id, away_source_tie_id) = 1)
+    OR
+    (is_bye
+      AND first_leg_match_id IS NULL AND second_leg_match_id IS NULL
+      AND ((home_club_id IS NOT NULL AND home_source_tie_id IS NULL AND away_club_id IS NULL AND away_source_tie_id IS NULL)
+        OR (away_club_id IS NOT NULL AND away_source_tie_id IS NULL AND home_club_id IS NULL AND home_source_tie_id IS NULL)))
+  )
 );
 
 -- Classificação por competição (calculada e armazenada pelo admin)
@@ -215,6 +252,13 @@ CREATE INDEX IF NOT EXISTS idx_news_published         ON news(published, created
 CREATE INDEX IF NOT EXISTS idx_inscricoes_comp        ON inscricoes(competition_id, status);
 CREATE INDEX IF NOT EXISTS idx_matches_finalized_at   ON matches(finalized_at DESC) WHERE finalized_at IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_matches_scheduled_at   ON matches(scheduled_at)      WHERE scheduled_at IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_bracket_ties_competition_stage ON competition_bracket_ties(competition_id, stage_order, tie_order);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_bracket_ties_first_match ON competition_bracket_ties(first_leg_match_id) WHERE first_leg_match_id IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_bracket_ties_second_match ON competition_bracket_ties(second_leg_match_id) WHERE second_leg_match_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_bracket_ties_home_club ON competition_bracket_ties(home_club_id);
+CREATE INDEX IF NOT EXISTS idx_bracket_ties_away_club ON competition_bracket_ties(away_club_id);
+CREATE INDEX IF NOT EXISTS idx_bracket_ties_home_source ON competition_bracket_ties(home_source_tie_id, competition_id);
+CREATE INDEX IF NOT EXISTS idx_bracket_ties_away_source ON competition_bracket_ties(away_source_tie_id, competition_id);
 CREATE INDEX IF NOT EXISTS idx_inscricoes_reviewed_at ON inscricoes(reviewed_at DESC) WHERE reviewed_at IS NOT NULL;
 
 
@@ -233,6 +277,7 @@ ALTER TABLE players            ENABLE ROW LEVEL SECURITY;
 ALTER TABLE club_competitions  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE player_competitions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE matches            ENABLE ROW LEVEL SECURITY;
+ALTER TABLE competition_bracket_ties ENABLE ROW LEVEL SECURITY;
 ALTER TABLE standings          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE scorers            ENABLE ROW LEVEL SECURITY;
 ALTER TABLE news               ENABLE ROW LEVEL SECURITY;
@@ -248,6 +293,7 @@ ALTER TABLE players            FORCE ROW LEVEL SECURITY;
 ALTER TABLE club_competitions  FORCE ROW LEVEL SECURITY;
 ALTER TABLE player_competitions FORCE ROW LEVEL SECURITY;
 ALTER TABLE matches            FORCE ROW LEVEL SECURITY;
+ALTER TABLE competition_bracket_ties FORCE ROW LEVEL SECURITY;
 ALTER TABLE standings          FORCE ROW LEVEL SECURITY;
 ALTER TABLE scorers            FORCE ROW LEVEL SECURITY;
 ALTER TABLE news               FORCE ROW LEVEL SECURITY;
@@ -264,6 +310,7 @@ DROP POLICY IF EXISTS "public read competitions"      ON competitions;
 DROP POLICY IF EXISTS "public read players"           ON players;
 DROP POLICY IF EXISTS "public read club_competitions" ON club_competitions;
 DROP POLICY IF EXISTS "public read matches"           ON matches;
+DROP POLICY IF EXISTS "public read competition bracket" ON competition_bracket_ties;
 DROP POLICY IF EXISTS "public read standings"         ON standings;
 DROP POLICY IF EXISTS "public read scorers"           ON scorers;
 DROP POLICY IF EXISTS "public read news"              ON news;
@@ -273,6 +320,7 @@ CREATE POLICY "public read competitions"      ON competitions       FOR SELECT U
 CREATE POLICY "public read players"           ON players            FOR SELECT USING (true);
 CREATE POLICY "public read club_competitions" ON club_competitions  FOR SELECT USING (true);
 CREATE POLICY "public read matches"           ON matches            FOR SELECT USING (true);
+CREATE POLICY "public read competition bracket" ON competition_bracket_ties FOR SELECT USING (true);
 CREATE POLICY "public read standings"         ON standings          FOR SELECT USING (true);
 CREATE POLICY "public read scorers"           ON scorers            FOR SELECT USING (true);
 CREATE POLICY "public read news"              ON news               FOR SELECT USING (published = true);
@@ -286,6 +334,7 @@ DROP POLICY IF EXISTS "staff manage players"             ON players;
 DROP POLICY IF EXISTS "staff manage club_competitions"   ON club_competitions;
 DROP POLICY IF EXISTS "staff manage player_competitions" ON player_competitions;
 DROP POLICY IF EXISTS "staff manage matches"             ON matches;
+DROP POLICY IF EXISTS "staff manage competition bracket" ON competition_bracket_ties;
 DROP POLICY IF EXISTS "staff manage standings"           ON standings;
 DROP POLICY IF EXISTS "staff manage scorers"             ON scorers;
 DROP POLICY IF EXISTS "staff manage news"                ON news;
@@ -312,6 +361,10 @@ CREATE POLICY "staff manage player_competitions" ON player_competitions FOR ALL 
   WITH CHECK ((SELECT role FROM profiles WHERE id = auth.uid()) = 'staff');
 
 CREATE POLICY "staff manage matches"           ON matches            FOR ALL TO authenticated
+  USING      ((SELECT role FROM profiles WHERE id = auth.uid()) = 'staff')
+  WITH CHECK ((SELECT role FROM profiles WHERE id = auth.uid()) = 'staff');
+
+CREATE POLICY "staff manage competition bracket" ON competition_bracket_ties FOR ALL TO authenticated
   USING      ((SELECT role FROM profiles WHERE id = auth.uid()) = 'staff')
   WITH CHECK ((SELECT role FROM profiles WHERE id = auth.uid()) = 'staff');
 
@@ -487,8 +540,13 @@ REVOKE EXECUTE ON FUNCTION public.delete_my_account() FROM anon;
 -- =============================================================================
 -- anon: só leitura nas tabelas públicas (mais INSERT/UPDATE/DELETE em
 -- push_subscriptions, que aceita inscrição sem login)
+-- Revoga privilégios default amplos do Supabase nesta tabela nova antes de
+-- aplicar o acesso mínimo, inclusive TRUNCATE/REFERENCES/TRIGGER.
+REVOKE ALL PRIVILEGES ON competition_bracket_ties FROM anon;
+REVOKE ALL PRIVILEGES ON competition_bracket_ties FROM authenticated;
+
 GRANT SELECT ON clubs, competitions, players, club_competitions,
-               player_competitions, matches, standings, scorers, news
+               player_competitions, matches, competition_bracket_ties, standings, scorers, news
 TO anon;
 
 GRANT INSERT, UPDATE, DELETE ON push_subscriptions TO anon;
@@ -498,7 +556,7 @@ GRANT INSERT, UPDATE, DELETE ON push_subscriptions TO anon;
 -- então dar INSERT/UPDATE/DELETE aqui pra todo mundo autenticado é seguro: só
 -- quem bate na policy de staff (ou é dono da própria linha) consegue de verdade)
 GRANT SELECT, INSERT, UPDATE, DELETE ON clubs, competitions, players,
-               club_competitions, player_competitions, matches, standings,
+               club_competitions, player_competitions, matches, competition_bracket_ties, standings,
                scorers, news
 TO authenticated;
 

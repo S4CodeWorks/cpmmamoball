@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "artifact": "Recuperar senha · Light",
+  "pages": {
+    "screens": "54:11862",
+    "components": "54:11863",
+    "states": "54:11864"
+  },
+  "scenes": [
+    {
+      "root": "54:11913",
+      "form": "54:11919",
+      "stage": 0,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:11924",
+      "email": "54:11927",
+      "action": "54:11928",
+      "secondary": "54:11929"
+    },
+    {
+      "root": "54:11990",
+      "form": "54:12007",
+      "stage": 0,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:12012",
+      "email": "54:12015",
+      "action": "54:12016",
+      "secondary": "54:12017"
+    },
+    {
+      "root": "54:12061",
+      "form": "54:12078",
+      "stage": 0,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:12083",
+      "email": "54:12086",
+      "action": "54:12087",
+      "secondary": "54:12088"
+    },
+    {
+      "root": "54:12132",
+      "form": "54:12149",
+      "stage": 0,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:12154",
+      "email": "54:12157",
+      "action": "54:12158",
+      "secondary": "54:12159"
+    },
+    {
+      "root": "54:12203",
+      "form": "54:12209",
+      "stage": 0,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:12214",
+      "email": "54:12217",
+      "action": "54:12218",
+      "secondary": "54:12219"
+    },
+    {
+      "root": "54:12263",
+      "form": "54:12269",
+      "stage": 0,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:12274",
+      "email": "54:12277",
+      "action": "54:12278",
+      "secondary": "54:12279"
+    },
+    {
+      "root": "54:12323",
+      "form": "54:12340",
+      "stage": 1,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:12345",
+      "otp": "54:12352",
+      "action": "54:12353",
+      "resend": "54:12354",
+      "secondary": "54:12357"
+    },
+    {
+      "root": "54:12406",
+      "form": "54:12423",
+      "stage": 1,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:12428",
+      "otp": "54:12435",
+      "action": "54:12436",
+      "resend": "54:12437",
+      "secondary": "54:12440"
+    },
+    {
+      "root": "54:12489",
+      "form": "54:12506",
+      "stage": 1,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:12511",
+      "otp": "54:12518",
+      "action": "54:12519",
+      "resend": "54:12520",
+      "secondary": "54:12523"
+    },
+    {
+      "root": "54:12572",
+      "form": "54:12578",
+      "stage": 1,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:12583",
+      "otp": "54:12590",
+      "action": "54:12591",
+      "resend": "54:12592",
+      "secondary": "54:12595"
+    },
+    {
+      "root": "54:12644",
+      "form": "54:12650",
+      "stage": 1,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:12655",
+      "otp": "54:12662",
+      "action": "54:12663",
+      "resend": "54:12664",
+      "secondary": "54:12667"
+    },
+    {
+      "root": "54:12891",
+      "form": "54:12897",
+      "stage": 1,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:12902",
+      "otp": "54:12909",
+      "action": "54:12910",
+      "resend": "54:12911",
+      "secondary": "54:12914"
+    },
+    {
+      "root": "54:12980",
+      "form": "54:12997",
+      "stage": 2,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:13002",
+      "password": "54:13009",
+      "action": "54:13013",
+      "secondary": "54:13014"
+    },
+    {
+      "root": "54:13070",
+      "form": "54:13087",
+      "stage": 2,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:13092",
+      "password": "54:13099",
+      "action": "54:13103",
+      "secondary": "54:13104"
+    },
+    {
+      "root": "54:13160",
+      "form": "54:13177",
+      "stage": 2,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:13182",
+      "password": "54:13189",
+      "action": "54:13193",
+      "secondary": "54:13194"
+    },
+    {
+      "root": "54:13250",
+      "form": "54:13256",
+      "stage": 2,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:13261",
+      "password": "54:13268",
+      "action": "54:13272",
+      "secondary": "54:13273"
+    },
+    {
+      "root": "54:13329",
+      "form": "54:13335",
+      "stage": 2,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:13340",
+      "password": "54:13347",
+      "action": "54:13351",
+      "secondary": "54:13352"
+    },
+    {
+      "root": "54:13408",
+      "form": "54:13414",
+      "stage": 2,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:13419",
+      "password": "54:13426",
+      "action": "54:13430",
+      "secondary": "54:13431"
+    }
+  ],
+  "states": [
+    {
+      "root": "54:13487",
+      "form": "54:13493",
+      "stage": 0,
+      "state": "EmailFocus",
+      "width": 390,
+      "tracker": "54:13498",
+      "email": "54:13501",
+      "action": "54:13502",
+      "secondary": "54:13503"
+    },
+    {
+      "root": "54:13565",
+      "form": "54:13571",
+      "stage": 0,
+      "state": "EmailError",
+      "width": 390,
+      "tracker": "54:13576",
+      "email": "54:13579",
+      "action": "54:13580",
+      "secondary": "54:13581",
+      "error": "54:13656"
+    },
+    {
+      "root": "54:13661",
+      "form": "54:13667",
+      "stage": 0,
+      "state": "Pending",
+      "width": 390,
+      "tracker": "54:13672",
+      "email": "54:13675",
+      "action": "54:13679",
+      "secondary": "54:13680"
+    },
+    {
+      "root": "54:13743",
+      "form": "54:13749",
+      "stage": 0,
+      "state": "Sending",
+      "width": 390,
+      "tracker": "54:13754",
+      "email": "54:13757",
+      "action": "54:13758",
+      "secondary": "54:13759"
+    },
+    {
+      "root": "54:13822",
+      "form": "54:13828",
+      "stage": 1,
+      "state": "CodeFocus",
+      "width": 390,
+      "tracker": "54:13833",
+      "otp": "54:13840",
+      "action": "54:13841",
+      "resend": "54:13842",
+      "secondary": "54:13845"
+    },
+    {
+      "root": "54:13912",
+      "form": "54:13918",
+      "stage": 1,
+      "state": "CodeFilled",
+      "width": 390,
+      "tracker": "54:13923",
+      "otp": "54:13930",
+      "action": "54:13931",
+      "resend": "54:13932",
+      "secondary": "54:13935"
+    },
+    {
+      "root": "54:14001",
+      "form": "54:14007",
+      "stage": 1,
+      "state": "CodeError",
+      "width": 390,
+      "tracker": "54:14012",
+      "otp": "54:14022",
+      "action": "54:14023",
+      "resend": "54:14024",
+      "secondary": "54:14027"
+    },
+    {
+      "root": "54:14095",
+      "form": "54:14101",
+      "stage": 1,
+      "state": "ResendAvailable",
+      "width": 390,
+      "tracker": "54:14106",
+      "otp": "54:14113",
+      "action": "54:14114",
+      "resend": "54:14115",
+      "secondary": "54:14118"
+    },
+    {
+      "root": "54:14184",
+      "form": "54:14190",
+      "stage": 1,
+      "state": "ResendExhausted",
+      "width": 390,
+      "tracker": "54:14195",
+      "otp": "54:14202",
+      "action": "54:14203",
+      "resend": "54:14204",
+      "secondary": "54:14207"
+    },
+    {
+      "root": "54:14273",
+      "form": "54:14279",
+      "stage": 1,
+      "state": "ResendError",
+      "width": 390,
+      "tracker": "54:14284",
+      "otp": "54:14291",
+      "action": "54:14292",
+      "resend": "54:14293",
+      "secondary": "54:14296",
+      "error": "54:14362"
+    },
+    {
+      "root": "54:14367",
+      "form": "54:14373",
+      "stage": 1,
+      "state": "Verifying",
+      "width": 390,
+      "tracker": "54:14378",
+      "otp": "54:14385",
+      "action": "54:14386",
+      "resend": "54:14387",
+      "secondary": "54:14390"
+    },
+    {
+      "root": "54:14457",
+      "form": "54:14463",
+      "stage": 2,
+      "state": "PasswordFocus",
+      "width": 390,
+      "tracker": "54:14468",
+      "password": "54:14475",
+      "action": "54:14479",
+      "secondary": "54:14480"
+    },
+    {
+      "root": "54:14547",
+      "form": "54:14553",
+      "stage": 2,
+      "state": "PasswordVisible",
+      "width": 390,
+      "tracker": "54:14558",
+      "password": "54:14565",
+      "action": "54:14569",
+      "secondary": "54:14570"
+    },
+    {
+      "root": "54:14636",
+      "form": "54:14642",
+      "stage": 2,
+      "state": "PasswordError",
+      "width": 390,
+      "tracker": "54:14647",
+      "password": "54:14657",
+      "action": "54:14661",
+      "secondary": "54:14662"
+    },
+    {
+      "root": "54:14720",
+      "form": "54:14726",
+      "stage": 2,
+      "state": "SaveError",
+      "width": 390,
+      "tracker": "54:14731",
+      "password": "54:14738",
+      "action": "54:14742",
+      "secondary": "54:14743",
+      "error": "54:14799"
+    },
+    {
+      "root": "54:14815",
+      "form": "54:14821",
+      "stage": 2,
+      "state": "Saving",
+      "width": 390,
+      "tracker": "54:14826",
+      "password": "54:14833",
+      "action": "54:14837",
+      "secondary": "54:14838"
+    }
+  ],
+  "components": {
+    "tracker": {
+      "set": "54:11865",
+      "variants": {
+        "0": "54:11866",
+        "1": "54:11876",
+        "2": "54:11886"
+      }
+    },
+    "reused": {
+      "nick": "54:8888",
+      "nickValue": "Value#54:20",
+      "code": "54:8908",
+      "codeProps": [
+        "Digit 1#54:21",
+        "Digit 2#54:22",
+        "Digit 3#54:23",
+        "Digit 4#54:24",
+        "Digit 5#54:25",
+        "Digit 6#54:26",
+        "Digit 7#54:27",
+        "Digit 8#54:28"
+      ],
+      "codeBox": "54:8891",
+      "nickBox": "54:8881"
+    },
+    "fields": {
+      "mailEmpty": {
+        "component": "54:8044",
+        "labelId": "54:8036",
+        "valueId": "54:8042",
+        "box": "54:8037"
+      },
+      "mailFocus": {
+        "component": "54:8054",
+        "labelId": "54:8046",
+        "valueId": "54:8052",
+        "box": "54:8047"
+      },
+      "mailFilled": {
+        "component": "54:8064",
+        "labelId": "54:8056",
+        "valueId": "54:8062",
+        "box": "54:8057"
+      },
+      "mailInvalid": {
+        "component": "54:8079",
+        "labelId": "54:8066",
+        "valueId": "54:8072",
+        "box": "54:8067"
+      },
+      "lockEmpty": {
+        "component": "54:8092",
+        "labelId": "54:8081",
+        "valueId": "54:8087",
+        "box": "54:8082"
+      },
+      "lockFocus": {
+        "component": "54:8105",
+        "labelId": "54:8094",
+        "valueId": "54:8100",
+        "box": "54:8095"
+      },
+      "lockFilled": {
+        "component": "54:8118",
+        "labelId": "54:8107",
+        "valueId": "54:8113",
+        "box": "54:8108"
+      },
+      "lockVisible": {
+        "component": "54:8130",
+        "labelId": "54:8120",
+        "valueId": "54:8126",
+        "box": "54:8121"
+      }
+    }
+  },
+  "prototype": {
+    "start": "54:13487",
+    "code": "54:13912",
+    "password": "54:14457",
+    "saving": "54:14815",
+    "loginReturn": "54:14894",
+    "scope": "Synthetic same-page fixtures only; no real input/OTP/timer/authentication/account enumeration/persistence/success. Password eye fixture toggles visible/masked state.",
+    "transition": {
+      "type": "DISSOLVE",
+      "durationSeconds": 0.12,
+      "easing": "EASE_OUT"
+    },
+    "returnFixtureForgotLink": "54:13487",
+    "visiblePasswordPrimary": "54:14815",
+    "nativeProof": "recovery-prototype-native.json"
+  },
+  "prototypeFixtures": [
+    {
+      "root": "54:14894",
+      "stage": "Login",
+      "state": "PrototypeReturn",
+      "width": 390
+    }
+  ],
+  "scope": "Native editable Figma only; no app/auth/database changes."
+}

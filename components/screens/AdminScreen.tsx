@@ -1,4 +1,5 @@
 'use client';
+import { AdminAnnouncements } from './AdminAnnouncements';
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
@@ -12,6 +13,7 @@ import { Skeleton, SkeletonList, SkeletonRow, SkeletonAdminTable } from '@/compo
 import { Select } from '@/components/ui/Select';
 import { compressImage } from '@/lib/compress';
 import { extractCrestColors } from '@/lib/extractColors';
+import { AdminBracketManager } from '@/components/screens/AdminBracketManager';
 import { uploadClubLogo, deleteClubLogo } from '@/lib/storage';
 import { sendBroadcast } from '@/lib/push';
 import { pathForPage } from '@/lib/routes';
@@ -58,7 +60,7 @@ function uniqueSlug(base: string, takenIds: string[]): string {
   return `${base}-${n}`;
 }
 
-type Section = 'dashboard' | 'inscricoes' | 'times' | 'partidas' | 'noticias' | 'competicoes';
+type Section = 'dashboard' | 'inscricoes' | 'times' | 'partidas' | 'noticias' | 'competicoes' | 'avisos';
 
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'dashboard',   label: 'Início',      icon: 'dashboard' },
@@ -66,6 +68,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'times',       label: 'Times',       icon: 'shield' },
   { id: 'partidas',    label: 'Partidas',    icon: 'ball' },
   { id: 'noticias',    label: 'Notícias',    icon: 'news' },
+  { id: 'avisos', label: 'Avisos', icon: 'bell' },
   { id: 'competicoes', label: 'Competições', icon: 'trophy' },
 ];
 
@@ -1888,7 +1891,7 @@ const STATUS_LABELS: Record<Competition['status'], string> = {
 };
 
 const BLANK_COMP: Omit<Competition, 'id'> & { id: string } = {
-  id: '', nome: '', edicao: CURRENT_SEASON_EDICAO, status: 'planejado', rodada_atual: 0, total_rodadas: DEFAULT_TOTAL_RODADAS,
+  id: '', nome: '', edicao: CURRENT_SEASON_EDICAO, status: 'planejado', rodada_atual: 0, total_rodadas: DEFAULT_TOTAL_RODADAS, classification_format: 'league',
 };
 
 function rodadaLabel(atual: number, total: number): string {
@@ -2057,6 +2060,7 @@ function AdminCompeticoes() {
   const [rodadasLivres, setRodadasLivres] = useState(false);
   // Sub-view: manage clubs for a competition
   const [managingComp, setManagingComp] = useState<Competition | null>(null);
+  const [managingBracket, setManagingBracket] = useState<Competition | null>(null);
 
   const compFormSnapshot = useRef('');
 
@@ -2074,8 +2078,9 @@ function AdminCompeticoes() {
 
   const startEdit = (c: Competition) => {
     setEditId(c.id);
-    setForm({ ...c });
-    compFormSnapshot.current = JSON.stringify({ ...c });
+    const next = { ...c, classification_format: c.classification_format ?? 'league' };
+    setForm(next);
+    compFormSnapshot.current = JSON.stringify(next);
     setRodadasLivres(c.total_rodadas === 0);
     setAdding(false); setManagingComp(null);
   };
@@ -2123,7 +2128,20 @@ function AdminCompeticoes() {
           <label className="field-label">Status</label>
           <Select title="Status" value={form.status}
             onChange={v => setForm(s => ({ ...s, status: v as Competition['status'] }))}
-            options={(Object.keys(STATUS_LABELS) as Competition['status'][]).map(k => ({ value: k, label: STATUS_LABELS[k] }))} />
+          options={(Object.keys(STATUS_LABELS) as Competition['status'][]).map(k => ({ value: k, label: STATUS_LABELS[k] }))} />
+        </div>
+      </div>
+      <div>
+        <label className="field-label">Formato da classificação</label>
+        <Select title="Formato da classificação" value={form.classification_format}
+          onChange={value => setForm(current => ({ ...current, classification_format: value as Competition['classification_format'] }))}
+          options={[
+            { value: 'league', label: 'Liga · tabela' },
+            { value: 'knockout_single', label: 'Mata-mata · jogo único' },
+            { value: 'knockout_two_leg', label: 'Mata-mata · ida e volta' },
+          ]} />
+        <div style={{ marginTop: 5, fontSize: 11.5, lineHeight: 1.45, color: 'var(--on-surface-variant)' }}>
+          O formato define a visualização pública. Em mata-mata, configure os vínculos da chave depois de salvar.
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: rodadasLivres ? '1fr' : '1fr 1fr', gap: 10 }}>
@@ -2143,6 +2161,9 @@ function AdminCompeticoes() {
   // Sub-view: manage clubs in this competition
   if (managingComp) {
     return <CompClubsManager comp={managingComp} onBack={() => setManagingComp(null)} />;
+  }
+  if (managingBracket) {
+    return <AdminBracketManager comp={managingBracket} onBack={() => setManagingBracket(null)} />;
   }
 
   return (
@@ -2181,6 +2202,9 @@ function AdminCompeticoes() {
                       {c.edicao} · <span className={c.status === 'em_andamento' ? 'chip' : ''} style={c.status === 'em_andamento' ? { background: 'var(--primary-container)', color: 'var(--on-primary-container)', fontSize: 11, padding: '2px 8px', borderRadius: 999, fontWeight: 700 } : {}}>{STATUS_LABELS[c.status]}</span>
                     </div>
                     <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 4 }}>{rodadaLabel(c.rodada_atual, c.total_rodadas)}</div>
+                    <div style={{ display: 'inline-flex', marginTop: 6, padding: '3px 8px', borderRadius: 999, background: 'var(--surface-c-high)', color: 'var(--on-surface-variant)', fontSize: 11, fontWeight: 600 }}>
+                      {c.classification_format === 'knockout_single' ? 'Mata-mata · jogo único' : c.classification_format === 'knockout_two_leg' ? 'Mata-mata · ida e volta' : 'Liga'}
+                    </div>
                   </div>
                   <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
                     <button onClick={() => startEdit(c)} className="icon-btn" style={{ width: 32, height: 32, color: 'var(--primary)' }} title="Editar">{I.edit}</button>
@@ -2196,6 +2220,14 @@ function AdminCompeticoes() {
                   <span style={{ width: 16, height: 16 }}>{I.shield}</span>
                   Gerenciar clubes inscritos
                 </button>
+                {c.classification_format !== 'league' && <button
+                  onClick={() => setManagingBracket(c)}
+                  className="btn btn-outlined"
+                  style={{ marginTop: 8, height: 38, fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 6, width: '100%', justifyContent: 'center' }}
+                >
+                  <span style={{ width: 16, height: 16 }}>{I.trophy}</span>
+                  Gerenciar chaveamento
+                </button>}
               </div>
             </div>
           ))}
@@ -2227,6 +2259,7 @@ export function AdminScreen({ onBack, onNav }: NavProps) {
       {section === 'times'       && <AdminTimes />}
       {section === 'partidas'    && <AdminPartidas />}
       {section === 'noticias'    && <AdminNoticias />}
+      {section === 'avisos' && <AdminAnnouncements />}
       {section === 'competicoes' && <AdminCompeticoes />}
     </>
   );

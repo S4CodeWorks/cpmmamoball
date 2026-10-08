@@ -1,0 +1,872 @@
+[
+  {
+    "source": "54:8007",
+    "id": "54:25407",
+    "name": "Icon / auth-mail · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25408",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25409",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8011",
+    "id": "54:25410",
+    "name": "Icon / auth-lock · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25411",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25412",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8015",
+    "id": "54:25413",
+    "name": "Icon / auth-eye · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25414",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25415",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8018",
+    "id": "54:25416",
+    "name": "Icon / auth-eyeOff · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25417",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8021",
+    "id": "54:25418",
+    "name": "Icon / auth-back · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25419",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8024",
+    "id": "54:25420",
+    "name": "Icon / auth-login · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25421",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8028",
+    "id": "54:25422",
+    "name": "Icon / auth-alert · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25423",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25424",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8031",
+    "id": "54:25425",
+    "name": "Icon / auth-shield · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25426",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8034",
+    "id": "54:25427",
+    "name": "Icon / auth-bell · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25428",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8911",
+    "id": "54:25429",
+    "name": "Icon / check · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25430",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "2:119",
+    "id": "54:25431",
+    "name": "Icon / library-2:119 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25432",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25433",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "2:888",
+    "id": "54:25434",
+    "name": "Icon / library-2:888 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25435",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "42:40229",
+    "id": "54:25436",
+    "name": "Icon / library-42:40229 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25437",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "2:885",
+    "id": "54:25438",
+    "name": "Icon / library-2:885 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25439",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25440",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "42:40216",
+    "id": "54:25441",
+    "name": "Icon / library-42:40216 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25442",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "21:24674",
+    "id": "54:25443",
+    "name": "Icon / library-21:24674 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25444",
+        "name": "Original SVG / ball",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "42:40213",
+    "id": "54:25447",
+    "name": "Icon / library-42:40213 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25448",
+        "name": "Vector",
+        "type": "VECTOR"
+      },
+      {
+        "id": "54:25449",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "42:40222",
+    "id": "54:25450",
+    "name": "Icon / library-42:40222 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25451",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "42:40209",
+    "id": "54:25452",
+    "name": "Icon / library-42:40209 · Dark",
+    "type": "COMPONENT",
+    "width": 20,
+    "height": 20,
+    "children": [
+      {
+        "id": "54:25453",
+        "name": "Vector",
+        "type": "VECTOR"
+      }
+    ]
+  },
+  {
+    "source": "54:8131",
+    "id": "54:25454",
+    "name": "Auth / E-mail · Dark",
+    "type": "COMPONENT_SET",
+    "width": 400,
+    "height": 484,
+    "children": [
+      {
+        "id": "54:25455",
+        "name": "Kind=mail, State=Empty",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25462",
+        "name": "Kind=mail, State=Focus",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25469",
+        "name": "Kind=mail, State=Filled",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25476",
+        "name": "Kind=mail, State=Invalid",
+        "type": "COMPONENT"
+      }
+    ]
+  },
+  {
+    "source": "54:8132",
+    "id": "54:25506",
+    "name": "Auth / Password · Dark",
+    "type": "COMPONENT_SET",
+    "width": 400,
+    "height": 456,
+    "children": [
+      {
+        "id": "54:25507",
+        "name": "Kind=lock, State=Empty",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25515",
+        "name": "Kind=lock, State=Focus",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25523",
+        "name": "Kind=lock, State=Filled",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25531",
+        "name": "Kind=lock, State=Visible",
+        "type": "COMPONENT"
+      }
+    ]
+  },
+  {
+    "source": "54:8139",
+    "id": "54:25569",
+    "name": "Auth / Secondary account · Dark",
+    "type": "COMPONENT",
+    "width": 400,
+    "height": 44,
+    "children": [
+      {
+        "id": "54:25570",
+        "name": "Icon compartment",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25572",
+        "name": "Criar conta",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "source": "54:8888",
+    "id": "54:25577",
+    "name": "Auth / Nick · Dark",
+    "type": "COMPONENT",
+    "width": 400,
+    "height": 84,
+    "children": [
+      {
+        "id": "54:25578",
+        "name": "Nick no jogo",
+        "type": "TEXT"
+      },
+      {
+        "id": "54:25579",
+        "name": "Nick input",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:8908",
+    "id": "54:25588",
+    "name": "Auth / OTP · Dark",
+    "type": "COMPONENT",
+    "width": 400,
+    "height": 84,
+    "children": [
+      {
+        "id": "54:25589",
+        "name": "Código de 8 dígitos",
+        "type": "TEXT"
+      },
+      {
+        "id": "54:25590",
+        "name": "Single OTP input · 8 visual slots",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:8960",
+    "id": "54:25607",
+    "name": "Auth / Registration steps · Dark",
+    "type": "COMPONENT_SET",
+    "width": 400,
+    "height": 264,
+    "children": [
+      {
+        "id": "54:25608",
+        "name": "Stage=Dados",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25618",
+        "name": "Stage=Código",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25628",
+        "name": "Stage=Senha",
+        "type": "COMPONENT"
+      }
+    ]
+  },
+  {
+    "source": "54:11865",
+    "id": "54:25668",
+    "name": "Auth / Recovery steps · Dark",
+    "type": "COMPONENT_SET",
+    "width": 400,
+    "height": 264,
+    "children": [
+      {
+        "id": "54:25669",
+        "name": "Stage=E-mail",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25679",
+        "name": "Stage=Código",
+        "type": "COMPONENT"
+      },
+      {
+        "id": "54:25689",
+        "name": "Stage=Senha",
+        "type": "COMPONENT"
+      }
+    ]
+  },
+  {
+    "source": "54:15474",
+    "id": "54:25729",
+    "name": "Library / Filter / default · Dark",
+    "type": "COMPONENT",
+    "width": 144,
+    "height": 44,
+    "children": [
+      {
+        "id": "54:25730",
+        "name": "Filter icon",
+        "type": "INSTANCE"
+      },
+      {
+        "id": "54:25731",
+        "name": "Todos",
+        "type": "TEXT"
+      },
+      {
+        "id": "54:25732",
+        "name": "5",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "source": "54:15480",
+    "id": "54:25735",
+    "name": "Library / Filter / selected · Dark",
+    "type": "COMPONENT",
+    "width": 144,
+    "height": 44,
+    "children": [
+      {
+        "id": "54:25736",
+        "name": "Filter icon",
+        "type": "INSTANCE"
+      },
+      {
+        "id": "54:25737",
+        "name": "Todos",
+        "type": "TEXT"
+      },
+      {
+        "id": "54:25738",
+        "name": "5",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "source": "54:15502",
+    "id": "54:25741",
+    "name": "Saved / Row / Competition · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25742",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25744",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25747",
+        "name": "Open item · 44px",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25749",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15516",
+    "id": "54:25759",
+    "name": "Saved / Row / Club · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25760",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25762",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25765",
+        "name": "Open item · 44px",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25767",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15531",
+    "id": "54:25774",
+    "name": "Saved / Row / News · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25775",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25777",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25780",
+        "name": "Open item · 44px",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25782",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15555",
+    "id": "54:25792",
+    "name": "Saved / Row / Match · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 108,
+    "children": [
+      {
+        "id": "54:25793",
+        "name": "Match metadata",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25796",
+        "name": "Match identity and actions",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15586",
+    "id": "54:25820",
+    "name": "Saved / Row / Competition / Compact · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25821",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25823",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25826",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15600",
+    "id": "54:25834",
+    "name": "Saved / Row / Club / Compact · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25835",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25837",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25840",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15613",
+    "id": "54:25845",
+    "name": "Saved / Row / News / Compact · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 76,
+    "children": [
+      {
+        "id": "54:25846",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25848",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25851",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15627",
+    "id": "54:25859",
+    "name": "Saved / Row / Match / Compact · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 132,
+    "children": [
+      {
+        "id": "54:25860",
+        "name": "Match metadata",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25865",
+        "name": "Match identity and actions",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15570",
+    "id": "54:25887",
+    "name": "Notices / Row / unread · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 116,
+    "children": [
+      {
+        "id": "54:25888",
+        "name": "Official notice icon",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25890",
+        "name": "Notice content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25897",
+        "name": "Open notice · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:15585",
+    "id": "54:25903",
+    "name": "Notices / Row / read · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 112,
+    "children": [
+      {
+        "id": "54:25904",
+        "name": "Official notice icon",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25906",
+        "name": "Notice content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25912",
+        "name": "Open notice · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:24950",
+    "id": "54:25920",
+    "name": "Library / filter / Focus · Dark",
+    "type": "COMPONENT",
+    "width": 144,
+    "height": 44,
+    "children": [
+      {
+        "id": "54:25921",
+        "name": "Filter icon",
+        "type": "INSTANCE"
+      },
+      {
+        "id": "54:25922",
+        "name": "Todos",
+        "type": "TEXT"
+      },
+      {
+        "id": "54:25923",
+        "name": "5",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "source": "54:24955",
+    "id": "54:25926",
+    "name": "Library / club / Focus · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 80,
+    "children": [
+      {
+        "id": "54:25927",
+        "name": "Identity",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25929",
+        "name": "Saved content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25932",
+        "name": "Remove saved · 44px",
+        "type": "FRAME"
+      }
+    ]
+  },
+  {
+    "source": "54:24965",
+    "id": "54:25937",
+    "name": "Library / notice / Focus · Dark",
+    "type": "COMPONENT",
+    "width": 560,
+    "height": 120,
+    "children": [
+      {
+        "id": "54:25938",
+        "name": "Official notice icon",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25940",
+        "name": "Notice content",
+        "type": "FRAME"
+      },
+      {
+        "id": "54:25947",
+        "name": "Open notice · 44px",
+        "type": "FRAME"
+      }
+    ]
+  }
+]

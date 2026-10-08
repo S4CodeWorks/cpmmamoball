@@ -1,485 +1,122 @@
 'use client';
-
 import { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
-import { useAuth } from '@/contexts/AuthContext';
 import { useData } from '@/contexts/DataContext';
-import { I } from '@/components/icons';
-import { TopAppBar } from '@/components/ui/TopAppBar';
-import { SheetItem } from '@/components/ui/Sheet';
-import { SectionHead, FormDots } from '@/components/ui/Primitives';
-import { MatchTile } from '@/components/ui/MatchTile';
+import { CpmAction, CpmIcon, CpmPopover, type CpmIconName } from '@/components/ui/CpmUi';
 import { Crest } from '@/components/ui/Crest';
-import { ColorMesh } from '@/components/ui/ColorMesh';
-import { CompetitionPills } from '@/components/ui/CompetitionPills';
-import { SkeletonHeroMatch, SkeletonMatchCard, SkeletonStandingsTable } from '@/components/ui/Skeleton';
-import { useIsDesktop } from '@/hooks/useIsDesktop';
-import { fetchMatches, fetchStandings, fetchMatchesForCompetitions, fetchApprovedInscricoesForCompetitions } from '@/lib/db';
+import { HomeNews } from '@/components/ui/HomeNews';
+import { fetchMatches, fetchStandings, fetchMatchesForCompetitions, fetchApprovedInscricoesForCompetitions, type Competition, type Inscricao } from '@/lib/db';
 import { buildHomeFeed, type FeaturedMoment } from '@/lib/homeFeed';
-import type { Match, Club, Standing } from '@/lib/types';
-import type { Inscricao } from '@/lib/db';
+import type { Match, Standing } from '@/lib/types';
+import { matchDate } from '@/lib/matchDate';
+export { matchDate } from '@/lib/matchDate';
 
-interface Props { onNav: (page: string, param?: string | number | null, extra?: string | null) => void; }
-
-function FeaturedMatch({ m, variant, onClick }: { m: Match; variant: 'scheduled' | 'result'; onClick: () => void }) {
-  const { clubById, competitions } = useData();
-  const { resolvedTheme } = useApp();
-  const home = clubById(m.home), away = clubById(m.away);
-  if (!home || !away) return null;
-
-  const comp = competitions.find(c => c.id === m.competition_id);
-  const isSched = variant === 'scheduled';
-  const isHomeWinner = !isSched && (m.scoreH ?? 0) > (m.scoreA ?? 0);
-  const isAwayWinner = !isSched && (m.scoreA ?? 0) > (m.scoreH ?? 0);
-
-  // Status semântico no canhoto
-  const statusLabel = m.is_wo ? 'W.O.' : isSched ? 'Agendado' : 'Final';
-  const statusColor = m.is_wo ? 'var(--error)' : isSched ? 'var(--warning)' : 'var(--primary)';
-
-  return (
-    <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left', display: 'block' }}>
-      <div
-        className="match-ticket"
-        style={{
-          position: 'relative',
-          borderRadius: 'var(--r-2xl)',
-          background: 'var(--surface-c)',
-          border: '1px solid color-mix(in srgb, var(--outline-variant) 70%, transparent)',
-          overflow: 'hidden',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(115px, 140px) 1fr',
-        }}
-      >
-        <ColorMesh colors={[home.color, home.color2, away.color]} opacity={resolvedTheme === 'dark' ? 0.28 : 0.44} />
-
-        {/* ── Canhoto do Ingresso (Left Stub) ── */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            padding: '20px 16px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: 16,
-            borderRight: '1.5px dashed color-mix(in srgb, var(--outline-variant) 80%, transparent)',
-            background: 'color-mix(in srgb, var(--surface) 35%, transparent)',
-          }}
-        >
-          {/* Topo do Canhoto: Competição + Rodada */}
-          <div>
-            <div style={{ fontSize: 13.5, fontWeight: 700, lineHeight: 1.2, color: 'var(--on-surface)', wordBreak: 'break-word' }}>
-              {comp?.nome ?? 'Liga'}
-            </div>
-            <div className="mono" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>
-              {m.stage}
-            </div>
-          </div>
-
-          {/* Base do Canhoto: Status + Data */}
-          <div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: statusColor, lineHeight: 1.1 }}>
-              {statusLabel}
-            </div>
-            <div className="mono tabular" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 4 }}>
-              {m.date}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Corpo do Ingresso (Ticket Body) ── */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            padding: '20px 22px 18px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: 18,
-          }}
-        >
-          {/* Confronto Central */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 14 }}>
-            {/* Time Mandante */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isAwayWinner ? 0.65 : 1 }}>
-              <Crest id={home.id} size={54} radius={16} />
-              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
-                <div style={{ fontSize: 14.5, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.1 }}>{home.tag}</div>
-                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 110 }}>{home.nome}</div>
-              </div>
-            </div>
-
-            {/* Hub Central de Placar com Linha do Tempo */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 4px' }}>
-              {isSched ? (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                  <span className="mono" style={{ fontSize: 32, fontWeight: 800, color: 'var(--on-surface-variant)', letterSpacing: '-0.04em', lineHeight: 1 }}>VS</span>
-                  <div style={{ width: 44, height: 2, background: 'color-mix(in srgb, var(--outline-variant) 70%, transparent)', margin: '4px 0 6px' }} />
-                  <span className="mono tabular" style={{ fontSize: 11, fontWeight: 600, color: 'var(--on-surface-variant)' }}>
-                    {m.date.split('·')[1]?.trim() ?? 'Em breve'}
-                  </span>
-                </div>
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span className="mono tabular" style={{ fontSize: 44, fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1, color: isHomeWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
-                      {m.scoreH}
-                    </span>
-                    <span className="mono" style={{ fontSize: 24, fontWeight: 300, color: 'var(--outline)', lineHeight: 1 }}>-</span>
-                    <span className="mono tabular" style={{ fontSize: 44, fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1, color: isAwayWinner ? 'var(--primary)' : 'var(--on-surface)' }}>
-                      {m.scoreA}
-                    </span>
-                  </div>
-                  <div style={{ width: 56, height: 2, background: 'color-mix(in srgb, var(--outline-variant) 70%, transparent)', margin: '6px 0' }} />
-                  <span className="mono tabular" style={{ fontSize: 11, color: 'var(--on-surface-variant)' }}>
-                    {m.date.split('·')[1]?.trim() ?? 'Final'}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Time Visitante */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, opacity: isHomeWinner ? 0.65 : 1 }}>
-              <Crest id={away.id} size={54} radius={16} />
-              <div style={{ textAlign: 'center', minWidth: 0, width: '100%' }}>
-                <div style={{ fontSize: 14.5, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.1 }}>{away.tag}</div>
-                <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 110 }}>{away.nome}</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Botão de Ação Estilizado */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                padding: '6px 18px',
-                borderRadius: 999,
-                border: '1px solid var(--outline-variant)',
-                background: 'color-mix(in srgb, var(--surface) 60%, transparent)',
-                fontSize: 12,
-                fontWeight: 600,
-                color: 'var(--on-surface)',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              {isSched ? 'Ver prévia do confronto' : 'Ver escalações e resumo'} ›
-            </span>
-          </div>
-        </div>
-      </div>
-    </button>
-  );
+interface Props { onNav:(page:string,param?:string|number|null,extra?:string|null)=>void; }
+interface FeedData { matches:Match[]; standings:Standing[]; inscricoes:Inscricao[]; }
+const EMPTY: FeedData = {matches:[],standings:[],inscricoes:[]};
+function ago(iso:string|null) {
+ if(!iso||Number.isNaN(Date.parse(iso)))return 'Inscrição aprovada';
+ const minutes=Math.max(0,Math.floor((Date.now()-Date.parse(iso))/60000));
+ return minutes<1?'Aprovado agora':minutes<60?'Aprovado há '+minutes+'min':minutes<1440?'Aprovado há '+Math.floor(minutes/60)+'h':'Aprovado há '+Math.floor(minutes/1440)+'d';
 }
-
-function FeaturedInscricao({ inscricao, competitionName, onClick }: { inscricao: Inscricao; competitionName: string; onClick: () => void }) {
-  return (
-    <button onClick={onClick} className="tap" style={{ width: '100%', textAlign: 'left' }}>
-      <div style={{ borderRadius: 'var(--r-2xl)', padding: '20px 22px', background: 'var(--surface-c)', display: 'flex', alignItems: 'center', gap: 16 }}>
-        <span style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--primary-container)', color: 'var(--on-primary-container)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
-          {I.check}
-        </span>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="eyebrow eyebrow-acc">Novo time · {competitionName}</div>
-          <div style={{ fontSize: 17, fontWeight: 700, marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {inscricao.tag} entrou na competição
-          </div>
-        </div>
-        <span style={{ width: 22, height: 22, flexShrink: 0, color: 'var(--on-surface-variant)' }}>{I.chevR}</span>
-      </div>
-    </button>
-  );
+function Team({id}:{id:string}) {
+ const {clubById}=useData();const club=clubById(id);
+ return <div className="cpm-feature-team"><div className="cpm-feature-emblem"><Crest id={id} size={50} height={56}/></div><span>{club?.nome||'Clube a definir'}</span></div>;
 }
-
-function FeaturedMoment({ moment, onNav }: { moment: FeaturedMoment; onNav: Props['onNav'] }) {
-  if (moment.kind === 'none') return null;
-  if (moment.kind === 'inscricao') {
-    return (
-      <FeaturedInscricao
-        inscricao={moment.inscricao}
-        competitionName={moment.competition.nome}
-        onClick={() => onNav('tournaments', moment.competition.id)}
-      />
-    );
-  }
-  return (
-    <FeaturedMatch
-      m={moment.match}
-      variant={moment.kind === 'result' ? 'result' : 'scheduled'}
-      onClick={() => onNav('match', moment.match.id)}
-    />
-  );
+function Feature({moment,onNav}:{moment:FeaturedMoment;onNav:Props['onNav']}) {
+ if(moment.kind==='none')return <FeatureState kind="empty" onRetry={()=>onNav('tournaments')}/>;
+ const approval=moment.kind==='inscricao',scheduled=moment.kind==='upcoming',match=!approval?moment.match:null;
+ const date=match?matchDate(match):null;
+ const draw=!approval&&!scheduled&&!match?.is_wo&&match?.scoreH!=null&&match?.scoreA!=null&&match.scoreH===match.scoreA;
+ const status=approval?'Novo time':scheduled?'Agendado':match?.is_wo?'W.O.':draw?'Empate':'Final';
+ return <article className={'cpm-feature '+(approval?'cpm-feature-approved':scheduled?'cpm-feature-upcoming':'cpm-feature-result')} aria-label={approval?'Time aprovado':scheduled?'Próximo jogo em destaque':'Resultado em destaque'}>
+  <div className="cpm-feature-context"><div className="cpm-feature-competition"><CpmIcon name="eventTrophy"/><h2>{moment.competition.nome}</h2></div><span className="cpm-feature-state"><CpmIcon name={scheduled?'calendar':'eventCheck'}/><span>{status}</span></span></div>
+  {approval?<div className="cpm-approved-team"><span className="cpm-team-initials">{moment.inscricao.tag}</span><div><h3>{moment.inscricao.nome}</h3><p><CpmIcon name="check"/>Inscrição aprovada</p></div></div>:<div className="cpm-feature-match">
+   <Team id={moment.match.home}/>
+   <div className="cpm-feature-score" aria-label={scheduled?'Agendamento':match?.is_wo?'W.O.':String(match?.scoreH??'—')+' a '+String(match?.scoreA??'—')}>
+    {scheduled?<><span className="cpm-schedule-day">{date?.day} {date?.month==='DATA'?'':date?.month}</span><span className="cpm-schedule-time">{date?.time}</span>{date?.weekday&&<span className="cpm-caption">{date.weekday}</span>}</>:match?.is_wo?<span>W.O.</span>:<span>{match?.scoreH??'—'} – {match?.scoreA??'—'}</span>}
+   </div><Team id={moment.match.away}/>
+  </div>}
+  <div className="cpm-feature-divider"/>
+  <div className="cpm-feature-footer"><div className="cpm-event-metadata">
+   {!approval&&!scheduled&&<div className="cpm-event-calendar"><span>{date?.day}</span><span>{date?.month}</span></div>}
+   <div className="cpm-event-detail">{approval?<span>{ago(moment.inscricao.reviewed_at)}</span>:<><span>{match?.rodada?'Rodada '+match.rodada:match?.stage||'Rodada a definir'}</span>{!scheduled&&<span className="cpm-caption cpm-event-time"><CpmIcon name="eventClock"/>{date?.time}</span>}</>}</div>
+  </div><CpmAction primary onClick={()=>approval?onNav('tournaments',moment.competition.id):onNav('match',moment.match.id)}>{approval?'Ver competição':scheduled?'Ver confronto':'Ver partida'}<CpmIcon name="eventArrow"/></CpmAction></div>
+ </article>;
 }
-
-function StandingsMini({ onNav, standings, title }: { onNav: Props['onNav']; standings: Standing[]; title?: string }) {
-  const { clubById } = useData();
-  const isDesktop = useIsDesktop();
-  // Desktop tem mais espaço vertical na coluna lateral — mostra mais linhas da tabela
-  const top5 = standings.slice(0, isDesktop ? 8 : 5);
-  return (
-    <div style={{ padding: '0 16px' }}>
-      <div className="card-filled">
-        {title && (
-          <div style={{ padding: '12px 16px 0', fontSize: 12.5, fontWeight: 600, color: 'var(--on-surface-variant)' }}>{title}</div>
-        )}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '28px 1fr 38px 40px',
-          padding: '12px 16px 8px',
-          fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--on-surface-variant)',
-          letterSpacing: '0.06em', textTransform: 'uppercase',
-        }}>
-          <span>#</span><span>Clube</span>
-          <span style={{ textAlign: 'right' }}>Forma</span>
-          <span style={{ textAlign: 'right' }}>Pts</span>
-        </div>
-        {top5.map((row, i) => {
-          const c = clubById(row.club);
-          if (!c) return null;
-          return (
-            <button key={row.club} onClick={() => onNav('club', row.club)} className="tap"
-              style={{
-                width: '100%', textAlign: 'left',
-                display: 'grid', gridTemplateColumns: '28px 1fr 56px 40px',
-                alignItems: 'center', gap: 10, padding: '12px 16px',
-                borderTop: '1px solid var(--outline-variant)',
-                background: i < 4 ? 'color-mix(in srgb, var(--primary) 5%, transparent)' : 'transparent',
-              }}
-            >
-              <span className="mono tabular" style={{ fontSize: 14, fontWeight: 700, color: i < 4 ? 'var(--primary)' : 'var(--on-surface-variant)' }}>{i + 1}</span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-                <Crest id={row.club} size={28} />
-                <span style={{ fontSize: 14, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nome}</span>
-              </div>
-              <div style={{ justifySelf: 'end' }}><FormDots form={row.form.slice(0, 3)} /></div>
-              <span className="mono tabular" style={{ textAlign: 'right', fontSize: 18, fontWeight: 700 }}>{row.P}</span>
-            </button>
-          );
-        })}
-        <button onClick={() => onNav('tournaments')} className="tap"
-          style={{
-            width: '100%', padding: '14px',
-            borderTop: '1px solid var(--outline-variant)',
-            fontSize: 14, fontWeight: 600, color: 'var(--primary)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
-          }}
-        >
-          Ver todos os clubes
-          <span style={{ width: 18, height: 18 }}>{I.chevR}</span>
-        </button>
-      </div>
-    </div>
-  );
+function FeatureState({kind,onRetry}:{kind:'loading'|'error'|'empty';onRetry:()=>void}) {
+ return <article className="cpm-feature cpm-feature-neutral" aria-busy={kind==='loading'} aria-live="polite">
+  <h2>{kind==='loading'?'Carregando destaque':kind==='error'?'Não foi possível carregar':'Ainda não há destaques'}</h2>
+  {kind==='loading'?<div className="cpm-feature-skeleton"><div className="cpm-skeleton cpm-skeleton-title"/><div className="cpm-skeleton-match"><span className="cpm-skeleton"/><span className="cpm-skeleton"/><span className="cpm-skeleton"/></div></div>:<><div className="cpm-feature-feedback"><CpmIcon name={kind==='error'?'support':'calendar'}/><p>{kind==='error'?'Tente novamente para acompanhar jogos e novidades.':'Os próximos jogos e as novidades da competição aparecerão aqui.'}</p></div><div className="cpm-feature-divider"/><CpmAction primary={kind==='error'} onClick={onRetry}>{kind==='error'?'Tentar novamente':'Ver competições'}</CpmAction></>}
+ </article>;
 }
-
-export function HomeScreen({ onNav }: Props) {
-  const { showToast, theme, setTheme, resolvedTheme, favComps, toggleFavComp } = useApp();
-  const { isLoggedIn, profile, user, signOut } = useAuth();
-  const { matches: ctxMatches, standings: ctxStandings, competitions, activeComp, news, clubById } = useData();
-  const isDesktop = useIsDesktop();
-
-  // Ids favoritados que ainda existem entre as competições carregadas (uma
-  // competição pode ter sido removida depois de favoritada).
-  const favIds = useMemo(
-    () => [...favComps].filter(id => competitions.some(c => c.id === id)),
-    [favComps, competitions],
-  );
-  const hasFavorites = favIds.length > 0;
-
-  // Seletor de competição — só usado no caminho SEM favoritos (comportamento
-  // de hoje, preservado como fallback pra visitantes/usuários sem favoritos).
-  const [selComp, setSelComp] = useState<string | null>(null);
-  const selectedId = selComp ?? activeComp?.id ?? competitions[0]?.id ?? null;
-  const isActiveComp = selectedId === activeComp?.id;
-  const [local, setLocal] = useState<{ matches: Match[]; standings: Standing[] } | null>(null);
-
-  useEffect(() => {
-    if (hasFavorites || !selectedId || isActiveComp) { setLocal(null); return; }
-    let cancelled = false;
-    Promise.all([fetchMatches(selectedId), fetchStandings(selectedId)])
-      .then(([matches, standings]) => { if (!cancelled) setLocal({ matches, standings }); })
-      .catch(() => { if (!cancelled) setLocal({ matches: [], standings: [] }); });
-    return () => { cancelled = true; };
-  }, [hasFavorites, selectedId, isActiveComp]);
-
-  // Caminho COM favoritos: busca em lote as partidas + inscrições aprovadas
-  // de todas as competições favoritadas, e a tabela da primeira favoritada.
-  const [favData, setFavData] = useState<{ matches: Match[]; inscricoes: Inscricao[]; standings: Standing[] } | null>(null);
-  useEffect(() => {
-    if (!hasFavorites) { setFavData(null); return; }
-    let cancelled = false;
-    Promise.all([
-      fetchMatchesForCompetitions(favIds),
-      fetchApprovedInscricoesForCompetitions(favIds),
-      fetchStandings(favIds[0]),
-    ]).then(([matches, inscricoes, standings]) => { if (!cancelled) setFavData({ matches, inscricoes, standings }); })
-      .catch(() => { if (!cancelled) setFavData({ matches: [], inscricoes: [], standings: [] }); });
-    return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasFavorites, favIds.join(',')]);
-
-  // Enquanto a busca em lote das favoritas ainda está em voo, favData é null —
-  // não é o mesmo que "sem dados", então não deve disparar o empty-state.
-  const favLoading = hasFavorites && favData === null;
-
-  const matches = hasFavorites ? (favData?.matches ?? []) : (isActiveComp ? ctxMatches : (local?.matches ?? []));
-  const standings = hasFavorites ? (favData?.standings ?? []) : (isActiveComp ? ctxStandings : (local?.standings ?? []));
-
-  const feed = useMemo(() => buildHomeFeed({
-    competitions,
-    matches,
-    approvedInscricoes: hasFavorites ? (favData?.inscricoes ?? []) : [],
-  }), [competitions, matches, hasFavorites, favData]);
-
-  const greeting = isLoggedIn
-    ? `Olá, ${profile?.nick || user?.email?.split('@')[0] || 'jogador'}`
-    : 'Bem-vindo';
-  // Desktop tem mais espaço na coluna esquerda — mostra mais partidas
-  const listSize = isDesktop ? 5 : 3;
-  const upcoming = feed.upcoming.slice(0, listSize);
-  const recent = feed.recent.slice(0, listSize);
-  const featuredNews = news[0];
-  const extraNews = news.slice(1, 3);
-
-  // Só mostra a tag de competição em cada card quando há 2+ favoritadas
-  // mescladas na mesma lista — com 1 só (ou sem favoritos) é redundante.
-  const showCompTag = hasFavorites && favIds.length > 1;
-  const compName = (id: string) => competitions.find(c => c.id === id)?.nome;
-  const standingsTitle = hasFavorites ? competitions.find(c => c.id === favIds[0])?.nome : undefined;
-
-  const menu = (close: () => void) => (
-    <>
-      <SheetItem icon="auto" label="Tema do sistema"
-        meta={theme === 'auto' ? 'Atual · ' + (resolvedTheme === 'dark' ? 'Escuro' : 'Claro') : 'Seguir o aparelho'}
-        on={theme === 'auto'} onClick={() => { setTheme('auto'); close(); }} />
-      <SheetItem icon="sun" label="Claro" on={theme === 'light'} onClick={() => { setTheme('light'); close(); }} />
-      <SheetItem icon="moon" label="Escuro" on={theme === 'dark'} onClick={() => { setTheme('dark'); close(); }} />
-      <div className="div-h" style={{ margin: '8px 16px' }} />
-      <SheetItem icon="cog" label="Configurações" onClick={() => { close(); onNav('settings'); }} />
-      {isLoggedIn
-        ? <SheetItem icon="signOut" label="Sair da conta" danger onClick={() => { close(); signOut(); showToast('Até logo!'); }} />
-        : <SheetItem icon="logIn" label="Entrar na conta" onClick={() => { close(); onNav('login'); }} />
-      }
-    </>
-  );
-
-  if (!featuredNews && feed.featured.kind === 'none' && !favLoading) {
-    return (
-      <>
-        <TopAppBar large title={greeting} subhead="Federação CPM · 2026" menu={menu} />
-        <div className="empty" style={{ marginTop: 48 }}>
-          <div className="empty-icon">{I.trophy}</div>
-          <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>Em breve</h3>
-          <p style={{ margin: 0, fontSize: 14 }}>A temporada ainda não começou. Fique de olho nas novidades!</p>
-        </div>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <TopAppBar large title={greeting} subhead="Federação CPM · 2026" menu={menu} />
-
-      {/* Pills de competição — só no caminho sem favoritos (com favoritos, as
-          listas já mesclam todas as competições relevantes de uma vez) */}
-      {!hasFavorites && competitions.length > 1 && (
-        <CompetitionPills competitions={competitions} selectedId={selectedId} onSelect={setSelComp}
-          favIds={favComps} onToggleFav={toggleFavComp} />
-      )}
-      {/* Momento em destaque — full width */}
-      <section style={{ padding: '8px 16px 0' }}>
-        {favLoading ? <SkeletonHeroMatch /> : <FeaturedMoment moment={feed.featured} onNav={onNav} />}
-      </section>
-
-      {/* Desktop split: left = matches, right = standings */}
-      <div className="d-split">
-        {/* Left column: próximas + resultados */}
-        <div>
-          <SectionHead title="Próximas partidas" more="Ver tudo" onMore={() => onNav('jogos')} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
-            {favLoading ? (
-              <><SkeletonMatchCard /><SkeletonMatchCard /></>
-            ) : (
-              upcoming.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} compTag={showCompTag ? compName(m.competition_id) : undefined} />)
-            )}
-          </div>
-
-          <SectionHead title="Últimos resultados" more="Histórico" onMore={() => onNav('jogos', null, 'resultados')} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
-            {favLoading ? (
-              <><SkeletonMatchCard /><SkeletonMatchCard /></>
-            ) : (
-              recent.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} compTag={showCompTag ? compName(m.competition_id) : undefined} />)
-            )}
-          </div>
-        </div>
-
-        {/* Right column: classificação */}
-        <div>
-          <SectionHead title="Classificação" more="Tabela completa" onMore={() => onNav('tournaments')} />
-          {favLoading ? (
-            <div style={{ padding: '0 16px' }}><SkeletonStandingsTable rows={5} /></div>
-          ) : (
-            <StandingsMini onNav={onNav} standings={standings} title={standingsTitle} />
-          )}
-        </div>
-      </div>
-
-      {/* News — só renderiza se houver notícias */}
-      {featuredNews && (
-        <>
-          <SectionHead title="Notícias" more="Ver todas" onMore={() => onNav('news')} />
-          <div style={{ padding: '0 16px' }}>
-            <button onClick={() => onNav('article', featuredNews.id)} className="tap" style={{ width: '100%', textAlign: 'left', marginBottom: 14 }}>
-              <div className="card-filled">
-                <div className="ph-img" data-label={featuredNews.img} style={{ aspectRatio: '16/9' }} />
-                <div style={{ padding: '16px 18px 18px' }}>
-                  <div className="eyebrow eyebrow-acc">{featuredNews.tag} · {featuredNews.date}</div>
-                  <h3 style={{ margin: '6px 0 0', fontSize: 17, lineHeight: 1.3, fontWeight: 700, letterSpacing: '-0.005em' }}>{featuredNews.title}</h3>
-                </div>
-              </div>
-            </button>
-
-            {extraNews.length > 0 && (
-              <div className="d-news-grid">
-                {extraNews.map(n => (
-                  <button key={n.id} onClick={() => onNav('article', n.id)} className="tap" style={{ width: '100%', textAlign: 'left' }}>
-                    <div className="card-filled" style={{ height: '100%' }}>
-                      <div className="ph-img" data-label="" style={{ aspectRatio: '16/9' }} />
-                      <div style={{ padding: '12px 14px 14px' }}>
-                        <div className="eyebrow eyebrow-acc">{n.tag} · {n.date}</div>
-                        <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.3, marginTop: 5 }}>{n.title}</div>
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </>
-      )}
-
-      {/* CTA */}
-      <section style={{ padding: '28px 16px 0' }}>
-        <button onClick={() => onNav('subscription')} className="tap" style={{ width: '100%', textAlign: 'left' }}>
-          <div style={{
-            padding: '22px', borderRadius: 'var(--r-xl)',
-            background: 'var(--primary-container)', color: 'var(--on-primary-container)',
-            display: 'flex', alignItems: 'center', gap: 16,
-          }}>
-            <span style={{ width: 44, height: 44, borderRadius: 14, background: 'var(--primary)', color: 'var(--on-primary)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
-              {I.ticket}
-            </span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.8 }}>Inscrições abertas</div>
-              <div style={{ fontSize: 17, fontWeight: 700, marginTop: 2 }}>Inscreva seu time</div>
-            </div>
-            <span style={{ width: 22, height: 22 }}>{I.chevR}</span>
-          </div>
-        </button>
-      </section>
-    </>
-  );
+function ListFeedback({label,icon}:{label:string;icon:CpmIconName}) {
+ return <div className="cpm-list-feedback"><span className="cpm-feedback-symbol"><CpmIcon name={icon}/></span><p>{label}</p></div>;
+}
+function MatchList({title,more,matches,result,onNav,competitionId,showCompTag,loading,error}:{title:string;more:string;matches:Match[];result:boolean;onNav:Props['onNav'];competitionId:string|null;showCompTag:boolean;loading:boolean;error:boolean}) {
+ const {clubById,competitions}=useData();
+ return <section className={'cpm-match-section '+(result?'cpm-results':'cpm-upcoming')} aria-label={title}>
+  <div className="cpm-section-heading"><h2>{title}</h2><CpmAction onClick={()=>onNav('jogos',competitionId,result?'resultados':'proximos')}>{more}</CpmAction></div>
+  <div className="cpm-match-list" aria-busy={loading}>{loading?[0,1,2].map(i=><div key={i} className="cpm-list-skeleton"><div className="cpm-skeleton cpm-skeleton-wide"/></div>):matches.length?matches.slice(0,3).map(match=>{
+   const date=matchDate(match),home=clubById(match.home),away=clubById(match.away);
+   return <motion.button type="button" key={match.id} className="cpm-match-row" onClick={()=>onNav('match',match.id)} whileTap={{scale:0.995}} aria-label={(home?.nome||'Mandante')+' contra '+(away?.nome||'Visitante')+', '+(result?(match.scoreH??'—')+' a '+(match.scoreA??'—'):date.short+', '+date.time)+(match.is_wo?', W.O.':'')}>
+    <span className="cpm-match-identity"><span className="cpm-match-club"><Crest id={match.home} size={16} height={18}/><span>{home?.nome||'Clube a definir'}</span></span><span className="cpm-match-club"><Crest id={match.away} size={16} height={18}/><span>{away?.nome||'Clube a definir'}</span></span><span className="cpm-caption">{date.short}{showCompTag?' · '+(competitions.find(c=>c.id===match.competition_id)?.nome||'Competição'):''}</span></span>
+    <span className={'cpm-match-value '+(result?'is-result':'is-time')}><span>{result?(match.scoreH??'—')+' – '+(match.scoreA??'—'):date.time}</span><span className="cpm-caption">{result?match.is_wo?'W.O.':'FINAL':'HORÁRIO'}</span></span>
+   </motion.button>;
+  }):<ListFeedback icon={error?'support':result?'check':'calendar'} label={error?result?'Resultados indisponíveis.':'Jogos indisponíveis.':result?'Sem resultados publicados':'Sem jogos agendados'}/>}</div>
+ </section>;
+}
+function StandingsMini({standings,competition,onNav,loading,error}:{standings:Standing[];competition:Competition|undefined;onNav:Props['onNav'];loading:boolean;error:boolean}) {
+ const {clubById}=useData();
+ return <section className="cpm-standings" aria-label="Classificação" aria-busy={loading}>
+  <div className="cpm-table-context"><h2>Classificação</h2><p className="cpm-caption">{competition?competition.nome+' · '+competition.edicao:'Competição a definir'}</p></div>
+  <div className="cpm-table-labels" aria-hidden="true"><span>#</span><span>Clube</span><span>Pts</span></div>
+  <div className="cpm-table-rows">{loading?[0,1,2,3].map(i=><div className="cpm-list-skeleton" key={i}><div className="cpm-skeleton cpm-skeleton-wide"/></div>):standings.length?standings.slice(0,4).map((row,i)=><button type="button" key={row.club} className={'cpm-table-row'+(i===0?' is-leader':'')} onClick={()=>onNav('club',row.club)} aria-label={(i+1)+'º, '+(clubById(row.club)?.nome||'Clube')+', '+row.P+' pontos'}><span className="cpm-table-position">{i+1}</span><span className="cpm-table-club"><Crest id={row.club} size={18} height={20}/><span>{clubById(row.club)?.nome||'Clube'}</span></span><strong>{row.P}</strong></button>):<ListFeedback icon={error?'support':'trophy'} label={error?'Classificação indisponível.':'Classificação ainda não publicada.'}/>}</div>
+  <div className="cpm-table-divider"/><CpmAction onClick={()=>onNav('tournaments',competition?.id??null)}>Tabela completa</CpmAction>
+ </section>;
+}
+export function HomeScreen({onNav}:Props) {
+ const {favComps,toggleFavComp}=useApp();
+ const data=useData();
+ const {competitions,activeComp}=data;
+ const favIds=useMemo(()=>[...favComps].filter(id=>competitions.some(c=>c.id===id)),[favComps,competitions]);
+ const hasFavorites=favIds.length>0;
+ const [selection,setSelection]=useState<string|null>(null),[retry,setRetry]=useState(0);
+ const selectedId=competitions.some(c=>c.id===selection)?selection:activeComp?.id??competitions[0]?.id??null;
+ const isActive=selectedId===activeComp?.id;
+ const key=(hasFavorites?'favorites:'+favIds.join(','):'competition:'+selectedId)+':'+retry;
+ const [resource,setResource]=useState<{key:string;data:FeedData;error:string|null}|null>(null);
+ const needsFetch=hasFavorites||(!isActive&&selectedId!==null);
+ useEffect(()=>{
+  if(!needsFetch)return;
+  let cancelled=false;
+  const timer=setTimeout(()=>{if(!cancelled){cancelled=true;setResource({key,data:EMPTY,error:'Não foi possível carregar.'});}},12000);
+  const query=hasFavorites?Promise.all([fetchMatchesForCompetitions(favIds),fetchStandings(favIds[0]),fetchApprovedInscricoesForCompetitions(favIds)]):Promise.all([fetchMatches(selectedId!),fetchStandings(selectedId!),Promise.resolve([] as Inscricao[])]);
+  query.then(([matches,standings,inscricoes])=>{if(!cancelled)setResource({key,data:{matches,standings,inscricoes},error:null});}).catch(()=>{if(!cancelled)setResource({key,data:EMPTY,error:'Não foi possível carregar.'});}).finally(()=>clearTimeout(timer));
+  return()=>{cancelled=true;clearTimeout(timer);};
+  // key captures the actual ordered competition IDs and retry attempt.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[key,needsFetch]);
+ const current=resource?.key===key?resource:null;
+ const loading=data.initialLoad||(needsFetch&&!current);
+ const error=data.error||(needsFetch?current?.error:null);
+ const feedData=needsFetch?current?.data??EMPTY:{matches:data.matches,standings:data.standings,inscricoes:[]};
+ const feed=useMemo(()=>buildHomeFeed({competitions,matches:feedData.matches,approvedInscricoes:hasFavorites?feedData.inscricoes:[]}),[competitions,feedData.matches,feedData.inscricoes,hasFavorites]);
+ const competition=competitions.find(c=>c.id===(hasFavorites?favIds[0]:selectedId));
+ const retryLoad=()=>{if(needsFetch)setRetry(value=>value+1);if(data.error||!needsFetch)data.refresh();};
+ const featureKey=loading?'loading':error?'error':feed.featured.kind==='none'?'empty':feed.featured.kind==='inscricao'?'approval:'+feed.featured.inscricao.id:feed.featured.kind+':'+feed.featured.match.id;
+ return <div className="cpm-home">
+  <h1 className="cpm-sr-only">Jogos, resultados e classificação CPM MamoBall</h1>
+  <div className="cpm-home-context">{hasFavorites?<div className="cpm-saved-context"><CpmIcon name="bookmark"/><span>Competições salvas</span><span className="cpm-saved-count">{favIds.length}</span></div>:<div className="cpm-competition-controls">
+   <CpmPopover label="Selecionar competição" className="cpm-competition-selector" disabled={!competitions.length} role="listbox" trigger={<><CpmIcon name="trophy"/><span>{competition?competition.nome+' '+competition.edicao:loading?'Carregando competições':'Sem competições'}</span><CpmIcon name="chevron"/></>}>{close=><>{competitions.map(c=><button type="button" role="option" aria-selected={c.id===selectedId} key={c.id} className={'cpm-competition-option'+(c.id===selectedId?' is-selected':'')} onClick={()=>{setSelection(c.id);close();}}><span className="cpm-menu-icon"><CpmIcon name="trophy"/></span><span>{c.nome} {c.edicao}</span>{c.id===selectedId&&<CpmIcon name="check"/>}</button>)}</>}</CpmPopover>
+   <motion.button type="button" className="cpm-favorite" disabled={!selectedId} aria-label="Salvar competição" aria-pressed={selectedId?favComps.has(selectedId):false} onClick={()=>{if(selectedId)toggleFavComp(selectedId);}} whileTap={{scale:0.9}}><CpmIcon name="star"/></motion.button>
+  </div>}</div>
+  <div className="cpm-home-top"><AnimatePresence mode="wait" initial={false}><motion.div key={featureKey} className="cpm-feature-slot" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.12}}>{loading?<FeatureState kind="loading" onRetry={retryLoad}/>:error?<FeatureState kind="error" onRetry={retryLoad}/>:<Feature moment={feed.featured} onNav={onNav}/>}</motion.div></AnimatePresence>
+   <StandingsMini standings={feedData.standings} competition={competition} onNav={onNav} loading={loading} error={Boolean(error)}/>
+  </div>
+  <div className="cpm-home-lists"><MatchList title="Próximos jogos" more="Ver jogos" matches={feed.upcoming} result={false} onNav={onNav} competitionId={hasFavorites?null:selectedId} showCompTag={favIds.length>1} loading={loading} error={Boolean(error)}/><MatchList title="Resultados recentes" more="Ver histórico" matches={feed.recent} result onNav={onNav} competitionId={hasFavorites?null:selectedId} showCompTag={favIds.length>1} loading={loading} error={Boolean(error)}/></div>
+  <div className="cpm-mobile-standings"><StandingsMini standings={feedData.standings} competition={competition} onNav={onNav} loading={loading} error={Boolean(error)}/></div>
+  <HomeNews news={data.news} onNav={onNav}/>
+ </div>;
 }

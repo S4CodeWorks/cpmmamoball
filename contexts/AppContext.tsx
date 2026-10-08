@@ -37,6 +37,10 @@ interface AppContextValue {
   toggleFavComp: (id: string) => void;
   bookmarks: Set<string>;
   toggleBookmark: (id: string) => void;
+  savedLoading: boolean;
+  savedError: string | null;
+  reloadSaved: () => void;
+  setSavedKey: (key: string, saved: boolean) => Promise<void>;
   toast: ToastState | null;
   showToast: (msg: string, opts?: ShowToastOptions) => void;
   showError: (e: unknown) => void;
@@ -74,22 +78,22 @@ function readConsent(): CookieConsent {
 // Lê um array JSON do localStorage com segurança (SSR, JSON inválido, etc.)
 function readLS(key: string): string[] {
   if (typeof window === 'undefined') return [];
-  try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
+  try { const value:unknown=JSON.parse(localStorage.getItem(key) || '[]');return Array.isArray(value)?value.filter((item):item is string=>typeof item==='string'):[]; } catch { return []; }
 }
 function writeLS(key: string, values: Set<string>) {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(key, JSON.stringify([...values]));
+  try { localStorage.setItem(key, JSON.stringify([...values])); } catch { /* Keep the current visitor session usable. */ }
 }
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [cookieConsent, setCookieConsentState] = useState<CookieConsent>('unset');
-  useEffect(() => { setCookieConsentState(readConsent()); }, []);
+  useEffect(() => { queueMicrotask(()=>setCookieConsentState(readConsent())); }, []);
 
   const [theme, setThemeState] = useState<Theme>('auto');
   // Só hidrata o tema salvo se o usuário já aceitou o armazenamento local —
   // sem isso, o servidor sempre renderiza 'auto' e é isso que fica valendo
   // até haver consentimento (evita também mismatch de SSR).
-  useEffect(() => { if (readConsent() === 'accepted') setThemeState(readTheme()); }, []);
+  useEffect(() => { queueMicrotask(()=>{if (readConsent() === 'accepted') setThemeState(readTheme());}); }, []);
   const setTheme = (t: Theme) => {
     setThemeState(t);
     if (typeof window !== 'undefined' && cookieConsent === 'accepted') localStorage.setItem(LS_THEME, t);
@@ -110,10 +114,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       localStorage.removeItem(LS_COMPS);
       setThemeState('auto');
       if (!userIdRef.current) {
-        setFavClubs(new Set());
-        setNotifs(new Set());
-        setBookmarks(new Set());
-        setFavComps(new Set());
+        applyKeys(new Set());
       }
     }
   };
@@ -121,7 +122,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [systemDark, setSystemDark] = useState(false);
 
   useEffect(() => {
-    setSystemDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    queueMicrotask(()=>setSystemDark(window.matchMedia('(prefers-color-scheme: dark)').matches));
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const fn = (e: MediaQueryListEvent) => setSystemDark(e.matches);
     mq.addEventListener('change', fn);
@@ -138,87 +139,68 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   // Usuário logado → grava no Supabase; visitante → grava no localStorage
   const userIdRef = useRef<string | null>(null);
 
-  // Hidrata favoritos/salvos: do Supabase se logado, do localStorage se visitante.
-  // Roda no mount e sempre que o estado de login mudar.
-  useEffect(() => {
-    let cancelled = false;
-
-    const hydrate = async (userId: string | null) => {
-      userIdRef.current = userId;
-      if (userId) {
-        try {
-          const keys = await fetchBookmarkKeys(userId);
-          if (cancelled) return;
-          const clubs  = new Set(keys.filter(k => k.startsWith(CLUB_PREFIX)).map(k => k.slice(CLUB_PREFIX.length)));
-          const notifKeys = new Set(keys.filter(k => k.startsWith(NOTIF_PREFIX)).map(k => k.slice(NOTIF_PREFIX.length)));
-          const comps = new Set(keys.filter(k => k.startsWith(COMP_PREFIX)).map(k => k.slice(COMP_PREFIX.length)));
-          const others = new Set(keys.filter(k => !k.startsWith(CLUB_PREFIX) && !k.startsWith(NOTIF_PREFIX) && !k.startsWith(COMP_PREFIX)));
-          setFavClubs(clubs);
-          setNotifs(notifKeys);
-          setFavComps(comps);
-          setBookmarks(others);
-        } catch { /* fica com o que já tinha em memória se a busca falhar */ }
-      } else if (readConsent() === 'accepted') {
-        setFavClubs(new Set(readLS(LS_CLUBS)));
-        setNotifs(new Set(readLS(LS_NOTIFS)));
-        setFavComps(new Set(readLS(LS_COMPS)));
-        setBookmarks(new Set(readLS(LS_BOOKMARKS)));
-      }
-    };
-
-    supabase.auth.getSession().then(({ data: { session } }) => hydrate(session?.user?.id ?? null));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      hydrate(session?.user?.id ?? null);
-    });
-    return () => { cancelled = true; subscription.unsubscribe(); };
-  }, []);
-
-  // Persiste uma chave (adicionar/remover) no Supabase (logado) sem bloquear a UI
-  const persist = (key: string, add: boolean) => {
-    const userId = userIdRef.current;
-    if (!userId) return;
-    (add ? addBookmarkKey(userId, key) : removeBookmarkKey(userId, key)).catch(() => {});
+  const [savedLoading, setSavedLoading] = useState(true);
+  const [savedError, setSavedError] = useState<string | null>(null);
+  const [savedVersion, setSavedVersion] = useState(0);
+  const keysRef = useRef(new Set<string>());
+  const queues = useRef(new Map<string, Promise<void>>());
+  const applyKeys = (keys: Set<string>) => {
+    keysRef.current = keys;
+    setFavClubs(new Set([...keys].filter(k=>k.startsWith(CLUB_PREFIX)).map(k=>k.slice(CLUB_PREFIX.length))));
+    setFavComps(new Set([...keys].filter(k=>k.startsWith(COMP_PREFIX)).map(k=>k.slice(COMP_PREFIX.length))));
+    setNotifs(new Set([...keys].filter(k=>k.startsWith(NOTIF_PREFIX)).map(k=>k.slice(NOTIF_PREFIX.length))));
+    setBookmarks(new Set([...keys].filter(k=>![CLUB_PREFIX,COMP_PREFIX,NOTIF_PREFIX].some(p=>k.startsWith(p)))));
   };
-
-  const toggleFav = (id: string) =>
-    setFavClubs(s => {
-      const n = new Set(s);
-      const add = !n.has(id);
-      add ? n.add(id) : n.delete(id);
-      persist(CLUB_PREFIX + id, add);
-      if (!userIdRef.current && cookieConsent === 'accepted') writeLS(LS_CLUBS, n);
-      return n;
+  useEffect(() => {
+    let active = true, generation = 0, hydratedUser: string | null | undefined;
+    const hydrate = async (uid: string | null) => {
+      hydratedUser=uid;
+      const epoch = ++generation;
+      if (userIdRef.current !== uid) applyKeys(new Set());
+      userIdRef.current = uid; setSavedLoading(true); setSavedError(null);
+      try {
+        const keys = uid ? await fetchBookmarkKeys(uid) : readConsent()==='accepted' ? [
+          ...readLS(LS_CLUBS).map(id=>CLUB_PREFIX+id),...readLS(LS_COMPS).map(id=>COMP_PREFIX+id),
+          ...readLS(LS_NOTIFS).map(id=>NOTIF_PREFIX+id),...readLS(LS_BOOKMARKS),
+        ] : [...keysRef.current];
+        if(active && epoch===generation) applyKeys(new Set(keys));
+      } catch { if(active && epoch===generation) setSavedError('Não foi possível carregar seus salvos'); }
+      finally { if(active && epoch===generation) setSavedLoading(false); }
+    };
+    let receivedEvent = false;
+    supabase.auth.getSession().then(({data:{session}})=>{if(!receivedEvent)void hydrate(session?.user.id??null);});
+    const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>{
+      receivedEvent=true;const uid=session?.user.id??null;if(uid!==hydratedUser)void hydrate(uid);
     });
-
-  const toggleNotif = (id: string) =>
-    setNotifs(s => {
-      const n = new Set(s);
-      const add = !n.has(id);
-      add ? n.add(id) : n.delete(id);
-      persist(NOTIF_PREFIX + id, add);
-      if (!userIdRef.current && cookieConsent === 'accepted') writeLS(LS_NOTIFS, n);
-      return n;
-    });
-
-  const toggleFavComp = (id: string) =>
-    setFavComps(s => {
-      const n = new Set(s);
-      const add = !n.has(id);
-      add ? n.add(id) : n.delete(id);
-      persist(COMP_PREFIX + id, add);
-      if (!userIdRef.current && cookieConsent === 'accepted') writeLS(LS_COMPS, n);
-      return n;
-    });
-
-  const toggleBookmark = (key: string) =>
-    setBookmarks(s => {
-      const n = new Set(s);
-      const add = !n.has(key);
-      add ? n.add(key) : n.delete(key);
-      persist(key, add);
-      if (!userIdRef.current && cookieConsent === 'accepted') writeLS(LS_BOOKMARKS, n);
-      return n;
-    });
+    return()=>{active=false;subscription.unsubscribe();};
+  }, [savedVersion]);
+  const setSavedKey = async (key: string, saved: boolean) => {
+    const uid = userIdRef.current, previous = keysRef.current.has(key);
+    const next = new Set(keysRef.current); if(saved)next.add(key);else next.delete(key); applyKeys(next);
+    if(!uid){
+      if(cookieConsent==='accepted'){
+        writeLS(LS_CLUBS,new Set([...next].filter(k=>k.startsWith(CLUB_PREFIX)).map(k=>k.slice(CLUB_PREFIX.length))));
+        writeLS(LS_COMPS,new Set([...next].filter(k=>k.startsWith(COMP_PREFIX)).map(k=>k.slice(COMP_PREFIX.length))));
+        writeLS(LS_NOTIFS,new Set([...next].filter(k=>k.startsWith(NOTIF_PREFIX)).map(k=>k.slice(NOTIF_PREFIX.length))));
+        writeLS(LS_BOOKMARKS,new Set([...next].filter(k=>![CLUB_PREFIX,COMP_PREFIX,NOTIF_PREFIX].some(p=>k.startsWith(p)))));
+      }
+      return;
+    }
+    const queueKey=uid+':'+key, prior=queues.current.get(queueKey)??Promise.resolve();
+    const task=prior.catch(()=>{}).then(()=>saved?addBookmarkKey(uid,key):removeBookmarkKey(uid,key));
+    queues.current.set(queueKey,task);
+    try{await task;}catch(error){
+      if(userIdRef.current===uid && queues.current.get(queueKey)===task){
+        const rollback=new Set(keysRef.current);if(previous)rollback.add(key);else rollback.delete(key);applyKeys(rollback);
+      }
+      throw error;
+    }finally{if(queues.current.get(queueKey)===task)queues.current.delete(queueKey);}
+  };
+  const toggleKey=(key:string)=>{void setSavedKey(key,!keysRef.current.has(key)).catch(()=>showError(new Error('Não foi possível salvar. Tente novamente.')));};
+  const toggleFav=(id:string)=>toggleKey(CLUB_PREFIX+id);
+  const toggleNotif=(id:string)=>toggleKey(NOTIF_PREFIX+id);
+  const toggleFavComp=(id:string)=>toggleKey(COMP_PREFIX+id);
+  const toggleBookmark=(key:string)=>toggleKey(key);
 
   const [toast, setToast] = useState<ToastState | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -254,6 +236,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       notifs, toggleNotif,
       favComps, toggleFavComp,
       bookmarks, toggleBookmark,
+      savedLoading, savedError, reloadSaved:()=>setSavedVersion(v=>v+1), setSavedKey,
       toast, showToast, showError, hideToast,
       confirm, confirmState, closeConfirm,
     }}>

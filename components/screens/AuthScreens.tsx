@@ -1,776 +1,134 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useApp } from '@/contexts/AppContext';
-import { I } from '@/components/icons';
-import { FieldLabel } from '@/components/ui/Primitives';
-
-// ── Turnstile (Cloudflare CAPTCHA) ────────────────────────────────────────────
+import { CpmIcon, type CpmIconName } from '@/components/ui/CpmUi';
 
 declare global {
-  interface Window {
-    turnstile?: {
-      render: (el: HTMLElement, opts: object) => string;
-      reset:  (id: string) => void;
-      remove: (id: string) => void;
-    };
-    __cfTurnstileReady?: () => void;
-  }
+ interface Window { turnstile?: { render:(el:HTMLElement,opts:object)=>string;reset:(id:string)=>void;remove:(id:string)=>void }; __cfTurnstileReady?:()=>void }
 }
-
-// Singleton: carrega o script uma única vez por página
-let _tsStatus: 'idle' | 'loading' | 'ready' = 'idle';
-const _tsCbs: Array<() => void> = [];
-
-function loadTurnstile(cb: () => void) {
-  if (_tsStatus === 'ready')   { cb(); return; }
-  _tsCbs.push(cb);
-  if (_tsStatus === 'loading') return;
-  _tsStatus = 'loading';
-  window.__cfTurnstileReady = () => {
-    _tsStatus = 'ready';
-    _tsCbs.splice(0).forEach(f => f());
-  };
-  const s = document.createElement('script');
-  s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__cfTurnstileReady&render=explicit';
-  s.async = true;
-  document.head.appendChild(s);
+let scriptPromise: Promise<void> | null = null;
+function loadTurnstile() {
+ if (window.turnstile) return Promise.resolve();
+ if (!scriptPromise) scriptPromise = new Promise<void>((resolve,reject)=>{
+  window.__cfTurnstileReady=resolve;
+  const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__cfTurnstileReady&render=explicit';s.async=true;
+  s.onerror=()=>{scriptPromise=null;s.remove();reject(new Error('security provider'));};document.head.appendChild(s);
+ });
+ return scriptPromise;
 }
-
 function useTurnstile() {
-  const divRef  = useRef<HTMLDivElement>(null);
-  const widRef  = useRef<string | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
-  const { resolvedTheme } = useApp();
-
-  useEffect(() => {
-    if (!sitekey || typeof window === 'undefined') return;
-
-    // Se o widget já existe, recria com o tema correto
-    if (widRef.current) {
-      window.turnstile?.remove(widRef.current);
-      widRef.current = null;
-      setToken(null);
-    }
-
-    loadTurnstile(() => {
-      if (!divRef.current) return;
-      widRef.current = window.turnstile!.render(divRef.current, {
-        sitekey,
-        theme: resolvedTheme, // 'light' | 'dark' — acompanha o tema do app
-        callback:           (t: string) => setToken(t),
-        'expired-callback': ()          => setToken(null),
-        'error-callback':   ()          => setToken(null),
-      });
-    });
-
-    return () => {
-      if (widRef.current) { window.turnstile?.remove(widRef.current); widRef.current = null; }
-    };
-  }, [sitekey, resolvedTheme]); // recria quando o tema muda
-
-  const reset = () => {
-    setToken(null);
-    if (widRef.current) window.turnstile?.reset(widRef.current);
-  };
-
-  return { divRef, token, reset };
+ const divRef=useRef<HTMLDivElement>(null),widRef=useRef<string|null>(null);
+ const [token,setToken]=useState<string|null>(null),[failed,setFailed]=useState(false),[attempt,setAttempt]=useState(0);
+ const sitekey=process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY??'';const {resolvedTheme}=useApp();
+ useEffect(()=>{
+  if (!sitekey) return;
+  let alive=true;Promise.resolve().then(()=>{if(alive){setToken(null);setFailed(false);}});
+  const timer=setTimeout(()=>{if(alive)setFailed(true);},15000);
+  loadTurnstile().then(()=>{
+   if(!alive||!divRef.current||!window.turnstile)return;
+   widRef.current=window.turnstile.render(divRef.current,{sitekey,theme:resolvedTheme,size:'flexible',appearance:'interaction-only',callback:(t:string)=>{if(alive){setToken(t);setFailed(false);clearTimeout(timer);}},'expired-callback':()=>{if(alive)setToken(null);},'error-callback':()=>{if(alive){setToken(null);setFailed(true);}}});
+  }).catch(()=>{if(alive)setFailed(true);});
+  return()=>{alive=false;clearTimeout(timer);if(widRef.current){window.turnstile?.remove(widRef.current);widRef.current=null;}};
+ },[sitekey,resolvedTheme,attempt]);
+ return {divRef,token,ready:!sitekey||!!token,failed,retry:()=>setAttempt(a=>a+1),reset:()=>{if(sitekey){setToken(null);if(widRef.current)window.turnstile?.reset(widRef.current);}}};
 }
-
-interface Props { onSuccess?: () => void; }
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-// Traduz erros técnicos do Supabase em mensagens úteis para o usuário
-function parseAuthError(raw: string): { title: string; hint?: string } {
-  const msg = raw.toLowerCase();
-
-  if (msg.includes('invalid login') || msg.includes('invalid credentials'))
-    return {
-      title: 'E-mail ou senha incorretos.',
-      hint: 'Verifique se digitou tudo certo ou use "Esqueci minha senha" para redefinir.',
-    };
-  if (msg.includes('email not confirmed'))
-    return {
-      title: 'E-mail ainda não confirmado.',
-      hint: 'Verifique sua caixa de entrada (e a pasta de spam) e clique no link que enviamos.',
-    };
-  if (msg.includes('too many') || msg.includes('rate limit') || msg.includes('429'))
-    return {
-      title: 'Muitas tentativas.',
-      hint: 'Por segurança, aguarde alguns minutos antes de tentar novamente.',
-    };
-  if (msg.includes('user not found') || msg.includes('not found'))
-    return {
-      title: 'Nenhuma conta com esse e-mail.',
-      hint: 'Verifique o e-mail digitado ou crie uma conta nova.',
-    };
-  if (msg.includes('password') && msg.includes('short'))
-    return {
-      title: 'Senha muito curta.',
-      hint: 'A senha precisa ter pelo menos 8 caracteres.',
-    };
-  if (msg.includes('already registered') || msg.includes('already exists'))
-    return {
-      title: 'Este e-mail já tem uma conta.',
-      hint: 'Tente entrar diretamente ou use "Esqueci minha senha".',
-    };
-  if (msg.includes('network') || msg.includes('fetch'))
-    return {
-      title: 'Sem conexão com o servidor.',
-      hint: 'Verifique sua internet e tente novamente.',
-    };
-
-  // Fallback genérico
-  return { title: raw.length < 80 ? raw : 'Ocorreu um erro. Tente novamente.' };
+function authMessage(raw:string) {
+ const s=raw.toLowerCase();
+ if(s.includes('invalid login')||s.includes('invalid credentials'))return 'E-mail ou senha incorretos.';
+ if(s.includes('email not confirmed'))return 'Confirme seu e-mail para entrar.';
+ if(s.includes('already registered')||s.includes('already exists'))return 'Este e-mail já tem uma conta.';
+ if(s.includes('captcha'))return 'Confirme a verificação de segurança.';
+ if(s.includes('rate limit')||s.includes('too many')||s.includes('429'))return 'Muitas tentativas. Aguarde e tente novamente.';
+ if(s.includes('fetch')||s.includes('network'))return 'Sem conexão. Tente novamente.';
+ if(s.includes('password')&&s.includes('short'))return 'Use pelo menos 8 caracteres.';
+ return raw.length<100?raw:'Não foi possível continuar. Tente novamente.';
 }
+function Feedback({children}:{children:ReactNode}){return <div className="cpm-auth-feedback" role="alert"><CpmIcon name="authAlert"/><span>{children}</span></div>;}
+function AuthField({label,icon,value,onChange,password=false,autoComplete,placeholder,error,disabled=false}:{label:string;icon:CpmIconName;value:string;onChange:(v:string)=>void;password?:boolean;autoComplete?:string;placeholder:string;error?:string|null;disabled?:boolean}){
+ const id=useId(),[visible,setVisible]=useState(false);
+ return <div className="cpm-auth-field"><label htmlFor={id}>{label}</label><div className="cpm-auth-input"><span className="cpm-auth-input-icon"><CpmIcon name={icon}/></span><input id={id} type={password?(visible?'text':'password'):icon==='authMail'?'email':'text'} value={value} autoComplete={autoComplete} placeholder={placeholder} onChange={e=>onChange(e.target.value)} disabled={disabled} required aria-invalid={!!error} aria-describedby={error?id+'-error':undefined}/>{password&&<button type="button" className="cpm-auth-eye" aria-label={visible?'Ocultar senha':'Mostrar senha'} aria-pressed={visible} onClick={()=>setVisible(v=>!v)}><CpmIcon name={visible?'authEyeOff':'authEye'}/></button>}</div>{error&&<span id={id+'-error'} className="cpm-auth-field-error"><CpmIcon name="authAlert"/>{error}</span>}</div>;
+}
+function OtpInput({value,onChange}:{value:string;onChange:(v:string)=>void}){
+ const id=useId();return <div className="cpm-auth-field"><label htmlFor={id}>Código de 8 dígitos</label><div className="cpm-auth-otp"><input id={id} name="code" type="text" inputMode="numeric" pattern="[0-9]{8}" autoComplete="one-time-code" maxLength={8} onPaste={event=>{event.preventDefault();onChange(event.clipboardData.getData('text').replace(/\D/g,'').slice(0,8));}} aria-label="Código de 8 dígitos" value={value} onChange={e=>onChange(e.target.value.replace(/\D/g,'').slice(0,8))}/><div className="cpm-auth-otp-slots" aria-hidden="true">{Array.from({length:8},(_,i)=><span key={i}>{value[i]||'0'}</span>)}</div></div></div>;
+}
+function Steps({stage,recovery}:{stage:number;recovery:boolean}){
+ const labels=recovery?['E-mail','Código','Senha']:['Dados','Código','Senha'];return <ol className="cpm-auth-steps" aria-label="Etapas">{labels.map((label,i)=><li key={label} aria-current={i===stage?'step':undefined} className={i===stage?'is-current':''}><CpmIcon name={i<stage?'authCheck':i===2?'authLock':i===1||recovery?'authMail':'user'}/><span>{label}</span></li>)}</ol>;
+}
+function Secondary({children,onClick,recovery=false}:{children:ReactNode;onClick:()=>void;recovery?:boolean}){return <button type="button" className="cpm-auth-secondary" onClick={onClick}><span><CpmIcon name={recovery?'authLogin':'user'}/></span>{children}</button>;}
 
-function ErrorBanner({ msg }: { msg: string }) {
-  const { title, hint } = parseAuthError(msg);
-  return (
-    <div style={{
-      borderRadius: 'var(--r-md)',
-      background: 'color-mix(in srgb, var(--error) 12%, transparent)',
-      border: '1px solid color-mix(in srgb, var(--error) 30%, transparent)',
-      overflow: 'hidden',
-    }}>
-      {/* Linha de título */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '12px 14px', paddingBottom: hint ? 6 : 12 }}>
-        <span style={{ fontSize: 15, lineHeight: 1, marginTop: 1, flexShrink: 0 }}>⚠️</span>
-        <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--error)', lineHeight: 1.4 }}>{title}</span>
-      </div>
-      {/* Dica adicional */}
-      {hint && (
-        <div style={{ padding: '0 14px 12px 39px', fontSize: 12.5, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>
-          {hint}
-        </div>
-      )}
+type AuthMode='login'|'register'|'forgot';
+interface Props {onSuccess?:()=>void;onBack?:()=>void;onNav?:(page:string)=>void;initialMode?:AuthMode}
+export function AuthGate({onSuccess,onBack,onNav,initialMode='login'}:Props){
+ const {signIn,updateNick}=useAuth(),reduced=useReducedMotion();
+ const {divRef:securityRef,token:securityToken,ready:securityReady,failed:securityFailed,retry:securityRetry,reset:securityReset}=useTurnstile();
+ const [mode,setMode]=useState<AuthMode>(initialMode),[stage,setStage]=useState(0),[email,setEmail]=useState(''),[nick,setNick]=useState(''),[password,setPassword]=useState(''),[code,setCode]=useState('');
+ const [busy,setBusy]=useState(false),[error,setError]=useState<string|null>(null),[fieldError,setFieldError]=useState<string|null>(null),[resends,setResends]=useState(0),[resendAt,setResendAt]=useState(0),[seconds,setSeconds]=useState(0);
+ const done=useRef(false),stageRef=useRef({mode,stage}),request=useRef(false),alive=useRef(true),titleRef=useRef<HTMLHeadingElement>(null),formRef=useRef<HTMLFormElement>(null);
+ useEffect(()=>{stageRef.current={mode,stage};},[mode,stage]);
+ useEffect(()=>{alive.current=true;return()=>{alive.current=false;const s=stageRef.current;if(s.mode==='register'&&s.stage===2&&!done.current)void supabase.auth.signOut();};},[]);
+ useEffect(()=>{if(!resendAt)return;const update=()=>setSeconds(Math.max(0,Math.ceil((resendAt-Date.now())/1000)));update();const id=setInterval(update,500);return()=>clearInterval(id);},[resendAt]);
+ const advance=(next:number)=>{setStage(next);requestAnimationFrame(()=>formRef.current?.querySelector<HTMLInputElement>(next===1?'input[name="code"]':'input[autocomplete="new-password"]')?.focus());};
+ const changeMode=(next:AuthMode)=>{if(busy)return;if(mode==='register'&&stage===2&&!done.current)void supabase.auth.signOut();setMode(next);setStage(0);setPassword('');setCode('');setError(null);setFieldError(null);setResends(0);setResendAt(0);requestAnimationFrame(()=>titleRef.current?.focus());};
+ const title=mode==='login'?'Entrar':mode==='register'?'Criar conta':'Redefinir senha';
+ const returnLogin=()=>changeMode('login');
+ const action=mode==='login'?'Entrar':stage===0?'Enviar código':stage===1?'Verificar código':mode==='register'?'Criar conta':'Salvar nova senha';
+ const loadingText=mode==='login'?'Entrando…':stage===0?'Enviando código…':stage===1?'Verificando código…':mode==='register'?'Criando conta…':'Salvando senha…';
+ const needSecurity=mode==='login'||stage===0;
+ const run=async(task:()=>Promise<void>)=>{
+  if(request.current)return;request.current=true;setBusy(true);setError(null);setFieldError(null);
+  try{await task();}catch(err){if(alive.current){securityReset();setError(authMessage(err instanceof Error?err.message:'Não foi possível continuar. Tente novamente.'));}}finally{request.current=false;if(alive.current)setBusy(false);}
+ };
+ const sendOtp=async()=>{
+  const {error}=await supabase.auth.signInWithOtp({email:email.trim(),options:{shouldCreateUser:mode==='register',captchaToken:securityToken??undefined,...(mode==='register'?{data:{nick:nick.trim()}}:{})}});
+  securityReset();if(error)throw error;
+ };
+ const submit=(event:FormEvent)=>{
+  event.preventDefault();if(busy)return;
+  if(needSecurity&&!securityReady)return;
+  if((mode==='login'||stage===0)&&(!email.trim()||!/^\S+@\S+\.\S+$/.test(email.trim()))){setFieldError('Confira o e-mail.');return;}
+  if(mode==='register'&&stage===0&&!nick.trim()){setError('Insira seu nick.');return;}
+  if(stage===2&&password.length<8){setError('Use pelo menos 8 caracteres.');return;}
+  void run(async()=>{
+   if(mode==='login'){await signIn(email.trim(),password,securityToken??undefined);done.current=true;onSuccess?.();return;}
+   if(stage===0){if(mode==='register')await sendOtp();else{try{await sendOtp();}catch(err){const message=err instanceof Error?err.message:'';if(/captcha|rate limit|too many|fetch|network/i.test(message))throw err;/* Keep account existence private. */}}if(alive.current){setResendAt(Date.now()+60000);setCode('');advance(1);}return;}
+   if(stage===1){if(code.length!==8)return;const {error}=await supabase.auth.verifyOtp({email:email.trim(),token:code,type:'email'});if(error)throw new Error('Código inválido ou expirado.');if(alive.current)advance(2);return;}
+   const {error}=await supabase.auth.updateUser({password,...(mode==='register'?{data:{nick:nick.trim()}}:{})});if(error)throw error;
+   if(mode==='register')await updateNick(nick.trim());done.current=true;onSuccess?.();
+  });
+ };
+ const resend=()=>{if(seconds||resends||busy||!securityReady)return;void run(async()=>{await sendOtp();if(alive.current){setResends(1);setResendAt(Date.now()+60000);}});};
+ const leave=()=>{if(busy)return;if(mode!=='login'){returnLogin();return;}onBack?.();};
+ return <main className="cpm-auth" aria-label={title}>
+  <div className="cpm-auth-scaffold">
+   <aside className="cpm-auth-brand-panel"><button type="button" className="cpm-auth-return" onClick={mode==='forgot'?returnLogin:leave}><CpmIcon name="authBack"/>{mode==='forgot'?'Voltar ao login':'Voltar aos jogos'}</button><div className="cpm-auth-identity"><Image unoptimized src="/cpm-official.jpg" alt="Campeonato Paulista de MamoBall" width="192" height="192"/><p>CPM<br/>MamoBall</p></div><div className="cpm-auth-destinations"><button type="button" onClick={()=>onNav?.('saved')}><CpmIcon name="bookmark"/>Salvos</button><button type="button" onClick={()=>onNav?.('notices')}><CpmIcon name="authBell"/>Avisos</button></div></aside>
+   <div className="cpm-auth-compact-header"><button type="button" className="cpm-auth-compact-brand" onClick={()=>onNav?.('home')} aria-label="CPM MamoBall — início"><Image unoptimized src="/cpm-official.jpg" alt="" width="72" height="72"/><span>CPM MamoBall</span></button><button type="button" className="cpm-auth-back" aria-label={mode==='login'?'Voltar aos jogos':'Voltar ao login'} onClick={leave}><CpmIcon name="authBack"/></button></div>
+   <section className="cpm-auth-form-region"><motion.form ref={formRef} className="cpm-auth-form" onSubmit={submit} noValidate aria-busy={busy} initial={false} animate={{opacity:1}} transition={{duration:reduced?0:0.12}}>
+    <div className="cpm-auth-title"><span><CpmIcon name={mode==='login'?'authLogin':mode==='register'?'user':'authLock'}/></span><h1 ref={titleRef} tabIndex={-1}>{title}</h1></div>
+    {mode!=='login'&&<Steps stage={stage} recovery={mode==='forgot'}/>}
+    {error&&<Feedback>{error}</Feedback>}
+    <div className="cpm-auth-content">
+     {mode==='login'||stage===0?<>
+      {mode==='register'&&<AuthField label="Nick no jogo" icon="user" value={nick} onChange={setNick} autoComplete="nickname" placeholder="Seu nick" disabled={busy}/>}
+      <AuthField label={mode==='forgot'?'E-mail da conta':'E-mail'} icon="authMail" value={email} onChange={v=>{setEmail(v);setFieldError(null);}} autoComplete="email" placeholder="seu@email.com" error={fieldError} disabled={busy}/>
+      {mode==='login'&&<><AuthField label="Senha" icon="authLock" value={password} onChange={setPassword} password autoComplete="current-password" placeholder="Sua senha" disabled={busy}/><button type="button" className="cpm-auth-forgot" onClick={()=>changeMode('forgot')}>Esqueci minha senha</button></>}
+     </>:<>
+      <div className="cpm-auth-summary"><CpmIcon name={stage===2?'authCheck':'authMail'}/><div><span>{email.trim()}</span>{mode==='register'&&<small>Nick: {nick.trim()}</small>}</div></div>
+      {stage===1?<OtpInput value={code} onChange={setCode}/>:<><AuthField label={mode==='register'?'Crie sua senha':'Nova senha'} icon="authLock" value={password} onChange={setPassword} password autoComplete="new-password" placeholder="Sua senha" disabled={busy}/><small className="cpm-auth-requirement"><CpmIcon name="authLock"/>Mínimo de 8 caracteres</small></>}
+     </>}
     </div>
-  );
-}
-
-function PasswordInput({ value, onChange, placeholder = '••••••••', autoComplete = 'new-password' }: {
-  value: string; onChange: (v: string) => void; placeholder?: string; autoComplete?: string;
-}) {
-  const [show, setShow] = useState(false);
-  return (
-    <div style={{ position: 'relative' }}>
-      <input
-        className="input"
-        type={show ? 'text' : 'password'}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        style={{ paddingRight: 48 }}
-      />
-      <button
-        type="button"
-        onClick={() => setShow(v => !v)}
-        style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--on-surface-variant)', width: 22, height: 22 }}
-      >
-        {show ? I.eyeOff : I.eye}
-      </button>
+    <div className={'cpm-auth-security'+(needSecurity&&!securityReady||stage===1&&!securityReady&&seconds===0&&!resends?' is-pending':'')}>
+     {!securityReady&&<div className="cpm-auth-security-status" role="status"><CpmIcon name="authShield"/><span>{securityFailed?'Verificação indisponível':'Verificação de segurança'}</span>{securityFailed&&<button type="button" onClick={securityRetry}>Tentar novamente</button>}</div>}
+     <div ref={securityRef}/>
     </div>
-  );
-}
-
-// Hook de countdown — reinicia quando `key` muda
-function useCountdown(active: boolean, key: number) {
-  const [secs, setSecs] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    let s = 60;
-    setSecs(s);
-    const id = setInterval(() => {
-      s -= 1;
-      setSecs(s);
-      if (s <= 0) clearInterval(id);
-    }, 1000);
-    return () => clearInterval(id);
-  }, [active, key]);
-  return secs;
-}
-
-function fmt(s: number) {
-  return `0:${String(s).padStart(2, '0')}`;
-}
-
-function ResendHint({ onResend, resendCount, inCodeStep }: {
-  onResend: () => void; resendCount: number; inCodeStep: boolean;
-}) {
-  const [timerKey, setTimerKey] = useState(0);
-  const secs = useCountdown(inCodeStep, timerKey);
-
-  const handleResend = () => {
-    onResend();
-    setTimerKey(k => k + 1); // reinicia o timer
-  };
-
-  if (!inCodeStep) return null;
-  if (secs > 0) return (
-    <div style={{ fontSize: 12.5, color: 'var(--on-surface-variant)', textAlign: 'center', marginTop: 2 }}>
-      Reenviar código em <span className="mono" style={{ fontWeight: 600 }}>{fmt(secs)}</span>
-    </div>
-  );
-  if (resendCount === 0) return (
-    <div style={{ fontSize: 12.5, textAlign: 'center', marginTop: 2 }}>
-      <span style={{ color: 'var(--on-surface-variant)' }}>Não recebeu? </span>
-      <button onClick={handleResend} style={{ color: 'var(--primary)', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', fontSize: 'inherit' }}>
-        Reenviar código
-      </button>
-    </div>
-  );
-  return (
-    <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', textAlign: 'center', marginTop: 2 }}>
-      Limite de reenvios atingido. Verifique também o spam.
-    </div>
-  );
-}
-
-function StepBar({ total, current }: { total: number; current: number }) {
-  return (
-    <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
-      {Array.from({ length: total }, (_, i) => (
-        <div key={i} style={{
-          flex: 1, height: 3, borderRadius: 99,
-          background: i < current ? 'var(--primary)' : 'var(--outline-variant)',
-          transition: 'background 0.3s',
-        }} />
-      ))}
-    </div>
-  );
-}
-
-// ── RegisterScreen ─────────────────────────────────────────────────────────────
-
-type RegStep = 'form' | 'code' | 'pass';
-const REG_STEP_IDX: Record<RegStep, number> = { form: 1, code: 2, pass: 3 };
-
-function RegisterScreen({ onSuccess }: Props) {
-  const [step,        setStep]        = useState<RegStep>('form');
-  const [nick,        setNick]        = useState('');
-  const [email,       setEmail]       = useState('');
-  const [code,        setCode]        = useState('');
-  const [pass,        setPass]        = useState('');
-  const [loading,     setLoading]     = useState(false);
-  const [error,       setError]       = useState<string | null>(null);
-  const [resendCount, setResendCount] = useState(0);
-  const { divRef: tsRef, token: captchaToken, reset: resetCaptcha } = useTurnstile();
-
-  // Rastreia se o cadastro foi concluído para o cleanup
-  const doneRef = useRef(false);
-  const stepRef = useRef<RegStep>('form');
-  useEffect(() => { stepRef.current = step; }, [step]);
-
-  // Se o usuário sair na etapa de senha (OTP verificado mas sem senha), faz logout
-  useEffect(() => {
-    return () => {
-      if (stepRef.current === 'pass' && !doneRef.current) {
-        supabase.auth.signOut();
-      }
-    };
-  }, []);
-
-  const doSendOtp = async () => {
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { shouldCreateUser: true, captchaToken: captchaToken ?? undefined },
-    });
-    if (error) throw error;
-    resetCaptcha(); // token consumido, reseta para próximo uso (reenvio)
-  };
-
-  const sendCode = async () => {
-    setError(null);
-    if (!nick.trim())  { setError('Insira seu nick.'); return; }
-    if (!email.trim()) { setError('Insira seu e-mail.'); return; }
-    setLoading(true);
-    try {
-      await doSendOtp();
-      setStep('code');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao enviar código.');
-    } finally { setLoading(false); }
-  };
-
-  const resendCode = async () => {
-    if (resendCount >= 1) return;
-    setError(null);
-    setLoading(true);
-    try {
-      await doSendOtp();
-      setResendCount(c => c + 1);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao reenviar.');
-    } finally { setLoading(false); }
-  };
-
-  const verifyCode = async () => {
-    setError(null);
-    if (code.length < 8) { setError('Digite o código de 8 dígitos.'); return; }
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.verifyOtp({
-        email: email.trim(), token: code.trim(), type: 'email',
-      });
-      if (error) throw error;
-      setStep('pass');
-    } catch {
-      setError('Código inválido ou expirado. Tente de novo.');
-    } finally { setLoading(false); }
-  };
-
-  const createAccount = async () => {
-    setError(null);
-    if (pass.length < 8) { setError('Senha mínima de 8 caracteres.'); return; }
-    setLoading(true);
-    try {
-      const { error: updErr } = await supabase.auth.updateUser({
-        password: pass,
-        data: { nick: nick.trim() },
-      });
-      if (updErr) throw updErr;
-      // Atualiza tabela profiles (criada pelo trigger sem nick)
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        await supabase.from('profiles').update({ nick: nick.trim() }).eq('id', user.id);
-      }
-      doneRef.current = true; // cadastro concluído — não fazer logout no cleanup
-      onSuccess?.();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao criar conta.');
-    } finally { setLoading(false); }
-  };
-
-  const stepIdx = REG_STEP_IDX[step];
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px 24px', background: 'var(--surface)' }}>
-      <img src="/logo-cfm.png" alt="CPM" style={{ width: 100, height: 100, objectFit: 'contain', marginBottom: 8 }} />
-      <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>Criar conta</h1>
-      <p style={{ margin: '0 0 28px', fontSize: 13.5, color: 'var(--on-surface-variant)' }}>Confederação MamoBall · CPM</p>
-
-      <div style={{ width: '100%', maxWidth: 380, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <StepBar total={3} current={stepIdx} />
-        {error && <ErrorBanner msg={error} />}
-
-        {/* Nick */}
-        <div>
-          <FieldLabel required>Nick no jogo</FieldLabel>
-          <input
-            className="input"
-            placeholder="ex: NickJogador"
-            value={nick}
-            onChange={e => setNick(e.target.value)}
-            disabled={step !== 'form'}
-            style={{ opacity: step !== 'form' ? 0.55 : 1 }}
-          />
-          <div className="field-helper">Como você aparece nos placares e no perfil.</div>
-        </div>
-
-        {/* Email + botão enviar */}
-        <div>
-          <FieldLabel required>E-mail</FieldLabel>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <input
-              className="input"
-              type="email"
-              autoComplete="email"
-              placeholder="seu@email.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              disabled={step !== 'form'}
-              onKeyDown={e => e.key === 'Enter' && step === 'form' && sendCode()}
-              style={{ flex: 1, opacity: step !== 'form' ? 0.55 : 1 }}
-            />
-            {step === 'form' && (
-              <button
-                onClick={sendCode}
-                disabled={loading || !captchaToken}
-                className="btn btn-primary"
-                style={{ height: 48, padding: '0 14px', fontSize: 13, fontWeight: 600, flexShrink: 0, opacity: (loading || !captchaToken) ? 0.7 : 1 }}
-              >
-                {loading ? '…' : !captchaToken ? '…' : 'Enviar código'}
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Widget Turnstile — visível apenas no step inicial */}
-        {step === 'form' && <div ref={tsRef} style={{ display: 'flex', justifyContent: 'center' }} />}
-
-        {/* Código — aparece após envio */}
-        {step !== 'form' && (
-          <div>
-            <FieldLabel required>Código de verificação</FieldLabel>
-            <div style={{ display: 'flex', gap: 8 }}>
-              <input
-                className="input mono"
-                placeholder="00000000"
-                inputMode="numeric"
-                maxLength={8}
-                value={code}
-                onChange={e => setCode(e.target.value.replace(/\D/g, ''))}
-                disabled={step !== 'code'}
-                onKeyDown={e => e.key === 'Enter' && step === 'code' && verifyCode()}
-                style={{
-                  flex: 1, letterSpacing: '0.35em', fontSize: 22, textAlign: 'center',
-                  opacity: step !== 'code' ? 0.55 : 1,
-                }}
-              />
-              {step === 'code' && (
-                <button
-                  onClick={verifyCode}
-                  disabled={loading || code.length < 8}
-                  className="btn btn-primary"
-                  style={{ height: 48, padding: '0 14px', fontSize: 13, fontWeight: 600, flexShrink: 0 }}
-                >
-                  {loading ? '…' : 'Verificar'}
-                </button>
-              )}
-            </div>
-            {step === 'code' && (
-              <div className="field-helper">Verifique sua caixa de entrada (e o spam).</div>
-            )}
-            <ResendHint
-              onResend={resendCode}
-              resendCount={resendCount}
-              inCodeStep={step === 'code'}
-            />
-          </div>
-        )}
-
-        {/* Senha — desbloqueia após código verificado */}
-        {step === 'pass' && (
-          <>
-            <div>
-              <FieldLabel required>Crie sua senha</FieldLabel>
-              <PasswordInput value={pass} onChange={setPass} placeholder="mínimo 8 caracteres" />
-              <div className="field-helper">Mínimo de 8 caracteres.</div>
-            </div>
-            <button
-              onClick={createAccount}
-              disabled={loading}
-              className="btn btn-primary"
-              style={{ height: 52, fontSize: 15, fontWeight: 700, marginTop: 4, opacity: loading ? 0.7 : 1 }}
-            >
-              {loading ? 'Criando conta…' : 'Criar conta'}
-            </button>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ── ForgotScreen ──────────────────────────────────────────────────────────────
-
-type ForgotStep = 'email' | 'code' | 'newpass';
-const FORGOT_STEP_IDX: Record<ForgotStep, number> = { email: 1, code: 2, newpass: 3 };
-
-function ForgotScreen({ onBack, onSuccess }: { onBack: () => void; onSuccess?: () => void }) {
-  const [step,        setStep]        = useState<ForgotStep>('email');
-  const [email,       setEmail]       = useState('');
-  const [code,        setCode]        = useState('');
-  const [pass,        setPass]        = useState('');
-  const [loading,     setLoading]     = useState(false);
-  const [error,       setError]       = useState<string | null>(null);
-  const [resendCount, setResendCount] = useState(0);
-  const { divRef: tsRef, token: captchaToken, reset: resetCaptcha } = useTurnstile();
-
-  const doSendOtp = async () => {
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { shouldCreateUser: false, captchaToken: captchaToken ?? undefined },
-    });
-    if (error) throw error;
-    resetCaptcha();
-  };
-
-  const resendCode = async () => {
-    if (resendCount >= 1) return;
-    setError(null);
-    setLoading(true);
-    try {
-      await doSendOtp();
-      setResendCount(c => c + 1);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao reenviar.');
-    } finally { setLoading(false); }
-  };
-
-  const sendCode = async () => {
-    setError(null);
-    if (!email.trim()) { setError('Insira seu e-mail.'); return; }
-    setLoading(true);
-    try {
-      await doSendOtp();
-    } catch {
-      // Intencionalmente silencioso: não revelamos se o e-mail existe ou não
-      // (prevenção de enumeração de usuários)
-    } finally {
-      // Avança sempre — o usuário verá "código enviado" independentemente
-      setStep('code');
-      setLoading(false);
-    }
-  };
-
-  const verifyCode = async () => {
-    setError(null);
-    if (code.length < 8) { setError('Digite o código de 8 dígitos.'); return; }
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.verifyOtp({
-        email: email.trim(), token: code.trim(), type: 'email',
-      });
-      if (error) throw error;
-      setStep('newpass');
-    } catch {
-      setError('Código inválido ou expirado.');
-    } finally { setLoading(false); }
-  };
-
-  const savePassword = async () => {
-    setError(null);
-    if (pass.length < 8) { setError('Senha mínima de 8 caracteres.'); return; }
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.updateUser({ password: pass });
-      if (error) throw error;
-      // Sessão já está ativa após o OTP — fecha o fluxo
-      onSuccess?.();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao salvar senha.');
-    } finally { setLoading(false); }
-  };
-
-  const stepIdx = FORGOT_STEP_IDX[step];
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px 24px', background: 'var(--surface)' }}>
-      <img src="/logo-cfm.png" alt="CPM" style={{ width: 100, height: 100, objectFit: 'contain', marginBottom: 8 }} />
-      <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>Redefinir senha</h1>
-      <p style={{ margin: '0 0 28px', fontSize: 13.5, color: 'var(--on-surface-variant)' }}>
-        {step === 'email'   ? 'Enviamos um código pro seu e-mail cadastrado.' :
-         step === 'code'    ? 'Digite o código que chegou no seu e-mail.' :
-                              'Escolha uma nova senha para sua conta.'}
-      </p>
-
-      <div style={{ width: '100%', maxWidth: 380, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <StepBar total={3} current={stepIdx} />
-        {error && <ErrorBanner msg={error} />}
-
-        {/* Email */}
-        <div>
-          <FieldLabel required>E-mail da conta</FieldLabel>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <input
-              className="input"
-              type="email"
-              placeholder="seu@email.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              disabled={step !== 'email'}
-              onKeyDown={e => e.key === 'Enter' && step === 'email' && sendCode()}
-              style={{ flex: 1, opacity: step !== 'email' ? 0.55 : 1 }}
-            />
-            {step === 'email' && (
-              <button onClick={sendCode} disabled={loading || !captchaToken} className="btn btn-primary" style={{ height: 48, padding: '0 14px', fontSize: 13, fontWeight: 600, flexShrink: 0, opacity: (loading || !captchaToken) ? 0.7 : 1 }}>
-                {loading ? '…' : !captchaToken ? '…' : 'Enviar código'}
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Widget Turnstile */}
-        {step === 'email' && <div ref={tsRef} style={{ display: 'flex', justifyContent: 'center' }} />}
-
-        {/* Código */}
-        {step !== 'email' && (
-          <div>
-            <FieldLabel required>Código de verificação</FieldLabel>
-            <div style={{ display: 'flex', gap: 8 }}>
-              <input
-                className="input mono"
-                placeholder="00000000"
-                inputMode="numeric"
-                maxLength={8}
-                value={code}
-                onChange={e => setCode(e.target.value.replace(/\D/g, ''))}
-                disabled={step !== 'code'}
-                onKeyDown={e => e.key === 'Enter' && step === 'code' && verifyCode()}
-                style={{
-                  flex: 1, letterSpacing: '0.35em', fontSize: 22, textAlign: 'center',
-                  opacity: step !== 'code' ? 0.55 : 1,
-                }}
-              />
-              {step === 'code' && (
-                <button onClick={verifyCode} disabled={loading || code.length < 8} className="btn btn-primary" style={{ height: 48, padding: '0 14px', fontSize: 13, fontWeight: 600, flexShrink: 0 }}>
-                  {loading ? '…' : 'Verificar'}
-                </button>
-              )}
-            </div>
-            <ResendHint
-              onResend={resendCode}
-              resendCount={resendCount}
-              inCodeStep={step === 'code'}
-            />
-          </div>
-        )}
-
-        {/* Nova senha */}
-        {step === 'newpass' && (
-          <>
-            <div>
-              <FieldLabel required>Nova senha</FieldLabel>
-              <PasswordInput value={pass} onChange={setPass} placeholder="mínimo 8 caracteres" />
-              <div className="field-helper">Mínimo de 8 caracteres.</div>
-            </div>
-            <button onClick={savePassword} disabled={loading} className="btn btn-primary" style={{ height: 52, fontSize: 15, fontWeight: 700, opacity: loading ? 0.7 : 1 }}>
-              {loading ? 'Salvando…' : 'Salvar nova senha'}
-            </button>
-          </>
-        )}
-
-        {/* Voltar */}
-        <button
-          onClick={onBack}
-          style={{ fontSize: 13, color: 'var(--on-surface-variant)', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}
-        >
-          <span style={{ width: 14, height: 14 }}>{I.chevL}</span>
-          Voltar ao login
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ── LoginScreen ────────────────────────────────────────────────────────────────
-
-function LoginScreen({ onSuccess, onGoRegister, onGoForgot }: Props & { onGoRegister: () => void; onGoForgot: () => void }) {
-  const { signIn } = useAuth();
-  const [email,    setEmail]    = useState('');
-  const [password, setPassword] = useState('');
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState<string | null>(null);
-  const { divRef: tsRef, token: captchaToken, reset: resetCaptcha } = useTurnstile();
-
-  const handleLogin = async () => {
-    setError(null);
-    if (!email.trim() || !password) { setError('Preencha e-mail e senha.'); return; }
-    if (!captchaToken) { setError('Verificação de segurança pendente. Aguarde um instante.'); return; }
-    setLoading(true);
-    try {
-      await signIn(email.trim(), password, captchaToken);
-      onSuccess?.();
-    } catch (err) {
-      resetCaptcha();
-      setError(err instanceof Error ? err.message : 'Erro ao entrar.');
-    } finally { setLoading(false); }
-  };
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px 24px', background: 'var(--surface)' }}>
-      <img src="/logo-cfm.png" alt="CPM" style={{ width: 120, height: 120, objectFit: 'contain', marginBottom: 8 }} />
-      <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>Entrar na conta</h1>
-      <p style={{ margin: '0 0 32px', fontSize: 13.5, color: 'var(--on-surface-variant)' }}>Confederação MamoBall · CPM</p>
-
-      <div style={{ width: '100%', maxWidth: 380, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        {error && <ErrorBanner msg={error} />}
-
-        <div>
-          <FieldLabel required>E-mail</FieldLabel>
-          <input
-            className="input"
-            type="email"
-            autoComplete="email"
-            placeholder="seu@email.com"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleLogin()}
-          />
-        </div>
-
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-            <FieldLabel required style={{ margin: 0 }}>Senha</FieldLabel>
-            <button
-              type="button"
-              onClick={onGoForgot}
-              style={{ fontSize: 12.5, color: 'var(--primary)', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}
-            >
-              Esqueci minha senha
-            </button>
-          </div>
-          <PasswordInput value={password} onChange={setPassword} placeholder="••••••••" autoComplete="current-password" />
-        </div>
-
-        {/* Widget Turnstile — some suavemente após verificar */}
-        <div style={{ overflow: 'hidden', maxHeight: captchaToken ? 0 : 200, transition: 'max-height 0.35s ease' }}>
-          <div ref={tsRef} style={{ display: 'flex', justifyContent: 'center', padding: '4px 0' }} />
-        </div>
-
-        <button
-          onClick={handleLogin}
-          disabled={loading || !captchaToken}
-          className="btn btn-primary"
-          style={{ height: 52, fontSize: 15, fontWeight: 700, marginTop: 4, opacity: (loading || !captchaToken) ? 0.7 : 1 }}
-        >
-          {loading ? 'Entrando…' : !captchaToken ? 'Verificando segurança…' : 'Entrar'}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ── AuthGate — combina todos os modos ─────────────────────────────────────────
-
-type AuthMode = 'login' | 'register' | 'forgot';
-
-export function AuthGate({ onSuccess }: Props) {
-  const [mode, setMode] = useState<AuthMode>('login');
-
-  return (
-    <div style={{ position: 'relative' }}>
-      {mode === 'login'    && (
-        <LoginScreen
-          onSuccess={onSuccess}
-          onGoRegister={() => setMode('register')}
-          onGoForgot={() => setMode('forgot')}
-        />
-      )}
-      {mode === 'register' && <RegisterScreen onSuccess={onSuccess} />}
-      {mode === 'forgot'   && (
-        <ForgotScreen
-          onBack={() => setMode('login')}
-          onSuccess={onSuccess}
-        />
-      )}
-
-      {/* Link de alternância — inline, sem fundo, sem fixed */}
-      {(mode === 'login' || mode === 'register') && (
-        <div style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--on-surface-variant)', marginTop: 8 }}>
-          {mode === 'login' ? (
-            <>
-              Ainda não tem conta?{' '}
-              <button onClick={() => setMode('register')} style={{ color: 'var(--primary)', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', fontSize: 'inherit' }}>
-                Criar conta
-              </button>
-            </>
-          ) : (
-            <>
-              Já tem conta?{' '}
-              <button onClick={() => setMode('login')} style={{ color: 'var(--primary)', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', fontSize: 'inherit' }}>
-                Entrar
-              </button>
-            </>
-          )}
-        </div>
-      )}
-    </div>
-  );
+    <button type="submit" className="cpm-button cpm-button-primary cpm-auth-primary" disabled={busy||needSecurity&&!securityReady||mode!=='login'&&stage===1&&code.length!==8}>{busy?loadingText:needSecurity&&!securityReady?'Verificando segurança…':action}</button>
+    {mode!=='login'&&stage===1&&<div className="cpm-auth-resend">{seconds>0?<><CpmIcon name="authMail"/><span>Reenviar em 0:{String(Math.min(seconds,59)).padStart(2,'0')}</span></>:resends?<><CpmIcon name="authAlert"/><span>Reenvio usado · confira o spam</span></>:<button type="button" onClick={resend} disabled={busy||!securityReady}><CpmIcon name="authMail"/>Reenviar código</button>}</div>}
+    <Secondary onClick={mode==='login'?()=>changeMode('register'):returnLogin} recovery={mode==='forgot'}>{mode==='login'?'Criar conta':mode==='forgot'?'Voltar ao login':'Entrar'}</Secondary>
+   </motion.form></section>
+  </div>
+ </main>;
 }

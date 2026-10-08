@@ -1,0 +1,58 @@
+{
+  "note": "This tree serialized to ~102k chars — beyond what a tool result can deliver. Ground it section by section: call get_design_context per section nodeId (detail: full, dedupeComponents: true) and build each before moving on. Do not retry this call unscoped and do not depth-cap the whole page.",
+  "nodes": [
+    {
+      "id": "4:1686",
+      "name": "Home content",
+      "type": "FRAME",
+      "x": 80,
+      "y": 0,
+      "width": 1280,
+      "height": 909,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 32,
+        "paddingRight": 0,
+        "paddingBottom": 32,
+        "paddingLeft": 0,
+        "itemSpacing": 32,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "HUG",
+      "layoutGrow": 1,
+      "maxWidth": 1280,
+      "clipsContent": true
+    }
+  ],
+  "sectionPlan": {
+    "reason": "payload-size",
+    "payloadChars": 102055,
+    "sections": [
+      {
+        "nodeId": "4:1687",
+        "name": "Page context",
+        "type": "FRAME",
+        "childCount": 1,
+        "nodes": 12
+      },
+      {
+        "nodeId": "4:1699",
+        "name": "Highlight and standings",
+        "type": "FRAME",
+        "childCount": 2,
+        "nodes": 80
+      },
+      {
+        "nodeId": "4:1775",
+        "name": "Match lists",
+        "type": "FRAME",
+        "childCount": 2,
+        "nodes": 85
+      }
+    ]
+  }
+}

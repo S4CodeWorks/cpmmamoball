@@ -1,0 +1,224 @@
+{
+  "artifact": "Native editable Figma Partida Dark",
+  "projectRoot": "/home/essiquatru/projects/CPM-MamoBall",
+  "brief": "design/match-dark-brief.md",
+  "sourceBrief": "design/match-brief.md",
+  "metadata": "design/match-dark-metadata.json",
+  "native": "design/match-dark-scenes-native.json",
+  "componentAPI": "design/match-dark-components-native.json",
+  "nativeAudit": "design/match-dark-native-audit.json",
+  "contrast": "design/match-dark-contrast.json",
+  "fixtures": "design/match-fixtures.json",
+  "requiredCaptures": [
+    {
+      "root": "65:51836",
+      "width": 1440,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-51836.png"
+    },
+    {
+      "root": "65:53670",
+      "width": 390,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-53670.png"
+    },
+    {
+      "root": "65:54009",
+      "width": 320,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-54009.png"
+    },
+    {
+      "root": "65:54348",
+      "width": 768,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-54348.png"
+    },
+    {
+      "root": "65:54687",
+      "width": 1024,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-54687.png"
+    },
+    {
+      "root": "65:55279",
+      "width": 2560,
+      "state": "Final",
+      "path": "design/match-dark-previews/65-55279.png"
+    },
+    {
+      "root": "65:55871",
+      "width": 390,
+      "state": "Confrontos",
+      "path": "design/match-dark-previews/65-55871.png"
+    },
+    {
+      "root": "65:56148",
+      "width": 390,
+      "state": "Rodada",
+      "path": "design/match-dark-previews/65-56148.png"
+    },
+    {
+      "root": "65:56409",
+      "width": 1440,
+      "state": "Scheduled",
+      "path": "design/match-dark-previews/65-56409.png"
+    },
+    {
+      "root": "65:56830",
+      "width": 390,
+      "state": "Scheduled",
+      "path": "design/match-dark-previews/65-56830.png"
+    },
+    {
+      "root": "65:56998",
+      "width": 390,
+      "state": "UnknownTime",
+      "path": "design/match-dark-previews/65-56998.png"
+    },
+    {
+      "root": "65:57166",
+      "width": 1440,
+      "state": "Live",
+      "path": "design/match-dark-previews/65-57166.png"
+    },
+    {
+      "root": "65:57760",
+      "width": 390,
+      "state": "Live",
+      "path": "design/match-dark-previews/65-57760.png"
+    },
+    {
+      "root": "65:58101",
+      "width": 390,
+      "state": "Draw",
+      "path": "design/match-dark-previews/65-58101.png"
+    },
+    {
+      "root": "65:58256",
+      "width": 1440,
+      "state": "WO",
+      "path": "design/match-dark-previews/65-58256.png"
+    },
+    {
+      "root": "65:58664",
+      "width": 390,
+      "state": "WO",
+      "path": "design/match-dark-previews/65-58664.png"
+    },
+    {
+      "root": "65:58819",
+      "width": 390,
+      "state": "NoGoals",
+      "path": "design/match-dark-previews/65-58819.png"
+    },
+    {
+      "root": "65:58976",
+      "width": 390,
+      "state": "NoHistory",
+      "path": "design/match-dark-previews/65-58976.png"
+    },
+    {
+      "root": "65:59131",
+      "width": 1440,
+      "state": "Loading",
+      "path": "design/match-dark-previews/65-59131.png"
+    },
+    {
+      "root": "65:59203",
+      "width": 390,
+      "state": "Loading",
+      "path": "design/match-dark-previews/65-59203.png"
+    },
+    {
+      "root": "65:59253",
+      "width": 390,
+      "state": "Error",
+      "path": "design/match-dark-previews/65-59253.png"
+    },
+    {
+      "root": "65:59307",
+      "width": 390,
+      "state": "Missing",
+      "path": "design/match-dark-previews/65-59307.png"
+    },
+    {
+      "root": "65:59363",
+      "width": 390,
+      "state": "Saved",
+      "path": "design/match-dark-previews/65-59363.png"
+    },
+    {
+      "root": "65:59706",
+      "width": 390,
+      "state": "Copied",
+      "path": "design/match-dark-previews/65-59706.png"
+    },
+    {
+      "root": "65:60049",
+      "width": 1440,
+      "state": "Saved",
+      "path": "design/match-dark-previews/65-60049.png"
+    },
+    {
+      "root": "65:60645",
+      "width": 1440,
+      "state": "Copied",
+      "path": "design/match-dark-previews/65-60645.png"
+    },
+    {
+      "root": "65:61241",
+      "width": 1440,
+      "state": "Main",
+      "path": "design/match-dark-previews/65-61241.png"
+    },
+    {
+      "root": "65:61833",
+      "width": 1440,
+      "state": "Games",
+      "path": "design/match-dark-previews/65-61833.png"
+    },
+    {
+      "root": "65:62029",
+      "width": 390,
+      "state": "Main",
+      "path": "design/match-dark-previews/65-62029.png"
+    },
+    {
+      "root": "65:62368",
+      "width": 390,
+      "state": "Games",
+      "path": "design/match-dark-previews/65-62368.png"
+    },
+    {
+      "root": "65:62541",
+      "width": 390,
+      "state": "Past",
+      "path": "design/match-dark-previews/65-62541.png"
+    },
+    {
+      "root": "65:62698",
+      "width": 390,
+      "state": "Other",
+      "path": "design/match-dark-previews/65-62698.png"
+    }
+  ],
+  "contactSheets": [
+    "design/match-dark-previews/contact-0.png",
+    "design/match-dark-previews/contact-1.png",
+    "design/match-dark-previews/contact-2.png",
+    "design/match-dark-previews/contact-3.png"
+  ],
+  "captureNote": "Contacts are derived overviews only. Some image presentation shows missing club names on NoHistory/Scheduled contact cells despite valid complete direct PNGs; primary direct 65-58976.png and 65-56830.png author-inspected complete. Prior Light review had same derived-image presentation discrepancy. Judge direct32 root PNGs as authority.",
+  "constraints": [
+    "Theme extension only; no application/DB edits",
+    "Original logo unchanged JPG, rounded native tile",
+    "No penalties/minutes/possessions/elapsed timers",
+    "Six widths320/390/768/1024/1440/2560",
+    "Fixtures not live records",
+    "Grouped scorers and credited-side own goals",
+    "Native captures do not prove runtime delivery or browser accessibility"
+  ],
+  "knownIssues": [],
+  "noDetector": "No HTML/CSS changes; native Figma only, no web detector ran."
+}

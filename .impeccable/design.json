@@ -1,0 +1,2863 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T03:27:23.429618+00:00",
+  "title": "Design System: CPM MamoBall",
+  "extensions": {
+    "colorMeta": {
+      "color-white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-black": {
+        "role": "neutral",
+        "displayName": "Black",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-50": {
+        "role": "neutral",
+        "displayName": "Neutral 50",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-100": {
+        "role": "neutral",
+        "displayName": "Neutral 100",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-200": {
+        "role": "neutral",
+        "displayName": "Neutral 200",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-400": {
+        "role": "neutral",
+        "displayName": "Neutral 400",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-600": {
+        "role": "neutral",
+        "displayName": "Neutral 600",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-800": {
+        "role": "neutral",
+        "displayName": "Neutral 800",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-neutral-950": {
+        "role": "neutral",
+        "displayName": "Neutral 950",
+        "tonalRamp": [
+          "#000000",
+          "#11151B",
+          "#242B35",
+          "#546071",
+          "#929BA8",
+          "#DFE3E8",
+          "#EEF0F3",
+          "#F7F8FA",
+          "#FFFFFF"
+        ]
+      },
+      "color-blue-50": {
+        "role": "primary",
+        "displayName": "Blue 50",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-blue-100": {
+        "role": "primary",
+        "displayName": "Blue 100",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-blue-400": {
+        "role": "primary",
+        "displayName": "Blue 400",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-blue-600": {
+        "role": "primary",
+        "displayName": "Blue 600",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-blue-700": {
+        "role": "primary",
+        "displayName": "Blue 700",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-blue-800": {
+        "role": "primary",
+        "displayName": "Blue 800",
+        "tonalRamp": [
+          "#15376B",
+          "#124DB8",
+          "#165DDE",
+          "#75AAFF",
+          "#DBE9FF",
+          "#EFF5FF"
+        ]
+      },
+      "color-dark-page": {
+        "role": "neutral",
+        "displayName": "Page",
+        "canonical": "#0C1017"
+      },
+      "color-dark-header": {
+        "role": "neutral",
+        "displayName": "Header",
+        "canonical": "#111824"
+      },
+      "color-dark-card": {
+        "role": "neutral",
+        "displayName": "Card",
+        "canonical": "#151E2B"
+      },
+      "color-dark-menu": {
+        "role": "neutral",
+        "displayName": "Menu",
+        "canonical": "#1E2B3D"
+      },
+      "color-dark-subtle": {
+        "role": "neutral",
+        "displayName": "Subtle",
+        "canonical": "#202D40"
+      },
+      "color-dark-border": {
+        "role": "neutral",
+        "displayName": "Border",
+        "canonical": "#33445B"
+      },
+      "color-dark-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary",
+        "canonical": "#B8C4D6"
+      },
+      "color-dark-ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#EDF2F9"
+      },
+      "color-dark-action": {
+        "role": "primary",
+        "displayName": "Action",
+        "canonical": "#7BAAFF"
+      },
+      "color-dark-action-ink": {
+        "role": "neutral",
+        "displayName": "Action Ink",
+        "canonical": "#0B1628"
+      },
+      "color-dark-hover": {
+        "role": "primary",
+        "displayName": "Hover",
+        "canonical": "#9BBEFF"
+      },
+      "color-dark-selected": {
+        "role": "neutral",
+        "displayName": "Selected",
+        "canonical": "#203F6A"
+      },
+      "color-dark-selected-ink": {
+        "role": "neutral",
+        "displayName": "Selected Ink",
+        "canonical": "#C5DCFF"
+      },
+      "color-dark-result": {
+        "role": "neutral",
+        "displayName": "Result",
+        "canonical": "#12223A"
+      },
+      "color-dark-result-line": {
+        "role": "neutral",
+        "displayName": "Result Line",
+        "canonical": "#355174"
+      },
+      "color-dark-result-emblem": {
+        "role": "neutral",
+        "displayName": "Result Emblem",
+        "canonical": "#203856"
+      },
+      "color-dark-upcoming": {
+        "role": "neutral",
+        "displayName": "Upcoming",
+        "canonical": "#18355C"
+      },
+      "color-dark-upcoming-ink": {
+        "role": "neutral",
+        "displayName": "Upcoming Ink",
+        "canonical": "#D6E7FF"
+      },
+      "color-dark-upcoming-time": {
+        "role": "neutral",
+        "displayName": "Upcoming Time",
+        "canonical": "#9DC3FF"
+      },
+      "color-dark-upcoming-muted": {
+        "role": "neutral",
+        "displayName": "Upcoming Muted",
+        "canonical": "#B7D5FF"
+      },
+      "color-dark-upcoming-emblem": {
+        "role": "neutral",
+        "displayName": "Upcoming Emblem",
+        "canonical": "#284B77"
+      },
+      "color-dark-upcoming-line": {
+        "role": "neutral",
+        "displayName": "Upcoming Line",
+        "canonical": "#385D89"
+      }
+    },
+    "typographyMeta": {
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Small contextual copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Control and navigation labels; active navigation has a semibold override."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading copy."
+      },
+      "brand": {
+        "displayName": "Brand",
+        "purpose": "Desktop brand lockup. Barlow Condensed display role."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Page-level headings. Barlow Condensed display role."
+      },
+      "score": {
+        "displayName": "Score",
+        "purpose": "Desktop match score in Barlow Condensed; compact uses the dedicated Score Compact style.",
+        "figmaStyleId": "S:ba5d9aa11d5c8b4aa0eade617b98a3df210bf900,"
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "Highlight section headings. Barlow Condensed display role.",
+        "figmaStyleId": "S:48d537e5c76438555977e7e694058fb9173c5e98,"
+      },
+      "body-strong": {
+        "displayName": "Body Strong",
+        "purpose": "Club names and emphasized reading copy.",
+        "figmaStyleId": "S:19f3908cd85101fe095a2174bb308a14251009f7,"
+      },
+      "score-compact": {
+        "displayName": "Score Compact",
+        "purpose": "Compact match score in Barlow Condensed.",
+        "figmaStyleId": "S:4c7fbc8ae59aad9aeb0b5a6295e6520b44e7d644,"
+      }
+    },
+    "shadows": [
+      {
+        "name": "competition-options",
+        "offsetY": "8px",
+        "blur": "24px",
+        "source": "Figma Options 6:4094; preserve original effect color/opacity"
+      }
+    ],
+    "motion": [
+      {
+        "name": "fast",
+        "value": "120ms",
+        "purpose": "Fast control-state changes."
+      },
+      {
+        "name": "normal",
+        "value": "180ms",
+        "purpose": "Normal state changes."
+      },
+      {
+        "name": "reduced",
+        "value": "0ms",
+        "purpose": "Reduced-motion alternative requiring browser implementation."
+      }
+    ],
+    "breakpoints": [],
+    "dark": {
+      "metadata": "design/dark-metadata.json",
+      "brief": "design/dark-brief.md",
+      "previewDirectory": "design/dark-previews-final",
+      "figma": {
+        "pages": {
+          "components": "8:6691",
+          "homeComponents": "8:6692",
+          "header": "8:6693",
+          "home": "8:6694",
+          "interactions": "8:6695",
+          "states": "8:6696",
+          "foundations": "10:16192"
+        },
+        "foundations": "10:16193",
+        "componentMap": {
+          "2:129": "8:6697",
+          "2:138": "8:6707",
+          "2:140": "8:6709",
+          "2:142": "8:6711",
+          "2:144": "8:6713",
+          "2:150": "8:6720",
+          "2:152": "8:6722",
+          "2:154": "8:6724",
+          "2:156": "8:6726",
+          "2:158": "8:6728",
+          "2:184": "8:6754",
+          "2:188": "8:6758",
+          "2:203": "8:6801",
+          "2:213": "8:6811",
+          "2:225": "8:6824",
+          "2:376": "8:6836",
+          "2:377": "8:6848",
+          "2:378": "8:6860",
+          "2:164": "8:6945",
+          "2:818": "8:6948",
+          "2:823": "8:6951",
+          "2:169": "8:6961",
+          "2:829": "8:6963",
+          "2:833": "8:6965",
+          "2:173": "8:6974",
+          "2:838": "8:6977",
+          "2:842": "8:6980",
+          "2:177": "8:6987",
+          "2:847": "8:6991",
+          "2:854": "8:6995",
+          "2:903": "8:7009",
+          "2:1110": "8:7014",
+          "2:1116": "8:7019",
+          "4:1421": "8:7027",
+          "4:1447": "8:7068",
+          "4:1492": "8:7113",
+          "4:1513": "8:7161",
+          "4:1159": "8:7210",
+          "4:1189": "8:7241",
+          "4:1221": "8:7268",
+          "4:1245": "8:7290",
+          "4:1275": "8:7321",
+          "4:1305": "8:7352",
+          "4:1315": "8:7362",
+          "4:1333": "8:7373",
+          "4:1348": "8:7383",
+          "4:1374": "8:7414",
+          "4:1401": "8:7441",
+          "4:3065": "8:7548",
+          "6:4094": "8:7552",
+          "6:4087": "8:7566",
+          "6:6119": "8:7570",
+          "6:6123": "8:7574",
+          "6:6127": "8:7578"
+        },
+        "variables": {
+          "surface/page": "VariableID:2:79",
+          "surface/header": "VariableID:2:80",
+          "surface/menu": "VariableID:2:81",
+          "surface/subtle": "VariableID:2:82",
+          "text/primary": "VariableID:2:83",
+          "text/secondary": "VariableID:2:84",
+          "text/on-action": "VariableID:2:85",
+          "text/disabled": "VariableID:2:86",
+          "border/subtle": "VariableID:2:87",
+          "border/focus": "VariableID:2:88",
+          "action/primary": "VariableID:2:89",
+          "action/primary-hover": "VariableID:2:90",
+          "action/disabled": "VariableID:2:91",
+          "nav/active-bg": "VariableID:2:92",
+          "nav/active-text": "VariableID:2:93",
+          "nav/hover-bg": "VariableID:2:94",
+          "header/height": "VariableID:2:95",
+          "header/logo-size": "VariableID:2:96",
+          "layout/content-max": "VariableID:2:97",
+          "control/min-height": "VariableID:2:98",
+          "control/radius": "VariableID:2:99",
+          "control/gap": "VariableID:2:100",
+          "layout/gutter": "VariableID:2:101",
+          "menu/icon-bg": "VariableID:2:1125",
+          "menu/icon-color": "VariableID:2:1126",
+          "surface/card": "VariableID:7:6679",
+          "feature/result-bg": "VariableID:7:6680",
+          "feature/result-ink": "VariableID:7:6681",
+          "feature/result-muted": "VariableID:7:6682",
+          "feature/result-line": "VariableID:7:6683",
+          "feature/result-emblem": "VariableID:7:6684",
+          "feature/upcoming-bg": "VariableID:7:6685",
+          "feature/upcoming-ink": "VariableID:7:6686",
+          "feature/upcoming-time": "VariableID:7:6687",
+          "feature/upcoming-muted": "VariableID:7:6688",
+          "feature/upcoming-emblem": "VariableID:7:6689",
+          "feature/upcoming-line": "VariableID:7:6690"
+        },
+        "sun": {
+          "ok": true,
+          "nodeId": "8:16187",
+          "name": "Icon / sun",
+          "type": "COMPONENT"
+        }
+      },
+      "semantic": {
+        "surface/page": "color/dark/page",
+        "surface/header": "color/dark/header",
+        "surface/menu": "color/dark/menu",
+        "surface/subtle": "color/dark/subtle",
+        "text/primary": "color/dark/ink",
+        "text/secondary": "color/dark/secondary",
+        "text/on-action": "color/dark/action-ink",
+        "text/disabled": "color/dark/secondary",
+        "border/subtle": "color/dark/border",
+        "border/focus": "color/dark/action",
+        "action/primary": "color/dark/action",
+        "action/primary-hover": "color/dark/hover",
+        "action/disabled": "color/dark/subtle",
+        "nav/active-bg": "color/dark/selected",
+        "nav/active-text": "color/dark/selected-ink",
+        "nav/hover-bg": "color/dark/subtle",
+        "header/height": "size/header",
+        "header/logo-size": "size/logo",
+        "layout/content-max": "size/content",
+        "control/min-height": "size/control",
+        "control/radius": "radius/md",
+        "control/gap": "space/2",
+        "layout/gutter": "space/8",
+        "menu/icon-bg": "color/dark/selected",
+        "menu/icon-color": "color/dark/action",
+        "surface/card": "color/dark/card",
+        "feature/result-bg": "color/dark/result",
+        "feature/result-ink": "color/dark/ink",
+        "feature/result-muted": "color/dark/secondary",
+        "feature/result-line": "color/dark/result-line",
+        "feature/result-emblem": "color/dark/result-emblem",
+        "feature/upcoming-bg": "color/dark/upcoming",
+        "feature/upcoming-ink": "color/dark/upcoming-ink",
+        "feature/upcoming-time": "color/dark/upcoming-time",
+        "feature/upcoming-muted": "color/dark/upcoming-muted",
+        "feature/upcoming-emblem": "color/dark/upcoming-emblem",
+        "feature/upcoming-line": "color/dark/upcoming-line"
+      },
+      "resolvedSemantic": {
+        "surface/page": "#0C1017",
+        "surface/header": "#111824",
+        "surface/menu": "#1E2B3D",
+        "surface/subtle": "#202D40",
+        "text/primary": "#EDF2F9",
+        "text/secondary": "#B8C4D6",
+        "text/on-action": "#0B1628",
+        "text/disabled": "#B8C4D6",
+        "border/subtle": "#33445B",
+        "border/focus": "#7BAAFF",
+        "action/primary": "#7BAAFF",
+        "action/primary-hover": "#9BBEFF",
+        "action/disabled": "#202D40",
+        "nav/active-bg": "#203F6A",
+        "nav/active-text": "#C5DCFF",
+        "nav/hover-bg": "#202D40",
+        "header/height": 88,
+        "header/logo-size": 72,
+        "layout/content-max": 1280,
+        "control/min-height": 44,
+        "control/radius": 12,
+        "control/gap": 8,
+        "layout/gutter": 32,
+        "menu/icon-bg": "#203F6A",
+        "menu/icon-color": "#7BAAFF",
+        "surface/card": "#151E2B",
+        "feature/result-bg": "#12223A",
+        "feature/result-ink": "#EDF2F9",
+        "feature/result-muted": "#B8C4D6",
+        "feature/result-line": "#355174",
+        "feature/result-emblem": "#203856",
+        "feature/upcoming-bg": "#18355C",
+        "feature/upcoming-ink": "#D6E7FF",
+        "feature/upcoming-time": "#9DC3FF",
+        "feature/upcoming-muted": "#B7D5FF",
+        "feature/upcoming-emblem": "#284B77",
+        "feature/upcoming-line": "#385D89"
+      },
+      "counts": {
+        "primitives": 81,
+        "lightSemantic": 29,
+        "darkSemantic": 37,
+        "componentFamilies": 22,
+        "components": 54,
+        "screensAndStates": 35,
+        "reactionEntries": 96
+      },
+      "contrastCalculationsReported": {
+        "bodyCard": 14.91,
+        "secondaryCard": 9.51,
+        "action": 7.79,
+        "actionHover": 9.66,
+        "selected": 7.6,
+        "actionOnSelected": 4.56,
+        "resultCaptionTile": 4.61,
+        "upcomingCaption": 8.21,
+        "tag": 7.08,
+        "menuLink": 6.15
+      },
+      "reviewStatus": "ship",
+      "scope": "Figma authoring only; no web implementation, browser accessibility, dynamic fetching or complete intertheme prototype claim",
+      "prototype": "Rebased dark selector and More reactions. Tema claro is intended action; complete Light/Dark swap not established.",
+      "lightSpotCheck": {
+        "roots": [
+          "4:1655",
+          "4:2606",
+          "2:254",
+          "2:568"
+        ],
+        "darkBindingsReported": 0,
+        "scope": "Author-reported bounded technical check"
+      },
+      "sunExport": "design/assets/icons/8-16187.svg",
+      "review": "design/dark-review.md",
+      "reviewScope": "Independent visual review: 36 final captures (35 screen/state references plus Foundations), with light approval desktop/mobile and 320px selector comparisons; no material defects or capture-validity failures observed. No runtime conformance claim."
+    },
+    "games": {
+      "metadata": "design/games-metadata.json",
+      "brief": "design/games-brief.md",
+      "tokens": "design/games-tokens.json",
+      "review": "design/games-review.md",
+      "previewDirectory": "design/games-previews-final",
+      "figma": {
+        "pages": {
+          "screens": "13:16350",
+          "components": "13:16351",
+          "states": "13:16352"
+        },
+        "tabSet": {
+          "ok": true,
+          "nodeId": "13:16428",
+          "name": "Games / Category tab",
+          "type": "COMPONENT_SET"
+        },
+        "matchSet": {
+          "ok": true,
+          "nodeId": "13:16699",
+          "name": "Games / Match",
+          "type": "COMPONENT_SET"
+        },
+        "fixtureBehaviorNote": "13:19329",
+        "interactionSheet": "13:19172",
+        "primitiveVariables": {
+          "space/5": "VariableID:13:19320",
+          "size/games-time-cell": "VariableID:13:19321",
+          "size/games-tab": "VariableID:13:19322",
+          "size/games-date-marker": "VariableID:13:19323"
+        },
+        "semanticVariables": {
+          "games/time-cell-width": "VariableID:13:19324",
+          "games/tab-height": "VariableID:13:19325",
+          "games/tab-mobile-height": "VariableID:13:19326",
+          "games/date-marker-width": "VariableID:13:19327",
+          "games/card-padding-y": "VariableID:13:19328"
+        }
+      },
+      "semantic": {
+        "games/time-cell-width": "size/games-time-cell",
+        "games/tab-height": "size/games-tab",
+        "games/tab-mobile-height": "size/compact-header",
+        "games/date-marker-width": "size/games-date-marker",
+        "games/card-padding-y": "space/5"
+      },
+      "geometry": {
+        "contentMax": 1280,
+        "gutterMobile": 16,
+        "gutterTablet": 24,
+        "headerDesktop": 88,
+        "headerSmall": 72,
+        "tabDesktop": 52,
+        "tabMobile": 72,
+        "timeCellWidth": 112,
+        "wideCardPaddingX": 24,
+        "wideCardPaddingY": 20,
+        "mobileCardPadding": 16,
+        "cardGapMobile": 12,
+        "cardRadius": 16,
+        "focusStroke": 2,
+        "dateRoundMarkerWidth": 56
+      },
+      "counts": {
+        "primitives": 85,
+        "lightSemantic": 34,
+        "darkSemantic": 37,
+        "totalVariables": 156,
+        "tabVariants": 10,
+        "matchVariants": 10,
+        "mainScenes": 10,
+        "stateEdgeScenes": 8,
+        "interactionSheets": 1,
+        "finalCaptures": 19
+      },
+      "componentProperties": {
+        "tabs": {
+          "Label": "Label#13:48",
+          "Count": "Count#13:49",
+          "ShowCount": "Show count#13:50"
+        },
+        "matches": [
+          {
+            "root": "13:16429",
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          },
+          {
+            "root": "13:16457",
+            "kind": "result",
+            "compact": false,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          },
+          {
+            "root": "13:16485",
+            "kind": "draw",
+            "compact": false,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          },
+          {
+            "root": "13:16513",
+            "kind": "wo",
+            "compact": false,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          },
+          {
+            "root": "13:16541",
+            "kind": "scheduled",
+            "compact": true,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124"
+            }
+          },
+          {
+            "root": "13:16565",
+            "kind": "result",
+            "compact": true,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            }
+          },
+          {
+            "root": "13:16591",
+            "kind": "draw",
+            "compact": true,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            }
+          },
+          {
+            "root": "13:16617",
+            "kind": "wo",
+            "compact": true,
+            "state": "Default",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            }
+          },
+          {
+            "root": "13:16643",
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Hover",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          },
+          {
+            "root": "13:16671",
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Focus",
+            "properties": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            }
+          }
+        ]
+      },
+      "referenceWidths": [
+        2560,
+        1440,
+        1024,
+        768,
+        390,
+        320
+      ],
+      "prototype": {
+        "categoryWidths": [
+          1440,
+          390
+        ],
+        "transition": "DISSOLVE",
+        "durationMs": 120,
+        "easing": "ease-out",
+        "samePage": true,
+        "otherWidths": "Static Hoje references",
+        "emptyCTA": "Intended upcoming-tab action, not prototyped across pages",
+        "matchDetail": "Existing app intent; no Figma detail page authored"
+      },
+      "productRules": {
+        "today": "agendado and date starts Hoje",
+        "upcoming": "other agendado",
+        "results": "finalizado grouped by round descending",
+        "competition": "Noninteractive active competition from DataContext",
+        "live": "ao_vivo excluded by incumbent Games logic",
+        "matchTarget": "One whole-card detail target"
+      },
+      "states": [
+        "empty Hoje desktop/mobile",
+        "empty Próximos mobile",
+        "empty Resultados mobile",
+        "loading mobile",
+        "error/retry mobile specification",
+        "long names 320",
+        "missing timestamp 390",
+        "hover/focus/disabled specimens"
+      ],
+      "reviewStatus": "ship",
+      "reviewScope": "Independent review of all 19 final static Light exports; no material defects or invalid captures. Earlier pass-one captures are historical.",
+      "advisories": [
+        "Disabled tab appears nearly identical to Default; distinguish if used in implementation",
+        "Browser keyboard, focus, ARIA, match names, whole-card navigation and reduced motion remain unverified"
+      ],
+      "data": "Illustrative clubs, scores and dates; Hoje reference 2026-10-05, upcoming 8/10 October, result rounds 6 then 5",
+      "scope": "Light Figma only; application unchanged, no dark Games, browser accessibility or runtime behavior claim",
+      "errorWiring": "JogosScreen does not currently consume DataContext error; error/retry is future UI specification",
+      "postReviewBindings": "Existing 20/112/52/56 geometry bound to variables without changing reviewed pixels",
+      "limits": {
+        "appChanged": false,
+        "darkAuthored": false,
+        "liveIncluded": false,
+        "detailFrameCreated": false,
+        "competitionSelectorAdded": false,
+        "emptyCTAPrototype": false
+      }
+    },
+    "gamesDark": {
+      "metadata": "design/games-dark-metadata.json",
+      "brief": "design/games-dark-brief.md",
+      "tokens": "design/tokens.json",
+      "review": "design/games-dark-review.md",
+      "previewDirectory": "design/games-dark-previews-final",
+      "figma": {
+        "pages": {
+          "components": "15:19337",
+          "screens": "15:19338",
+          "states": "15:19339"
+        },
+        "tabSet": {
+          "ok": true,
+          "nodeId": "15:19340",
+          "name": "Games / Category tab / Dark",
+          "type": "COMPONENT_SET"
+        },
+        "matchSet": {
+          "ok": true,
+          "nodeId": "15:19416",
+          "name": "Games / Match / Dark",
+          "type": "COMPONENT_SET"
+        },
+        "fixtureBehaviorNote": "15:22215",
+        "interactionSheet": "15:22080",
+        "primitiveVariables": {
+          "space/5": "VariableID:13:19320",
+          "size/games-time-cell": "VariableID:13:19321",
+          "size/games-tab": "VariableID:13:19322",
+          "size/games-date-marker": "VariableID:13:19323"
+        },
+        "semanticVariables": {
+          "games/time-cell-width": "VariableID:15:19687",
+          "games/tab-height": "VariableID:15:19688",
+          "games/tab-mobile-height": "VariableID:15:19689",
+          "games/date-marker-width": "VariableID:15:19690",
+          "games/card-padding-y": "VariableID:15:19691"
+        }
+      },
+      "semantic": {
+        "games/time-cell-width": "size/games-time-cell",
+        "games/tab-height": "size/games-tab",
+        "games/tab-mobile-height": "size/compact-header",
+        "games/date-marker-width": "size/games-date-marker",
+        "games/card-padding-y": "space/5"
+      },
+      "geometry": {
+        "contentMax": 1280,
+        "gutterMobile": 16,
+        "gutterTablet": 24,
+        "headerDesktop": 88,
+        "headerSmall": 72,
+        "tabDesktop": 52,
+        "tabMobile": 72,
+        "timeCellWidth": 112,
+        "wideCardPaddingX": 24,
+        "wideCardPaddingY": 20,
+        "mobileCardPadding": 16,
+        "cardGapMobile": 12,
+        "cardRadius": 16,
+        "focusStroke": 2,
+        "dateRoundMarkerWidth": 56
+      },
+      "counts": {
+        "primitives": 85,
+        "lightSemantic": 34,
+        "darkSemantic": 42,
+        "totalVariables": 161,
+        "tabVariants": 10,
+        "matchVariants": 10,
+        "mainScenes": 10,
+        "stateEdgeScenes": 8,
+        "interactionSheets": 1,
+        "finalCaptures": 19
+      },
+      "componentProperties": {
+        "tabs": [
+          {
+            "root": "15:19341",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19342",
+            "state": "Default",
+            "compact": false
+          },
+          {
+            "root": "15:19346",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19347",
+            "state": "Selected",
+            "compact": false
+          },
+          {
+            "root": "15:19351",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19352",
+            "state": "Hover",
+            "compact": false
+          },
+          {
+            "root": "15:19356",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19357",
+            "state": "Focus",
+            "compact": false
+          },
+          {
+            "root": "15:19361",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19362",
+            "state": "Disabled",
+            "compact": false
+          },
+          {
+            "root": "15:19366",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19368",
+            "state": "Default",
+            "compact": true
+          },
+          {
+            "root": "15:19372",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19374",
+            "state": "Selected",
+            "compact": true
+          },
+          {
+            "root": "15:19378",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19380",
+            "state": "Hover",
+            "compact": true
+          },
+          {
+            "root": "15:19384",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19386",
+            "state": "Focus",
+            "compact": true
+          },
+          {
+            "root": "15:19390",
+            "props": {
+              "Label": "Label#13:48",
+              "Count": "Count#13:49",
+              "ShowCount": "Show count#13:50"
+            },
+            "icon": "15:19392",
+            "state": "Disabled",
+            "compact": true
+          }
+        ],
+        "matches": [
+          {
+            "root": "15:19417",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Default"
+          },
+          {
+            "root": "15:19440",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "result",
+            "compact": false,
+            "state": "Default"
+          },
+          {
+            "root": "15:19463",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "draw",
+            "compact": false,
+            "state": "Default"
+          },
+          {
+            "root": "15:19486",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "wo",
+            "compact": false,
+            "state": "Default"
+          },
+          {
+            "root": "15:19509",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124"
+            },
+            "kind": "scheduled",
+            "compact": true,
+            "state": "Default"
+          },
+          {
+            "root": "15:19528",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            },
+            "kind": "result",
+            "compact": true,
+            "state": "Default"
+          },
+          {
+            "root": "15:19549",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            },
+            "kind": "draw",
+            "compact": true,
+            "state": "Default"
+          },
+          {
+            "root": "15:19570",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "ScoreHome": "Home score#13:126",
+              "Away": "Away#13:123",
+              "ScoreAway": "Away score#13:127",
+              "Phase": "Phase#13:124"
+            },
+            "kind": "wo",
+            "compact": true,
+            "state": "Default"
+          },
+          {
+            "root": "15:19591",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Hover"
+          },
+          {
+            "root": "15:19614",
+            "props": {
+              "Time": "Time / status#13:119",
+              "Round": "Round#13:120",
+              "Home": "Home#13:121",
+              "Score": "Score#13:122",
+              "Away": "Away#13:123",
+              "Phase": "Phase#13:124",
+              "Date": "Date#13:125"
+            },
+            "kind": "scheduled",
+            "compact": false,
+            "state": "Focus"
+          }
+        ]
+      },
+      "referenceWidths": [
+        2560,
+        1440,
+        1024,
+        768,
+        390,
+        320
+      ],
+      "prototype": {
+        "categoryWidths": [
+          1440,
+          390
+        ],
+        "transition": "DISSOLVE",
+        "durationMs": 120,
+        "easing": "ease-out",
+        "samePage": true,
+        "otherWidths": "Static Hoje references",
+        "emptyCTA": "Intended upcoming-tab action, not prototyped across pages",
+        "matchDetail": "Existing app intent; no Figma detail page authored",
+        "fullThemeSwitch": "Not prototyped"
+      },
+      "productRules": {
+        "today": "agendado and date starts Hoje",
+        "upcoming": "other agendado",
+        "results": "finalizado grouped by round descending",
+        "competition": "Noninteractive active competition from DataContext",
+        "live": "ao_vivo excluded by incumbent Games logic",
+        "matchTarget": "One whole-card detail target"
+      },
+      "states": [
+        "empty Hoje desktop/mobile",
+        "empty Próximos mobile",
+        "empty Resultados mobile",
+        "loading mobile",
+        "error/retry mobile specification",
+        "long names 320",
+        "missing timestamp 390",
+        "hover/focus/disabled specimens"
+      ],
+      "reviewStatus": "ship",
+      "reviewScope": "Independent visual inspection of all 19 final static Dark exports with representative Jogos Light and approved Home Dark comparisons; no material defects or invalid captures.",
+      "advisories": [
+        "Optional Disabled tab resembles Hover; distinguish appearance and disabled semantics if used. Principal scenes do not depend on it.",
+        "Browser keyboard, focus, ARIA, accessible match names, whole-card navigation and reduced motion remain unverified."
+      ],
+      "data": "Illustrative clubs, scores and dates; Hoje reference 2026-10-05, upcoming 8/10 October, result rounds 6 then 5",
+      "scope": "Dark Figma design only; application unchanged, no browser accessibility or runtime behavior claim",
+      "errorWiring": "JogosScreen does not currently consume DataContext error; error/retry is future UI specification",
+      "limits": {
+        "appChanged": false,
+        "darkAuthored": true,
+        "liveIncluded": false,
+        "detailFrameCreated": false,
+        "competitionSelectorAdded": false,
+        "emptyCTAPrototype": false
+      },
+      "scenes": [
+        {
+          "root": "15:19692",
+          "width": 1440,
+          "category": "today",
+          "state": null,
+          "header": "15:19693",
+          "content": "15:19695",
+          "tabs": {
+            "today": "15:19702",
+            "upcoming": "15:19703",
+            "results": "15:19704"
+          },
+          "groups": [
+            "15:19705"
+          ],
+          "matches": [
+            "15:19714",
+            "15:19716",
+            "15:19718",
+            "15:19720"
+          ]
+        },
+        {
+          "root": "15:19876",
+          "width": 1024,
+          "category": "today",
+          "state": null,
+          "header": "15:19877",
+          "content": "15:19879",
+          "tabs": {
+            "today": "15:19886",
+            "upcoming": "15:19887",
+            "results": "15:19888"
+          },
+          "groups": [
+            "15:19889"
+          ],
+          "matches": [
+            "15:19898",
+            "15:19900",
+            "15:19902",
+            "15:19904"
+          ]
+        },
+        {
+          "root": "15:20057",
+          "width": 2560,
+          "category": "today",
+          "state": null,
+          "header": "15:20058",
+          "content": "15:20060",
+          "tabs": {
+            "today": "15:20067",
+            "upcoming": "15:20068",
+            "results": "15:20069"
+          },
+          "groups": [
+            "15:20070"
+          ],
+          "matches": [
+            "15:20079",
+            "15:20081",
+            "15:20083",
+            "15:20085"
+          ]
+        },
+        {
+          "root": "15:20241",
+          "width": 768,
+          "category": "today",
+          "state": null,
+          "header": "15:20242",
+          "content": "15:20251",
+          "tabs": {
+            "today": "15:20258",
+            "upcoming": "15:20259",
+            "results": "15:20260"
+          },
+          "groups": [
+            "15:20261"
+          ],
+          "matches": [
+            "15:20270",
+            "15:20272",
+            "15:20274",
+            "15:20276"
+          ]
+        },
+        {
+          "root": "15:20409",
+          "width": 390,
+          "category": "today",
+          "state": null,
+          "header": "15:20410",
+          "content": "15:20419",
+          "tabs": {
+            "today": "15:20426",
+            "upcoming": "15:20427",
+            "results": "15:20428"
+          },
+          "groups": [
+            "15:20429"
+          ],
+          "matches": [
+            "15:20438",
+            "15:20439",
+            "15:20440",
+            "15:20441"
+          ]
+        },
+        {
+          "root": "15:20561",
+          "width": 320,
+          "category": "today",
+          "state": null,
+          "header": "15:20562",
+          "content": "15:20571",
+          "tabs": {
+            "today": "15:20578",
+            "upcoming": "15:20579",
+            "results": "15:20580"
+          },
+          "groups": [
+            "15:20581"
+          ],
+          "matches": [
+            "15:20590",
+            "15:20591",
+            "15:20592",
+            "15:20593"
+          ]
+        },
+        {
+          "root": "15:20713",
+          "width": 1440,
+          "category": "upcoming",
+          "state": null,
+          "header": "15:20714",
+          "content": "15:20716",
+          "tabs": {
+            "today": "15:20723",
+            "upcoming": "15:20724",
+            "results": "15:20725"
+          },
+          "groups": [
+            "15:20726",
+            "15:20738"
+          ],
+          "matches": [
+            "15:20735",
+            "15:20737",
+            "15:20747",
+            "15:20749"
+          ]
+        },
+        {
+          "root": "15:20905",
+          "width": 390,
+          "category": "upcoming",
+          "state": null,
+          "header": "15:20906",
+          "content": "15:20915",
+          "tabs": {
+            "today": "15:20922",
+            "upcoming": "15:20923",
+            "results": "15:20924"
+          },
+          "groups": [
+            "15:20925",
+            "15:20936"
+          ],
+          "matches": [
+            "15:20934",
+            "15:20935",
+            "15:20945",
+            "15:20946"
+          ]
+        },
+        {
+          "root": "15:21066",
+          "width": 1440,
+          "category": "results",
+          "state": null,
+          "header": "15:21067",
+          "content": "15:21069",
+          "tabs": {
+            "today": "15:21076",
+            "upcoming": "15:21077",
+            "results": "15:21078"
+          },
+          "groups": [
+            "15:21079",
+            "15:21091"
+          ],
+          "matches": [
+            "15:21088",
+            "15:21090",
+            "15:21100",
+            "15:21102"
+          ]
+        },
+        {
+          "root": "15:21262",
+          "width": 390,
+          "category": "results",
+          "state": null,
+          "header": "15:21263",
+          "content": "15:21272",
+          "tabs": {
+            "today": "15:21279",
+            "upcoming": "15:21280",
+            "results": "15:21281"
+          },
+          "groups": [
+            "15:21282",
+            "15:21293"
+          ],
+          "matches": [
+            "15:21291",
+            "15:21292",
+            "15:21302",
+            "15:21303"
+          ]
+        }
+      ],
+      "stateScenes": [
+        {
+          "root": "15:21435",
+          "width": 1440,
+          "category": "today",
+          "state": "empty",
+          "header": "15:21436",
+          "content": "15:21438",
+          "tabs": {
+            "today": "15:21445",
+            "upcoming": "15:21446",
+            "results": "15:21447"
+          },
+          "groups": [
+            "15:21448"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21503",
+          "width": 390,
+          "category": "today",
+          "state": "empty",
+          "header": "15:21504",
+          "content": "15:21513",
+          "tabs": {
+            "today": "15:21520",
+            "upcoming": "15:21521",
+            "results": "15:21522"
+          },
+          "groups": [
+            "15:21523"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21558",
+          "width": 390,
+          "category": "upcoming",
+          "state": "empty",
+          "header": "15:21559",
+          "content": "15:21568",
+          "tabs": {
+            "today": "15:21575",
+            "upcoming": "15:21576",
+            "results": "15:21577"
+          },
+          "groups": [
+            "15:21578"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21611",
+          "width": 390,
+          "category": "results",
+          "state": "empty",
+          "header": "15:21612",
+          "content": "15:21621",
+          "tabs": {
+            "today": "15:21628",
+            "upcoming": "15:21629",
+            "results": "15:21630"
+          },
+          "groups": [
+            "15:21631"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21664",
+          "width": 390,
+          "category": "today",
+          "state": "loading",
+          "header": "15:21665",
+          "content": "15:21674",
+          "tabs": {
+            "today": "15:21681",
+            "upcoming": "15:21682",
+            "results": "15:21683"
+          },
+          "groups": [
+            "15:21684"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21719",
+          "width": 390,
+          "category": "today",
+          "state": "error",
+          "header": "15:21720",
+          "content": "15:21729",
+          "tabs": {
+            "today": "15:21736",
+            "upcoming": "15:21737",
+            "results": "15:21738"
+          },
+          "groups": [
+            "15:21739"
+          ],
+          "matches": []
+        },
+        {
+          "root": "15:21776",
+          "width": 320,
+          "category": "today",
+          "state": null,
+          "header": "15:21777",
+          "content": "15:21786",
+          "tabs": {
+            "today": "15:21793",
+            "upcoming": "15:21794",
+            "results": "15:21795"
+          },
+          "groups": [
+            "15:21796"
+          ],
+          "matches": [
+            "15:21805",
+            "15:21806",
+            "15:21807",
+            "15:21808"
+          ]
+        },
+        {
+          "root": "15:21928",
+          "width": 390,
+          "category": "today",
+          "state": null,
+          "header": "15:21929",
+          "content": "15:21938",
+          "tabs": {
+            "today": "15:21945",
+            "upcoming": "15:21946",
+            "results": "15:21947"
+          },
+          "groups": [
+            "15:21948"
+          ],
+          "matches": [
+            "15:21957",
+            "15:21958",
+            "15:21959",
+            "15:21960"
+          ]
+        }
+      ],
+      "contrastChecks": [
+        {
+          "name": "Primary/card",
+          "ink": "#EDF2F9",
+          "surface": "#151E2B",
+          "ratio": 14.91
+        },
+        {
+          "name": "Secondary/card",
+          "ink": "#B8C4D6",
+          "surface": "#151E2B",
+          "ratio": 9.51
+        },
+        {
+          "name": "Selected/background",
+          "ink": "#C5DCFF",
+          "surface": "#203F6A",
+          "ratio": 7.6
+        },
+        {
+          "name": "Time/time-cell",
+          "ink": "#7BAAFF",
+          "surface": "#203F6A",
+          "ratio": 4.56
+        },
+        {
+          "name": "Time/card",
+          "ink": "#7BAAFF",
+          "surface": "#151E2B",
+          "ratio": 7.21
+        },
+        {
+          "name": "Action ink/fill",
+          "ink": "#0B1628",
+          "surface": "#7BAAFF",
+          "ratio": 7.79
+        }
+      ],
+      "lightPaintBindingsCheck": {
+        "roots": 22,
+        "unexpectedVisibleBindings": 0
+      },
+      "lightRegressionSpotCheck": {
+        "scenes": 2,
+        "componentSets": 2,
+        "unexpectedDarkPaintBindings": 0,
+        "source": "Author technical checks recorded by independent review; not independently rerun"
+      },
+      "bindingEvidence": {
+        "bindingsApplied": 1995,
+        "source": "Author evidence; independent review did not rerun bindings or numeric contrast"
+      }
+    },
+    "classification": {
+      "metadata": "design/classification-metadata.json",
+      "brief": "design/classification-brief.md",
+      "tokens": "design/classification-tokens.json",
+      "sharedTokens": "design/tokens.json",
+      "review": "design/classification-review.md",
+      "fidelityHandoff": "design/fidelity-handoff.md",
+      "previewDirectory": "design/classification-previews-final",
+      "figma": {
+        "fileName": "Sem título",
+        "pages": {
+          "screens": "21:24107",
+          "components": "21:24108",
+          "states": "21:24109"
+        },
+        "componentSets": {
+          "form": {
+            "ok": true,
+            "nodeId": "21:24118",
+            "name": "Classification / Form",
+            "type": "COMPONENT_SET"
+          },
+          "row": {
+            "ok": true,
+            "nodeId": "21:24439",
+            "name": "Classification / League row",
+            "type": "COMPONENT_SET"
+          },
+          "tie": {
+            "ok": true,
+            "nodeId": "21:24673",
+            "name": "Classification / Tie",
+            "type": "COMPONENT_SET"
+          }
+        },
+        "componentApis": {
+          "form": {
+            "id": "21:24118",
+            "name": "Classification / Form",
+            "type": "COMPONENT_SET",
+            "properties": {
+              "Result": {
+                "type": "VARIANT",
+                "defaultValue": "V",
+                "variantOptions": [
+                  "V",
+                  "E",
+                  "D",
+                  "None"
+                ]
+              }
+            }
+          },
+          "row": {
+            "id": "21:24439",
+            "name": "Classification / League row",
+            "type": "COMPONENT_SET",
+            "properties": {
+              "Position#21:226": {
+                "type": "TEXT",
+                "defaultValue": "1"
+              },
+              "Name#21:227": {
+                "type": "TEXT",
+                "defaultValue": "Aurora FC"
+              },
+              "P#21:228": {
+                "type": "TEXT",
+                "defaultValue": "19"
+              },
+              "J#21:229": {
+                "type": "TEXT",
+                "defaultValue": "8"
+              },
+              "V#21:230": {
+                "type": "TEXT",
+                "defaultValue": "6"
+              },
+              "E#21:231": {
+                "type": "TEXT",
+                "defaultValue": "1"
+              },
+              "D#21:232": {
+                "type": "TEXT",
+                "defaultValue": "1"
+              },
+              "GP#21:233": {
+                "type": "TEXT",
+                "defaultValue": "22"
+              },
+              "GC#21:234": {
+                "type": "TEXT",
+                "defaultValue": "9"
+              },
+              "SG#21:235": {
+                "type": "TEXT",
+                "defaultValue": "+13"
+              },
+              "SGdetail#21:236": {
+                "type": "TEXT",
+                "defaultValue": "+13"
+              },
+              "Layout": {
+                "type": "VARIANT",
+                "defaultValue": "Desktop",
+                "variantOptions": [
+                  "Desktop",
+                  "Compact"
+                ]
+              },
+              "Zone": {
+                "type": "VARIANT",
+                "defaultValue": "Qualified",
+                "variantOptions": [
+                  "Qualified",
+                  "Middle",
+                  "Relegation"
+                ]
+              },
+              "Expanded": {
+                "type": "VARIANT",
+                "defaultValue": "false",
+                "variantOptions": [
+                  "false",
+                  "true"
+                ]
+              },
+              "State": {
+                "type": "VARIANT",
+                "defaultValue": "Default",
+                "variantOptions": [
+                  "Default",
+                  "Hover",
+                  "Focus"
+                ]
+              }
+            }
+          },
+          "tie": {
+            "id": "21:24673",
+            "name": "Classification / Tie",
+            "type": "COMPONENT_SET",
+            "properties": {
+              "Code#21:333": {
+                "type": "TEXT",
+                "defaultValue": "Q1"
+              },
+              "Status#21:334": {
+                "type": "TEXT",
+                "defaultValue": "Final"
+              },
+              "Home#21:335": {
+                "type": "TEXT",
+                "defaultValue": "Aurora FC"
+              },
+              "HomeScore#21:336": {
+                "type": "TEXT",
+                "defaultValue": "3"
+              },
+              "Away#21:337": {
+                "type": "TEXT",
+                "defaultValue": "Norte FC"
+              },
+              "AwayScore#21:338": {
+                "type": "TEXT",
+                "defaultValue": "1"
+              },
+              "Path#21:339": {
+                "type": "TEXT",
+                "defaultValue": "Vencedor → S1"
+              },
+              "Decider#21:340": {
+                "type": "TEXT",
+                "defaultValue": "Pênaltis · 4–3"
+              },
+              "Leg1#21:341": {
+                "type": "TEXT",
+                "defaultValue": "Ida · AUR 2–0 NOR"
+              },
+              "Leg2#21:342": {
+                "type": "TEXT",
+                "defaultValue": "Volta · NOR 1–1 AUR"
+              },
+              "Format": {
+                "type": "VARIANT",
+                "defaultValue": "Single",
+                "variantOptions": [
+                  "Single",
+                  "Two-leg"
+                ]
+              },
+              "State": {
+                "type": "VARIANT",
+                "defaultValue": "Finished",
+                "variantOptions": [
+                  "Finished",
+                  "Penalties",
+                  "Scheduled",
+                  "Pending",
+                  "Bye"
+                ]
+              }
+            }
+          }
+        },
+        "fixtureBehaviorNote": "21:33681",
+        "interactionSheet": "21:33469",
+        "primitiveVariables": {
+          "size/classification-position": "VariableID:21:29483",
+          "size/classification-row-mobile": "VariableID:21:29484",
+          "size/classification-tie-single": "VariableID:21:29485",
+          "size/classification-tie-twoleg": "VariableID:21:29486",
+          "size/classification-bracket-single": "VariableID:21:29487",
+          "size/classification-bracket-twoleg": "VariableID:21:29488"
+        },
+        "semanticVariables": {
+          "classification/position-width": "VariableID:21:29489",
+          "classification/row-mobile-min": "VariableID:21:29490",
+          "classification/row-wide-min": "VariableID:21:29491",
+          "classification/tie-single-min": "VariableID:21:29492",
+          "classification/tie-twoleg-min": "VariableID:21:29493",
+          "classification/bracket-single-min": "VariableID:21:29494",
+          "classification/bracket-twoleg-min": "VariableID:21:29495",
+          "classification/form-compact-size": "VariableID:21:29496",
+          "classification/bracket-line": "VariableID:21:29497"
+        }
+      },
+      "semantic": {
+        "classification/position-width": "size/classification-position",
+        "classification/row-mobile-min": "size/classification-row-mobile",
+        "classification/row-wide-min": "size/compact-header",
+        "classification/tie-single-min": "size/classification-tie-single",
+        "classification/tie-twoleg-min": "size/classification-tie-twoleg",
+        "classification/bracket-single-min": "size/classification-bracket-single",
+        "classification/bracket-twoleg-min": "size/classification-bracket-twoleg",
+        "classification/form-compact-size": "size/icon",
+        "classification/bracket-line": "color/neutral/600"
+      },
+      "geometry": {
+        "maxContent": 1280,
+        "gutters": {
+          "mobile": 16,
+          "tablet": 24
+        },
+        "header": {
+          "desktop": 88,
+          "compact": 72
+        },
+        "targetsMin": 44,
+        "focusStroke": 2,
+        "league": {
+          "wideMinHeight": 72,
+          "compactMinHeight": 136,
+          "padding": 16,
+          "gap": 12,
+          "formWide": 24,
+          "formCompact": 20,
+          "formGap": 4,
+          "rankWidth": 28,
+          "rankHeight": 40,
+          "crestHolder": 40
+        },
+        "tie": {
+          "padding": 16,
+          "gap": 8,
+          "radius": 16,
+          "singleMin": 196,
+          "twoLegMin": 256,
+          "desktopSingleMin": 212,
+          "desktopTwoLegMin": 272,
+          "scoreWidth": 32
+        },
+        "bracket": {
+          "desktopAbove": 768,
+          "padding": 24,
+          "connectorWidth": 40,
+          "cardGap": 24,
+          "stageHeader": 40,
+          "headerGap": 16,
+          "columns": 3
+        }
+      },
+      "counts": {
+        "nativeVariants": 24,
+        "icons": 6,
+        "captures": 34,
+        "variables": {
+          "primitives": 91,
+          "light": 43,
+          "dark": 42,
+          "total": 176
+        },
+        "scenes": 23,
+        "interactions": 4,
+        "states": 6,
+        "interactionSheets": 1,
+        "variantFamilies": {
+          "form": 4,
+          "row": 11,
+          "tie": 9
+        }
+      },
+      "icons": {
+        "ball": {
+          "nodeId": "21:24674",
+          "source": "components/icons.tsx",
+          "export": "design/assets/icons/classification-ball.svg"
+        },
+        "bell": {
+          "nodeId": "21:24678",
+          "source": "components/icons.tsx",
+          "export": "design/assets/icons/classification-bell.svg"
+        },
+        "share": {
+          "nodeId": "21:24682",
+          "source": "components/icons.tsx",
+          "export": "design/assets/icons/classification-share.svg"
+        },
+        "rules": {
+          "nodeId": "21:24688",
+          "source": "components/icons.tsx",
+          "export": "design/assets/icons/classification-rules.svg"
+        },
+        "menuDotsH": {
+          "nodeId": "21:24692",
+          "source": "components/icons.tsx",
+          "export": "design/assets/icons/classification-menuDotsH.svg"
+        },
+        "chevronUp": {
+          "nodeId": "21:33687",
+          "source": "existing Figma Icon / chevron path rotated 180",
+          "export": "design/assets/icons/classification-chevronUp.svg"
+        }
+      },
+      "assets": {
+        "officialLogoSource": "/mnt/c/Users/essiq/Downloads/cpmlogo.jpg",
+        "officialLogoCopy": "design/assets/cpm-official.jpg",
+        "crestFallback": "public/escudo-generico.png",
+        "fonts": [
+          "Manrope",
+          "Barlow Condensed"
+        ]
+      },
+      "paletteRoles": {
+        "page": "surface/page",
+        "header": "surface/header",
+        "card": "color/white",
+        "primaryText": "text/primary",
+        "secondaryText": "text/secondary",
+        "border": "border/subtle",
+        "focus": "border/focus",
+        "selectedFill": "nav/active-bg",
+        "selectedText": "nav/active-text",
+        "hover": "nav/hover-bg",
+        "connector": "classification/bracket-line",
+        "nonColorMeaning": "V/E/D/None letters and explicit qualification/relegation legends"
+      },
+      "sourceTruth": {
+        "files": [
+          "components/screens/TournamentsScreen.tsx",
+          "lib/types.ts",
+          "lib/db.ts"
+        ],
+        "sorting": [
+          "points descending",
+          "goal difference descending"
+        ],
+        "existingActions": [
+          "competition selection",
+          "favorites",
+          "notifications",
+          "share",
+          "regulations",
+          "scorers",
+          "club navigation"
+        ],
+        "rankBands": "Top four playoffs; last two relegation when more than four clubs: current convention, unverified official rules"
+      },
+      "newFeature": {
+        "status": "Figma-only proposed knockout feature; Competition has no format/bracket model and Match.stage is textual",
+        "requiredEntities": [
+          "competition format",
+          "ordered stages",
+          "stable ties",
+          "source and destination slots",
+          "legs with home/away identity and date/status/score",
+          "aggregate",
+          "resolved winner",
+          "bye",
+          "pending slots"
+        ],
+        "routing": [
+          "Q1 + Q2 → S1",
+          "Q3 + Q4 → S2",
+          "S1 + S2 → F1"
+        ],
+        "winnerRule": "A tied score/aggregate or only a completed first leg does not resolve a winner; MamoBall has no penalties; do not invent an alternative tiebreaker; bye advances without a fabricated score",
+        "connectorRule": "Calculate connections from real card centers after content growth"
+      },
+      "fixtures": {
+        "source": "design/classification-metadata.json#fixtures",
+        "liveData": false,
+        "competitionFormats": {
+          "Liga Paulista": "league",
+          "Copa Paulista": "single",
+          "Taça CPM": "twoleg"
+        },
+        "tabs": {
+          "league": [
+            "Tabela",
+            "Artilharia"
+          ],
+          "knockout": [
+            "Chave",
+            "Artilharia"
+          ]
+        },
+        "formatRule": "Competition defines format; no arbitrary three-format toggle",
+        "roundSample": "Rodada 8 de 14 is demonstrative; show known selected competition/round only, omit unknown progress in loading/error",
+        "defaultActions": "Favorites and notifications default off; prototype controls demonstrate intention"
+      },
+      "prototype": {
+        "transition": "DISSOLVE",
+        "durationSeconds": 0.12,
+        "coverage": "Liga 1440/390 → seletor/ações; selector → 3 formatos; Liga ↔ artilharia 1440/390; fases Single/Two-leg 390; expansão primeira linha Liga 390/320.",
+        "limits": "Outros tamanhos são amostras estáticas. Artilharia mata-mata e seletor com mata-mata ativo não têm percurso ligado. Ações externas/clubes/partidas/retry demonstram intenção, sem executar aplicação."
+      },
+      "prototypeCoverage": {
+        "connected": [
+          "Liga selector/actions 1440/390",
+          "selector to three illustrative competition formats",
+          "Liga ↔ Artilharia 1440/390",
+          "Single/Two-leg phases 390",
+          "first Liga row expand/collapse 390/320"
+        ],
+        "staticOrUnconnected": [
+          "other widths",
+          "knockout Artilharia",
+          "selector with knockout active"
+        ],
+        "intentOnly": [
+          "favorite",
+          "notification",
+          "share",
+          "regulations",
+          "club navigation",
+          "match navigation",
+          "retry"
+        ],
+        "runtimeVerified": false
+      },
+      "reviewDisposition": {
+        "disposition": "ship",
+        "source": "design/classification-review.md",
+        "capturesInspected": 34,
+        "materialDefects": 0,
+        "invalidCaptures": 0,
+        "advisory": "768px Liga is vertically generous; revisit if real tablet comparison tasks justify it",
+        "verificationLimits": "No detector, browser, application, keyboard/ARIA, backend or exhaustive measured contrast verification",
+        "authoritativeRecord": {
+          "disposition": "ship",
+          "path": "design/classification-review.md",
+          "scope": "All 34 final Figma exports plus incumbent Jogos Light desktop/mobile references; no material findings. No browser/application verification."
+        }
+      },
+      "productLimits": [
+        "Fixtures demonstrativos; nenhuma leitura live de banco",
+        "Mata-mata é feature nova e requer modelo próprio de etapas/confrontos/leg/winner/bye; MamoBall não tem pênaltis",
+        "Top4/últimos2 preservam convenção existente, sem regulamento verificado",
+        "Estados erro/loading devem ser conectados no frontend futuro",
+        "Figma não verifica teclado/ARIA/browser ou responsividade intermediária"
+      ],
+      "captures": [
+        {
+          "nodeId": "21:24697",
+          "path": "design/classification-previews-final/21-24697.png"
+        },
+        {
+          "nodeId": "21:25126",
+          "path": "design/classification-previews-final/21-25126.png"
+        },
+        {
+          "nodeId": "21:25552",
+          "path": "design/classification-previews-final/21-25552.png"
+        },
+        {
+          "nodeId": "21:25981",
+          "path": "design/classification-previews-final/21-25981.png"
+        },
+        {
+          "nodeId": "21:26340",
+          "path": "design/classification-previews-final/21-26340.png"
+        },
+        {
+          "nodeId": "21:26701",
+          "path": "design/classification-previews-final/21-26701.png"
+        },
+        {
+          "nodeId": "21:27062",
+          "path": "design/classification-previews-final/21-27062.png"
+        },
+        {
+          "nodeId": "21:27334",
+          "path": "design/classification-previews-final/21-27334.png"
+        },
+        {
+          "nodeId": "21:27603",
+          "path": "design/classification-previews-final/21-27603.png"
+        },
+        {
+          "nodeId": "21:27875",
+          "path": "design/classification-previews-final/21-27875.png"
+        },
+        {
+          "nodeId": "21:28044",
+          "path": "design/classification-previews-final/21-28044.png"
+        },
+        {
+          "nodeId": "21:28215",
+          "path": "design/classification-previews-final/21-28215.png"
+        },
+        {
+          "nodeId": "21:28386",
+          "path": "design/classification-previews-final/21-28386.png"
+        },
+        {
+          "nodeId": "21:28679",
+          "path": "design/classification-previews-final/21-28679.png"
+        },
+        {
+          "nodeId": "21:28862",
+          "path": "design/classification-previews-final/21-28862.png"
+        },
+        {
+          "nodeId": "21:29498",
+          "path": "design/classification-previews-final/21-29498.png"
+        },
+        {
+          "nodeId": "21:29620",
+          "path": "design/classification-previews-final/21-29620.png"
+        },
+        {
+          "nodeId": "21:29719",
+          "path": "design/classification-previews-final/21-29719.png"
+        },
+        {
+          "nodeId": "21:29847",
+          "path": "design/classification-previews-final/21-29847.png"
+        },
+        {
+          "nodeId": "21:29949",
+          "path": "design/classification-previews-final/21-29949.png"
+        },
+        {
+          "nodeId": "21:30323",
+          "path": "design/classification-previews-final/21-30323.png"
+        },
+        {
+          "nodeId": "21:30697",
+          "path": "design/classification-previews-final/21-30697.png"
+        },
+        {
+          "nodeId": "21:30842",
+          "path": "design/classification-previews-final/21-30842.png"
+        },
+        {
+          "nodeId": "21:30971",
+          "path": "design/classification-previews-final/21-30971.png"
+        },
+        {
+          "nodeId": "21:31429",
+          "path": "design/classification-previews-final/21-31429.png"
+        },
+        {
+          "nodeId": "21:31895",
+          "path": "design/classification-previews-final/21-31895.png"
+        },
+        {
+          "nodeId": "21:32277",
+          "path": "design/classification-previews-final/21-32277.png"
+        },
+        {
+          "nodeId": "21:32667",
+          "path": "design/classification-previews-final/21-32667.png"
+        },
+        {
+          "nodeId": "21:32735",
+          "path": "design/classification-previews-final/21-32735.png"
+        },
+        {
+          "nodeId": "21:32802",
+          "path": "design/classification-previews-final/21-32802.png"
+        },
+        {
+          "nodeId": "21:32873",
+          "path": "design/classification-previews-final/21-32873.png"
+        },
+        {
+          "nodeId": "21:32945",
+          "path": "design/classification-previews-final/21-32945.png"
+        },
+        {
+          "nodeId": "21:33298",
+          "path": "design/classification-previews-final/21-33298.png"
+        },
+        {
+          "nodeId": "21:33469",
+          "path": "design/classification-previews-final/21-33469.png"
+        }
+      ],
+      "technicalVerification": {
+        "variables": {
+          "primitives": 91,
+          "light": 43,
+          "dark": 42,
+          "total": 176
+        },
+        "semanticAliasAudit": "All 9 new aliases resolve the expected primitives in live Figma",
+        "assets": "34 PNGs with valid PNG headers and width >=320; 6 original/reused-path SVG files",
+        "componentApi": "Canonical post-combine properties fetched from each live component set; 24 native variants",
+        "application": "No application files modified",
+        "prototypeAudit": "Live reactions verified for selector and scorers at1440/390, plus two-leg mobile Final phase; ON_CLICK/NAVIGATE/DISSOLVE120ms/EASE_OUT"
+      },
+      "tokenMapFiles": {
+        "primitivesAndSemanticIds": "design/classification-tokens.json",
+        "sharedPrimitiveValuesAndThemeAliases": "design/tokens.json",
+        "componentPropertyMap": "design/classification-metadata.json#componentApis"
+      },
+      "productCorrection": {
+        "date": "2026-10-06",
+        "penalties": false,
+        "historicalPenaltyContent": "obsolete; no winner inference from tied score/aggregate"
+      }
+    },
+    "homeImplementation": {
+      "date": "2026-10-06",
+      "scope": "Implemented header and responsive Home core, light/dark; other screen redesigns remain Figma specifications.",
+      "documentation": "design/home-implementation/implementation.md",
+      "review": "design/home-implementation/review.md",
+      "reviewStatus": "ship; final verdict scores both Empate and W.O. fixes resolved, not a new full-app certification",
+      "cssSources": [
+        "app/cpm-tokens.css",
+        "app/cpm.css",
+        "public/fonts/cpm-fonts.css"
+      ],
+      "reusableComponents": [
+        "CpmIcon",
+        "CpmAction",
+        "CpmPopover",
+        "CpmMenuItem",
+        "DesktopHeader",
+        "Crest"
+      ],
+      "motion": {
+        "stateDuration": "120ms",
+        "popoverEase": "easeOut",
+        "popoverTranslate": "-4px entrance / -2px exit; 0 with reduced motion",
+        "feature": "120ms opacity crossfade",
+        "reduced": "MotionConfig user suppresses transforms; CSS transitions 0.01ms; opacity remains possible"
+      },
+      "breakpoints": [
+        {
+          "name": "compact-header-and-stacked-home",
+          "value": "1023px maximum"
+        },
+        {
+          "name": "compact-desktop",
+          "value": "1024px–1279px"
+        },
+        {
+          "name": "mobile-gutter",
+          "value": "599px maximum"
+        }
+      ],
+      "evidence": {
+        "browser": "design/home-implementation/browser/report.json",
+        "liveFunctional": "design/home-implementation/live-functional.json",
+        "build": "design/home-implementation/build.log",
+        "detector": "design/home-implementation/detector.json"
+      },
+      "extensions": "Existing news and registration below core are preserved system extensions, not exact new Figma compositions.",
+      "backend": "Existing Supabase public reads; no database mutation in verification.",
+      "deployed": false,
+      "limitations": [
+        "No pixel-identical font rasterization claim",
+        "No full WCAG, authenticated/staff or every legacy destination certification",
+        "Pre-existing corrupt git HEAD prevents normal git status/diff/commit"
+      ],
+      "correctionEvidence": {
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "variants": [
+          "draw",
+          "wo"
+        ],
+        "explicitAssertions": 12
+      },
+      "liveRecovery": {
+        "retryAfter503": true,
+        "errorIsNotEmpty": true,
+        "simulatedFailureCount": 4
+      }
+    },
+    "authLibraryDark": {
+      "scope": "accepted native Figma specification; implementation deferred",
+      "documentation": "design/auth-library-dark-documentation.md",
+      "metadata": "design/auth-library-dark-metadata.json",
+      "review": {
+        "path": "design/auth-library-dark-finish-review.md",
+        "disposition": "ship",
+        "materialFixes": 0
+      },
+      "pages": {
+        "authComponents": "54:25396",
+        "loginScreens": "54:25397",
+        "loginStates": "54:25398",
+        "registerScreens": "54:25399",
+        "registerStates": "54:25400",
+        "recoveryScreens": "54:25401",
+        "recoveryStates": "54:25402",
+        "libraryComponents": "54:25403",
+        "libraryScreens": "54:25404",
+        "libraryStates": "54:25405"
+      },
+      "coverage": {
+        "families": [
+          "Login",
+          "Criar conta",
+          "Recuperar senha",
+          "Salvos",
+          "Avisos/full Aviso"
+        ],
+        "sceneRoots": 132,
+        "rootsByInventory": {
+          "login": 14,
+          "register": 28,
+          "recovery": 35,
+          "library": 55
+        },
+        "newReusableRoots": 41,
+        "widths": [
+          320,
+          390,
+          768,
+          1024,
+          1440,
+          2560
+        ],
+        "pngArtifacts": 183,
+        "contactArtifacts": 10,
+        "storedReactions": 100
+      },
+      "nativeAliases": {
+        "auth/input-border": {
+          "variableId": "VariableID:54:25406",
+          "mode": "Dark",
+          "referencesExistingPrimitive": "color/neutral/400",
+          "normativeToken": "colors.color-neutral-400",
+          "purpose": "1px default auth outline; native-only; existing 2px blue focus retained"
+        }
+      },
+      "runtimeBoundary": "Synthetic account and Library fixtures; first-read branch static; only games CTA has native fixture destination; no runtime authentication, persistence, database/admin/broadcast or accessibility verification."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<button class=\"ds-primary\">Entrar</button>",
+      "css": ".ds-primary{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:#165DDE;color:#FFFFFF;transition:background 120ms;}.ds-primary:hover{background:#124DB8;}.ds-primary:focus-visible{outline:2px solid #11151B;outline-offset:-2px;}.ds-primary:disabled{background:#EEF0F3;color:#546071;cursor:default;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "Active navigation",
+      "kind": "nav",
+      "refersTo": "navigation-item-active",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<nav aria-label=\"Principal\"><a class=\"ds-nav\" href=\"#preview\" aria-current=\"page\">Jogos</a></nav>",
+      "css": ".ds-nav{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:#EFF5FF;color:#124DB8;font-weight:600;transition:background 120ms;}.ds-nav:hover{background:#DBE9FF;}.ds-nav:focus-visible{outline:2px solid #165DDE;outline-offset:-2px;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "Desktop search trigger",
+      "kind": "button",
+      "refersTo": "search-desktop",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<button class=\"ds-search\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/></svg>Buscar</button>",
+      "css": ".ds-search{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:#F7F8FA;color:#11151B;transition:background 120ms;}.ds-search:hover{background:#EEF0F3;}.ds-search:focus-visible{outline:2px solid #165DDE;outline-offset:-2px;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "Compact search trigger",
+      "kind": "button",
+      "refersTo": "search-compact",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<button class=\"ds-search-icon\" aria-label=\"Buscar\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/></svg></button>",
+      "css": ".ds-search-icon{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;width:44px;padding:0;justify-content:center;background:#FFFFFF;color:#11151B;transition:background 120ms;}.ds-search-icon:hover{background:#EEF0F3;}.ds-search-icon:focus-visible{outline:2px solid #165DDE;outline-offset:-2px;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "More trigger",
+      "kind": "button",
+      "refersTo": "navigation-more",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<button class=\"ds-more\" aria-expanded=\"false\">Mais<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button>",
+      "css": ".ds-more{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:#FFFFFF;color:#11151B;transition:background 120ms;}.ds-more:hover{background:#EEF0F3;}.ds-more:focus-visible{outline:2px solid #165DDE;outline-offset:-2px;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "Signed-in account",
+      "kind": "button",
+      "refersTo": "account-signed-in",
+      "description": "Illustrative light-theme target-token preview; not application code or an exact Figma reconstruction.",
+      "html": "<button class=\"ds-account\" aria-expanded=\"false\">Minha conta<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button>",
+      "css": ".ds-account{font-family:Manrope, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;min-height:44px;border-radius:12px;border:0;padding:0 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:#FFFFFF;color:#11151B;transition:background 120ms;}.ds-account:hover{background:#EEF0F3;}.ds-account:focus-visible{outline:2px solid #165DDE;outline-offset:-2px;} @media (prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0ms;}}"
+    },
+    {
+      "name": "Event status",
+      "kind": "chip",
+      "refersTo": "event-status",
+      "description": "Illustrative light Figma token preview; not application behavior.",
+      "html": "<span class=\"ds-status\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"/></svg>Finalizado</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:8px;background:#EFF5FF;color:#165DDE;border-radius:8px;padding:6px 12px;font:500 14px/20px Manrope,Arial,sans-serif;}"
+    },
+    {
+      "name": "Home highlight",
+      "kind": "card",
+      "refersTo": "home-result",
+      "description": "Illustrative dark-scoreboard hierarchy from the revised light Figma home; sample data and links.",
+      "html": "<article class=\"ds-highlight\"><h2>Último resultado</h2><p>Copa Paulista · Rodada 6</p><div class=\"ds-match\"><span>Aurora FC</span><strong class=\"ds-score\">3 – 1</strong><span>Atlético Paulista</span></div><footer><span class=\"ds-date\"><strong>04</strong> OUT</span><span>Rodada 6 · 20h30</span><a href=\"#preview\">Ver partida<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></footer></article>",
+      "css": ".ds-highlight{background:#11151B;color:#FFFFFF;border-radius:16px;padding:24px;font:400 16px/24px Manrope,Arial,sans-serif;}.ds-highlight h2{margin:0;font:600 28px/32px \"Barlow Condensed\",Arial,sans-serif;}.ds-highlight p{color:#DFE3E8;}.ds-match{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;}.ds-match>span{font:600 32px/40px \"Barlow Condensed\",Arial,sans-serif;}.ds-score{font:700 80px/80px \"Barlow Condensed\",Arial,sans-serif;}.ds-highlight footer{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;border-top:1px solid #242B35;padding-top:24px;}.ds-date{display:grid;text-align:center;border:1px solid #242B35;border-radius:8px;padding:8px 12px;}.ds-date strong{font:600 32px/40px \"Barlow Condensed\",Arial,sans-serif;}.ds-highlight a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;background:#165DDE;color:#FFFFFF;text-decoration:none;font:500 14px/20px Manrope,Arial,sans-serif;}.ds-highlight a:hover{background:#124DB8;}.ds-highlight a:focus-visible{outline:2px solid #FFFFFF;outline-offset:2px;}"
+    },
+    {
+      "name": "Primary Button Dark",
+      "kind": "button",
+      "refersTo": "button-primary-dark",
+      "description": "Illustrative dark token rendering for documentation; not application implementation or exact Figma reconstruction.",
+      "html": "<button class=\"ds-button-dark\">VER PARTIDA</button>",
+      "css": ".ds-button-dark { background: #7BAAFF; color: #0B1628; font: 500 14px/20px Manrope, Arial, sans-serif; min-height: 44px; padding: 0 16px; border: 0; border-radius: 12px; } .ds-button-dark:hover { background: #9BBEFF; } .ds-button-dark:focus-visible { outline: 2px solid #7BAAFF; outline-offset: 3px; }"
+    },
+    {
+      "name": "Menu Container Dark",
+      "kind": "card",
+      "refersTo": "menu-container-dark",
+      "description": "Illustrative dark token rendering for documentation; not application implementation or exact Figma reconstruction.",
+      "html": "<div class=\"ds-menu-dark\">Competições salvas</div>",
+      "css": ".ds-menu-dark { background: #1E2B3D; color: #EDF2F9; font: 500 14px/20px Manrope, Arial, sans-serif; border: 1px solid #33445B; border-radius: 16px; padding: 8px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Rounded, minimal CPM",
+    "overview": "This is the approved target visual system authored in the connected Figwright Figma file “Sem título”. The written white, black and blue direction was approved before Figma creation; no raster composition was approved as the source. Light is the primary presentation. Rounded controls, clear labels and restrained blue accents express the confirmed minimal identity. The home refresh adds condensed sports display type, a dark scoreboard and compact visual date/score cues, reducing prose around the event.\n\nThe approved header and responsive Home core are now implemented in both light and dark themes using the native Figma references. `app/cpm-tokens.css` resolves the approved semantic roles and `app/cpm.css` applies their scoped geometry. Other screens retain their incumbent implementation; Jogos and Classificação redesigns remain Figma specifications. The current surface mode is Operate. Preserve existing product logic and the unmodified official logo. See [Home implementation evidence](design/home-implementation/implementation.md) for browser coverage and limitations; historical Figma reviews below retain their original scope.",
+    "keyCharacteristics": [
+      "Light surfaces, dark readable text and blue interaction accents.",
+      "Rounded, minimal controls with comfortable interaction targets.",
+      "Reusable Figma variables, typography styles and component variants.",
+      "Explicit separation between authored design and verified browser behavior."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Binding Rule",
+        "body": "Assign color by semantic role; resolve through the selected light or dark collection rather than changing individual primitive values.",
+        "section": "colors"
+      },
+      {
+        "name": "The Event Hierarchy Rule",
+        "body": "Let score, date or approved team carry the hierarchy. The home competition toolbar replaces the generic “Visão geral” heading and explanatory subtitle; do not reintroduce that introductory copy.",
+        "section": "typography"
+      },
+      {
+        "name": "The Literal Fidelity Rule",
+        "body": "Future site implementation must reproduce approved spacing, sizes, colors, typography, icons and states exactly, with no additional artistic redesign. Follow [fidelity handoff](design/fidelity-handoff.md), load the real fonts, and compare identical viewport/data/state screenshots before declaring fidelity. The independent 19-scene review accepted this static Figma extension; the separate approval-context correction review found the correction resolved with no regressions and **ship** within that scope. [Review record](design/states-review.md) distinguishes those scopes.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use the official logo with its original artwork and proportions.",
+      "Do bind new Figma components to the existing primitive and semantic variables.",
+      "Do use display typography and useful calendar, crest, arrow and score/time details to reduce redundant prose.",
+      "Do preserve visible destination labels and distinguish active state through fill and weight.",
+      "Do verify keyboard, focus, accessible names, links and reduced motion in the implemented browser surface."
+    ],
+    "donts": [
+      "Don't reintroduce a generic home heading/subtitle or duplicate upcoming date/time in the footer.",
+      "Don't treat unimplemented screen redesigns or historical Figma reviews as Header/Home browser verification.",
+      "Don't recolor, redraw, crop or distort the official logo.",
+      "Don't reduce interaction targets to force the desktop header into a narrow viewport.",
+      "Don't treat any Figma visual review as validation of browser accessibility, dynamic behavior or the full home page; apply each review only to its recorded artifact scope."
+    ]
+  },
+  "moreMenu": {
+    "iconZoneWidth": 44,
+    "rowHeight": 44,
+    "labelInset": 12,
+    "dividerWidth": 1,
+    "themeSectionGap": 12,
+    "themeFooter": "surface/subtle",
+    "attachedToTrigger": true,
+    "tokens": {
+      "light": {
+        "menu/icon-bg": "#EFF5FF",
+        "menu/icon-color": "#165DDE"
+      },
+      "dark": {
+        "menu/icon-bg": "#203F6A",
+        "menu/icon-color": "#7BAAFF"
+      }
+    }
+  },
+  "home": {
+    "metadata": "design/home-v2-metadata.json",
+    "review": "design/home-v2-review.md",
+    "scope": "Figma static components only; no implemented app or authored motion claim",
+    "variableCount": 113,
+    "primitiveCount": 59,
+    "highlightVariantCount": 11,
+    "verifiedWidths": [
+      1440,
+      1024,
+      2560,
+      768,
+      390,
+      320
+    ],
+    "textStyles": {
+      "Caption": "S:dd3e53afd1a443d9aa33abeace318c6bd90ff2d5,",
+      "Label": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2,",
+      "Body": "S:f8133e407c02d9cf40f065c0293f26d10fe4ad73,",
+      "Brand": "S:cf9ea3d4fc6355a51063396ad6778ec956074140,",
+      "Title": "S:5a694d6a01c8f2d9ca99a83a8664fb6ad9fb732c,",
+      "Score": "S:ba5d9aa11d5c8b4aa0eade617b98a3df210bf900,",
+      "Section": "S:48d537e5c76438555977e7e694058fb9173c5e98,",
+      "Body Strong": "S:19f3908cd85101fe095a2174bb308a14251009f7,",
+      "Score Compact": "S:4c7fbc8ae59aad9aeb0b5a6295e6520b44e7d644,"
+    },
+    "primitiveIds": {
+      "type/size/caption": "VariableID:2:42",
+      "type/size/label": "VariableID:2:43",
+      "type/size/body": "VariableID:2:44",
+      "type/size/brand": "VariableID:2:45",
+      "type/size/title": "VariableID:2:46",
+      "type/line/caption": "VariableID:2:47",
+      "type/line/label": "VariableID:2:48",
+      "type/line/body": "VariableID:2:49",
+      "type/line/brand": "VariableID:2:50",
+      "type/line/title": "VariableID:2:51",
+      "type/family": "VariableID:2:55",
+      "type/size/score": "VariableID:3:1129",
+      "type/line/score": "VariableID:3:1130",
+      "type/size/section": "VariableID:3:1131",
+      "type/line/section": "VariableID:3:1132",
+      "size/crest": "VariableID:3:1133",
+      "size/highlight-min": "VariableID:3:1134",
+      "size/compact-header": "VariableID:3:1135",
+      "type/family/display": "VariableID:4:2929",
+      "type/size/score-compact": "VariableID:4:4083",
+      "type/line/score-compact": "VariableID:4:4084"
+    },
+    "responsiveIntent": "Desktop highlight beside standings; tablet/mobile stack highlight, upcoming games, recent results, standings. Header 88px desktop and 72px small. Names wrap and cards grow.",
+    "revision": 2,
+    "lightSemanticCount": 29,
+    "darkSemanticCount": 25,
+    "eventAction": {
+      "component": "4:3065",
+      "property": "Label#4:15"
+    },
+    "previewDirectory": "design/home-v2-previews",
+    "changes": {
+      "uiFont": "Manrope",
+      "displayFont": "Barlow Condensed",
+      "score": "80/80 Bold",
+      "scoreCompact": "44/48 Bold",
+      "brand": "24/28 SemiBold",
+      "section": "28/32 SemiBold",
+      "title": "32/40 SemiBold",
+      "intro": "Competition selector only; generic page heading/subtitle removed",
+      "result": "Dark scoreboard, crest holder, day/month tile, round/time, primary arrow action",
+      "upcoming": "Blue50, centered day/time, single footer round, arrow action",
+      "approval": "Initials, one confirmation line and relative recency",
+      "lists": "Club crest/name rows; score/time capsules; 88px rows"
+    },
+    "statesExtension": {
+      "metadata": "design/states-metadata.json",
+      "review": "design/states-review.md",
+      "fidelityHandoff": "design/fidelity-handoff.md",
+      "pages": {
+        "main": "3:1127",
+        "interactions": "6:4085",
+        "states": "6:4086",
+        "components": "3:1128"
+      },
+      "selector": {
+        "component": "6:4087",
+        "property": "Competition#6:17",
+        "menu": "6:4094",
+        "options": [
+          "6:4095",
+          "6:4102"
+        ],
+        "set": "6:6134",
+        "variants": [
+          "6:4087",
+          "6:6119",
+          "6:6123",
+          "6:6127"
+        ]
+      },
+      "measures": {
+        "selectorHeight": 44,
+        "selectorDesktopWidth": 248,
+        "popoverMaxWidth": 320,
+        "popoverGap": 8,
+        "popoverPadding": 8,
+        "optionHeight": 52,
+        "optionGap": 4,
+        "selectorRadius": 12,
+        "focusStroke": 2,
+        "contentMax": 1280,
+        "mobileGutter": 16,
+        "tabletGutter": 24,
+        "headerDesktop": 88,
+        "headerSmall": 72,
+        "iconDefault": 20
+      },
+      "popoverShadow": {
+        "offsetY": 8,
+        "blur": 24,
+        "source": "Figma Options component 6:4094; preserve original effect color/opacity"
+      },
+      "icons": {
+        "search": {
+          "componentId": "2:112",
+          "path": "design/assets/icons/2-112.svg"
+        },
+        "chevron": {
+          "componentId": "2:115",
+          "path": "design/assets/icons/2-115.svg"
+        },
+        "user": {
+          "componentId": "2:119",
+          "path": "design/assets/icons/2-119.svg"
+        },
+        "moon": {
+          "componentId": "2:122",
+          "path": "design/assets/icons/2-122.svg"
+        },
+        "menu": {
+          "componentId": "2:125",
+          "path": "design/assets/icons/2-125.svg"
+        },
+        "arrow": {
+          "componentId": "2:128",
+          "path": "design/assets/icons/2-128.svg"
+        },
+        "calendar": {
+          "componentId": "3:1144",
+          "path": "design/assets/icons/3-1144.svg"
+        },
+        "check": {
+          "componentId": "3:1147",
+          "path": "design/assets/icons/3-1147.svg"
+        },
+        "star": {
+          "componentId": "3:1150",
+          "path": "design/assets/icons/3-1150.svg"
+        },
+        "clock": {
+          "componentId": "3:1154",
+          "path": "design/assets/icons/3-1154.svg"
+        },
+        "trophy": {
+          "componentId": "3:1158",
+          "path": "design/assets/icons/3-1158.svg"
+        },
+        "support": {
+          "componentId": "2:898",
+          "path": "design/assets/icons/2-898.svg"
+        },
+        "ticket": {
+          "componentId": "2:885",
+          "path": "design/assets/icons/2-885.svg"
+        },
+        "bookmark": {
+          "componentId": "2:888",
+          "path": "design/assets/icons/2-888.svg"
+        },
+        "rules": {
+          "componentId": "2:892",
+          "path": "design/assets/icons/2-892.svg"
+        },
+        "settings": {
+          "componentId": "2:902",
+          "path": "design/assets/icons/2-902.svg"
+        }
+      },
+      "eventArrow": {
+        "componentId": "4:3067",
+        "path": "design/assets/icons/4-3067.svg"
+      },
+      "iconContextOverrides": {
+        "default": "Use stroke/fill exactly from each SVG. Most originals use 1.5px stroke.",
+        "darkHighlight": "Trophy, status-check and footer clock use 1.7px stroke; role ink white or muted neutral200.",
+        "eventAction": "Arrow SVG exported from the real button instance: white, 1.7px."
+      },
+      "prototype": "Desktop closed → open → choose 2026/2025 → closed/selected. 2025 selected is a terminal demonstration; no live fetching. Mobile open views are static.",
+      "behavior": "No favorites: competition selector drives local match/standings selection. With favorites: merged lists, competition labels when >1 favorite, standings of first favorite; selector is not rendered.",
+      "approvalEligibility": "Approval events are favorites-only. Full desktop 4:1983 and mobile 6:5626 now show noninteractive saved-competition context, count 1, instead of the no-favorites selector. Final proofs: design/approval-branch-final/4-1983.png and 6-5626.png.",
+      "previewDirectory": "design/state-previews-final",
+      "approvalProofDirectory": "design/approval-branch-final",
+      "fidelity": "Literal approved spacing, sizes, colors, fonts, original SVG geometry and states; no additional artistic redesign. Compare identical viewport/data/state screenshots with real fonts loaded.",
+      "scope": "Static light Figma only; no implemented application, browser accessibility, backend, live-data or dark rendering claims",
+      "reviewVerdicts": {
+        "full19SceneVisual": "ship; no material visual issues",
+        "approvalCorrection": "ship; correction resolved, no regressions observed, no remaining items within correction scope"
+      }
+    },
+    "historicalCountsRevision": "Home light v2; preserved as historical, see extensions.gamesDark.counts for current shared counts"
+  }
+}

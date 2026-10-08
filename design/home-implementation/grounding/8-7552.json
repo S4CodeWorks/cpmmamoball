@@ -1,0 +1,533 @@
+{
+  "nodes": [
+    {
+      "id": "8:7552",
+      "name": "Home / Competition options",
+      "type": "COMPONENT",
+      "x": 2500,
+      "y": 500,
+      "width": 320,
+      "height": 124,
+      "cornerRadius": 12,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 8,
+        "paddingRight": 8,
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "itemSpacing": 4,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "constraints": {
+        "horizontal": "MIN",
+        "vertical": "MIN"
+      },
+      "clipsContent": false,
+      "boundVariables": {
+        "itemSpacing": [
+          "VariableID:2:23"
+        ],
+        "paddingLeft": [
+          "VariableID:2:24"
+        ],
+        "paddingTop": [
+          "VariableID:2:24"
+        ],
+        "paddingRight": [
+          "VariableID:2:24"
+        ],
+        "paddingBottom": [
+          "VariableID:2:24"
+        ],
+        "topLeftRadius": [
+          "VariableID:2:32"
+        ],
+        "topRightRadius": [
+          "VariableID:2:32"
+        ],
+        "bottomLeftRadius": [
+          "VariableID:2:32"
+        ],
+        "bottomRightRadius": [
+          "VariableID:2:32"
+        ],
+        "fills": [
+          "VariableID:2:81"
+        ]
+      },
+      "fill": "fill_65b6en",
+      "effect": "effect_1ec52sz",
+      "children": [
+        {
+          "id": "8:7553",
+          "name": "Option / Copa Paulista 2026",
+          "type": "FRAME",
+          "x": 8,
+          "y": 8,
+          "width": 304,
+          "height": 52,
+          "cornerRadius": 8,
+          "layout": {
+            "mode": "HORIZONTAL",
+            "paddingTop": 0,
+            "paddingRight": 12,
+            "paddingBottom": 0,
+            "paddingLeft": 12,
+            "itemSpacing": 12,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "CENTER",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "FIXED",
+          "layoutAlign": "STRETCH",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:25"
+            ],
+            "paddingLeft": [
+              "VariableID:2:25"
+            ],
+            "paddingTop": [
+              "VariableID:2:22"
+            ],
+            "paddingRight": [
+              "VariableID:2:25"
+            ],
+            "paddingBottom": [
+              "VariableID:2:22"
+            ],
+            "topLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "topRightRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomRightRadius": [
+              "VariableID:2:31"
+            ],
+            "fills": [
+              "VariableID:2:92"
+            ]
+          },
+          "fill": "fill_tdtch4",
+          "children": [
+            {
+              "id": "8:7554",
+              "name": "Icon / trophy",
+              "type": "INSTANCE",
+              "x": 12,
+              "y": 16,
+              "width": 20,
+              "height": 20,
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true,
+              "mainComponentId": "3:1158",
+              "mainComponent": {
+                "id": "3:1158",
+                "name": "Icon / trophy",
+                "key": "75c52635e2c740944ee1e990f3c7968572de08e2"
+              },
+              "fill": "fill_16zfsl5",
+              "children": [
+                {
+                  "id": "I8:7554;3:1156",
+                  "name": "Vector",
+                  "type": "VECTOR",
+                  "x": 6.6666669845581055,
+                  "y": 2.500000238418579,
+                  "width": 6.666666507720947,
+                  "height": 9.166666030883789,
+                  "fills": [],
+                  "strokeWeight": 1.4999998807907104,
+                  "strokeAlign": "CENTER",
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND",
+                  "constraints": {
+                    "horizontal": "SCALE",
+                    "vertical": "SCALE"
+                  },
+                  "boundVariables": {
+                    "strokes": [
+                      "VariableID:2:83"
+                    ]
+                  },
+                  "stroke": "stroke_1sw46nm"
+                },
+                {
+                  "id": "I8:7554;3:1157",
+                  "name": "Vector",
+                  "type": "VECTOR",
+                  "x": 3.3333334922790527,
+                  "y": 4.1666669845581055,
+                  "width": 13.333333015441895,
+                  "height": 13.333333015441895,
+                  "fills": [],
+                  "strokeWeight": 1.4999998807907104,
+                  "strokeAlign": "CENTER",
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND",
+                  "constraints": {
+                    "horizontal": "SCALE",
+                    "vertical": "SCALE"
+                  },
+                  "boundVariables": {
+                    "strokes": [
+                      "VariableID:2:83"
+                    ]
+                  },
+                  "stroke": "stroke_1sw46nm"
+                }
+              ]
+            },
+            {
+              "id": "8:7555",
+              "name": "Copa Paulista 2026",
+              "type": "TEXT",
+              "x": 44,
+              "y": 16,
+              "width": 216,
+              "height": 20,
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutGrow": 1,
+              "characters": "Copa Paulista 2026",
+              "textAutoResize": "HEIGHT",
+              "styleIds": {
+                "text": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2"
+              },
+              "boundVariables": {
+                "fills": [
+                  "VariableID:2:93"
+                ],
+                "lineHeight": [
+                  "VariableID:2:48"
+                ],
+                "fontFamily": [
+                  "VariableID:2:55"
+                ],
+                "fontSize": [
+                  "VariableID:2:43"
+                ]
+              },
+              "fill": "fill_1o1iywn",
+              "textStyle": "text_f1n477"
+            },
+            {
+              "id": "8:7556",
+              "name": "Icon / check",
+              "type": "INSTANCE",
+              "x": 272,
+              "y": 16,
+              "width": 20,
+              "height": 20,
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true,
+              "mainComponentId": "3:1147",
+              "mainComponent": {
+                "id": "3:1147",
+                "name": "Icon / check",
+                "key": "62f5dda68fbb95bd13d1c4cb825b024c70ac3c1f"
+              },
+              "fill": "fill_16zfsl5",
+              "children": [
+                {
+                  "id": "I8:7556;3:1146",
+                  "name": "Vector",
+                  "type": "VECTOR",
+                  "x": 4.1666669845581055,
+                  "y": 5,
+                  "width": 11.666666030883789,
+                  "height": 8.333333015441895,
+                  "fills": [],
+                  "strokeWeight": 1.4999998807907104,
+                  "strokeAlign": "CENTER",
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND",
+                  "constraints": {
+                    "horizontal": "SCALE",
+                    "vertical": "SCALE"
+                  },
+                  "boundVariables": {
+                    "strokes": [
+                      "VariableID:2:83"
+                    ]
+                  },
+                  "stroke": "stroke_1sw46nm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "8:7557",
+          "name": "Option / Copa Paulista 2025",
+          "type": "FRAME",
+          "x": 8,
+          "y": 64,
+          "width": 304,
+          "height": 52,
+          "cornerRadius": 8,
+          "fills": [],
+          "layout": {
+            "mode": "HORIZONTAL",
+            "paddingTop": 0,
+            "paddingRight": 12,
+            "paddingBottom": 0,
+            "paddingLeft": 12,
+            "itemSpacing": 12,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "CENTER",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "FIXED",
+          "layoutAlign": "STRETCH",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:25"
+            ],
+            "paddingLeft": [
+              "VariableID:2:25"
+            ],
+            "paddingTop": [
+              "VariableID:2:22"
+            ],
+            "paddingRight": [
+              "VariableID:2:25"
+            ],
+            "paddingBottom": [
+              "VariableID:2:22"
+            ],
+            "topLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "topRightRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomRightRadius": [
+              "VariableID:2:31"
+            ]
+          },
+          "children": [
+            {
+              "id": "8:7558",
+              "name": "Icon / trophy",
+              "type": "INSTANCE",
+              "x": 12,
+              "y": 16,
+              "width": 20,
+              "height": 20,
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true,
+              "mainComponentId": "3:1158",
+              "mainComponent": {
+                "id": "3:1158",
+                "name": "Icon / trophy",
+                "key": "75c52635e2c740944ee1e990f3c7968572de08e2"
+              },
+              "deduped": true,
+              "propertyOverrides": [
+                {
+                  "name": "Vector",
+                  "fills": [],
+                  "strokes": [
+                    {
+                      "type": "SOLID",
+                      "color": "#EDF2F9"
+                    }
+                  ],
+                  "strokeWeight": 1.4999998807907104,
+                  "strokeAlign": "CENTER"
+                },
+                {
+                  "name": "Vector",
+                  "fills": [],
+                  "strokes": [
+                    {
+                      "type": "SOLID",
+                      "color": "#EDF2F9"
+                    }
+                  ],
+                  "strokeWeight": 1.4999998807907104,
+                  "strokeAlign": "CENTER"
+                }
+              ],
+              "fill": "fill_16zfsl5"
+            },
+            {
+              "id": "8:7559",
+              "name": "Copa Paulista 2025",
+              "type": "TEXT",
+              "x": 44,
+              "y": 16,
+              "width": 248,
+              "height": 20,
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutGrow": 1,
+              "characters": "Copa Paulista 2025",
+              "textAutoResize": "HEIGHT",
+              "styleIds": {
+                "text": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2"
+              },
+              "boundVariables": {
+                "fills": [
+                  "VariableID:2:83"
+                ],
+                "lineHeight": [
+                  "VariableID:2:48"
+                ],
+                "fontFamily": [
+                  "VariableID:2:55"
+                ],
+                "fontSize": [
+                  "VariableID:2:43"
+                ]
+              },
+              "fill": "stroke_1sw46nm",
+              "textStyle": "text_f1n477"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "VariableID:2:23": {
+      "name": "space/1",
+      "type": "FLOAT"
+    },
+    "VariableID:2:24": {
+      "name": "space/2",
+      "type": "FLOAT"
+    },
+    "VariableID:2:32": {
+      "name": "radius/md",
+      "type": "FLOAT"
+    },
+    "VariableID:2:81": {
+      "name": "surface/menu",
+      "type": "COLOR"
+    },
+    "VariableID:2:25": {
+      "name": "space/3",
+      "type": "FLOAT"
+    },
+    "VariableID:2:22": {
+      "name": "space/0",
+      "type": "FLOAT"
+    },
+    "VariableID:2:31": {
+      "name": "radius/sm",
+      "type": "FLOAT"
+    },
+    "VariableID:2:92": {
+      "name": "nav/active-bg",
+      "type": "COLOR"
+    },
+    "VariableID:2:83": {
+      "name": "text/primary",
+      "type": "COLOR"
+    },
+    "VariableID:2:93": {
+      "name": "nav/active-text",
+      "type": "COLOR"
+    },
+    "VariableID:2:48": {
+      "name": "type/line/label",
+      "type": "FLOAT"
+    },
+    "VariableID:2:55": {
+      "name": "type/family",
+      "type": "STRING"
+    },
+    "VariableID:2:43": {
+      "name": "type/size/label",
+      "type": "FLOAT"
+    }
+  },
+  "globalVars": {
+    "styles": {
+      "fill_65b6en": [
+        {
+          "type": "SOLID",
+          "color": "#1E2B3D"
+        }
+      ],
+      "effect_1ec52sz": [
+        {
+          "type": "DROP_SHADOW",
+          "color": "#00000052",
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 24,
+          "spread": 0
+        }
+      ],
+      "fill_tdtch4": [
+        {
+          "type": "SOLID",
+          "color": "#203F6A"
+        }
+      ],
+      "fill_16zfsl5": [
+        {
+          "type": "SOLID",
+          "color": "#FFFFFF",
+          "visible": false
+        }
+      ],
+      "stroke_1sw46nm": [
+        {
+          "type": "SOLID",
+          "color": "#EDF2F9"
+        }
+      ],
+      "fill_1o1iywn": [
+        {
+          "type": "SOLID",
+          "color": "#C5DCFF"
+        }
+      ],
+      "text_f1n477": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Medium",
+        "fontSize": 14,
+        "fontVariationSettings": {
+          "wght": 500
+        },
+        "lineHeight": {
+          "value": 20,
+          "unit": "PIXELS"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "nodeCount": 11,
+    "maxDepth": 4,
+    "styleCount": 7,
+    "tokenCount": 13,
+    "inlineSizeKb": 7.44,
+    "dedupedSizeKb": 6.45
+  }
+}

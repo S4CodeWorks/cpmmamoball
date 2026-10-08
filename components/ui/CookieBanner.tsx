@@ -1,53 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
 import { Modal } from './Primitives';
+import { CpmAction, CpmIcon } from './CpmUi';
 
-/**
- * Banner de cookies/armazenamento local — controla só o que é salvo no
- * navegador do visitante (tema, favoritos, notificações). Dados da CONTA
- * (Supabase, usuário logado) não passam por aqui.
- */
-export function CookieBanner() {
-  const { cookieConsent, setCookieConsent, resolvedTheme } = useApp();
+/** Visitor browser preferences; account storage keeps its existing independent consent. */
+export function CookieBanner({ surface }: { surface: string }) {
+  const { cookieConsent, setCookieConsent } = useApp();
   const [termsOpen, setTermsOpen] = useState(false);
-  const linkColor = resolvedTheme === 'dark' ? '#7ab8ff' : '#0969da';
+  const banner = useRef<HTMLElement>(null), reduced = useReducedMotion();
+  useEffect(() => {
+    if (cookieConsent !== 'unset' || !banner.current) return;
+    const element = banner.current, root = element.closest<HTMLElement>('.app-root');
+    if (!root) return;
+    const measure = () => {
+      root.dataset.cookieNotice = 'visible';
+      const bottom = parseFloat(getComputedStyle(element).bottom) || 0;
+      root.style.setProperty('--cpm-cookie-clearance', `${Math.ceil(element.getBoundingClientRect().height + bottom + 24)}px`);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    const nav = root.querySelector('.bottom-nav');
+    if (nav) observer.observe(nav);
+    measure(); window.addEventListener('resize', measure);
+    return () => { observer.disconnect(); window.removeEventListener('resize', measure); delete root.dataset.cookieNotice; root.style.removeProperty('--cpm-cookie-clearance'); };
+  }, [cookieConsent, surface]);
 
-  if (cookieConsent !== 'unset') return null;
-
-  return (
-    <>
-      <div
-        role="region"
-        aria-label="Aviso de cookies"
-        className="snackbar"
-        style={{
-          position: 'absolute', bottom: 96, left: 16, right: 16, zIndex: 80,
-          flexDirection: 'column', alignItems: 'stretch', gap: 12,
-          padding: '16px', maxWidth: 340, margin: '0 auto',
-        }}
-      >
-        <p style={{ margin: 0, fontSize: 13, lineHeight: 1.5, color: 'var(--on-surface)' }}>
-          Usamos armazenamento local pra melhorar sua experiência.{' '}
-          <button
-            onClick={() => setTermsOpen(true)}
-            style={{ color: linkColor, textDecoration: 'underline dotted', textUnderlineOffset: 3, fontSize: 13, fontWeight: 500, cursor: 'pointer' }}
-          >
-            Termos
-          </button>
-        </p>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setCookieConsent('declined')} className="btn btn-outlined" style={{ flex: 1, height: 40, fontSize: 13.5 }}>
-            Recusar
-          </button>
-          <button onClick={() => setCookieConsent('accepted')} className="btn btn-primary" style={{ flex: 1, height: 40, fontSize: 13.5 }}>
-            Aceitar
-          </button>
-        </div>
+  return <>
+    <AnimatePresence>{cookieConsent === 'unset' && <motion.aside ref={banner} className="cpm-cookie-notice" aria-label="Aviso de cookies" initial={false} exit={reduced ? undefined : { opacity: 0 }} transition={{ duration: 0.12, ease: 'easeOut' }}>
+      <div className="cpm-cookie-information">
+        <span className="cpm-cookie-icon"><CpmIcon name="cookie" /></span>
+        <div className="cpm-cookie-copy"><h2>Suas preferências</h2><p>Guarde tema, favoritos e avisos neste navegador.</p></div>
       </div>
-
-      <Modal open={termsOpen} onClose={() => setTermsOpen(false)} title="Termos e Privacidade" maxWidth={440}>
+      <div className="cpm-cookie-controls">
+        <button type="button" className="cpm-cookie-terms" onClick={() => setTermsOpen(true)}><CpmIcon name="rules" />Termos</button>
+        <div className="cpm-cookie-choices"><button type="button" className="cpm-cookie-refusal" onClick={() => setCookieConsent('declined')}>Recusar</button><CpmAction primary onClick={() => setCookieConsent('accepted')}>Aceitar</CpmAction></div>
+      </div>
+    </motion.aside>}</AnimatePresence>
+      <Modal accessible open={termsOpen} onClose={() => setTermsOpen(false)} title="Termos e Privacidade" maxWidth={440}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 13.5, lineHeight: 1.6, color: 'var(--on-surface-variant)' }}>
           <p style={{ margin: 0 }}>
             Este é um texto genérico de exemplo — o conteúdo legal de verdade ainda não foi
@@ -66,6 +58,5 @@ export function CookieBanner() {
           </p>
         </div>
       </Modal>
-    </>
-  );
+  </>;
 }

@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "width": 1440,
+      "labels": [
+        "Classificação ainda não publicada.",
+        "Sem jogos agendados",
+        "Sem resultados publicados"
+      ]
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "labels": [
+        "Sem jogos agendados",
+        "Sem resultados publicados",
+        "Classificação ainda não publicada."
+      ]
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "labels": [
+        "Sem jogos agendados",
+        "Sem resultados publicados",
+        "Classificação ainda não publicada."
+      ]
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "labels": [
+        "Classificação ainda não publicada.",
+        "Sem jogos agendados",
+        "Sem resultados publicados"
+      ]
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "labels": [
+        "Sem jogos agendados",
+        "Sem resultados publicados",
+        "Classificação ainda não publicada."
+      ]
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "labels": [
+        "Sem jogos agendados",
+        "Sem resultados publicados",
+        "Classificação ainda não publicada."
+      ]
+    }
+  ],
+  "errors": []
+}

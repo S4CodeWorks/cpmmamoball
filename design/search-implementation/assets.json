@@ -1,0 +1,49 @@
+{
+  "icons": [
+    {
+      "native": "design/assets/icons/search/42-40216.svg",
+      "public": "public/cpm-icons/42-40216.svg",
+      "sha256": "e2c93f7c48eb532bdab5c3f0b3457652afe6594fbc46b2945629b2dc8cd76518",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40226.svg",
+      "public": "public/cpm-icons/42-40226.svg",
+      "sha256": "f20b1ae366973f275672315d31b56c5e8492ecdd2ca7883614d52aec857bc7e3",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40213.svg",
+      "public": "public/cpm-icons/42-40213.svg",
+      "sha256": "ce43f7d9f35866a6b60aa9f559e5832639a99199fb17d38662ea945b78f5bae3",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40209.svg",
+      "public": "public/cpm-icons/42-40209.svg",
+      "sha256": "10c438749c7ed4d47b191aadaf833809ee80efc40f2670c0c67ce75e493114cd",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40229.svg",
+      "public": "public/cpm-icons/42-40229.svg",
+      "sha256": "77c27bd21183edceb6a69f1b6fdb4476d722aa316ccef0d2bfa3a5adfa29d4bb",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40219.svg",
+      "public": "public/cpm-icons/42-40219.svg",
+      "sha256": "056b89800d69fce19aff56f8343978fdd60eea74dd4e452a93972ed8183890bd",
+      "byteIdentical": true
+    },
+    {
+      "native": "design/assets/icons/search/42-40222.svg",
+      "public": "public/cpm-icons/42-40222.svg",
+      "sha256": "5d72c2321b4eb1c775a844f4d0f5f1bc6811f849d16a73dce14e990d330fea31",
+      "byteIdentical": true
+    }
+  ],
+  "officialLogo": "public/cpm-official.jpg",
+  "crestFallback": "public/escudo-generico.png",
+  "notes": "Existing logo and crest assets reused unchanged; article imagery comes from admin uploads, not the illustrative Figma logo."
+}

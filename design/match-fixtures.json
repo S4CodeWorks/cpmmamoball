@@ -1,0 +1,40 @@
+{
+  "note": "Illustrative native Figma fixtures only. No live database records or seeds.",
+  "match": {
+    "id": 124,
+    "competition": "Liga Paulista 2026",
+    "home": {"name": "Aurora FC", "tag": "AUR"},
+    "away": {"name": "Atlético Paulista", "tag": "ATP"},
+    "status": "finalizado",
+    "round": 6,
+    "stage": "Fase de grupos",
+    "date": "04 out 2026",
+    "scoreH": 3,
+    "scoreA": 1,
+    "home_scorers": [
+      {"nick": "Kauan", "assist": "Léo"},
+      {"nick": "Kauan", "assist": "Biel"},
+      {"nick": "Rafa", "own_goal": true}
+    ],
+    "away_scorers": [{"nick": "Dudu", "assist": "Vini"}],
+    "players": {"Kauan": {"game_id": "204812", "club": "AUR"}, "Rafa": {"game_id": "309401", "club": "ATP"}, "Dudu": {"game_id": "305710", "club": "ATP"}}
+  },
+  "previousFinalizedMatches": [
+    {"id": 101, "date": "27 set 2026", "home": "AUR", "away": "ATP", "scoreH": 2, "scoreA": 1},
+    {"id": 100, "date": "20 set 2026", "home": "AUR", "away": "ATP", "scoreH": 1, "scoreA": 1},
+    {"id": 99, "date": "13 set 2026", "home": "ATP", "away": "AUR", "scoreH": 0, "scoreA": 2}
+  ],
+  "otherRoundMatches": [
+    {"id": 125, "home": {"name": "União MamoBall", "tag": "UMM"}, "away": {"name": "Vila Esportiva", "tag": "VIL"}, "scoreH": 2, "scoreA": 2},
+    {"id": 126, "home": {"name": "Atlético Paulista", "tag": "ATP"}, "away": {"name": "Vila Esportiva", "tag": "VIL"}, "scoreH": 3, "scoreA": 0}
+  ],
+  "scheduled": {"date": "08 out", "time": "20h30", "unknownTime": "A definir"},
+  "rules": {
+    "goalChronology": "None: goal records have no minute or timestamp.",
+    "grouping": "Group by credited side and player. Normal entries with the same player aggregate count and assist identities; keep own goals separate and attach the opposing player roster tag. Never infer event time.",
+    "assist": "Optional linked nick on the corresponding normal goal; never on own goals.",
+    "wo": "3–0 is this fixture's explicitly stored score, not a W.O. rule.",
+    "live": "Status illustration; no elapsed time or verified realtime transport.",
+    "draw": "2–2 with scorer records unavailable; no invented advancement or penalties."
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "variant": "one",
+      "width": 1440,
+      "section": {
+        "width": 1280,
+        "height": 256
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "light",
+      "variant": "one",
+      "width": 390,
+      "section": {
+        "width": 358,
+        "height": 436
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "light",
+      "variant": "one",
+      "width": 320,
+      "section": {
+        "width": 288,
+        "height": 468
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "light",
+      "variant": "many",
+      "width": 1440,
+      "section": {
+        "width": 1280,
+        "height": 256
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "light",
+      "variant": "many",
+      "width": 390,
+      "section": {
+        "width": 358,
+        "height": 748
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "light",
+      "variant": "many",
+      "width": 320,
+      "section": {
+        "width": 288,
+        "height": 852
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "one",
+      "width": 1440,
+      "section": {
+        "width": 1280,
+        "height": 256
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "one",
+      "width": 390,
+      "section": {
+        "width": 358,
+        "height": 436
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "one",
+      "width": 320,
+      "section": {
+        "width": 288,
+        "height": 468
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "many",
+      "width": 1440,
+      "section": {
+        "width": 1280,
+        "height": 256
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "many",
+      "width": 390,
+      "section": {
+        "width": 358,
+        "height": 748
+      },
+      "matrix": "passed before edge check continuation"
+    },
+    {
+      "theme": "dark",
+      "variant": "many",
+      "width": 320,
+      "section": {
+        "width": 288,
+        "height": 852
+      },
+      "matrix": "passed before edge check continuation"
+    }
+  ],
+  "errors": []
+}

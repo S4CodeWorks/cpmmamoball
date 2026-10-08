@@ -1,0 +1,14 @@
+import ts from 'typescript';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const js=ts.transpileModule(fs.readFileSync('lib/matchDetails.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+const exports={};vm.runInNewContext(js,{exports,require:()=>({matchDate:()=>({})}),Date,Intl,Map,Number,JSON});
+const goals=exports.groupMatchGoals([{nick:'Rafa',assist:'Léo'},{nick:'Rafa',own_goal:true,assist:'Erro'},{nick:'Rafa',assist:'Léo'},{nick:'Rafa',assist:'Biel'}]);
+assert.equal(goals.length,2);assert.equal(goals[0].goals,3);assert.equal(JSON.stringify(goals[0].assists),'["Léo","Biel"]');assert.equal(goals[1].goals,1);assert.equal(goals[1].assists.length,0);
+const current={id:124,home:'a',away:'b',status:'finalizado',scheduledAt:'2026-10-04T20:30:00-03:00'};
+const past={...current,id:1,home:'b',away:'a',scoreH:0,scoreA:2,scheduledAt:'2026-09-27T20:30:00-03:00'};
+const list=exports.previousEncounters(current,[current,past,{...past,id:2,scheduledAt:'2026-10-05T20:30:00-03:00'},{...past,id:3,status:'agendado'},{...past,id:4,scheduledAt:null,date:'27 set'},{...past,id:5,scoreH:null}]);
+assert.equal(list.length,1);assert.equal(JSON.stringify(exports.encounterRecord(current,list)),JSON.stringify({homeWins:1,awayWins:0,draws:0}));
+assert.equal(exports.matchDetailDate({status:'finalizado',date:'04 out 2026'}),'04 out 2026');assert.equal(exports.matchMoment({date:'31 fev 2026'}),null);assert.equal(exports.matchStatus({...current,scoreH:2,scoreA:2}).label,'Empate');assert.equal(exports.matchStatus({...current,is_wo:true}).label,'W.O.');
+console.log('PASS: own goals, assist deduplication, visitor orientation, chronological eligibility, legacy dates, draw and W.O.');

@@ -1,0 +1,242 @@
+[
+  {
+    "nodeId": "43:40569",
+    "rootNodeId": "43:40569",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 134,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:40704",
+    "rootNodeId": "43:40704",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 191,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:40896",
+    "rootNodeId": "43:40896",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 131,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41028",
+    "rootNodeId": "43:41028",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 188,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41217",
+    "rootNodeId": "43:41217",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 134,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41352",
+    "rootNodeId": "43:41352",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 191,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41544",
+    "rootNodeId": "43:41544",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41660",
+    "rootNodeId": "43:41660",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 146,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41806",
+    "rootNodeId": "43:41806",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:41922",
+    "rootNodeId": "43:41922",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 147,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:42069",
+    "rootNodeId": "43:42069",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "43:42224",
+    "rootNodeId": "43:42224",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 147,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:45959",
+    "rootNodeId": "44:45959",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 134,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:46159",
+    "rootNodeId": "44:46159",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 191,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:46463",
+    "rootNodeId": "44:46463",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 131,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:46657",
+    "rootNodeId": "44:46657",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 188,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:46955",
+    "rootNodeId": "44:46955",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 134,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:47155",
+    "rootNodeId": "44:47155",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 191,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:47459",
+    "rootNodeId": "44:47459",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:47613",
+    "rootNodeId": "44:47613",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 146,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:47844",
+    "rootNodeId": "44:47844",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:47998",
+    "rootNodeId": "44:47998",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 147,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:48230",
+    "rootNodeId": "44:48230",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 116,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  },
+  {
+    "nodeId": "44:48384",
+    "rootNodeId": "44:48384",
+    "coverage": {
+      "status": "complete",
+      "visitedNodes": 147,
+      "animatedNodes": 0
+    },
+    "nodes": []
+  }
+]

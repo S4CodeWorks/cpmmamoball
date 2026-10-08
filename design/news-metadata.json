@@ -1,0 +1,215 @@
+{
+  "page": {
+    "ok": true,
+    "nodeId": "25:33706",
+    "name": "Home · Notícias",
+    "type": "PAGE"
+  },
+  "roots": [
+    {
+      "id": "27:33887",
+      "section": "27:34115",
+      "count": 1,
+      "dark": false,
+      "compact": false,
+      "source": "4:1655"
+    },
+    {
+      "id": "27:34141",
+      "section": "27:34353",
+      "count": 1,
+      "dark": false,
+      "compact": true,
+      "source": "4:2606"
+    },
+    {
+      "id": "27:34379",
+      "section": "27:34607",
+      "count": 1,
+      "dark": true,
+      "compact": false,
+      "source": "8:7953"
+    },
+    {
+      "id": "27:34633",
+      "section": "27:34845",
+      "count": 1,
+      "dark": true,
+      "compact": true,
+      "source": "8:8846"
+    },
+    {
+      "id": "27:34871",
+      "section": "27:35099",
+      "count": 3,
+      "dark": false,
+      "compact": false,
+      "source": "4:1655"
+    },
+    {
+      "id": "27:35158",
+      "section": "27:35370",
+      "count": 3,
+      "dark": false,
+      "compact": true,
+      "source": "4:2606"
+    },
+    {
+      "id": "27:35429",
+      "section": "27:35657",
+      "count": 3,
+      "dark": true,
+      "compact": false,
+      "source": "8:7953"
+    },
+    {
+      "id": "27:35716",
+      "section": "27:35928",
+      "count": 3,
+      "dark": true,
+      "compact": true,
+      "source": "8:8846"
+    }
+  ],
+  "cards": [
+    {
+      "id": "27:33741",
+      "props": {
+        "Title": "Title#27:382",
+        "Summary": "Summary#27:383"
+      },
+      "width": 410.67,
+      "dark": false,
+      "compact": false,
+      "media": false
+    },
+    {
+      "id": "27:33763",
+      "props": {
+        "Title": "Title#27:384",
+        "Summary": "Summary#27:385"
+      },
+      "width": 410.67,
+      "dark": false,
+      "compact": false,
+      "media": true
+    },
+    {
+      "id": "27:33782",
+      "props": {
+        "Title": "Title#27:386",
+        "Summary": "Summary#27:387"
+      },
+      "width": 358,
+      "dark": false,
+      "compact": true,
+      "media": false
+    },
+    {
+      "id": "27:33804",
+      "props": {
+        "Title": "Title#27:388",
+        "Summary": "Summary#27:389"
+      },
+      "width": 358,
+      "dark": false,
+      "compact": true,
+      "media": true
+    },
+    {
+      "id": "27:33823",
+      "props": {
+        "Title": "Title#27:390",
+        "Summary": "Summary#27:391"
+      },
+      "width": 410.67,
+      "dark": true,
+      "compact": false,
+      "media": false
+    },
+    {
+      "id": "27:33845",
+      "props": {
+        "Title": "Title#27:392",
+        "Summary": "Summary#27:393"
+      },
+      "width": 410.67,
+      "dark": true,
+      "compact": false,
+      "media": true
+    },
+    {
+      "id": "27:33864",
+      "props": {
+        "Title": "Title#27:394",
+        "Summary": "Summary#27:395"
+      },
+      "width": 358,
+      "dark": true,
+      "compact": true,
+      "media": false
+    },
+    {
+      "id": "27:33886",
+      "props": {
+        "Title": "Title#27:396",
+        "Summary": "Summary#27:397"
+      },
+      "width": 358,
+      "dark": true,
+      "compact": true,
+      "media": true
+    }
+  ],
+  "rules": {
+    "visibility": "Render the complete section only when published news count > 0. No empty heading or reserved gap.",
+    "scope": "Implemented conditional Home news in components/ui/HomeNews.tsx; eight Figma roots remain approved static references. Browser scope is recorded in design/home-news-implementation/implementation.md and review.md.",
+    "fixtures": "Titles, dates and summaries are illustrative, not published news.",
+    "layout": "After match lists and standings; one desktop article uses a full-width horizontal card with optional cover on the left and content on the right; one mobile article stacks cover/content. Multiple articles use three desktop columns and a mobile stack.",
+    "tokens": "Existing CPM semantic colors, spacing, radius and shared text styles.",
+    "images": "Optional. Example cover reuses official original CPM logo."
+  },
+  "empty": [
+    {
+      "id": "27:36031",
+      "kind": "Upcoming",
+      "dark": false
+    },
+    {
+      "id": "27:36037",
+      "kind": "Results",
+      "dark": false
+    },
+    {
+      "id": "27:36044",
+      "kind": "Standings",
+      "dark": false
+    },
+    {
+      "id": "27:36051",
+      "kind": "Upcoming",
+      "dark": true
+    },
+    {
+      "id": "27:36057",
+      "kind": "Results",
+      "dark": true
+    },
+    {
+      "id": "27:36064",
+      "kind": "Standings",
+      "dark": true
+    }
+  ],
+  "implementation": {
+    "status": "implemented",
+    "component": "components/ui/HomeNews.tsx",
+    "host": "components/screens/HomeScreen.tsx",
+    "stylesheet": "app/cpm.css",
+    "data": "Existing DataContext fetchNews: published=true, created_at descending; Home caps at three.",
+    "brief": "design/home-news-implementation/brief.md",
+    "evidence": "design/home-news-implementation/implementation.md",
+    "review": "design/home-news-implementation/review.md",
+    "verification": "scripts/verify-home-news-implementation.mjs"
+  }
+}

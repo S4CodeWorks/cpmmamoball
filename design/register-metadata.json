@@ -1,0 +1,371 @@
+{
+  "version": 1,
+  "artifact": "Criar conta · Light",
+  "pages": {
+    "screens": "54:8876",
+    "components": "54:8877",
+    "states": "54:8878"
+  },
+  "scenes": [
+    {
+      "root": "54:8961",
+      "form": "54:8978",
+      "stage": 0,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:9026",
+      "nick": "54:9043",
+      "email": "54:9052",
+      "action": "54:9061",
+      "secondary": "54:9063"
+    },
+    {
+      "root": "54:9069",
+      "form": "54:9086",
+      "stage": 0,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:9134",
+      "nick": "54:9151",
+      "email": "54:9160",
+      "action": "54:9169",
+      "secondary": "54:9171"
+    },
+    {
+      "root": "54:9177",
+      "form": "54:9194",
+      "stage": 0,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:9242",
+      "nick": "54:9259",
+      "email": "54:9268",
+      "action": "54:9277",
+      "secondary": "54:9279"
+    },
+    {
+      "root": "54:9285",
+      "form": "54:9291",
+      "stage": 0,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:9339",
+      "nick": "54:9356",
+      "email": "54:9365",
+      "action": "54:9374",
+      "secondary": "54:9376"
+    },
+    {
+      "root": "54:9382",
+      "form": "54:9388",
+      "stage": 0,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:9436",
+      "nick": "54:9453",
+      "email": "54:9462",
+      "action": "54:9471",
+      "secondary": "54:9473"
+    },
+    {
+      "root": "54:9479",
+      "form": "54:9485",
+      "stage": 0,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:9533",
+      "nick": "54:9550",
+      "email": "54:9559",
+      "action": "54:9568",
+      "secondary": "54:9570"
+    },
+    {
+      "root": "54:9576",
+      "form": "54:9593",
+      "stage": 1,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:9641",
+      "otp": "54:9664",
+      "action": "54:9683",
+      "resend": "54:9685",
+      "secondary": "54:9690"
+    },
+    {
+      "root": "54:9696",
+      "form": "54:9713",
+      "stage": 1,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:9761",
+      "otp": "54:9784",
+      "action": "54:9803",
+      "resend": "54:9805",
+      "secondary": "54:9810"
+    },
+    {
+      "root": "54:9816",
+      "form": "54:9833",
+      "stage": 1,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:9881",
+      "otp": "54:9904",
+      "action": "54:9923",
+      "resend": "54:9925",
+      "secondary": "54:9930"
+    },
+    {
+      "root": "54:9936",
+      "form": "54:9942",
+      "stage": 1,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:9990",
+      "otp": "54:10013",
+      "action": "54:10032",
+      "resend": "54:10034",
+      "secondary": "54:10039"
+    },
+    {
+      "root": "54:10045",
+      "form": "54:10051",
+      "stage": 1,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:10099",
+      "otp": "54:10122",
+      "action": "54:10141",
+      "resend": "54:10143",
+      "secondary": "54:10148"
+    },
+    {
+      "root": "54:10154",
+      "form": "54:10160",
+      "stage": 1,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:10208",
+      "otp": "54:10231",
+      "action": "54:10250",
+      "resend": "54:10252",
+      "secondary": "54:10257"
+    },
+    {
+      "root": "54:10263",
+      "form": "54:10280",
+      "stage": 2,
+      "state": "Default",
+      "width": 1440,
+      "tracker": "54:10328",
+      "password": "54:10349",
+      "action": "54:10366",
+      "secondary": "54:10368"
+    },
+    {
+      "root": "54:10374",
+      "form": "54:10391",
+      "stage": 2,
+      "state": "Default",
+      "width": 1024,
+      "tracker": "54:10439",
+      "password": "54:10460",
+      "action": "54:10477",
+      "secondary": "54:10479"
+    },
+    {
+      "root": "54:10485",
+      "form": "54:10502",
+      "stage": 2,
+      "state": "Default",
+      "width": 2560,
+      "tracker": "54:10550",
+      "password": "54:10571",
+      "action": "54:10588",
+      "secondary": "54:10590"
+    },
+    {
+      "root": "54:10596",
+      "form": "54:10602",
+      "stage": 2,
+      "state": "Default",
+      "width": 768,
+      "tracker": "54:10650",
+      "password": "54:10671",
+      "action": "54:10688",
+      "secondary": "54:10690"
+    },
+    {
+      "root": "54:10696",
+      "form": "54:10702",
+      "stage": 2,
+      "state": "Default",
+      "width": 390,
+      "tracker": "54:10750",
+      "password": "54:10771",
+      "action": "54:10788",
+      "secondary": "54:10790"
+    },
+    {
+      "root": "54:10796",
+      "form": "54:10802",
+      "stage": 2,
+      "state": "Default",
+      "width": 320,
+      "tracker": "54:10850",
+      "password": "54:10871",
+      "action": "54:10888",
+      "secondary": "54:10890"
+    }
+  ],
+  "states": [
+    {
+      "root": "54:10896",
+      "form": "54:10902",
+      "stage": 0,
+      "state": "Focus",
+      "width": 390,
+      "tracker": "54:10950",
+      "nick": "54:10967",
+      "email": "54:10976",
+      "action": "54:10985",
+      "secondary": "54:10987"
+    },
+    {
+      "root": "54:10993",
+      "form": "54:10999",
+      "stage": 0,
+      "state": "Pending",
+      "width": 390,
+      "tracker": "54:11047",
+      "nick": "54:11064",
+      "email": "54:11073",
+      "action": "54:11086",
+      "secondary": "54:11088"
+    },
+    {
+      "root": "54:11094",
+      "form": "54:11100",
+      "stage": 1,
+      "state": "CodeError",
+      "width": 390,
+      "tracker": "54:11148",
+      "otp": "54:11176",
+      "action": "54:11195",
+      "resend": "54:11197",
+      "secondary": "54:11202"
+    },
+    {
+      "root": "54:11208",
+      "form": "54:11214",
+      "stage": 1,
+      "state": "CodeFilled",
+      "width": 390,
+      "tracker": "54:11262",
+      "otp": "54:11285",
+      "action": "54:11304",
+      "resend": "54:11306",
+      "secondary": "54:11311"
+    },
+    {
+      "root": "54:11317",
+      "form": "54:11323",
+      "stage": 1,
+      "state": "ResendAvailable",
+      "width": 390,
+      "tracker": "54:11371",
+      "otp": "54:11394",
+      "action": "54:11413",
+      "resend": "54:11415",
+      "secondary": "54:11420"
+    },
+    {
+      "root": "54:11426",
+      "form": "54:11432",
+      "stage": 1,
+      "state": "ResendExhausted",
+      "width": 390,
+      "tracker": "54:11480",
+      "otp": "54:11503",
+      "action": "54:11522",
+      "resend": "54:11524",
+      "secondary": "54:11529"
+    },
+    {
+      "root": "54:11535",
+      "form": "54:11541",
+      "stage": 2,
+      "state": "PasswordError",
+      "width": 390,
+      "tracker": "54:11589",
+      "password": "54:11615",
+      "action": "54:11632",
+      "secondary": "54:11634"
+    },
+    {
+      "root": "54:11640",
+      "form": "54:11646",
+      "stage": 2,
+      "state": "Submitting",
+      "width": 390,
+      "tracker": "54:11694",
+      "password": "54:11715",
+      "action": "54:11732",
+      "secondary": "54:11734"
+    }
+  ],
+  "components": {
+    "nick": "54:8888",
+    "nickValue": "Value#54:20",
+    "code": "54:8908",
+    "codeProps": [
+      "Digit 1#54:21",
+      "Digit 2#54:22",
+      "Digit 3#54:23",
+      "Digit 4#54:24",
+      "Digit 5#54:25",
+      "Digit 6#54:26",
+      "Digit 7#54:27",
+      "Digit 8#54:28"
+    ],
+    "codeBox": "54:8891",
+    "nickBox": "54:8881"
+  },
+  "stepper": {
+    "variants": {
+      "0": "54:8928",
+      "1": "54:8944",
+      "2": "54:8959"
+    },
+    "set": "54:8960"
+  },
+  "icons": {
+    "check": "54:8911"
+  },
+  "scope": "Native Figma only; no account messages/database changes.",
+  "prototype": {
+    "start": "54:10896",
+    "codeFilled": "54:11208",
+    "password": "54:11746",
+    "submitting": "54:11640",
+    "loginReturn": "54:11809",
+    "scope": "Same-page synthetic fixtures only; no input execution, OTP sending, real timer, completion, or account persistence."
+  },
+  "prototypeFixtures": [
+    {
+      "root": "54:11746",
+      "stage": 2,
+      "state": "PrototypePassword",
+      "width": 390,
+      "password": "54:11764",
+      "action": "54:11768",
+      "secondary": "54:11769"
+    },
+    {
+      "root": "54:11809",
+      "stage": "Login",
+      "state": "PrototypeReturn",
+      "width": 390
+    }
+  ]
+}

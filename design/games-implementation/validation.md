@@ -1,0 +1,13 @@
+# Jogos implementation validation
+
+Native sources are the approved Light/Dark Games briefs, metadata and final previews, plus freshly read Figwright design contexts and content exports in this directory. `grounding-coverage.json` records the additional Light upcoming desktop context and motion inventory for all 20 implemented content scenes. All these content scenes contain no keyframed animation tracks; the approved 120ms tab dissolve is implemented as a short Framer Motion opacity transition with reduced-motion support.
+
+`npm run build` passed production compilation, TypeScript and static generation. Scoped ESLint passed JogosScreen, HomeScreen, PhoneShell and the extracted unchanged matchDate utility. The single scoped Impeccable detector returned an empty findings list.
+
+Final browser verification ran `CPM_BASE_URL=http://localhost:3001 node scripts/verify-games.mjs` against the compiled production build: 20 principal Light/Dark scenes; 18 empty/loading/error/long-name/missing-time scenes (including loading/error at 320px in both themes); tab keyboard navigation; game detail and history; theme persistence; explicit competition from Home; retry recovery; real Supabase reads in both themes. No page errors or horizontal overflow were recorded. Synthetic fixtures are confined to the verification script and do not write to the database.
+
+The 20 exact Figma content crops match browser crop dimensions at every tested theme/size/category. Mean RGB channel differences range from approximately 0.75 to 2.26 on a 0–255 scale; raster font rendering and fallback club crests contribute residual differences. This is supporting comparison evidence, not a claim of pixel-identical rendering. Full scenes and content crops, geometry report, detector and comparison results are under `.impeccable/review/games-implementation/`.
+
+The final container override is in `app/cpm.css`, alongside the existing Home override, because standalone imported Games CSS is ordered before the legacy desktop scroll constraint. Final desktop/ultrawide content width is 1280px, not the legacy 1136px. A capture run simultaneous with Next production build failed while the development output was being regenerated; the final full production capture supersedes that incomplete run. The development server was restarted afterward at localhost:3000.
+
+Scope: actual existing Jogos functionality in the approved design, shared header unchanged, Home behavior unchanged apart from extracting its matchDate implementation. Match details and classification continue to use their existing implementations. No penalties, new live category, search, competition selector, pagination or invented W.O. scores were introduced. No deployment or Supabase write was performed.

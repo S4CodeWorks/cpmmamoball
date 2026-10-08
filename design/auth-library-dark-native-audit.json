@@ -1,0 +1,1882 @@
+{
+  "stats": {
+    "roots": 173,
+    "nodes": 10279,
+    "images": 215,
+    "lightPaints": 0,
+    "lightScalars": 233
+  },
+  "issues": [],
+  "sharedGeometryBindings": [
+    {
+      "node": "I54:34324;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34324;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6837",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6839",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6840",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6841",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6842",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6843",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6844",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6845",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6846",
+      "field": "width",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6846",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34634;8:6847",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:34938;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35760;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6837",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6839",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6840",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6841",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6842",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6843",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6844",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6845",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6846",
+      "field": "width",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6846",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:35938;8:6847",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36110;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36562;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6837",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6839",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6840",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6841",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6842",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6843",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6844",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6845",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6846",
+      "field": "width",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6846",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36648;8:6847",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:36728;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38358;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38494;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38592;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38770;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:38948;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39034;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39120;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39305;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39587;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:39738;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40310;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:40932;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41242;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6825",
+      "field": "maxWidth",
+      "id": "VariableID:2:74",
+      "darkEquivalent": "VariableID:2:97",
+      "resolved": 1280,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6827",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6828",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6829",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6830",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6831",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6832",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6833",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6834",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    },
+    {
+      "node": "I54:41420;8:6835",
+      "field": "height",
+      "id": "VariableID:2:75",
+      "darkEquivalent": "VariableID:2:98",
+      "resolved": 44,
+      "sameValue": true
+    }
+  ],
+  "notes": [
+    "No Light semantic colour bindings remain across 173 roots and 10279 nodes.",
+    "233 inherited bindings are theme-independent layout/content-max and control/min-height aliases. Their Dark counterparts resolve to the identical primitive value; retained inherited bindings have no palette or geometry effect.",
+    "IMAGE paints retain source assets. Contrast is a scoped colour check, not an accessibility certification.",
+    "Prototype proof contains 100 rebased click/hover reaction records, preserving synthetic demonstration scope."
+  ]
+}

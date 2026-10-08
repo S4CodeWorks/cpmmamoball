@@ -1,0 +1,325 @@
+{
+  "pages": {
+    "main": "3:1127",
+    "interactions": "6:4085",
+    "states": "6:4086",
+    "components": "3:1128"
+  },
+  "mainScenes": [
+    {
+      "root": "4:1655",
+      "header": "4:1656",
+      "content": "4:1686",
+      "feature": "4:1700",
+      "standings": "4:1730",
+      "lists": [
+        "4:1776",
+        "4:1797"
+      ],
+      "width": 1440,
+      "kind": "result",
+      "selector": "6:4107"
+    },
+    {
+      "root": "4:2140",
+      "header": "4:2141",
+      "content": "4:2168",
+      "feature": "4:2182",
+      "standings": "4:2212",
+      "lists": [
+        "4:2258",
+        "4:2279"
+      ],
+      "width": 1024,
+      "kind": "result",
+      "selector": "6:4128"
+    },
+    {
+      "root": "4:2300",
+      "header": "4:2301",
+      "content": "4:2331",
+      "feature": "4:2345",
+      "standings": "4:2375",
+      "lists": [
+        "4:2421",
+        "4:2442"
+      ],
+      "width": 2560,
+      "kind": "result",
+      "selector": "6:4135"
+    },
+    {
+      "root": "4:2463",
+      "header": "4:2464",
+      "content": "4:2478",
+      "feature": "4:2492",
+      "standings": "4:2561",
+      "lists": [
+        "4:2519",
+        "4:2540"
+      ],
+      "width": 768,
+      "kind": "result",
+      "selector": "6:4142"
+    },
+    {
+      "root": "4:2606",
+      "header": "4:2607",
+      "content": "4:2621",
+      "feature": "4:2635",
+      "standings": "4:2704",
+      "lists": [
+        "4:2662",
+        "4:2683"
+      ],
+      "width": 390,
+      "kind": "result",
+      "selector": "6:4149"
+    },
+    {
+      "root": "4:2749",
+      "header": "4:2750",
+      "content": "4:2764",
+      "feature": "4:2778",
+      "standings": "4:2847",
+      "lists": [
+        "4:2805",
+        "4:2826"
+      ],
+      "width": 320,
+      "kind": "result",
+      "selector": "6:4156"
+    }
+  ],
+  "fullStateScenes": [
+    {
+      "root": "4:1818",
+      "header": "4:1819",
+      "content": "4:1849",
+      "feature": "4:1863",
+      "standings": "4:1895",
+      "lists": [
+        "4:1941",
+        "4:1962"
+      ],
+      "width": 1440,
+      "kind": "upcoming",
+      "selector": "6:4114"
+    },
+    {
+      "root": "4:1983",
+      "header": "4:1984",
+      "content": "4:2014",
+      "feature": "4:2028",
+      "standings": "4:2052",
+      "lists": [
+        "4:2098",
+        "4:2119"
+      ],
+      "width": 1440,
+      "kind": "approved",
+      "selector": "6:4121"
+    }
+  ],
+  "interactionScenes": [
+    {
+      "root": "6:4163",
+      "width": 1440,
+      "selector": "6:4169",
+      "menu": "6:4391",
+      "branch": "without-favorites"
+    },
+    {
+      "root": "6:4404",
+      "width": 390,
+      "selector": "6:4417",
+      "menu": "6:4616",
+      "branch": "without-favorites"
+    },
+    {
+      "root": "6:4629",
+      "width": 320,
+      "selector": "6:4642",
+      "menu": "6:4841",
+      "branch": "without-favorites"
+    },
+    {
+      "root": "6:4854",
+      "width": 1440,
+      "selector": "6:4860",
+      "branch": "favorites"
+    }
+  ],
+  "closedScene": "6:6135",
+  "selectedScene": "6:6412",
+  "stateSpecimens": [
+    {
+      "root": "6:5089",
+      "kind": "result"
+    },
+    {
+      "root": "6:5132",
+      "kind": "upcoming"
+    },
+    {
+      "root": "6:5172",
+      "kind": "approved"
+    },
+    {
+      "root": "6:5204",
+      "kind": "draw"
+    },
+    {
+      "root": "6:5247",
+      "kind": "wo"
+    },
+    {
+      "root": "6:5290",
+      "kind": "loading"
+    },
+    {
+      "root": "6:5302",
+      "kind": "empty"
+    },
+    {
+      "root": "6:5317",
+      "kind": "error"
+    },
+    {
+      "root": "6:5334",
+      "kind": "longCompact"
+    }
+  ],
+  "mobileStateScenes": [
+    {
+      "root": "6:5377",
+      "width": 390,
+      "feature": "6:5394"
+    },
+    {
+      "root": "6:5626",
+      "width": 390,
+      "feature": "6:5643"
+    },
+    {
+      "root": "6:5867",
+      "width": 390,
+      "feature": "6:5884"
+    }
+  ],
+  "selector": {
+    "component": "6:4087",
+    "property": "Competition#6:17",
+    "menu": "6:4094",
+    "options": [
+      "6:4095",
+      "6:4102"
+    ],
+    "set": "6:6134",
+    "variants": [
+      "6:4087",
+      "6:6119",
+      "6:6123",
+      "6:6127"
+    ]
+  },
+  "selectorStatesSheet": "6:6150",
+  "icons": {
+    "search": {
+      "componentId": "2:112",
+      "path": "design/assets/icons/2-112.svg"
+    },
+    "chevron": {
+      "componentId": "2:115",
+      "path": "design/assets/icons/2-115.svg"
+    },
+    "user": {
+      "componentId": "2:119",
+      "path": "design/assets/icons/2-119.svg"
+    },
+    "moon": {
+      "componentId": "2:122",
+      "path": "design/assets/icons/2-122.svg"
+    },
+    "menu": {
+      "componentId": "2:125",
+      "path": "design/assets/icons/2-125.svg"
+    },
+    "arrow": {
+      "componentId": "2:128",
+      "path": "design/assets/icons/2-128.svg"
+    },
+    "calendar": {
+      "componentId": "3:1144",
+      "path": "design/assets/icons/3-1144.svg"
+    },
+    "check": {
+      "componentId": "3:1147",
+      "path": "design/assets/icons/3-1147.svg"
+    },
+    "star": {
+      "componentId": "3:1150",
+      "path": "design/assets/icons/3-1150.svg"
+    },
+    "clock": {
+      "componentId": "3:1154",
+      "path": "design/assets/icons/3-1154.svg"
+    },
+    "trophy": {
+      "componentId": "3:1158",
+      "path": "design/assets/icons/3-1158.svg"
+    },
+    "support": {
+      "componentId": "2:898",
+      "path": "design/assets/icons/2-898.svg"
+    },
+    "ticket": {
+      "componentId": "2:885",
+      "path": "design/assets/icons/2-885.svg"
+    },
+    "bookmark": {
+      "componentId": "2:888",
+      "path": "design/assets/icons/2-888.svg"
+    },
+    "rules": {
+      "componentId": "2:892",
+      "path": "design/assets/icons/2-892.svg"
+    },
+    "settings": {
+      "componentId": "2:902",
+      "path": "design/assets/icons/2-902.svg"
+    }
+  },
+  "iconContextOverrides": {
+    "default": "Use stroke/fill exactly from each SVG. Most originals use 1.5px stroke.",
+    "darkHighlight": "Trophy, status-check and footer clock use 1.7px stroke; role ink white or muted neutral200.",
+    "eventAction": "Arrow SVG exported from the real button instance: white, 1.7px."
+  },
+  "eventArrow": {"componentId":"4:3067","path":"design/assets/icons/4-3067.svg"},
+  "fonts": {
+    "display": "Barlow Condensed",
+    "ui": "Manrope"
+  },
+  "measures": {
+    "selectorHeight": 44,
+    "selectorDesktopWidth": 248,
+    "popoverMaxWidth": 320,
+    "popoverGap": 8,
+    "popoverPadding": 8,
+    "optionHeight": 52,
+    "optionGap": 4,
+    "selectorRadius": 12,
+    "focusStroke": 2,
+    "contentMax": 1280,
+    "mobileGutter": 16,
+    "tabletGutter": 24,
+    "headerDesktop": 88,
+    "headerSmall": 72,
+    "iconDefault": 20
+  },
+  "prototype": "Desktop closed → open → choose 2026/2025 → closed/selected. 2025 selected is a terminal demonstration; no live fetching. Mobile open views are static.",
+  "behavior": "No favorites: competition selector drives local match/standings selection. With favorites: merged lists, competition labels when >1 favorite, standings of first favorite; selector is not rendered.",
+  "previewDirectory": "design/state-previews-final",
+  "approvalEligibility": "Approval events are favorites-only. Full desktop 4:1983 and mobile 6:5626 now show noninteractive saved-competition context, count 1, instead of the no-favorites selector. Final proofs: design/approval-branch-final/4-1983.png and 6-5626.png.",
+  "implementation": "Future app fidelity must use exact variables, fonts, components, original SVG geometry, unmodified logo and deterministic screenshot comparisons at same viewport/data. Current work is Figma only."
+}

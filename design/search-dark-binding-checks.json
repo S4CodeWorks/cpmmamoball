@@ -1,0 +1,31 @@
+{
+  "scope": "Four native Dark sets and390mixed root",
+  "roots": [
+    {
+      "root": "44:45654",
+      "colorBindings": 64,
+      "residualLightBindings": []
+    },
+    {
+      "root": "44:45727",
+      "colorBindings": 65,
+      "residualLightBindings": []
+    },
+    {
+      "root": "44:45792",
+      "colorBindings": 70,
+      "residualLightBindings": []
+    },
+    {
+      "root": "44:45931",
+      "colorBindings": 21,
+      "residualLightBindings": []
+    },
+    {
+      "root": "44:47998",
+      "colorBindings": 86,
+      "residualLightBindings": []
+    }
+  ],
+  "limit": "Read-only native binding sample; not runtime verification"
+}

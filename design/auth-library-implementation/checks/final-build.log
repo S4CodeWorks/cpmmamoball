@@ -1,0 +1,38 @@
+▲ Next.js 16.2.6 (webpack)
+- Environments: .env.local
+- Experiments (use with caution):
+  · cpus: 1
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.7s
+  Running TypeScript ...
+  Finished TypeScript in 14.5s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/9) ...
+  Generating static pages using 1 worker (2/9) 
+  Generating static pages using 1 worker (4/9) 
+  Generating static pages using 1 worker (6/9) 
+✓ Generating static pages using 1 worker (9/9) in 583ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ƒ /api/notify
+├ ○ /avisos
+├ ƒ /avisos/[id]
+├ ƒ /clube/[id]
+├ ƒ /clube/-/opengraph-image
+├ ○ /entrar
+├ ƒ /noticia/[id]
+├ ƒ /noticia/-/opengraph-image
+├ ƒ /partida/[id]
+├ ƒ /partida/-/opengraph-image
+└ ○ /salvos
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

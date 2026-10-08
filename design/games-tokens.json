@@ -1,0 +1,28 @@
+{
+  "primitives": {
+    "space/5": 20,
+    "size/games-time-cell": 112,
+    "size/games-tab": 52,
+    "size/games-date-marker": 56
+  },
+  "primitiveVariables": {
+    "space/5": "VariableID:13:19320",
+    "size/games-time-cell": "VariableID:13:19321",
+    "size/games-tab": "VariableID:13:19322",
+    "size/games-date-marker": "VariableID:13:19323"
+  },
+  "semantic": {
+    "games/time-cell-width": "size/games-time-cell",
+    "games/tab-height": "size/games-tab",
+    "games/tab-mobile-height": "size/compact-header",
+    "games/date-marker-width": "size/games-date-marker",
+    "games/card-padding-y": "space/5"
+  },
+  "semanticVariables": {
+    "games/time-cell-width": "VariableID:13:19324",
+    "games/tab-height": "VariableID:13:19325",
+    "games/tab-mobile-height": "VariableID:13:19326",
+    "games/date-marker-width": "VariableID:13:19327",
+    "games/card-padding-y": "VariableID:13:19328"
+  }
+}

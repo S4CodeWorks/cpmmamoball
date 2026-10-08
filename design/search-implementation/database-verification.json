@@ -1,0 +1,24 @@
+{
+  "project": "edqstqzsauqxvlolarzp",
+  "migration": "cpm_public_search",
+  "migrationApplied": true,
+  "role": "anon",
+  "transactionalFixtureRolledBack": true,
+  "checks": {
+    "unpublishedNewsExcluded": true,
+    "accentNormalization": true,
+    "exactClubTag": true,
+    "unorderedWords": true,
+    "smallTypo": true,
+    "hashGameId": true,
+    "accentedNewsTitle": true,
+    "literalPercentAndUnderscore": true,
+    "blankPlayerQueryDoesNotEnumerate": true,
+    "paginationWithoutOverlap": true,
+    "boundedPageSizeAndOffset": true,
+    "securityInvoker": true,
+    "emptySearchPath": true,
+    "anonExecute": true
+  },
+  "evidence": "supabase/search_verify.sql assertions passed remotely; RPC function metadata inspected. No demonstration data persisted."
+}

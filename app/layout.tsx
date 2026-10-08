@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './cpm-tokens.css';
+import './cpm.css';
 
 export const metadata: Metadata = {
   title: 'CPM MamoBall',

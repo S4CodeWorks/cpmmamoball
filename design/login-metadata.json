@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "artifact": "Login · Light",
+  "fileName": "Sem título",
+  "pages": {
+    "screens": "54:7973",
+    "components": "54:7974",
+    "states": "54:7975"
+  },
+  "scenes": [
+    {
+      "root": "54:8140",
+      "form": "54:8161",
+      "email": "54:8168",
+      "pass": "54:8177",
+      "forgot": "54:8189",
+      "action": "54:8191",
+      "secondary": "54:8193",
+      "width": 1440,
+      "state": "Empty"
+    },
+    {
+      "root": "54:8199",
+      "form": "54:8220",
+      "email": "54:8227",
+      "pass": "54:8236",
+      "forgot": "54:8248",
+      "action": "54:8250",
+      "secondary": "54:8252",
+      "width": 1024,
+      "state": "Empty"
+    },
+    {
+      "root": "54:8258",
+      "form": "54:8279",
+      "email": "54:8286",
+      "pass": "54:8295",
+      "forgot": "54:8307",
+      "action": "54:8309",
+      "secondary": "54:8311",
+      "width": 2560,
+      "state": "Empty"
+    },
+    {
+      "root": "54:8317",
+      "form": "54:8327",
+      "email": "54:8334",
+      "pass": "54:8343",
+      "forgot": "54:8355",
+      "action": "54:8357",
+      "secondary": "54:8359",
+      "width": 768,
+      "state": "Empty"
+    },
+    {
+      "root": "54:8365",
+      "form": "54:8375",
+      "email": "54:8382",
+      "pass": "54:8391",
+      "forgot": "54:8403",
+      "action": "54:8405",
+      "secondary": "54:8407",
+      "width": 390,
+      "state": "Empty"
+    },
+    {
+      "root": "54:8413",
+      "form": "54:8423",
+      "email": "54:8430",
+      "pass": "54:8439",
+      "forgot": "54:8451",
+      "action": "54:8453",
+      "secondary": "54:8455",
+      "width": 320,
+      "state": "Empty"
+    }
+  ],
+  "states": [
+    {
+      "root": "54:8461",
+      "form": "54:8471",
+      "email": "54:8478",
+      "pass": "54:8487",
+      "forgot": "54:8499",
+      "action": "54:8501",
+      "secondary": "54:8503",
+      "width": 390,
+      "state": "Focus"
+    },
+    {
+      "root": "54:8509",
+      "form": "54:8519",
+      "email": "54:8526",
+      "pass": "54:8535",
+      "forgot": "54:8547",
+      "action": "54:8549",
+      "secondary": "54:8551",
+      "width": 390,
+      "state": "Filled"
+    },
+    {
+      "root": "54:8557",
+      "form": "54:8567",
+      "email": "54:8574",
+      "pass": "54:8583",
+      "forgot": "54:8594",
+      "action": "54:8596",
+      "secondary": "54:8598",
+      "width": 390,
+      "state": "Visible"
+    },
+    {
+      "root": "54:8604",
+      "form": "54:8614",
+      "email": "54:8621",
+      "pass": "54:8635",
+      "forgot": "54:8647",
+      "action": "54:8649",
+      "secondary": "54:8651",
+      "width": 390,
+      "state": "Invalid"
+    },
+    {
+      "root": "54:8657",
+      "form": "54:8667",
+      "email": "54:8679",
+      "pass": "54:8688",
+      "forgot": "54:8700",
+      "action": "54:8702",
+      "secondary": "54:8704",
+      "width": 390,
+      "state": "Error"
+    },
+    {
+      "root": "54:8710",
+      "form": "54:8720",
+      "email": "54:8727",
+      "pass": "54:8736",
+      "forgot": "54:8748",
+      "action": "54:8754",
+      "secondary": "54:8756",
+      "width": 390,
+      "state": "Pending"
+    },
+    {
+      "root": "54:8762",
+      "form": "54:8772",
+      "email": "54:8779",
+      "pass": "54:8788",
+      "forgot": "54:8800",
+      "action": "54:8802",
+      "secondary": "54:8804",
+      "width": 390,
+      "state": "Submitting"
+    },
+    {
+      "root": "54:8810",
+      "form": "54:8831",
+      "email": "54:8843",
+      "pass": "54:8852",
+      "forgot": "54:8864",
+      "action": "54:8866",
+      "secondary": "54:8868",
+      "width": 1440,
+      "state": "Error"
+    }
+  ],
+  "fields": {
+    "mailEmpty": {
+      "component": "54:8044",
+      "labelId": "54:8036",
+      "valueId": "54:8042",
+      "box": "54:8037"
+    },
+    "mailFocus": {
+      "component": "54:8054",
+      "labelId": "54:8046",
+      "valueId": "54:8052",
+      "box": "54:8047"
+    },
+    "mailFilled": {
+      "component": "54:8064",
+      "labelId": "54:8056",
+      "valueId": "54:8062",
+      "box": "54:8057"
+    },
+    "mailInvalid": {
+      "component": "54:8079",
+      "labelId": "54:8066",
+      "valueId": "54:8072",
+      "box": "54:8067"
+    },
+    "lockEmpty": {
+      "component": "54:8092",
+      "labelId": "54:8081",
+      "valueId": "54:8087",
+      "box": "54:8082"
+    },
+    "lockFocus": {
+      "component": "54:8105",
+      "labelId": "54:8094",
+      "valueId": "54:8100",
+      "box": "54:8095"
+    },
+    "lockFilled": {
+      "component": "54:8118",
+      "labelId": "54:8107",
+      "valueId": "54:8113",
+      "box": "54:8108"
+    },
+    "lockVisible": {
+      "component": "54:8130",
+      "labelId": "54:8120",
+      "valueId": "54:8126",
+      "box": "54:8121"
+    }
+  },
+  "componentSets": {
+    "mail": "54:8131",
+    "lock": "54:8132"
+  },
+  "secondaryAction": "54:8139",
+  "icons": {
+    "mail": "54:8007",
+    "lock": "54:8011",
+    "eye": "54:8015",
+    "eyeOff": "54:8018",
+    "back": "54:8021",
+    "login": "54:8024",
+    "alert": "54:8028",
+    "shield": "54:8031",
+    "bell": "54:8034"
+  },
+  "prototype": {
+    "filled": "54:8509",
+    "visible": "54:8557",
+    "flowName": "Login · Mostrar/ocultar senha · demonstração",
+    "pageId": "54:7975"
+  },
+  "scope": "Native editable Figma; no application/auth changes; no real login in prototype."
+}

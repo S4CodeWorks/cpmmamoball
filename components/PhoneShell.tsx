@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { pathForPage } from '@/lib/routes';
 import { AppProvider, useApp, ConfirmDialogHost } from '@/contexts/AppContext';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
@@ -17,10 +18,12 @@ import { NewsScreen, ArticleScreen } from '@/components/screens/NewsScreen';
 import { MatchScreen } from '@/components/screens/MatchScreen';
 import { ClubScreen } from '@/components/screens/ClubScreen';
 import {
-  MoreScreen, SavedScreen, ProfileScreen, SettingsScreen,
+  MoreScreen, ProfileScreen, SettingsScreen,
   SubscriptionScreen, RulesScreen, SupportScreen, SearchScreen,
 } from '@/components/screens/MiscScreens';
 import { AdminScreen } from '@/components/screens/AdminScreen';
+import { LibraryProvider } from '@/contexts/LibraryContext';
+import { SavedScreen, NoticesScreen, NoticeScreen, type SavedFilter, type NoticeFilter } from '@/components/screens/LibraryScreens';
 import { AuthGate } from '@/components/screens/AuthScreens';
 import { I } from '@/components/icons';
 import type { HistoryEntry, Page } from '@/lib/types';
@@ -99,6 +102,12 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
   const { isStaff, isLoggedIn } = useAuth();
   const { initialLoad, error, refresh } = useData();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const historyDepth=useRef(0);
+  const [searchState, setSearchState] = useState<import('./screens/SearchScreen').SearchState>({ query: '', category: 'All' });
+
+  const [savedFilter,setSavedFilter]=useState<SavedFilter>('Todos');
+  const [noticeFilter,setNoticeFilter]=useState<NoticeFilter>('Todos');
+
 
   // Deep link: seed com Home por baixo, pra o botão "voltar" ter pra onde ir
   // mesmo quando a pessoa abre o link direto (sem ter navegado dentro do app).
@@ -111,13 +120,25 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
     ];
   });
   const current = stack[stack.length - 1];
+  useEffect(()=>{
+    const stored=window.history.state;
+    if(!stored)return;
+    historyDepth.current=typeof stored.cpmDepth==='number'?stored.cpmDepth:0;
+    queueMicrotask(()=>{
+      if(['Todos','Competições','Clubes','Jogos','Notícias'].includes(stored.cpmSavedFilter))setSavedFilter(stored.cpmSavedFilter);
+      if(['Todos','Não lidos'].includes(stored.cpmNoticeFilter))setNoticeFilter(stored.cpmNoticeFilter);
+      if(Array.isArray(stored.cpmStack)&&stored.cpmStack.length&&stored.cpmStack.at(-1)?.page===initialPage)setStack(stored.cpmStack);
+    });
+  },[initialPage]);
 
   const onNav = (
     page: string,
     param: string | number | null = null,
     extra: string | null = null,
   ) => {
-    setStack(s => [...s, { page: page as Page, param, extra }]);
+    const next = [...stack, { page: page as Page, param, extra }];
+    window.history.pushState({ cpmStack: next, cpmDepth:++historyDepth.current }, '', pathForPage(page, param) ?? '/');
+    setStack(next);
     requestAnimationFrame(() => {
       if (scrollRef.current) scrollRef.current.scrollTop = 0;
     });
@@ -128,7 +149,7 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
   // Delega pro histórico real do navegador — o listener de popstate abaixo
   // reflete a mudança de volta no stack em memória, sem duplicar entradas.
   const onBack = () => {
-    if (stack.length > 1) window.history.back();
+    if(stack.length>1){if(historyDepth.current>0)window.history.back();else popStack();}
   };
 
   const onTab = (id: string) => {
@@ -136,7 +157,9 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
       scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    setStack([{ page: id as Page, param: null, extra: null }]);
+    const next = [{ page: id as Page, param: null, extra: null }];
+    window.history.pushState({ cpmStack: next, cpmDepth:++historyDepth.current }, '', pathForPage(id, null) ?? '/');
+    setStack(next);
     requestAnimationFrame(() => {
       if (scrollRef.current) scrollRef.current.scrollTop = 0;
     });
@@ -146,44 +169,53 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
   // têm rota real (partida/clube/notícia) — permite copiar o link da barra de
   // endereço e volta do navegador funcionar mesmo sem recarregar a página.
   useEffect(() => {
-    const path = pathForPage(current.page, current.param) ?? '/';
-    if (window.location.pathname !== path) {
-      window.history.pushState({ depth: stack.length }, '', path);
-    }
-  }, [current.page, current.param, stack.length]);
+    window.history.replaceState({ cpmStack: stack, cpmDepth:historyDepth.current, cpmSavedFilter:savedFilter, cpmNoticeFilter:noticeFilter }, '', pathForPage(current.page, current.param) ?? '/');
+  }, [stack, current.page, current.param, savedFilter, noticeFilter]);
 
   useEffect(() => {
-    const onPopState = () => popStack();
+    const onPopState = (event: PopStateEvent) => {
+      historyDepth.current=event.state?.cpmDepth??0;
+      if (Array.isArray(event.state?.cpmStack)) setStack(event.state.cpmStack);
+      else popStack();
+    };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   const p = current.page;
+  const [gatedPage,setGatedPage]=useState<Page|null>(null);
+  const requiresAuth=(p==='profile'||p==='subscription')&&!isLoggedIn;
+  if(requiresAuth&&gatedPage!==p)setGatedPage(p);
+  else if(gatedPage!==null&&gatedPage!==p)setGatedPage(null);
+  const authSurface=p==='login'||requiresAuth||gatedPage===p;
+  const authSuccess=()=>{setGatedPage(null);if(p!=='subscription')onBack();};
   let view: React.ReactNode;
   switch (p) {
-    case 'tournaments':  view = <TournamentsScreen onNav={onNav} initialTab={current.extra} />; break;
-    case 'jogos':        view = <JogosScreen onNav={onNav} initialTab={current.extra} />; break;
+    case 'tournaments':  view = <TournamentsScreen key={String(current.param)} onNav={onNav} initialTab={current.extra} initialCompetitionId={current.param as string | null} />; break;
+    case 'jogos':        view = <JogosScreen key={String(current.param)} onNav={onNav} initialTab={current.extra} initialCompetitionId={current.param as string | null} />; break;
     case 'news':         view = <NewsScreen onNav={onNav} />; break;
     case 'match':        view = <MatchScreen onNav={onNav} onBack={onBack} matchId={current.param as number} />; break;
     case 'club':         view = <ClubScreen onNav={onNav} onBack={onBack} clubId={current.param as string} />; break;
     case 'article':      view = <ArticleScreen onNav={onNav} onBack={onBack} articleId={current.param as string} />; break;
     case 'more':         view = <MoreScreen onNav={onNav} />; break;
-    case 'saved':        view = <SavedScreen onNav={onNav} onBack={onBack} />; break;
+    case 'saved':        view = <SavedScreen onNav={onNav} onBack={onBack} filter={savedFilter} onFilterChange={setSavedFilter}/>; break;
+    case 'notices': view=<NoticesScreen onNav={onNav} onBack={onBack} filter={noticeFilter} onFilterChange={setNoticeFilter}/>;break;
+    case 'notice': view=<NoticeScreen onNav={onNav} onBack={onBack} noticeId={String(current.param)}/>;break;
     case 'profile':
-      view = isLoggedIn
+      view = !authSurface
         ? <ProfileScreen onNav={onNav} onBack={onBack} />
-        : <AuthGate onSuccess={() => onBack()} />;
+        : <AuthGate onSuccess={authSuccess} onBack={onBack} onNav={onNav} />;
       break;
     case 'settings':     view = <SettingsScreen onBack={onBack} onNav={onNav} />; break;
     case 'subscription':
-      view = isLoggedIn
+      view = !authSurface
         ? <SubscriptionScreen onBack={onBack} onNav={onNav} presetCompId={current.param as string | null} />
-        : <AuthGate onSuccess={() => { /* stay on subscription */ }} />;
+        : <AuthGate onSuccess={authSuccess} onBack={onBack} onNav={onNav} />;
       break;
     case 'rules':        view = <RulesScreen onBack={onBack} />; break;
     case 'support':      view = <SupportScreen onBack={onBack} />; break;
-    case 'search':       view = <SearchScreen onNav={onNav} onBack={onBack} />; break;
-    case 'login':        view = <AuthGate onSuccess={() => onTab('home')} />; break;
+    case 'search':       view = <SearchScreen onNav={onNav} onBack={onBack} state={searchState} onStateChange={setSearchState} />; break;
+    case 'login':        view = <AuthGate onSuccess={authSuccess} onBack={onBack} onNav={onNav} />; break;
     case 'admin':
       view = isStaff
         ? <AdminScreen onNav={onNav} onBack={onBack} />
@@ -194,19 +226,19 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
   // Páginas de conta/config não se beneficiam do container largo — ficam mais
   // legíveis numa coluna estreita centralizada no desktop (ver .d-narrow).
-  const NARROW_PAGES: Page[] = ['more', 'saved', 'profile', 'settings', 'rules', 'support', 'search', 'login'];
-  const isNarrow = NARROW_PAGES.includes(p);
+  const NARROW_PAGES: Page[] = ['more', 'profile', 'settings', 'rules', 'support'];
+  const isNarrow = NARROW_PAGES.includes(p) && !authSurface;
 
   return (
-    <div className="app-root" data-theme={resolvedTheme}>
+    <div className="app-root" data-theme={resolvedTheme} data-surface={p} data-auth-flow={authSurface}>
       <div className="app-main">
-        <DesktopHeader page={current.page} param={current.param} onTab={onTab} onNav={onNav} />
-        <div className={`scroll${isNarrow ? ' d-narrow' : ''}`} ref={scrollRef}>
-          {initialLoad ? <InitialLoading /> : error ? <InitialLoadError message={error} onRetry={refresh} /> : view}
+        {!authSurface&&<DesktopHeader page={current.page} param={current.param} onTab={onTab} onNav={onNav} />}
+        <div id="cpm-main" tabIndex={-1} className={`scroll${isNarrow ? ' d-narrow' : ''}`} ref={scrollRef}>
+          {authSurface || ['home','jogos','search','saved','notices','notice','match'].includes(p) ? view : initialLoad ? <InitialLoading /> : error ? <InitialLoadError message={error} onRetry={refresh} /> : view}
         </div>
         <Toast />
-        <CookieBanner />
-        <BottomNav page={current.page} onNav={onTab} />
+        <CookieBanner surface={p} />
+        {!authSurface && !['home','jogos','search','saved','notices','notice','match'].includes(p) && <BottomNav page={current.page} onNav={onTab} />}
       </div>
       <ConfirmDialogHost />
     </div>
@@ -217,12 +249,14 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
 export function PhoneShell({ initialPage, initialParam }: { initialPage?: string; initialParam?: string | number | null }) {
   return (
+    <MotionConfig reducedMotion="user">
     <AppProvider>
       <AuthProvider>
-        <DataProvider>
+        <DataProvider><LibraryProvider>
           <AppRoot initialPage={initialPage} initialParam={initialParam} />
-        </DataProvider>
+        </LibraryProvider></DataProvider>
       </AuthProvider>
     </AppProvider>
+    </MotionConfig>
   );
 }

@@ -1,0 +1,1051 @@
+{
+  "nodes": [
+    {
+      "id": "2:188",
+      "name": "Menu / More",
+      "type": "COMPONENT",
+      "x": 1040,
+      "y": 220,
+      "width": 272,
+      "height": 335,
+      "cornerRadius": "mixed",
+      "cornerRadii": {
+        "topLeft": 16,
+        "topRight": 0,
+        "bottomRight": 16,
+        "bottomLeft": 16
+      },
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 8,
+        "paddingRight": 8,
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "itemSpacing": 12,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "constraints": {
+        "horizontal": "MIN",
+        "vertical": "MIN"
+      },
+      "clipsContent": false,
+      "boundVariables": {
+        "itemSpacing": [
+          "VariableID:2:25"
+        ],
+        "paddingLeft": [
+          "VariableID:2:24"
+        ],
+        "paddingTop": [
+          "VariableID:2:24"
+        ],
+        "paddingRight": [
+          "VariableID:2:24"
+        ],
+        "paddingBottom": [
+          "VariableID:2:24"
+        ],
+        "topLeftRadius": [
+          "VariableID:2:33"
+        ],
+        "topRightRadius": [
+          "VariableID:2:22"
+        ],
+        "bottomLeftRadius": [
+          "VariableID:2:33"
+        ],
+        "bottomRightRadius": [
+          "VariableID:2:33"
+        ],
+        "fills": [
+          "VariableID:2:58"
+        ],
+        "strokes": [
+          "VariableID:2:64"
+        ]
+      },
+      "fill": "fill_nll9eq",
+      "stroke": "stroke_1rid605",
+      "children": [
+        {
+          "id": "2:1035",
+          "name": "Navigation options",
+          "type": "FRAME",
+          "x": 9,
+          "y": 9,
+          "width": 254,
+          "height": 236,
+          "fills": [],
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 4,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FIXED",
+          "layoutSizingVertical": "HUG",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:23"
+            ],
+            "paddingLeft": [
+              "VariableID:2:22"
+            ],
+            "paddingTop": [
+              "VariableID:2:22"
+            ],
+            "paddingRight": [
+              "VariableID:2:22"
+            ],
+            "paddingBottom": [
+              "VariableID:2:22"
+            ]
+          },
+          "children": [
+            {
+              "id": "2:909",
+              "name": "Inscrever time",
+              "type": "INSTANCE",
+              "x": 0,
+              "y": 0,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": false,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "componentProperties": {
+                "Icon#2:14": {
+                  "type": "INSTANCE_SWAP",
+                  "value": "2:885"
+                },
+                "Label#2:13": {
+                  "type": "TEXT",
+                  "value": "Inscrever time"
+                },
+                "State": {
+                  "type": "VARIANT",
+                  "value": "Default"
+                }
+              },
+              "mainComponentId": "2:903",
+              "mainComponent": {
+                "id": "2:903",
+                "name": "State=Default",
+                "key": "e09bfe0ae703089a18497055b5c9baf26e9b43de",
+                "componentSetId": "2:1122",
+                "componentSetName": "Menu / Item · Icon and label"
+              },
+              "children": [
+                {
+                  "id": "I2:909;2:904",
+                  "name": "Icon zone",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 0,
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": "mixed",
+                  "cornerRadii": {
+                    "topLeft": 8,
+                    "topRight": 0,
+                    "bottomRight": 0,
+                    "bottomLeft": 8
+                  },
+                  "strokeWeight": "mixed",
+                  "strokeWeights": {
+                    "top": 0,
+                    "right": 1,
+                    "bottom": 0,
+                    "left": 0
+                  },
+                  "strokeAlign": "INSIDE",
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "CENTER",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "boundVariables": {
+                    "itemSpacing": [
+                      "VariableID:2:22"
+                    ],
+                    "width": [
+                      "VariableID:2:35"
+                    ],
+                    "height": [
+                      "VariableID:2:35"
+                    ],
+                    "topLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "topRightRadius": [
+                      "VariableID:2:22"
+                    ],
+                    "bottomLeftRadius": [
+                      "VariableID:2:31"
+                    ],
+                    "bottomRightRadius": [
+                      "VariableID:2:22"
+                    ],
+                    "fills": [
+                      "VariableID:2:1123"
+                    ],
+                    "strokes": [
+                      "VariableID:2:64"
+                    ]
+                  },
+                  "fill": "fill_9z1qtk",
+                  "stroke": "stroke_1rid605",
+                  "children": [
+                    {
+                      "id": "I2:909;2:905",
+                      "name": "Option icon",
+                      "type": "INSTANCE",
+                      "x": 11.5,
+                      "y": 12,
+                      "width": 20,
+                      "height": 20,
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "componentPropertyReferences": {
+                        "mainComponent": "Icon#2:14"
+                      },
+                      "mainComponentId": "2:885",
+                      "mainComponent": {
+                        "id": "2:885",
+                        "name": "Icon / ticket",
+                        "key": "b1b222168e6c98537f7016059520d033b29aa596"
+                      },
+                      "fill": "fill_16zfsl5",
+                      "children": [
+                        {
+                          "id": "I2:909;2:905;2:883",
+                          "name": "Vector",
+                          "type": "VECTOR",
+                          "x": 3.3333334922790527,
+                          "y": 4.1666669845581055,
+                          "width": 13.333333015441895,
+                          "height": 11.666666030883789,
+                          "fills": [],
+                          "strokeWeight": 1.4999998807907104,
+                          "strokeAlign": "CENTER",
+                          "strokeCap": "ROUND",
+                          "strokeJoin": "ROUND",
+                          "constraints": {
+                            "horizontal": "SCALE",
+                            "vertical": "SCALE"
+                          },
+                          "boundVariables": {
+                            "strokes": [
+                              "VariableID:2:1124"
+                            ]
+                          },
+                          "stroke": "stroke_10r8bjb"
+                        },
+                        {
+                          "id": "I2:909;2:905;2:884",
+                          "name": "Vector",
+                          "type": "VECTOR",
+                          "x": 7.5,
+                          "y": 4.1666669845581055,
+                          "width": 0,
+                          "height": 11.666666030883789,
+                          "fills": [],
+                          "strokeWeight": 1.4999998807907104,
+                          "strokeAlign": "CENTER",
+                          "strokeCap": "ROUND",
+                          "strokeJoin": "ROUND",
+                          "constraints": {
+                            "horizontal": "SCALE",
+                            "vertical": "SCALE"
+                          },
+                          "boundVariables": {
+                            "strokes": [
+                              "VariableID:2:1124"
+                            ]
+                          },
+                          "stroke": "stroke_10r8bjb"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "I2:909;2:907",
+                  "name": "Label zone",
+                  "type": "FRAME",
+                  "x": 44,
+                  "y": 0,
+                  "width": 210,
+                  "height": 44,
+                  "fills": [],
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 12,
+                    "paddingBottom": 0,
+                    "paddingLeft": 12,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutGrow": 1,
+                  "clipsContent": true,
+                  "boundVariables": {
+                    "itemSpacing": [
+                      "VariableID:2:22"
+                    ],
+                    "paddingLeft": [
+                      "VariableID:2:25"
+                    ],
+                    "paddingRight": [
+                      "VariableID:2:25"
+                    ],
+                    "height": [
+                      "VariableID:2:75"
+                    ]
+                  },
+                  "children": [
+                    {
+                      "id": "I2:909;2:908",
+                      "name": "Salvos",
+                      "type": "TEXT",
+                      "x": 12,
+                      "y": 12,
+                      "width": 94,
+                      "height": 20,
+                      "layoutSizingHorizontal": "HUG",
+                      "layoutSizingVertical": "HUG",
+                      "characters": "Inscrever time",
+                      "styleIds": {
+                        "text": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2"
+                      },
+                      "boundVariables": {
+                        "fills": [
+                          "VariableID:2:60"
+                        ],
+                        "lineHeight": [
+                          "VariableID:2:48"
+                        ],
+                        "fontFamily": [
+                          "VariableID:2:55"
+                        ],
+                        "fontSize": [
+                          "VariableID:2:43"
+                        ]
+                      },
+                      "componentPropertyReferences": {
+                        "characters": "Label#2:13"
+                      },
+                      "fill": "fill_12gcwut",
+                      "textStyle": "text_f1n477"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "2:917",
+              "name": "Salvos",
+              "type": "INSTANCE",
+              "x": 0,
+              "y": 48,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": false,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "componentProperties": {
+                "Icon#2:14": {
+                  "type": "INSTANCE_SWAP",
+                  "value": "2:888"
+                },
+                "Label#2:13": {
+                  "type": "TEXT",
+                  "value": "Salvos"
+                },
+                "State": {
+                  "type": "VARIANT",
+                  "value": "Default"
+                }
+              },
+              "mainComponentId": "2:903",
+              "mainComponent": {
+                "id": "2:903",
+                "name": "State=Default",
+                "key": "e09bfe0ae703089a18497055b5c9baf26e9b43de",
+                "componentSetId": "2:1122",
+                "componentSetName": "Menu / Item · Icon and label"
+              },
+              "deduped": true,
+              "textOverrides": [
+                {
+                  "name": "Salvos",
+                  "characters": "Salvos"
+                }
+              ]
+            },
+            {
+              "id": "2:924",
+              "name": "Regulamento",
+              "type": "INSTANCE",
+              "x": 0,
+              "y": 96,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": false,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "componentProperties": {
+                "Icon#2:14": {
+                  "type": "INSTANCE_SWAP",
+                  "value": "2:892"
+                },
+                "Label#2:13": {
+                  "type": "TEXT",
+                  "value": "Regulamento"
+                },
+                "State": {
+                  "type": "VARIANT",
+                  "value": "Default"
+                }
+              },
+              "mainComponentId": "2:903",
+              "mainComponent": {
+                "id": "2:903",
+                "name": "State=Default",
+                "key": "e09bfe0ae703089a18497055b5c9baf26e9b43de",
+                "componentSetId": "2:1122",
+                "componentSetName": "Menu / Item · Icon and label"
+              },
+              "deduped": true,
+              "textOverrides": [
+                {
+                  "name": "Salvos",
+                  "characters": "Regulamento"
+                }
+              ]
+            },
+            {
+              "id": "2:932",
+              "name": "Suporte",
+              "type": "INSTANCE",
+              "x": 0,
+              "y": 144,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": false,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "componentProperties": {
+                "Icon#2:14": {
+                  "type": "INSTANCE_SWAP",
+                  "value": "2:898"
+                },
+                "Label#2:13": {
+                  "type": "TEXT",
+                  "value": "Suporte"
+                },
+                "State": {
+                  "type": "VARIANT",
+                  "value": "Default"
+                }
+              },
+              "mainComponentId": "2:903",
+              "mainComponent": {
+                "id": "2:903",
+                "name": "State=Default",
+                "key": "e09bfe0ae703089a18497055b5c9baf26e9b43de",
+                "componentSetId": "2:1122",
+                "componentSetName": "Menu / Item · Icon and label"
+              },
+              "deduped": true,
+              "textOverrides": [
+                {
+                  "name": "Salvos",
+                  "characters": "Suporte"
+                }
+              ]
+            },
+            {
+              "id": "2:942",
+              "name": "Configurações",
+              "type": "INSTANCE",
+              "x": 0,
+              "y": 192,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 0,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": false,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "componentProperties": {
+                "Icon#2:14": {
+                  "type": "INSTANCE_SWAP",
+                  "value": "2:902"
+                },
+                "Label#2:13": {
+                  "type": "TEXT",
+                  "value": "Configurações"
+                },
+                "State": {
+                  "type": "VARIANT",
+                  "value": "Default"
+                }
+              },
+              "mainComponentId": "2:903",
+              "mainComponent": {
+                "id": "2:903",
+                "name": "State=Default",
+                "key": "e09bfe0ae703089a18497055b5c9baf26e9b43de",
+                "componentSetId": "2:1122",
+                "componentSetName": "Menu / Item · Icon and label"
+              },
+              "deduped": true,
+              "textOverrides": [
+                {
+                  "name": "Salvos",
+                  "characters": "Configurações"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2:950",
+          "name": "Appearance / Separate footer",
+          "type": "FRAME",
+          "x": 9,
+          "y": 257,
+          "width": 254,
+          "height": 69,
+          "cornerRadius": 8,
+          "strokeWeight": "mixed",
+          "strokeWeights": {
+            "top": 1,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "strokeAlign": "INSIDE",
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 12,
+            "paddingRight": 0,
+            "paddingBottom": 12,
+            "paddingLeft": 0,
+            "itemSpacing": 0,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FIXED",
+          "layoutSizingVertical": "HUG",
+          "clipsContent": true,
+          "boundVariables": {
+            "itemSpacing": [
+              "VariableID:2:22"
+            ],
+            "paddingTop": [
+              "VariableID:2:25"
+            ],
+            "paddingBottom": [
+              "VariableID:2:25"
+            ],
+            "topLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "topRightRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomLeftRadius": [
+              "VariableID:2:31"
+            ],
+            "bottomRightRadius": [
+              "VariableID:2:31"
+            ],
+            "fills": [
+              "VariableID:2:59"
+            ],
+            "strokes": [
+              "VariableID:2:64"
+            ]
+          },
+          "fill": "fill_1iet7oa",
+          "stroke": "stroke_1rid605",
+          "children": [
+            {
+              "id": "2:199",
+              "name": "Alternar tema",
+              "type": "FRAME",
+              "x": 0,
+              "y": 13,
+              "width": 254,
+              "height": 44,
+              "cornerRadius": 8,
+              "fills": [],
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 12,
+                "paddingBottom": 0,
+                "paddingLeft": 12,
+                "itemSpacing": 12,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FIXED",
+              "layoutSizingVertical": "FIXED",
+              "clipsContent": true,
+              "boundVariables": {
+                "itemSpacing": [
+                  "VariableID:2:25"
+                ],
+                "paddingLeft": [
+                  "VariableID:2:25"
+                ],
+                "paddingTop": [
+                  "VariableID:2:22"
+                ],
+                "paddingRight": [
+                  "VariableID:2:25"
+                ],
+                "paddingBottom": [
+                  "VariableID:2:22"
+                ],
+                "height": [
+                  "VariableID:2:75"
+                ],
+                "topLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "topRightRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomLeftRadius": [
+                  "VariableID:2:31"
+                ],
+                "bottomRightRadius": [
+                  "VariableID:2:31"
+                ]
+              },
+              "children": [
+                {
+                  "id": "2:200",
+                  "name": "Icon / moon",
+                  "type": "INSTANCE",
+                  "x": 12,
+                  "y": 12,
+                  "width": 20,
+                  "height": 20,
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "mainComponentId": "2:122",
+                  "mainComponent": {
+                    "id": "2:122",
+                    "name": "Icon / moon",
+                    "key": "5ce076ca62f79e281be302278485cebac39e1c63"
+                  },
+                  "fill": "fill_16zfsl5",
+                  "children": [
+                    {
+                      "id": "I2:200;2:121",
+                      "name": "Vector",
+                      "type": "VECTOR",
+                      "x": 2.972724199295044,
+                      "y": 2.9166667461395264,
+                      "width": 14.11060905456543,
+                      "height": 14.110608100891113,
+                      "fills": [],
+                      "strokeWeight": 1.4999998807907104,
+                      "strokeAlign": "CENTER",
+                      "strokeCap": "ROUND",
+                      "strokeJoin": "ROUND",
+                      "constraints": {
+                        "horizontal": "SCALE",
+                        "vertical": "SCALE"
+                      },
+                      "boundVariables": {
+                        "strokes": [
+                          "VariableID:2:60"
+                        ]
+                      },
+                      "stroke": "fill_12gcwut"
+                    }
+                  ]
+                },
+                {
+                  "id": "2:202",
+                  "name": "Tema escuro",
+                  "type": "TEXT",
+                  "x": 44,
+                  "y": 12,
+                  "width": 84,
+                  "height": 20,
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "HUG",
+                  "characters": "Tema escuro",
+                  "styleIds": {
+                    "text": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2"
+                  },
+                  "boundVariables": {
+                    "fills": [
+                      "VariableID:2:60"
+                    ],
+                    "lineHeight": [
+                      "VariableID:2:48"
+                    ],
+                    "fontFamily": [
+                      "VariableID:2:55"
+                    ],
+                    "fontSize": [
+                      "VariableID:2:43"
+                    ]
+                  },
+                  "fill": "fill_12gcwut",
+                  "textStyle": "text_f1n477"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "VariableID:2:25": {
+      "name": "space/3",
+      "type": "FLOAT"
+    },
+    "VariableID:2:24": {
+      "name": "space/2",
+      "type": "FLOAT"
+    },
+    "VariableID:2:33": {
+      "name": "radius/lg",
+      "type": "FLOAT"
+    },
+    "VariableID:2:22": {
+      "name": "space/0",
+      "type": "FLOAT"
+    },
+    "VariableID:2:58": {
+      "name": "surface/menu",
+      "type": "COLOR"
+    },
+    "VariableID:2:64": {
+      "name": "border/subtle",
+      "type": "COLOR"
+    },
+    "VariableID:2:23": {
+      "name": "space/1",
+      "type": "FLOAT"
+    },
+    "VariableID:2:75": {
+      "name": "control/min-height",
+      "type": "FLOAT"
+    },
+    "VariableID:2:31": {
+      "name": "radius/sm",
+      "type": "FLOAT"
+    },
+    "VariableID:2:35": {
+      "name": "size/control",
+      "type": "FLOAT"
+    },
+    "VariableID:2:1123": {
+      "name": "menu/icon-bg",
+      "type": "COLOR"
+    },
+    "VariableID:2:1124": {
+      "name": "menu/icon-color",
+      "type": "COLOR"
+    },
+    "VariableID:2:60": {
+      "name": "text/primary",
+      "type": "COLOR"
+    },
+    "VariableID:2:48": {
+      "name": "type/line/label",
+      "type": "FLOAT"
+    },
+    "VariableID:2:55": {
+      "name": "type/family",
+      "type": "STRING"
+    },
+    "VariableID:2:43": {
+      "name": "type/size/label",
+      "type": "FLOAT"
+    },
+    "VariableID:2:59": {
+      "name": "surface/subtle",
+      "type": "COLOR"
+    }
+  },
+  "globalVars": {
+    "styles": {
+      "fill_nll9eq": [
+        {
+          "type": "SOLID",
+          "color": "#FFFFFF"
+        }
+      ],
+      "stroke_1rid605": [
+        {
+          "type": "SOLID",
+          "color": "#DFE3E8"
+        }
+      ],
+      "fill_9z1qtk": [
+        {
+          "type": "SOLID",
+          "color": "#EFF5FF"
+        }
+      ],
+      "fill_16zfsl5": [
+        {
+          "type": "SOLID",
+          "color": "#FFFFFF",
+          "visible": false
+        }
+      ],
+      "stroke_10r8bjb": [
+        {
+          "type": "SOLID",
+          "color": "#165DDE"
+        }
+      ],
+      "fill_12gcwut": [
+        {
+          "type": "SOLID",
+          "color": "#11151B"
+        }
+      ],
+      "text_f1n477": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Medium",
+        "fontSize": 14,
+        "fontVariationSettings": {
+          "wght": 500
+        },
+        "lineHeight": {
+          "value": 20,
+          "unit": "PIXELS"
+        }
+      },
+      "fill_1iet7oa": [
+        {
+          "type": "SOLID",
+          "color": "#F7F8FA"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "nodeCount": 18,
+    "maxDepth": 6,
+    "styleCount": 8,
+    "tokenCount": 17,
+    "inlineSizeKb": 14.96,
+    "dedupedSizeKb": 13.57
+  }
+}

@@ -1,0 +1,2147 @@
+{
+  "version": 1,
+  "artifact": "Classificação · Light",
+  "fileName": "Sem título",
+  "pages": {
+    "screens": "21:24107",
+    "components": "21:24108",
+    "states": "21:24109"
+  },
+  "componentSets": {
+    "form": {
+      "ok": true,
+      "nodeId": "21:24118",
+      "name": "Classification / Form",
+      "type": "COMPONENT_SET"
+    },
+    "row": {
+      "ok": true,
+      "nodeId": "21:24439",
+      "name": "Classification / League row",
+      "type": "COMPONENT_SET"
+    },
+    "tie": {
+      "ok": true,
+      "nodeId": "21:24673",
+      "name": "Classification / Tie",
+      "type": "COMPONENT_SET"
+    }
+  },
+  "componentApis": {
+    "form": {
+      "id": "21:24118",
+      "name": "Classification / Form",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Result": {
+          "type": "VARIANT",
+          "defaultValue": "V",
+          "variantOptions": [
+            "V",
+            "E",
+            "D",
+            "None"
+          ]
+        }
+      }
+    },
+    "row": {
+      "id": "21:24439",
+      "name": "Classification / League row",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Position#21:226": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "Name#21:227": {
+          "type": "TEXT",
+          "defaultValue": "Aurora FC"
+        },
+        "P#21:228": {
+          "type": "TEXT",
+          "defaultValue": "19"
+        },
+        "J#21:229": {
+          "type": "TEXT",
+          "defaultValue": "8"
+        },
+        "V#21:230": {
+          "type": "TEXT",
+          "defaultValue": "6"
+        },
+        "E#21:231": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "D#21:232": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "GP#21:233": {
+          "type": "TEXT",
+          "defaultValue": "22"
+        },
+        "GC#21:234": {
+          "type": "TEXT",
+          "defaultValue": "9"
+        },
+        "SG#21:235": {
+          "type": "TEXT",
+          "defaultValue": "+13"
+        },
+        "SGdetail#21:236": {
+          "type": "TEXT",
+          "defaultValue": "+13"
+        },
+        "Layout": {
+          "type": "VARIANT",
+          "defaultValue": "Desktop",
+          "variantOptions": [
+            "Desktop",
+            "Compact"
+          ]
+        },
+        "Zone": {
+          "type": "VARIANT",
+          "defaultValue": "Qualified",
+          "variantOptions": [
+            "Qualified",
+            "Middle",
+            "Relegation"
+          ]
+        },
+        "Expanded": {
+          "type": "VARIANT",
+          "defaultValue": "false",
+          "variantOptions": [
+            "false",
+            "true"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      }
+    },
+    "tie": {
+      "id": "21:24673",
+      "name": "Classification / Tie",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Code#21:333": {
+          "type": "TEXT",
+          "defaultValue": "Q1"
+        },
+        "Status#21:334": {
+          "type": "TEXT",
+          "defaultValue": "Final"
+        },
+        "Home#21:335": {
+          "type": "TEXT",
+          "defaultValue": "Aurora FC"
+        },
+        "HomeScore#21:336": {
+          "type": "TEXT",
+          "defaultValue": "3"
+        },
+        "Away#21:337": {
+          "type": "TEXT",
+          "defaultValue": "Norte FC"
+        },
+        "AwayScore#21:338": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "Path#21:339": {
+          "type": "TEXT",
+          "defaultValue": "Vencedor → S1"
+        },
+        "Decider#21:340": {
+          "type": "TEXT",
+          "defaultValue": "Pênaltis · 4–3"
+        },
+        "Leg1#21:341": {
+          "type": "TEXT",
+          "defaultValue": "Ida · AUR 2–0 NOR"
+        },
+        "Leg2#21:342": {
+          "type": "TEXT",
+          "defaultValue": "Volta · NOR 1–1 AUR"
+        },
+        "Format": {
+          "type": "VARIANT",
+          "defaultValue": "Single",
+          "variantOptions": [
+            "Single",
+            "Two-leg"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Finished",
+          "variantOptions": [
+            "Finished",
+            "Penalties",
+            "Scheduled",
+            "Pending",
+            "Bye"
+          ]
+        }
+      }
+    }
+  },
+  "forms": [
+    {
+      "root": "21:24110",
+      "result": "V"
+    },
+    {
+      "root": "21:24112",
+      "result": "E"
+    },
+    {
+      "root": "21:24114",
+      "result": "D"
+    },
+    {
+      "root": "21:24116",
+      "result": "None"
+    }
+  ],
+  "rows": [
+    {
+      "root": "21:24119",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SG": "SG#21:235"
+      },
+      "compact": false,
+      "zone": "Qualified",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Qualified"
+    },
+    {
+      "root": "21:24154",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SG": "SG#21:235"
+      },
+      "compact": false,
+      "zone": "Middle",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Middle"
+    },
+    {
+      "root": "21:24189",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SG": "SG#21:235"
+      },
+      "compact": false,
+      "zone": "Relegation",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Relegation"
+    },
+    {
+      "root": "21:24224",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235"
+      },
+      "compact": true,
+      "zone": "Qualified",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Qualified"
+    },
+    {
+      "root": "21:24255",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235"
+      },
+      "compact": true,
+      "zone": "Middle",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Middle"
+    },
+    {
+      "root": "21:24286",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235"
+      },
+      "compact": true,
+      "zone": "Relegation",
+      "expanded": false,
+      "state": "Default",
+      "name": "League / Relegation"
+    },
+    {
+      "root": "21:24317",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SGdetail": "SGdetail#21:236"
+      },
+      "compact": true,
+      "zone": "Qualified",
+      "expanded": true,
+      "state": "Default",
+      "name": "League / Qualified"
+    },
+    {
+      "root": "21:24369",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SG": "SG#21:235"
+      },
+      "compact": false,
+      "zone": "Middle",
+      "expanded": false,
+      "state": "Hover",
+      "name": "League / Middle"
+    },
+    {
+      "root": "21:24404",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SG": "SG#21:235"
+      },
+      "compact": false,
+      "zone": "Middle",
+      "expanded": false,
+      "state": "Focus",
+      "name": "League / Middle"
+    },
+    {
+      "root": "21:29381",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SGdetail": "SGdetail#21:236"
+      },
+      "compact": true,
+      "zone": "Middle",
+      "expanded": true,
+      "state": "Default",
+      "name": "League / Qualified"
+    },
+    {
+      "root": "21:29432",
+      "props": {
+        "Position": "Position#21:226",
+        "Name": "Name#21:227",
+        "P": "P#21:228",
+        "J": "J#21:229",
+        "SG": "SG#21:235",
+        "V": "V#21:230",
+        "E": "E#21:231",
+        "D": "D#21:232",
+        "GP": "GP#21:233",
+        "GC": "GC#21:234",
+        "SGdetail": "SGdetail#21:236"
+      },
+      "compact": true,
+      "zone": "Relegation",
+      "expanded": true,
+      "state": "Default",
+      "name": "League / Qualified"
+    }
+  ],
+  "ties": [
+    {
+      "root": "21:24440",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Path": "Path#21:339"
+      },
+      "format": "Single",
+      "state": "Finished",
+      "name": "Knockout / Finished"
+    },
+    {
+      "root": "21:24464",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Path": "Path#21:339",
+        "Decider": "Decider#21:340"
+      },
+      "format": "Single",
+      "state": "Penalties",
+      "name": "Knockout / Penalties"
+    },
+    {
+      "root": "21:24489",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Path": "Path#21:339"
+      },
+      "format": "Single",
+      "state": "Scheduled",
+      "name": "Knockout / Scheduled"
+    },
+    {
+      "root": "21:24513",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Path": "Path#21:339"
+      },
+      "format": "Single",
+      "state": "Pending",
+      "name": "Knockout / Pending"
+    },
+    {
+      "root": "21:24538",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Leg1": "Leg1#21:341",
+        "Leg2": "Leg2#21:342",
+        "Path": "Path#21:339"
+      },
+      "format": "Two-leg",
+      "state": "Finished",
+      "name": "Knockout / Finished"
+    },
+    {
+      "root": "21:24565",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Leg1": "Leg1#21:341",
+        "Leg2": "Leg2#21:342",
+        "Path": "Path#21:339",
+        "Decider": "Decider#21:340"
+      },
+      "format": "Two-leg",
+      "state": "Penalties",
+      "name": "Knockout / Penalties"
+    },
+    {
+      "root": "21:24593",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Leg1": "Leg1#21:341",
+        "Leg2": "Leg2#21:342",
+        "Path": "Path#21:339"
+      },
+      "format": "Two-leg",
+      "state": "Scheduled",
+      "name": "Knockout / Scheduled"
+    },
+    {
+      "root": "21:24620",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Leg1": "Leg1#21:341",
+        "Leg2": "Leg2#21:342",
+        "Path": "Path#21:339"
+      },
+      "format": "Two-leg",
+      "state": "Pending",
+      "name": "Knockout / Pending"
+    },
+    {
+      "root": "21:24648",
+      "props": {
+        "Code": "Code#21:333",
+        "Status": "Status#21:334",
+        "Home": "Home#21:335",
+        "HomeScore": "HomeScore#21:336",
+        "Away": "Away#21:337",
+        "AwayScore": "AwayScore#21:338",
+        "Path": "Path#21:339"
+      },
+      "format": "Single",
+      "state": "Bye",
+      "name": "Knockout / Bye"
+    }
+  ],
+  "icons": {
+    "ball": {
+      "root": "21:24674",
+      "source": "components/icons.tsx",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 3l3 6-3 3-3-3 3-6zM3 12l6 3 3-3-3-3-6 3z\"/></svg>"
+    },
+    "bell": {
+      "root": "21:24678",
+      "source": "components/icons.tsx",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 16H6a2 2 0 0 1-1.4-3.4L6 11V8a6 6 0 0 1 12 0v3l1.4 1.6A2 2 0 0 1 18 16z\"/><path d=\"M9 19a3 3 0 0 0 6 0\"/></svg>"
+    },
+    "share": {
+      "root": "21:24682",
+      "source": "components/icons.tsx",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8 11l8-4M8 13l8 4\"/></svg>"
+    },
+    "rules": {
+      "root": "21:24688",
+      "source": "components/icons.tsx",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/><path d=\"M14 3v6h6M8 13h8M8 17h5\"/></svg>"
+    },
+    "menuDotsH": {
+      "root": "21:24692",
+      "source": "components/icons.tsx",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"12\" r=\"1.8\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\"/><circle cx=\"18\" cy=\"12\" r=\"1.8\"/></svg>"
+    },
+    "chevronUp": {
+      "root": "21:33687",
+      "source": "existing Figma Icon / chevron path rotated 180",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#11151B\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 9l6 6 6-6\" transform=\"rotate(180 12 12)\"/></svg>"
+    }
+  },
+  "scenes": [
+    {
+      "root": "21:24697",
+      "header": "21:24698",
+      "content": "21:24730",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:24734",
+      "menu": "21:24741",
+      "tabs": {
+        "table": "21:24748",
+        "scorers": "21:24756"
+      },
+      "rows": [
+        "21:24800",
+        "21:24836",
+        "21:24873",
+        "21:24910",
+        "21:24948",
+        "21:24986",
+        "21:25025",
+        "21:25064"
+      ],
+      "legend": "21:25103"
+    },
+    {
+      "root": "21:25126",
+      "header": "21:25127",
+      "content": "21:25156",
+      "width": 1024,
+      "cw": 976,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:25160",
+      "menu": "21:25167",
+      "tabs": {
+        "table": "21:25174",
+        "scorers": "21:25182"
+      },
+      "rows": [
+        "21:25226",
+        "21:25262",
+        "21:25299",
+        "21:25336",
+        "21:25374",
+        "21:25412",
+        "21:25451",
+        "21:25490"
+      ],
+      "legend": "21:25529"
+    },
+    {
+      "root": "21:25552",
+      "header": "21:25553",
+      "content": "21:25585",
+      "width": 2560,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:25589",
+      "menu": "21:25596",
+      "tabs": {
+        "table": "21:25603",
+        "scorers": "21:25611"
+      },
+      "rows": [
+        "21:25655",
+        "21:25691",
+        "21:25728",
+        "21:25765",
+        "21:25803",
+        "21:25841",
+        "21:25880",
+        "21:25919"
+      ],
+      "legend": "21:25958"
+    },
+    {
+      "root": "21:25981",
+      "header": "21:25982",
+      "content": "21:25996",
+      "width": 768,
+      "cw": 720,
+      "mobile": false,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:26000",
+      "menu": "21:26007",
+      "tabs": {
+        "table": "21:26014",
+        "scorers": "21:26022"
+      },
+      "rows": [
+        "21:26046",
+        "21:26078",
+        "21:26111",
+        "21:26144",
+        "21:26178",
+        "21:26212",
+        "21:26247",
+        "21:26282"
+      ],
+      "legend": "21:26317"
+    },
+    {
+      "root": "21:26340",
+      "header": "21:26341",
+      "content": "21:26355",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:26359",
+      "menu": "21:26366",
+      "tabs": {
+        "table": "21:26373",
+        "scorers": "21:26382"
+      },
+      "rows": [
+        "21:26407",
+        "21:26439",
+        "21:26472",
+        "21:26505",
+        "21:26539",
+        "21:26573",
+        "21:26608",
+        "21:26643"
+      ],
+      "legend": "21:26678"
+    },
+    {
+      "root": "21:26701",
+      "header": "21:26702",
+      "content": "21:26716",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:26720",
+      "menu": "21:26727",
+      "tabs": {
+        "table": "21:26734",
+        "scorers": "21:26743"
+      },
+      "rows": [
+        "21:26768",
+        "21:26800",
+        "21:26833",
+        "21:26866",
+        "21:26900",
+        "21:26934",
+        "21:26969",
+        "21:27004"
+      ],
+      "legend": "21:27039"
+    },
+    {
+      "root": "21:27062",
+      "header": "21:27063",
+      "content": "21:27095",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "single",
+      "competition": "21:27099",
+      "menu": "21:27106",
+      "tabs": {
+        "table": "21:27113",
+        "scorers": "21:27122"
+      },
+      "matches": [
+        "21:27145",
+        "21:27169",
+        "21:27193",
+        "21:27217",
+        "21:27251",
+        "21:27275",
+        "21:27308"
+      ],
+      "phaseTabs": {},
+      "stage": 0,
+      "diagram": {
+        "columnW": 384,
+        "cardHeight": 212,
+        "gap": 24,
+        "bodyHeight": 920,
+        "connectorWidth": 40
+      }
+    },
+    {
+      "root": "21:27334",
+      "header": "21:27335",
+      "content": "21:27364",
+      "width": 1024,
+      "cw": 976,
+      "mobile": false,
+      "compact": false,
+      "mode": "single",
+      "competition": "21:27368",
+      "menu": "21:27375",
+      "tabs": {
+        "table": "21:27382",
+        "scorers": "21:27391"
+      },
+      "matches": [
+        "21:27414",
+        "21:27438",
+        "21:27462",
+        "21:27486",
+        "21:27520",
+        "21:27544",
+        "21:27577"
+      ],
+      "phaseTabs": {},
+      "stage": 0,
+      "diagram": {
+        "columnW": 282.6666666666667,
+        "cardHeight": 212,
+        "gap": 24,
+        "bodyHeight": 920,
+        "connectorWidth": 40
+      }
+    },
+    {
+      "root": "21:27603",
+      "header": "21:27604",
+      "content": "21:27636",
+      "width": 2560,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "single",
+      "competition": "21:27640",
+      "menu": "21:27647",
+      "tabs": {
+        "table": "21:27654",
+        "scorers": "21:27663"
+      },
+      "matches": [
+        "21:27686",
+        "21:27710",
+        "21:27734",
+        "21:27758",
+        "21:27792",
+        "21:27816",
+        "21:27849"
+      ],
+      "phaseTabs": {},
+      "stage": 0,
+      "diagram": {
+        "columnW": 384,
+        "cardHeight": 212,
+        "gap": 24,
+        "bodyHeight": 920,
+        "connectorWidth": 40
+      }
+    },
+    {
+      "root": "21:27875",
+      "header": "21:27876",
+      "content": "21:27890",
+      "width": 768,
+      "cw": 720,
+      "mobile": false,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:27894",
+      "menu": "21:27901",
+      "tabs": {
+        "table": "21:27908",
+        "scorers": "21:27917"
+      },
+      "matches": [
+        "21:27945",
+        "21:27969",
+        "21:27993",
+        "21:28017"
+      ],
+      "phaseTabs": {
+        "0": "21:27935",
+        "1": "21:27937",
+        "2": "21:27939"
+      },
+      "stage": 0
+    },
+    {
+      "root": "21:28044",
+      "header": "21:28045",
+      "content": "21:28059",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:28063",
+      "menu": "21:28070",
+      "tabs": {
+        "table": "21:28077",
+        "scorers": "21:28087"
+      },
+      "matches": [
+        "21:28116",
+        "21:28140",
+        "21:28164",
+        "21:28188"
+      ],
+      "phaseTabs": {
+        "0": "21:28106",
+        "1": "21:28108",
+        "2": "21:28110"
+      },
+      "stage": 0
+    },
+    {
+      "root": "21:28215",
+      "header": "21:28216",
+      "content": "21:28230",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:28234",
+      "menu": "21:28241",
+      "tabs": {
+        "table": "21:28248",
+        "scorers": "21:28258"
+      },
+      "matches": [
+        "21:28287",
+        "21:28311",
+        "21:28335",
+        "21:28359"
+      ],
+      "phaseTabs": {
+        "0": "21:28277",
+        "1": "21:28279",
+        "2": "21:28281"
+      },
+      "stage": 0
+    },
+    {
+      "root": "21:28386",
+      "header": "21:28387",
+      "content": "21:28419",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "twoleg",
+      "competition": "21:28423",
+      "menu": "21:28430",
+      "tabs": {
+        "table": "21:28437",
+        "scorers": "21:28446"
+      },
+      "matches": [
+        "21:28469",
+        "21:28496",
+        "21:28523",
+        "21:28550",
+        "21:28587",
+        "21:28614",
+        "21:28650"
+      ],
+      "phaseTabs": {},
+      "stage": 0,
+      "diagram": {
+        "columnW": 384,
+        "cardHeight": 272,
+        "gap": 24,
+        "bodyHeight": 1160,
+        "connectorWidth": 40
+      }
+    },
+    {
+      "root": "21:28679",
+      "header": "21:28680",
+      "content": "21:28694",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "twoleg",
+      "competition": "21:28698",
+      "menu": "21:28705",
+      "tabs": {
+        "table": "21:28712",
+        "scorers": "21:28722"
+      },
+      "matches": [
+        "21:28751",
+        "21:28778",
+        "21:28805",
+        "21:28832"
+      ],
+      "phaseTabs": {
+        "0": "21:28741",
+        "1": "21:28743",
+        "2": "21:28745"
+      },
+      "stage": 0
+    },
+    {
+      "root": "21:28862",
+      "header": "21:28863",
+      "content": "21:28877",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "twoleg",
+      "competition": "21:28881",
+      "menu": "21:28888",
+      "tabs": {
+        "table": "21:28895",
+        "scorers": "21:28905"
+      },
+      "matches": [
+        "21:28934",
+        "21:28961",
+        "21:28988",
+        "21:29015"
+      ],
+      "phaseTabs": {
+        "0": "21:28924",
+        "1": "21:28926",
+        "2": "21:28928"
+      },
+      "stage": 0
+    },
+    {
+      "root": "21:29498",
+      "header": "21:29499",
+      "content": "21:29513",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:29517",
+      "menu": "21:29524",
+      "tabs": {
+        "table": "21:29531",
+        "scorers": "21:29541"
+      },
+      "matches": [
+        "21:29570",
+        "21:29594"
+      ],
+      "phaseTabs": {
+        "0": "21:29560",
+        "1": "21:29562",
+        "2": "21:29564"
+      },
+      "stage": 1
+    },
+    {
+      "root": "21:29620",
+      "header": "21:29621",
+      "content": "21:29635",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:29639",
+      "menu": "21:29646",
+      "tabs": {
+        "table": "21:29653",
+        "scorers": "21:29663"
+      },
+      "matches": [
+        "21:29692"
+      ],
+      "phaseTabs": {
+        "0": "21:29682",
+        "1": "21:29684",
+        "2": "21:29686"
+      },
+      "stage": 2
+    },
+    {
+      "root": "21:29719",
+      "header": "21:29720",
+      "content": "21:29734",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "twoleg",
+      "competition": "21:29738",
+      "menu": "21:29745",
+      "tabs": {
+        "table": "21:29752",
+        "scorers": "21:29762"
+      },
+      "matches": [
+        "21:29791",
+        "21:29818"
+      ],
+      "phaseTabs": {
+        "0": "21:29781",
+        "1": "21:29783",
+        "2": "21:29785"
+      },
+      "stage": 1
+    },
+    {
+      "root": "21:29847",
+      "header": "21:29848",
+      "content": "21:29862",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "twoleg",
+      "competition": "21:29866",
+      "menu": "21:29873",
+      "tabs": {
+        "table": "21:29880",
+        "scorers": "21:29890"
+      },
+      "matches": [
+        "21:29919"
+      ],
+      "phaseTabs": {
+        "0": "21:29909",
+        "1": "21:29911",
+        "2": "21:29913"
+      },
+      "stage": 2
+    },
+    {
+      "root": "21:29949",
+      "header": "21:29950",
+      "content": "21:29964",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:29968",
+      "menu": "21:29975",
+      "tabs": {
+        "table": "21:29982",
+        "scorers": "21:29991"
+      },
+      "rows": [
+        "21:30016",
+        "21:30068",
+        "21:30100",
+        "21:30132",
+        "21:30165",
+        "21:30198",
+        "21:30232",
+        "21:30266"
+      ],
+      "legend": "21:30300",
+      "expanded": true
+    },
+    {
+      "root": "21:30323",
+      "header": "21:30324",
+      "content": "21:30338",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:30342",
+      "menu": "21:30349",
+      "tabs": {
+        "table": "21:30356",
+        "scorers": "21:30365"
+      },
+      "rows": [
+        "21:30390",
+        "21:30442",
+        "21:30474",
+        "21:30506",
+        "21:30539",
+        "21:30572",
+        "21:30606",
+        "21:30640"
+      ],
+      "legend": "21:30674",
+      "expanded": true
+    },
+    {
+      "root": "21:30697",
+      "header": "21:30698",
+      "content": "21:30730",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:30734",
+      "menu": "21:30741",
+      "tabs": {
+        "table": "21:30748",
+        "scorers": "21:30756"
+      }
+    },
+    {
+      "root": "21:30842",
+      "header": "21:30843",
+      "content": "21:30857",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:30861",
+      "menu": "21:30868",
+      "tabs": {
+        "table": "21:30875",
+        "scorers": "21:30884"
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "root": "21:30971",
+      "header": "21:30972",
+      "content": "21:31004",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:31008",
+      "menu": "21:31015",
+      "tabs": {
+        "table": "21:31022",
+        "scorers": "21:31030"
+      },
+      "rows": [
+        "21:31074",
+        "21:31110",
+        "21:31147",
+        "21:31184",
+        "21:31222",
+        "21:31260",
+        "21:31299",
+        "21:31338"
+      ],
+      "legend": "21:31377",
+      "popup": "21:31400",
+      "options": {
+        "league": "21:31401",
+        "single": "21:31411",
+        "twoleg": "21:31420"
+      },
+      "actions": {},
+      "interaction": "selector"
+    },
+    {
+      "root": "21:31429",
+      "header": "21:31430",
+      "content": "21:31462",
+      "width": 1440,
+      "cw": 1280,
+      "mobile": false,
+      "compact": false,
+      "mode": "league",
+      "competition": "21:31466",
+      "menu": "21:31473",
+      "tabs": {
+        "table": "21:31480",
+        "scorers": "21:31488"
+      },
+      "rows": [
+        "21:31532",
+        "21:31568",
+        "21:31605",
+        "21:31642",
+        "21:31680",
+        "21:31718",
+        "21:31757",
+        "21:31796"
+      ],
+      "legend": "21:31835",
+      "popup": "21:31858",
+      "options": {},
+      "actions": {
+        "favorite": "21:31859",
+        "notifications": "21:31866",
+        "share": "21:31875",
+        "rules": "21:31886"
+      },
+      "interaction": "actions"
+    },
+    {
+      "root": "21:31895",
+      "header": "21:31896",
+      "content": "21:31910",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:31914",
+      "menu": "21:31921",
+      "tabs": {
+        "table": "21:31928",
+        "scorers": "21:31937"
+      },
+      "rows": [
+        "21:31962",
+        "21:31993",
+        "21:32025",
+        "21:32057",
+        "21:32090",
+        "21:32123",
+        "21:32157",
+        "21:32191"
+      ],
+      "legend": "21:32225",
+      "popup": "21:32248",
+      "options": {
+        "league": "21:32249",
+        "single": "21:32259",
+        "twoleg": "21:32268"
+      },
+      "actions": {},
+      "interaction": "selector"
+    },
+    {
+      "root": "21:32277",
+      "header": "21:32278",
+      "content": "21:32292",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:32296",
+      "menu": "21:32303",
+      "tabs": {
+        "table": "21:32310",
+        "scorers": "21:32319"
+      },
+      "rows": [
+        "21:32344",
+        "21:32375",
+        "21:32407",
+        "21:32439",
+        "21:32472",
+        "21:32505",
+        "21:32539",
+        "21:32573"
+      ],
+      "legend": "21:32607",
+      "popup": "21:32630",
+      "options": {},
+      "actions": {
+        "favorite": "21:32631",
+        "notifications": "21:32638",
+        "share": "21:32647",
+        "rules": "21:32658"
+      },
+      "interaction": "actions"
+    }
+  ],
+  "states": [
+    {
+      "root": "21:32667",
+      "header": "21:32668",
+      "content": "21:32682",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:32686",
+      "menu": "21:32693",
+      "tabs": {
+        "table": "21:32700",
+        "scorers": "21:32709"
+      },
+      "kind": "empty"
+    },
+    {
+      "root": "21:32735",
+      "header": "21:32736",
+      "content": "21:32750",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:32754",
+      "menu": "21:32761",
+      "tabs": {
+        "table": "21:32768",
+        "scorers": "21:32778"
+      },
+      "kind": "pending"
+    },
+    {
+      "root": "21:32802",
+      "header": "21:32803",
+      "content": "21:32817",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:32821",
+      "menu": "21:32828",
+      "tabs": {
+        "table": "21:32835",
+        "scorers": "21:32844"
+      },
+      "kind": "loading"
+    },
+    {
+      "root": "21:32873",
+      "header": "21:32874",
+      "content": "21:32888",
+      "width": 390,
+      "cw": 358,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:32892",
+      "menu": "21:32899",
+      "tabs": {
+        "table": "21:32906",
+        "scorers": "21:32915"
+      },
+      "kind": "error"
+    },
+    {
+      "root": "21:32945",
+      "header": "21:32946",
+      "content": "21:32960",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "league",
+      "competition": "21:32964",
+      "menu": "21:32971",
+      "tabs": {
+        "table": "21:32978",
+        "scorers": "21:32987"
+      },
+      "rows": [
+        "21:33012",
+        "21:33043",
+        "21:33075",
+        "21:33107",
+        "21:33140",
+        "21:33173",
+        "21:33207",
+        "21:33241"
+      ],
+      "legend": "21:33275",
+      "kind": "long"
+    },
+    {
+      "root": "21:33298",
+      "header": "21:33299",
+      "content": "21:33313",
+      "width": 320,
+      "cw": 288,
+      "mobile": true,
+      "compact": true,
+      "mode": "single",
+      "competition": "21:33317",
+      "menu": "21:33324",
+      "tabs": {
+        "table": "21:33331",
+        "scorers": "21:33341"
+      },
+      "matches": [
+        "21:33370",
+        "21:33394",
+        "21:33418",
+        "21:33442"
+      ],
+      "phaseTabs": {
+        "0": "21:33360",
+        "1": "21:33362",
+        "2": "21:33364"
+      },
+      "stage": 0,
+      "kind": "longTie"
+    }
+  ],
+  "sheet": "21:33469",
+  "note": "21:33681",
+  "tokens": {
+    "primitives": {
+      "size/classification-position": 28,
+      "size/classification-row-mobile": 136,
+      "size/classification-tie-single": 196,
+      "size/classification-tie-twoleg": 256,
+      "size/classification-bracket-single": 212,
+      "size/classification-bracket-twoleg": 272
+    },
+    "primitiveVariables": {
+      "size/classification-position": "VariableID:21:29483",
+      "size/classification-row-mobile": "VariableID:21:29484",
+      "size/classification-tie-single": "VariableID:21:29485",
+      "size/classification-tie-twoleg": "VariableID:21:29486",
+      "size/classification-bracket-single": "VariableID:21:29487",
+      "size/classification-bracket-twoleg": "VariableID:21:29488"
+    },
+    "semantic": {
+      "classification/position-width": "size/classification-position",
+      "classification/row-mobile-min": "size/classification-row-mobile",
+      "classification/row-wide-min": "size/compact-header",
+      "classification/tie-single-min": "size/classification-tie-single",
+      "classification/tie-twoleg-min": "size/classification-tie-twoleg",
+      "classification/bracket-single-min": "size/classification-bracket-single",
+      "classification/bracket-twoleg-min": "size/classification-bracket-twoleg",
+      "classification/form-compact-size": "size/icon",
+      "classification/bracket-line": "color/neutral/600"
+    },
+    "semanticVariables": {
+      "classification/position-width": "VariableID:21:29489",
+      "classification/row-mobile-min": "VariableID:21:29490",
+      "classification/row-wide-min": "VariableID:21:29491",
+      "classification/tie-single-min": "VariableID:21:29492",
+      "classification/tie-twoleg-min": "VariableID:21:29493",
+      "classification/bracket-single-min": "VariableID:21:29494",
+      "classification/bracket-twoleg-min": "VariableID:21:29495",
+      "classification/form-compact-size": "VariableID:21:29496",
+      "classification/bracket-line": "VariableID:21:29497"
+    }
+  },
+  "fixtures": {
+    "league": [
+      {
+        "Name": "Aurora FC",
+        "Position": "1",
+        "P": 19,
+        "J": 8,
+        "V": 6,
+        "E": 1,
+        "D": 1,
+        "GP": 22,
+        "GC": 9,
+        "SG": 13,
+        "form": [
+          "V",
+          "V",
+          "E",
+          "V",
+          "V"
+        ]
+      },
+      {
+        "Name": "Atlético Paulista",
+        "Position": "2",
+        "P": 17,
+        "J": 8,
+        "V": 5,
+        "E": 2,
+        "D": 1,
+        "GP": 18,
+        "GC": 8,
+        "SG": 10,
+        "form": [
+          "V",
+          "E",
+          "V",
+          "V",
+          "D"
+        ]
+      },
+      {
+        "Name": "União MamoBall",
+        "Position": "3",
+        "P": 14,
+        "J": 8,
+        "V": 4,
+        "E": 2,
+        "D": 2,
+        "GP": 17,
+        "GC": 12,
+        "SG": 5,
+        "form": [
+          "E",
+          "V",
+          "D",
+          "V",
+          "V"
+        ]
+      },
+      {
+        "Name": "Vila Esportiva",
+        "Position": "4",
+        "P": 13,
+        "J": 8,
+        "V": 4,
+        "E": 1,
+        "D": 3,
+        "GP": 15,
+        "GC": 13,
+        "SG": 2,
+        "form": [
+          "V",
+          "D",
+          "V",
+          "E",
+          "D"
+        ]
+      },
+      {
+        "Name": "Horizonte FC",
+        "Position": "5",
+        "P": 11,
+        "J": 8,
+        "V": 3,
+        "E": 2,
+        "D": 3,
+        "GP": 12,
+        "GC": 13,
+        "SG": -1,
+        "form": [
+          "D",
+          "E",
+          "V",
+          "D",
+          "V"
+        ]
+      },
+      {
+        "Name": "Estrela Paulista",
+        "Position": "6",
+        "P": 8,
+        "J": 8,
+        "V": 2,
+        "E": 2,
+        "D": 4,
+        "GP": 11,
+        "GC": 16,
+        "SG": -5,
+        "form": [
+          "D",
+          "V",
+          "D",
+          "E",
+          "D"
+        ]
+      },
+      {
+        "Name": "Real MamoBall",
+        "Position": "7",
+        "P": 5,
+        "J": 8,
+        "V": 1,
+        "E": 2,
+        "D": 5,
+        "GP": 9,
+        "GC": 18,
+        "SG": -9,
+        "form": [
+          "D",
+          "D",
+          "E",
+          "D",
+          "V"
+        ]
+      },
+      {
+        "Name": "Norte FC",
+        "Position": "8",
+        "P": 3,
+        "J": 8,
+        "V": 1,
+        "E": 0,
+        "D": 7,
+        "GP": 7,
+        "GC": 22,
+        "SG": -15,
+        "form": [
+          "D",
+          "D",
+          "V",
+          "D",
+          "D"
+        ]
+      }
+    ],
+    "single": [
+      {
+        "Code": "Q1",
+        "Home": "Aurora FC",
+        "Away": "Norte FC",
+        "HomeScore": "3",
+        "AwayScore": "1",
+        "Status": "Final",
+        "Path": "Aurora FC → S1",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q2",
+        "Home": "Vila Esportiva",
+        "Away": "Horizonte FC",
+        "HomeScore": "2",
+        "AwayScore": "1",
+        "Status": "Final",
+        "Path": "Vila Esportiva → S1",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q3",
+        "Home": "Atlético Paulista",
+        "Away": "Real MamoBall",
+        "HomeScore": "2",
+        "AwayScore": "0",
+        "Status": "Final",
+        "Path": "Atlético Paulista → S2",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q4",
+        "Home": "União MamoBall",
+        "Away": "Estrela Paulista",
+        "HomeScore": "1",
+        "AwayScore": "1",
+        "Status": "Final",
+        "Path": "União MamoBall → S2",
+        "Decider": "Pênaltis · 4–3",
+        "state": "Penalties"
+      },
+      {
+        "Code": "S1",
+        "Home": "Aurora FC",
+        "Away": "Vila Esportiva",
+        "HomeScore": "2",
+        "AwayScore": "1",
+        "Status": "Final",
+        "Path": "Aurora FC → F1",
+        "state": "Finished"
+      },
+      {
+        "Code": "S2",
+        "Home": "Atlético Paulista",
+        "Away": "União MamoBall",
+        "HomeScore": "–",
+        "AwayScore": "–",
+        "Status": "08 out · 21h00",
+        "Path": "Q3 + Q4 · vaga em F1",
+        "state": "Scheduled"
+      },
+      {
+        "Code": "F1",
+        "Home": "Aurora FC",
+        "Away": "Vencedor de S2",
+        "HomeScore": "–",
+        "AwayScore": "–",
+        "Status": "12 out · 20h30",
+        "Path": "S1 + S2 · campeão",
+        "state": "Pending"
+      }
+    ],
+    "twoleg": [
+      {
+        "Code": "Q1",
+        "Home": "Aurora FC",
+        "Away": "Norte FC",
+        "HomeScore": "3",
+        "AwayScore": "1",
+        "Status": "Agregado final",
+        "Path": "Aurora FC → S1",
+        "Leg1": "Ida · 05 out · AUR 2–0 NOR",
+        "Leg2": "Volta · 08 out · NOR 1–1 AUR",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q2",
+        "Home": "Vila Esportiva",
+        "Away": "Horizonte FC",
+        "HomeScore": "3",
+        "AwayScore": "1",
+        "Status": "Agregado final",
+        "Path": "Vila Esportiva → S1",
+        "Leg1": "Ida · 05 out · VIL 1–1 HOR",
+        "Leg2": "Volta · 08 out · HOR 0–2 VIL",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q3",
+        "Home": "Atlético Paulista",
+        "Away": "Real MamoBall",
+        "HomeScore": "2",
+        "AwayScore": "1",
+        "Status": "Agregado final",
+        "Path": "Atlético Paulista → S2",
+        "Leg1": "Ida · 05 out · ATL 0–1 REA",
+        "Leg2": "Volta · 08 out · REA 0–2 ATL",
+        "state": "Finished"
+      },
+      {
+        "Code": "Q4",
+        "Home": "União MamoBall",
+        "Away": "Estrela Paulista",
+        "HomeScore": "2",
+        "AwayScore": "2",
+        "Status": "Agregado final",
+        "Path": "União MamoBall → S2",
+        "Leg1": "Ida · 05 out · UNI 1–1 EST",
+        "Leg2": "Volta · 08 out · EST 1–1 UNI",
+        "Decider": "Pênaltis · 5–4",
+        "state": "Penalties"
+      },
+      {
+        "Code": "S1",
+        "Home": "Aurora FC",
+        "Away": "Vila Esportiva",
+        "HomeScore": "1",
+        "AwayScore": "0",
+        "Status": "Parcial · só ida",
+        "Path": "Q1 + Q2 · vaga em F1",
+        "Leg1": "Ida · 10 out · AUR 1–0 VIL",
+        "Leg2": "Volta · 12 out · VIL × AUR · 20h30",
+        "state": "Scheduled"
+      },
+      {
+        "Code": "S2",
+        "Home": "Atlético Paulista",
+        "Away": "União MamoBall",
+        "HomeScore": "–",
+        "AwayScore": "–",
+        "Status": "A jogar",
+        "Path": "Q3 + Q4 · vaga em F1",
+        "Leg1": "Ida · 10 out · ATL × UNI · 21h00",
+        "Leg2": "Volta · 12 out · UNI × ATL · 21h00",
+        "state": "Scheduled"
+      },
+      {
+        "Code": "F1",
+        "Home": "Vencedor de S1",
+        "Away": "Vencedor de S2",
+        "HomeScore": "–",
+        "AwayScore": "–",
+        "Status": "A definir",
+        "Path": "S1 + S2 · campeão",
+        "Leg1": "Ida · data a definir",
+        "Leg2": "Volta · data a definir",
+        "state": "Pending"
+      }
+    ]
+  },
+  "captureRoots": [
+    "21:24697",
+    "21:25126",
+    "21:25552",
+    "21:25981",
+    "21:26340",
+    "21:26701",
+    "21:27062",
+    "21:27334",
+    "21:27603",
+    "21:27875",
+    "21:28044",
+    "21:28215",
+    "21:28386",
+    "21:28679",
+    "21:28862",
+    "21:29498",
+    "21:29620",
+    "21:29719",
+    "21:29847",
+    "21:29949",
+    "21:30323",
+    "21:30697",
+    "21:30842",
+    "21:30971",
+    "21:31429",
+    "21:31895",
+    "21:32277",
+    "21:32667",
+    "21:32735",
+    "21:32802",
+    "21:32873",
+    "21:32945",
+    "21:33298",
+    "21:33469"
+  ],
+  "captures": [
+    {
+      "nodeId": "21:24697",
+      "path": "design/classification-previews-final/21-24697.png"
+    },
+    {
+      "nodeId": "21:25126",
+      "path": "design/classification-previews-final/21-25126.png"
+    },
+    {
+      "nodeId": "21:25552",
+      "path": "design/classification-previews-final/21-25552.png"
+    },
+    {
+      "nodeId": "21:25981",
+      "path": "design/classification-previews-final/21-25981.png"
+    },
+    {
+      "nodeId": "21:26340",
+      "path": "design/classification-previews-final/21-26340.png"
+    },
+    {
+      "nodeId": "21:26701",
+      "path": "design/classification-previews-final/21-26701.png"
+    },
+    {
+      "nodeId": "21:27062",
+      "path": "design/classification-previews-final/21-27062.png"
+    },
+    {
+      "nodeId": "21:27334",
+      "path": "design/classification-previews-final/21-27334.png"
+    },
+    {
+      "nodeId": "21:27603",
+      "path": "design/classification-previews-final/21-27603.png"
+    },
+    {
+      "nodeId": "21:27875",
+      "path": "design/classification-previews-final/21-27875.png"
+    },
+    {
+      "nodeId": "21:28044",
+      "path": "design/classification-previews-final/21-28044.png"
+    },
+    {
+      "nodeId": "21:28215",
+      "path": "design/classification-previews-final/21-28215.png"
+    },
+    {
+      "nodeId": "21:28386",
+      "path": "design/classification-previews-final/21-28386.png"
+    },
+    {
+      "nodeId": "21:28679",
+      "path": "design/classification-previews-final/21-28679.png"
+    },
+    {
+      "nodeId": "21:28862",
+      "path": "design/classification-previews-final/21-28862.png"
+    },
+    {
+      "nodeId": "21:29498",
+      "path": "design/classification-previews-final/21-29498.png"
+    },
+    {
+      "nodeId": "21:29620",
+      "path": "design/classification-previews-final/21-29620.png"
+    },
+    {
+      "nodeId": "21:29719",
+      "path": "design/classification-previews-final/21-29719.png"
+    },
+    {
+      "nodeId": "21:29847",
+      "path": "design/classification-previews-final/21-29847.png"
+    },
+    {
+      "nodeId": "21:29949",
+      "path": "design/classification-previews-final/21-29949.png"
+    },
+    {
+      "nodeId": "21:30323",
+      "path": "design/classification-previews-final/21-30323.png"
+    },
+    {
+      "nodeId": "21:30697",
+      "path": "design/classification-previews-final/21-30697.png"
+    },
+    {
+      "nodeId": "21:30842",
+      "path": "design/classification-previews-final/21-30842.png"
+    },
+    {
+      "nodeId": "21:30971",
+      "path": "design/classification-previews-final/21-30971.png"
+    },
+    {
+      "nodeId": "21:31429",
+      "path": "design/classification-previews-final/21-31429.png"
+    },
+    {
+      "nodeId": "21:31895",
+      "path": "design/classification-previews-final/21-31895.png"
+    },
+    {
+      "nodeId": "21:32277",
+      "path": "design/classification-previews-final/21-32277.png"
+    },
+    {
+      "nodeId": "21:32667",
+      "path": "design/classification-previews-final/21-32667.png"
+    },
+    {
+      "nodeId": "21:32735",
+      "path": "design/classification-previews-final/21-32735.png"
+    },
+    {
+      "nodeId": "21:32802",
+      "path": "design/classification-previews-final/21-32802.png"
+    },
+    {
+      "nodeId": "21:32873",
+      "path": "design/classification-previews-final/21-32873.png"
+    },
+    {
+      "nodeId": "21:32945",
+      "path": "design/classification-previews-final/21-32945.png"
+    },
+    {
+      "nodeId": "21:33298",
+      "path": "design/classification-previews-final/21-33298.png"
+    },
+    {
+      "nodeId": "21:33469",
+      "path": "design/classification-previews-final/21-33469.png"
+    }
+  ],
+  "counts": {
+    "nativeVariants": 24,
+    "icons": 6,
+    "captures": 34,
+    "variables": {
+      "primitives": 91,
+      "light": 43,
+      "dark": 42,
+      "total": 176
+    }
+  },
+  "geometry": {
+    "maxContent": 1280,
+    "gutters": {
+      "mobile": 16,
+      "tablet": 24
+    },
+    "header": {
+      "desktop": 88,
+      "compact": 72
+    },
+    "targetsMin": 44,
+    "focusStroke": 2,
+    "league": {
+      "wideMinHeight": 72,
+      "compactMinHeight": 136,
+      "padding": 16,
+      "gap": 12,
+      "formWide": 24,
+      "formCompact": 20,
+      "formGap": 4,
+      "rankWidth": 28,
+      "rankHeight": 40,
+      "crestHolder": 40
+    },
+    "tie": {
+      "padding": 16,
+      "gap": 8,
+      "radius": 16,
+      "singleMin": 196,
+      "twoLegMin": 256,
+      "desktopSingleMin": 212,
+      "desktopTwoLegMin": 272,
+      "scoreWidth": 32
+    },
+    "bracket": {
+      "desktopAbove": 768,
+      "padding": 24,
+      "connectorWidth": 40,
+      "cardGap": 24,
+      "stageHeader": 40,
+      "headerGap": 16,
+      "columns": 3
+    }
+  },
+  "prototype": {
+    "transition": "DISSOLVE",
+    "durationSeconds": 0.12,
+    "coverage": "Liga 1440/390 → seletor/ações; selector → 3 formatos; Liga ↔ artilharia 1440/390; fases Single/Two-leg 390; expansão primeira linha Liga 390/320.",
+    "limits": "Outros tamanhos são amostras estáticas. Artilharia mata-mata e seletor com mata-mata ativo não têm percurso ligado. Ações externas/clubes/partidas/retry demonstram intenção, sem executar aplicação."
+  },
+  "productLimits": [
+    "Fixtures demonstrativos; nenhuma leitura live de banco",
+    "Mata-mata é feature nova e requer modelo próprio de etapas/confrontos/leg/winner/bye; MamoBall não tem pênaltis, não inventar outro desempate",
+    "Top4/últimos2 preservam convenção existente, sem regulamento verificado",
+    "Estados erro/loading devem ser conectados no frontend futuro",
+    "Figma não verifica teclado/ARIA/browser ou responsividade intermediária"
+  ],
+  "parentInspection": {
+    "firstPass": 34,
+    "corrections": [
+      "Chevron para cima ao recolher estatísticas",
+      "Ambas vagas desconhecidas de final ida/volta usam ícone de pendência",
+      "Destino do nome longo não conserva nome de outra equipe"
+    ],
+    "confirmationNodes": [
+      "21:30323",
+      "21:29847",
+      "21:33298"
+    ]
+  },
+  "technicalVerification": {
+    "variables": {
+      "primitives": 91,
+      "light": 43,
+      "dark": 42,
+      "total": 176
+    },
+    "semanticAliasAudit": "All 9 new aliases resolve the expected primitives in live Figma",
+    "assets": "34 PNGs with valid PNG headers and width >=320; 6 original/reused-path SVG files",
+    "componentApi": "Canonical post-combine properties fetched from each live component set; 24 native variants",
+    "application": "No application files modified",
+    "prototypeAudit": "Live reactions verified for selector and scorers at1440/390, plus two-leg mobile Final phase; ON_CLICK/NAVIGATE/DISSOLVE120ms/EASE_OUT"
+  },
+  "review": {
+    "disposition": "ship",
+    "path": "design/classification-review.md",
+    "scope": "All 34 final Figma exports plus incumbent Jogos Light desktop/mobile references; no material findings. No browser/application verification."
+  },
+  "productCorrection": {
+    "date": "2026-10-06",
+    "penalties": false,
+    "authority": "Definitive user correction: MamoBall has no penalties whatsoever.",
+    "historicalArtifacts": "Exports/variants/review records mentioning penalties are obsolete on this product fact; preserved as history, not implementation authority.",
+    "winnerRule": "Do not invent an alternative tiebreaker or infer a winner from tied score/aggregate.",
+    "implementationScope": "Header/Home only; no new knockout implementation."
+  }
+}

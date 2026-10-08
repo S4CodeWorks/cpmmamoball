@@ -1,0 +1,112 @@
+{
+  "checks": [
+    {
+      "width": 1440,
+      "height": 949,
+      "contentWidth": 1280,
+      "headerHeight": 88,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 1440,
+      "height": 949,
+      "contentWidth": 1280,
+      "headerHeight": 88,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 1440,
+      "height": 949,
+      "contentWidth": 1280,
+      "headerHeight": 88,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 1024,
+      "height": 949,
+      "contentWidth": 976,
+      "headerHeight": 88,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 2560,
+      "height": 949,
+      "contentWidth": 1280,
+      "headerHeight": 88,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 768,
+      "height": 1665,
+      "contentWidth": 720,
+      "headerHeight": 72,
+      "featureHeight": 352,
+      "classificationHeight": 397
+    },
+    {
+      "width": 390,
+      "height": 1609,
+      "contentWidth": 358,
+      "headerHeight": 72,
+      "featureHeight": 300,
+      "classificationHeight": 397
+    },
+    {
+      "width": 320,
+      "height": 1634,
+      "contentWidth": 288,
+      "headerHeight": 72,
+      "featureHeight": 305,
+      "classificationHeight": 397
+    }
+  ],
+  "variableCount": 106,
+  "highlightVariants": 11,
+  "componentSet": [
+    {
+      "id": "4:1534",
+      "name": "Home / Highlight",
+      "key": "976d2d57e47bebd1e191e86c836626d0ad13ae91",
+      "description": "",
+      "componentIds": [
+        "4:1159",
+        "4:1189",
+        "4:1221",
+        "4:1245",
+        "4:1275",
+        "4:1305",
+        "4:1315",
+        "4:1333",
+        "4:1348",
+        "4:1374",
+        "4:1401"
+      ],
+      "variantGroupProperties": {
+        "Kind": {
+          "values": [
+            "result",
+            "upcoming",
+            "approved",
+            "draw",
+            "wo",
+            "loading",
+            "empty",
+            "error"
+          ]
+        },
+        "Layout": {
+          "values": [
+            "Desktop",
+            "Compact"
+          ]
+        }
+      }
+    }
+  ],
+  "scope": "Visual Figma layout and bindings; no browser or runtime accessibility claim."
+}

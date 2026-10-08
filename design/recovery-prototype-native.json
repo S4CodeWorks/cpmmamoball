@@ -1,0 +1,271 @@
+[
+  {
+    "state": "EmailFocus",
+    "nodeId": "54:13502",
+    "reactions": {
+      "nodeId": "54:13502",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:13912",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "EmailFocus",
+    "nodeId": "54:13503",
+    "reactions": {
+      "nodeId": "54:13503",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14894",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "CodeFilled",
+    "nodeId": "54:13931",
+    "reactions": {
+      "nodeId": "54:13931",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14457",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "CodeFilled",
+    "nodeId": "54:13935",
+    "reactions": {
+      "nodeId": "54:13935",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14894",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "PasswordFocus",
+    "nodeId": "54:14479",
+    "reactions": {
+      "nodeId": "54:14479",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14815",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "PasswordFocus",
+    "nodeId": "54:14480",
+    "reactions": {
+      "nodeId": "54:14480",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14894",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "PasswordVisible",
+    "nodeId": "54:14569",
+    "reactions": {
+      "nodeId": "54:14569",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14815",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "PasswordVisible",
+    "nodeId": "54:14570",
+    "reactions": {
+      "nodeId": "54:14570",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14894",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "Saving",
+    "nodeId": "54:14837",
+    "reactions": {
+      "nodeId": "54:14837",
+      "reactions": []
+    }
+  },
+  {
+    "state": "Saving",
+    "nodeId": "54:14838",
+    "reactions": {
+      "nodeId": "54:14838",
+      "reactions": [
+        {
+          "trigger": {
+            "type": "ON_CLICK"
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "54:14894",
+              "navigation": "NAVIGATE",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

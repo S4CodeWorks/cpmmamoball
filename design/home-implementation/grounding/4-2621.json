@@ -1,0 +1,65 @@
+{
+  "note": "This tree serialized to ~102k chars — beyond what a tool result can deliver. Ground it section by section: call get_design_context per section nodeId (detail: full, dedupeComponents: true) and build each before moving on. Do not retry this call unscoped and do not depth-cap the whole page.",
+  "nodes": [
+    {
+      "id": "4:2621",
+      "name": "Home content",
+      "type": "FRAME",
+      "x": 16,
+      "y": 0,
+      "width": 358,
+      "height": 1626,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 32,
+        "paddingRight": 0,
+        "paddingBottom": 32,
+        "paddingLeft": 0,
+        "itemSpacing": 32,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "HUG",
+      "layoutGrow": 1,
+      "maxWidth": 1280,
+      "clipsContent": true
+    }
+  ],
+  "sectionPlan": {
+    "reason": "payload-size",
+    "payloadChars": 102152,
+    "sections": [
+      {
+        "nodeId": "4:2622",
+        "name": "Page context",
+        "type": "FRAME",
+        "childCount": 1,
+        "nodes": 12
+      },
+      {
+        "nodeId": "4:2634",
+        "name": "Highlight and standings",
+        "type": "FRAME",
+        "childCount": 1,
+        "nodes": 39
+      },
+      {
+        "nodeId": "4:2661",
+        "name": "Match lists",
+        "type": "FRAME",
+        "childCount": 2,
+        "nodes": 85
+      },
+      {
+        "nodeId": "4:2704",
+        "name": "Classificação",
+        "type": "INSTANCE",
+        "childCount": 5,
+        "nodes": 41
+      }
+    ]
+  }
+}

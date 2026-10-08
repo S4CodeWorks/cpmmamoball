@@ -1,0 +1,51 @@
+{
+  "note": "This tree serialized to ~110k chars — beyond what a tool result can deliver. Ground it section by section: call get_design_context per section nodeId (detail: full, dedupeComponents: true) and build each before moving on. Do not retry this call unscoped and do not depth-cap the whole page.",
+  "nodes": [
+    {
+      "id": "4:2749",
+      "name": "Home / result / 320",
+      "type": "FRAME",
+      "x": 1320,
+      "y": 2400,
+      "width": 320,
+      "height": 1714,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "itemSpacing": 0,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "CENTER",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "constraints": {
+        "horizontal": "MIN",
+        "vertical": "MIN"
+      },
+      "clipsContent": true
+    }
+  ],
+  "sectionPlan": {
+    "reason": "payload-size",
+    "payloadChars": 110063,
+    "sections": [
+      {
+        "nodeId": "4:2750",
+        "name": "Header / adaptive",
+        "type": "FRAME",
+        "childCount": 2,
+        "nodes": 13
+      },
+      {
+        "nodeId": "4:2763",
+        "name": "Page gutter",
+        "type": "FRAME",
+        "childCount": 1,
+        "nodes": 179
+      }
+    ]
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "request": "Desenhar no Figma a tela /partida/numero, muito bem cuidada, visual em vez de puro texto, respeitando regras e sistema CPM aprovado.",
+  "artifact": "Connected Figma pages Partida · Light 63:42506 / Components 63:42507 / Estados 63:42508",
+  "brief": "design/match-brief.md",
+  "metadata": "design/match-metadata.json",
+  "nativeScenes": "design/match-scenes-native.json",
+  "componentAPIs": "design/match-components-native.json",
+  "requiredCaptures": [
+    {
+      "nodeId": "64:43164",
+      "width": 1440,
+      "label": "Final",
+      "path": "design/match-previews/64-43164.png"
+    },
+    {
+      "nodeId": "64:43481",
+      "width": 390,
+      "label": "Final",
+      "path": "design/match-previews/64-43481.png"
+    },
+    {
+      "nodeId": "64:43663",
+      "width": 320,
+      "label": "Final",
+      "path": "design/match-previews/64-43663.png"
+    },
+    {
+      "nodeId": "64:43845",
+      "width": 768,
+      "label": "Final",
+      "path": "design/match-previews/64-43845.png"
+    },
+    {
+      "nodeId": "64:44027",
+      "width": 1024,
+      "label": "Final",
+      "path": "design/match-previews/64-44027.png"
+    },
+    {
+      "nodeId": "64:44344",
+      "width": 2560,
+      "label": "Final",
+      "path": "design/match-previews/64-44344.png"
+    },
+    {
+      "nodeId": "64:45235",
+      "width": 390,
+      "label": "Confrontos",
+      "path": "design/match-previews/64-45235.png"
+    },
+    {
+      "nodeId": "64:45492",
+      "width": 390,
+      "label": "Rodada",
+      "path": "design/match-previews/64-45492.png"
+    },
+    {
+      "nodeId": "64:45741",
+      "width": 1440,
+      "label": "Scheduled",
+      "path": "design/match-previews/64-45741.png"
+    },
+    {
+      "nodeId": "64:46106",
+      "width": 390,
+      "label": "Scheduled",
+      "path": "design/match-previews/64-46106.png"
+    },
+    {
+      "nodeId": "64:46335",
+      "width": 390,
+      "label": "UnknownTime",
+      "path": "design/match-previews/64-46335.png"
+    },
+    {
+      "nodeId": "64:46564",
+      "width": 1440,
+      "label": "Live",
+      "path": "design/match-previews/64-46564.png"
+    },
+    {
+      "nodeId": "64:46918",
+      "width": 390,
+      "label": "Live",
+      "path": "design/match-previews/64-46918.png"
+    },
+    {
+      "nodeId": "64:47137",
+      "width": 390,
+      "label": "Draw",
+      "path": "design/match-previews/64-47137.png"
+    },
+    {
+      "nodeId": "64:47360",
+      "width": 1440,
+      "label": "WO",
+      "path": "design/match-previews/64-47360.png"
+    },
+    {
+      "nodeId": "64:47718",
+      "width": 390,
+      "label": "WO",
+      "path": "design/match-previews/64-47718.png"
+    },
+    {
+      "nodeId": "64:47941",
+      "width": 390,
+      "label": "NoGoals",
+      "path": "design/match-previews/64-47941.png"
+    },
+    {
+      "nodeId": "64:48129",
+      "width": 390,
+      "label": "NoHistory",
+      "path": "design/match-previews/64-48129.png"
+    },
+    {
+      "nodeId": "64:48391",
+      "width": 1440,
+      "label": "Loading",
+      "path": "design/match-previews/64-48391.png"
+    },
+    {
+      "nodeId": "64:48717",
+      "width": 390,
+      "label": "Loading",
+      "path": "design/match-previews/64-48717.png"
+    },
+    {
+      "nodeId": "64:48908",
+      "width": 390,
+      "label": "Error",
+      "path": "design/match-previews/64-48908.png"
+    },
+    {
+      "nodeId": "64:49097",
+      "width": 390,
+      "label": "Missing",
+      "path": "design/match-previews/64-49097.png"
+    },
+    {
+      "nodeId": "64:49287",
+      "width": 390,
+      "label": "Saved",
+      "path": "design/match-previews/64-49287.png"
+    },
+    {
+      "nodeId": "64:49475",
+      "width": 390,
+      "label": "Copied",
+      "path": "design/match-previews/64-49475.png"
+    },
+    {
+      "nodeId": "64:49710",
+      "width": 1440,
+      "label": "Saved",
+      "path": "design/match-previews/64-49710.png"
+    },
+    {
+      "nodeId": "64:50034",
+      "width": 1440,
+      "label": "Copied",
+      "path": "design/match-previews/64-50034.png"
+    },
+    {
+      "nodeId": "64:49665",
+      "width": 1440,
+      "label": "Main",
+      "path": "design/match-previews/64-49665.png"
+    },
+    {
+      "nodeId": "64:51376",
+      "width": 1440,
+      "label": "Games",
+      "path": "design/match-previews/64-51376.png"
+    },
+    {
+      "nodeId": "64:50355",
+      "width": 390,
+      "label": "Main",
+      "path": "design/match-previews/64-50355.png"
+    },
+    {
+      "nodeId": "64:51586",
+      "width": 390,
+      "label": "Games",
+      "path": "design/match-previews/64-51586.png"
+    },
+    {
+      "nodeId": "64:50410",
+      "width": 390,
+      "label": "Past",
+      "path": "design/match-previews/64-50410.png"
+    },
+    {
+      "nodeId": "64:51236",
+      "width": 390,
+      "label": "Other",
+      "path": "design/match-previews/64-51236.png"
+    }
+  ],
+  "contacts": [
+    "design/match-previews/contact-0.png",
+    "design/match-previews/contact-1.png",
+    "design/match-previews/contact-2.png",
+    "design/match-previews/contact-3.png"
+  ],
+  "authority": {
+    "world": "DESIGN.md",
+    "product": "PRODUCT.md",
+    "games": "design/games-metadata.json",
+    "original": "design/games-previews-final"
+  },
+  "buildPath": "native editable Figma extension; no image comp and no application UI edit",
+  "detector": "Not run: only native Figma artifact, no changed HTML/CSS; detector cannot assess this artifact.",
+  "constraints": [
+    "Light only, six widths 320/390/768/1024/1440/2560",
+    "Official artwork, Barlow Condensed/Manrope and original icons reused",
+    "No penalties, invented minutes, cards, photos, possession or chronology",
+    "Grouped per-club goals; own goal opposing roster; assist never applied to own goals",
+    "Fixture data only; native prototypes not real DB, share, reminder, transport or browser tests"
+  ],
+  "authorKnownEvidence": [
+    "Second author round showed excessive vertical whitespace at 1024 due fixed-height rail (native data: 64:44213 height1300 FIXED). No correction made after bounded author round; send as review finding.",
+    "Some far-positioned state PNG scoreboards lose club identities/crop meta even though get_node reports visible correctly-sized child groups (Scheduled390, WO390, NoHistory390). Please distinguish capture-validity from native geometry/content issue and request direct recapture if needed.",
+    "Other-match prototype changes names but inherited AUR/ATP tags remain. User request requires accurate visual attribution; assess as fixture/material issue."
+  ],
+  "limits": "No runtime/app/DB changes. Dark not authored. Main native output32PNG. Component APIs17grounded. Native reaction42records; interactive fixtures1440/390 only.",
+  "captureValidation": "design/match-contact-validation.json",
+  "isolatedCapture": "design/match-previews/nohistory-contact-cell.png",
+  "finalVerdict": "ship",
+  "fixVerification": "design/match-fix-verification.json",
+  "captureValidationScope": "Historical validity proof from initial full review; final roots and contacts recaptured after all three material fixes."
+}

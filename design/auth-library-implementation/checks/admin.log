@@ -1,0 +1,4 @@
+PASS 128 captures [
+  'password visibility; invalid credentials; retry; numeric OTP; responsive no overflow',
+  'staff draft/create/edit/publish and public inbox visibility (controlled adapter only)'
+]

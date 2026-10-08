@@ -1,0 +1,2873 @@
+{
+  "note": "This tree serialized to ~85k chars at detail \"full\" — beyond what a tool result can deliver, so this is the same tree with its LAYOUT intact and its APPEARANCE dropped. Every frame still carries its exact layout (flex/grid mode, padding, itemSpacing/gap, alignment) and each node its sizing and constraints, and each text its characters. What is missing is colour, typography, effects and token bindings. Build the structure from the layout objects, never from x/y: emit the container and its gap/padding, not per-child margins or absolute offsets. To get what is missing, call get_design_context per section nodeId (detail: full, dedupeComponents: true) before building that section — never estimate those values from a screenshot.",
+  "nodes": [
+    {
+      "id": "44:46161",
+      "name": "Page gutter",
+      "type": "FRAME",
+      "x": 0,
+      "y": 88,
+      "width": 1440,
+      "height": 948,
+      "layout": {
+        "mode": "VERTICAL",
+        "paddingTop": 32,
+        "paddingRight": 32,
+        "paddingBottom": 48,
+        "paddingLeft": 32,
+        "itemSpacing": 0,
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "CENTER",
+        "layoutWrap": "NO_WRAP",
+        "strokesIncludedInLayout": true
+      },
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "HUG",
+      "layoutAlign": "STRETCH",
+      "clipsContent": true,
+      "children": [
+        {
+          "id": "44:46162",
+          "name": "Search content / max 1280",
+          "type": "FRAME",
+          "x": 80,
+          "y": 32,
+          "width": 1280,
+          "height": 868,
+          "layout": {
+            "mode": "VERTICAL",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "itemSpacing": 0,
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "MIN",
+            "layoutWrap": "NO_WRAP",
+            "strokesIncludedInLayout": true
+          },
+          "layoutSizingHorizontal": "FILL",
+          "layoutSizingVertical": "HUG",
+          "layoutAlign": "STRETCH",
+          "maxWidth": 1280,
+          "clipsContent": true,
+          "children": [
+            {
+              "id": "44:46163",
+              "name": "Page title and back",
+              "type": "FRAME",
+              "x": 0,
+              "y": 0,
+              "width": 1280,
+              "height": 44,
+              "layout": {
+                "mode": "HORIZONTAL",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 12,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "CENTER",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "FIXED",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "44:46164",
+                  "name": "back / 44px",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 0,
+                  "width": 44,
+                  "height": 44,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "CENTER",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FIXED",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "44:46165",
+                      "name": "back",
+                      "type": "INSTANCE",
+                      "x": 12,
+                      "y": 12,
+                      "width": 20,
+                      "height": 20,
+                      "mainComponentId": "42:40219",
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I44:46165;42:40218",
+                          "name": "Vector",
+                          "type": "VECTOR",
+                          "x": 3.3333332538604736,
+                          "y": 5,
+                          "width": 13.333333015441895,
+                          "height": 10,
+                          "constraints": {
+                            "horizontal": "SCALE",
+                            "vertical": "SCALE"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "44:46166",
+                  "name": "Buscar",
+                  "type": "TEXT",
+                  "x": 56,
+                  "y": 2,
+                  "width": 1174,
+                  "height": 40,
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "HUG",
+                  "layoutGrow": 1,
+                  "characters": "Buscar",
+                  "textAutoResize": "HEIGHT"
+                },
+                {
+                  "id": "44:46167",
+                  "name": "Escape hint",
+                  "type": "FRAME",
+                  "x": 1242,
+                  "y": 8,
+                  "width": 38,
+                  "height": 28,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 8,
+                    "paddingBottom": 0,
+                    "paddingLeft": 8,
+                    "itemSpacing": 0,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "FIXED",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "44:46168",
+                      "name": "Esc",
+                      "type": "TEXT",
+                      "x": 9,
+                      "y": 6,
+                      "width": 20,
+                      "height": 16,
+                      "layoutSizingHorizontal": "HUG",
+                      "layoutSizingVertical": "HUG",
+                      "characters": "Esc"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "44:46169",
+              "name": "Query and categories",
+              "type": "FRAME",
+              "x": 0,
+              "y": 44,
+              "width": 1280,
+              "height": 136,
+              "layout": {
+                "mode": "VERTICAL",
+                "paddingTop": 16,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 12,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "MIN",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "44:46170",
+                  "name": "Search field",
+                  "type": "INSTANCE",
+                  "x": 0,
+                  "y": 16,
+                  "width": 1280,
+                  "height": 64,
+                  "mainComponentId": "44:45667",
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 12,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 16,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "CENTER",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "FIXED",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "componentProperties": {
+                    "Placeholder#43:485": {
+                      "type": "TEXT",
+                      "value": "Clube, jogador ou notícia"
+                    },
+                    "Query#42:415": {
+                      "type": "TEXT",
+                      "value": "aurora"
+                    },
+                    "Layout": {
+                      "type": "VARIANT",
+                      "value": "Wide"
+                    },
+                    "State": {
+                      "type": "VARIANT",
+                      "value": "Filled"
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "I44:46170;44:45668",
+                      "name": "Search / icon compartment",
+                      "type": "FRAME",
+                      "x": 1,
+                      "y": 0,
+                      "width": 64,
+                      "height": 64,
+                      "layout": {
+                        "mode": "HORIZONTAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I44:46170;44:45669",
+                          "name": "search",
+                          "type": "INSTANCE",
+                          "x": 19.5,
+                          "y": 20,
+                          "width": 24,
+                          "height": 24,
+                          "mainComponentId": "2:112",
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I44:46170;44:45669;2:110",
+                              "name": "Vector",
+                              "type": "VECTOR",
+                              "x": 4,
+                              "y": 4,
+                              "width": 13,
+                              "height": 13,
+                              "constraints": {
+                                "horizontal": "SCALE",
+                                "vertical": "SCALE"
+                              }
+                            },
+                            {
+                              "id": "I44:46170;44:45669;2:111",
+                              "name": "Vector",
+                              "type": "VECTOR",
+                              "x": 16,
+                              "y": 16,
+                              "width": 4,
+                              "height": 4,
+                              "constraints": {
+                                "horizontal": "SCALE",
+                                "vertical": "SCALE"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "I44:46170;44:45670",
+                      "name": "aurora",
+                      "type": "TEXT",
+                      "x": 81,
+                      "y": 20,
+                      "width": 1126,
+                      "height": 24,
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "characters": "aurora",
+                      "textAutoResize": "HEIGHT",
+                      "componentPropertyReferences": {
+                        "characters": "Query#42:415"
+                      }
+                    },
+                    {
+                      "id": "I44:46170;44:45671",
+                      "name": "close / 44px",
+                      "type": "FRAME",
+                      "x": 1223,
+                      "y": 10,
+                      "width": 44,
+                      "height": 44,
+                      "layout": {
+                        "mode": "HORIZONTAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "counterAxisAlignItems": "CENTER",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "FIXED",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "I44:46170;44:45672",
+                          "name": "close",
+                          "type": "INSTANCE",
+                          "x": 12,
+                          "y": 12,
+                          "width": 20,
+                          "height": 20,
+                          "mainComponentId": "42:40209",
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "I44:46170;44:45672;42:40208",
+                              "name": "Vector",
+                              "type": "VECTOR",
+                              "x": 5,
+                              "y": 5,
+                              "width": 10,
+                              "height": 10,
+                              "constraints": {
+                                "horizontal": "SCALE",
+                                "vertical": "SCALE"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "44:46171",
+                  "name": "Category filters",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 92,
+                  "width": 1280,
+                  "height": 44,
+                  "layout": {
+                    "mode": "VERTICAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 8,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "MIN",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "HUG",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "44:46172",
+                      "name": "Categories",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 0,
+                      "width": 1280,
+                      "height": 44,
+                      "layout": {
+                        "mode": "HORIZONTAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 8,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "FIXED",
+                      "layoutAlign": "STRETCH",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "44:46173",
+                          "name": "All",
+                          "type": "INSTANCE",
+                          "x": 0,
+                          "y": 0,
+                          "width": 172,
+                          "height": 44,
+                          "mainComponentId": "44:45733",
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 8,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "componentProperties": {
+                            "Count#43:435": {
+                              "type": "TEXT",
+                              "value": "5"
+                            },
+                            "Kind": {
+                              "type": "VARIANT",
+                              "value": "All"
+                            },
+                            "State": {
+                              "type": "VARIANT",
+                              "value": "Selected"
+                            }
+                          },
+                          "children": [
+                            {
+                              "id": "I44:46173;44:45734",
+                              "name": "Icon compartment",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 32,
+                              "height": 44,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 0,
+                                "primaryAxisAlignItems": "CENTER",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "I44:46173;44:45735",
+                                  "name": "filter",
+                                  "type": "INSTANCE",
+                                  "x": 7.5,
+                                  "y": 14,
+                                  "width": 16,
+                                  "height": 16,
+                                  "mainComponentId": "42:40229",
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "I44:46173;44:45735;42:40228",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 2,
+                                      "y": 3.3333332538604736,
+                                      "width": 12,
+                                      "height": 9.333333969116211,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "I44:46173;44:45736",
+                              "name": "Tudo",
+                              "type": "TEXT",
+                              "x": 40,
+                              "y": 12,
+                              "width": 109,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Tudo",
+                              "textAutoResize": "HEIGHT"
+                            },
+                            {
+                              "id": "I44:46173;44:45737",
+                              "name": "5",
+                              "type": "TEXT",
+                              "x": 157,
+                              "y": 14,
+                              "width": 7,
+                              "height": 16,
+                              "layoutSizingHorizontal": "HUG",
+                              "layoutSizingVertical": "HUG",
+                              "characters": "5",
+                              "componentPropertyReferences": {
+                                "characters": "Count#43:435"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "44:46174",
+                          "name": "Club",
+                          "type": "INSTANCE",
+                          "x": 180,
+                          "y": 0,
+                          "width": 172,
+                          "height": 44,
+                          "mainComponentId": "44:45738",
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 8,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "componentProperties": {
+                            "Count#43:435": {
+                              "type": "TEXT",
+                              "value": "1"
+                            },
+                            "Kind": {
+                              "type": "VARIANT",
+                              "value": "Club"
+                            },
+                            "State": {
+                              "type": "VARIANT",
+                              "value": "Default"
+                            }
+                          },
+                          "children": [
+                            {
+                              "id": "I44:46174;44:45739",
+                              "name": "Icon compartment",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 32,
+                              "height": 44,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 0,
+                                "primaryAxisAlignItems": "CENTER",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "I44:46174;44:45740",
+                                  "name": "shield",
+                                  "type": "INSTANCE",
+                                  "x": 7.5,
+                                  "y": 14,
+                                  "width": 16,
+                                  "height": 16,
+                                  "mainComponentId": "42:40216",
+                                  "deduped": true,
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true
+                                }
+                              ]
+                            },
+                            {
+                              "id": "I44:46174;44:45741",
+                              "name": "Clubes",
+                              "type": "TEXT",
+                              "x": 40,
+                              "y": 12,
+                              "width": 111,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Clubes",
+                              "textAutoResize": "HEIGHT"
+                            },
+                            {
+                              "id": "I44:46174;44:45742",
+                              "name": "1",
+                              "type": "TEXT",
+                              "x": 159,
+                              "y": 14,
+                              "width": 5,
+                              "height": 16,
+                              "layoutSizingHorizontal": "HUG",
+                              "layoutSizingVertical": "HUG",
+                              "characters": "1",
+                              "componentPropertyReferences": {
+                                "characters": "Count#43:435"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "44:46175",
+                          "name": "Player",
+                          "type": "INSTANCE",
+                          "x": 360,
+                          "y": 0,
+                          "width": 172,
+                          "height": 44,
+                          "mainComponentId": "44:45758",
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 8,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "componentProperties": {
+                            "Count#43:435": {
+                              "type": "TEXT",
+                              "value": "2"
+                            },
+                            "Kind": {
+                              "type": "VARIANT",
+                              "value": "Player"
+                            },
+                            "State": {
+                              "type": "VARIANT",
+                              "value": "Default"
+                            }
+                          },
+                          "children": [
+                            {
+                              "id": "I44:46175;44:45759",
+                              "name": "Icon compartment",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 32,
+                              "height": 44,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 0,
+                                "primaryAxisAlignItems": "CENTER",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "I44:46175;44:45760",
+                                  "name": "user",
+                                  "type": "INSTANCE",
+                                  "x": 7.5,
+                                  "y": 14,
+                                  "width": 16,
+                                  "height": 16,
+                                  "mainComponentId": "2:119",
+                                  "deduped": true,
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true
+                                }
+                              ]
+                            },
+                            {
+                              "id": "I44:46175;44:45761",
+                              "name": "Jogadores",
+                              "type": "TEXT",
+                              "x": 40,
+                              "y": 12,
+                              "width": 109,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Jogadores",
+                              "textAutoResize": "HEIGHT"
+                            },
+                            {
+                              "id": "I44:46175;44:45762",
+                              "name": "2",
+                              "type": "TEXT",
+                              "x": 157,
+                              "y": 14,
+                              "width": 7,
+                              "height": 16,
+                              "layoutSizingHorizontal": "HUG",
+                              "layoutSizingVertical": "HUG",
+                              "characters": "2",
+                              "componentPropertyReferences": {
+                                "characters": "Count#43:435"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "44:46176",
+                          "name": "News",
+                          "type": "INSTANCE",
+                          "x": 540,
+                          "y": 0,
+                          "width": 172,
+                          "height": 44,
+                          "mainComponentId": "44:45768",
+                          "layout": {
+                            "mode": "HORIZONTAL",
+                            "paddingTop": 0,
+                            "paddingRight": 8,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 8,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "CENTER",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FIXED",
+                          "layoutSizingVertical": "FIXED",
+                          "clipsContent": true,
+                          "componentProperties": {
+                            "Count#43:435": {
+                              "type": "TEXT",
+                              "value": "2"
+                            },
+                            "Kind": {
+                              "type": "VARIANT",
+                              "value": "News"
+                            },
+                            "State": {
+                              "type": "VARIANT",
+                              "value": "Default"
+                            }
+                          },
+                          "children": [
+                            {
+                              "id": "I44:46176;44:45769",
+                              "name": "Icon compartment",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 32,
+                              "height": 44,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 0,
+                                "primaryAxisAlignItems": "CENTER",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FIXED",
+                              "layoutSizingVertical": "FIXED",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "I44:46176;44:45770",
+                                  "name": "news",
+                                  "type": "INSTANCE",
+                                  "x": 7.5,
+                                  "y": 14,
+                                  "width": 16,
+                                  "height": 16,
+                                  "mainComponentId": "42:40213",
+                                  "deduped": true,
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true
+                                }
+                              ]
+                            },
+                            {
+                              "id": "I44:46176;44:45771",
+                              "name": "Notícias",
+                              "type": "TEXT",
+                              "x": 40,
+                              "y": 12,
+                              "width": 109,
+                              "height": 20,
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutGrow": 1,
+                              "characters": "Notícias",
+                              "textAutoResize": "HEIGHT"
+                            },
+                            {
+                              "id": "I44:46176;44:45772",
+                              "name": "2",
+                              "type": "TEXT",
+                              "x": 157,
+                              "y": 14,
+                              "width": 7,
+                              "height": 16,
+                              "layoutSizingHorizontal": "HUG",
+                              "layoutSizingVertical": "HUG",
+                              "characters": "2",
+                              "componentPropertyReferences": {
+                                "characters": "Count#43:435"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "44:46177",
+              "name": "Search body",
+              "type": "FRAME",
+              "x": 0,
+              "y": 180,
+              "width": 1280,
+              "height": 688,
+              "layout": {
+                "mode": "VERTICAL",
+                "paddingTop": 24,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "itemSpacing": 16,
+                "primaryAxisAlignItems": "MIN",
+                "counterAxisAlignItems": "MIN",
+                "layoutWrap": "NO_WRAP",
+                "strokesIncludedInLayout": true
+              },
+              "layoutSizingHorizontal": "FILL",
+              "layoutSizingVertical": "HUG",
+              "layoutAlign": "STRETCH",
+              "clipsContent": true,
+              "children": [
+                {
+                  "id": "44:46178",
+                  "name": "5 resultados",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 24,
+                  "width": 69,
+                  "height": 16,
+                  "layoutSizingHorizontal": "HUG",
+                  "layoutSizingVertical": "HUG",
+                  "characters": "5 resultados"
+                },
+                {
+                  "id": "44:46179",
+                  "name": "Content and direct navigation",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 56,
+                  "width": 1280,
+                  "height": 632,
+                  "layout": {
+                    "mode": "HORIZONTAL",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "itemSpacing": 32,
+                    "primaryAxisAlignItems": "MIN",
+                    "counterAxisAlignItems": "MIN",
+                    "layoutWrap": "NO_WRAP",
+                    "strokesIncludedInLayout": true
+                  },
+                  "layoutSizingHorizontal": "FILL",
+                  "layoutSizingVertical": "HUG",
+                  "layoutAlign": "STRETCH",
+                  "clipsContent": true,
+                  "children": [
+                    {
+                      "id": "44:46180",
+                      "name": "Results column",
+                      "type": "FRAME",
+                      "x": 0,
+                      "y": 0,
+                      "width": 992,
+                      "height": 632,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 24,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FILL",
+                      "layoutSizingVertical": "HUG",
+                      "layoutGrow": 1,
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "44:46181",
+                          "name": "Clubes group",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 0,
+                          "width": 992,
+                          "height": 128,
+                          "layout": {
+                            "mode": "VERTICAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 12,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "MIN",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "44:46182",
+                              "name": "Group heading",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 992,
+                              "height": 28,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 8,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46183",
+                                  "name": "shield",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 4,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "42:40216",
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "I44:46183;42:40215",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 3.3333332538604736,
+                                      "y": 2.5,
+                                      "width": 13.333333015441895,
+                                      "height": 15.416666984558105,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46184",
+                                  "name": "Clubes",
+                                  "type": "TEXT",
+                                  "x": 28,
+                                  "y": 0,
+                                  "width": 57,
+                                  "height": 28,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "Clubes"
+                                },
+                                {
+                                  "id": "44:46185",
+                                  "name": "1",
+                                  "type": "TEXT",
+                                  "x": 93,
+                                  "y": 6,
+                                  "width": 5,
+                                  "height": 16,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "1"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "44:46186",
+                              "name": "Results",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 40,
+                              "width": 992,
+                              "height": 88,
+                              "layout": {
+                                "mode": "VERTICAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 4,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "MIN",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46187",
+                                  "name": "Club / Aurora FC",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 992,
+                                  "height": 88,
+                                  "mainComponentId": "44:45793",
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 16,
+                                    "paddingRight": 16,
+                                    "paddingBottom": 16,
+                                    "paddingLeft": 16,
+                                    "itemSpacing": 12,
+                                    "primaryAxisAlignItems": "MIN",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutAlign": "STRETCH",
+                                  "minHeight": 88,
+                                  "clipsContent": true,
+                                  "componentProperties": {
+                                    "GameID#43:472": {
+                                      "type": "TEXT",
+                                      "value": "#48219"
+                                    },
+                                    "Meta#43:459": {
+                                      "type": "TEXT",
+                                      "value": "AUR"
+                                    },
+                                    "Title#43:446": {
+                                      "type": "TEXT",
+                                      "value": "Aurora FC"
+                                    },
+                                    "Kind": {
+                                      "type": "VARIANT",
+                                      "value": "Club"
+                                    },
+                                    "Layout": {
+                                      "type": "VARIANT",
+                                      "value": "Wide"
+                                    },
+                                    "State": {
+                                      "type": "VARIANT",
+                                      "value": "Default"
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "I44:46187;44:45794",
+                                      "name": "Identity",
+                                      "type": "FRAME",
+                                      "x": 16,
+                                      "y": 20,
+                                      "width": 48,
+                                      "height": 48,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46187;44:45795",
+                                          "name": "Club crest / replace with returned club asset",
+                                          "type": "INSTANCE",
+                                          "x": 8,
+                                          "y": 5.714300155639648,
+                                          "width": 32,
+                                          "height": 36.5713996887207,
+                                          "mainComponentId": "3:1140",
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": false,
+                                          "children": [
+                                            {
+                                              "id": "I44:46187;44:45795;3:1139",
+                                              "name": "Club / Generic crest · existing fallback",
+                                              "type": "RECTANGLE",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 32,
+                                              "height": 36.5713996887207,
+                                              "constraints": {
+                                                "horizontal": "SCALE",
+                                                "vertical": "SCALE"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46187;44:45796",
+                                      "name": "Result content",
+                                      "type": "FRAME",
+                                      "x": 76,
+                                      "y": 22,
+                                      "width": 844,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "VERTICAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 4,
+                                        "primaryAxisAlignItems": "MIN",
+                                        "counterAxisAlignItems": "MIN",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FILL",
+                                      "layoutSizingVertical": "HUG",
+                                      "layoutGrow": 1,
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46187;44:45797",
+                                          "name": "Aurora FC",
+                                          "type": "TEXT",
+                                          "x": 0,
+                                          "y": 0,
+                                          "width": 844,
+                                          "height": 24,
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "characters": "Aurora FC",
+                                          "textAutoResize": "HEIGHT",
+                                          "componentPropertyReferences": {
+                                            "characters": "Title#43:446"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46187;44:45798",
+                                          "name": "Metadata",
+                                          "type": "FRAME",
+                                          "x": 0,
+                                          "y": 28,
+                                          "width": 844,
+                                          "height": 16,
+                                          "layout": {
+                                            "mode": "HORIZONTAL",
+                                            "paddingTop": 0,
+                                            "paddingRight": 0,
+                                            "paddingBottom": 0,
+                                            "paddingLeft": 0,
+                                            "itemSpacing": 8,
+                                            "primaryAxisAlignItems": "MIN",
+                                            "counterAxisAlignItems": "CENTER",
+                                            "layoutWrap": "NO_WRAP",
+                                            "strokesIncludedInLayout": true
+                                          },
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "clipsContent": true,
+                                          "children": [
+                                            {
+                                              "id": "I44:46187;44:45799",
+                                              "name": "AUR",
+                                              "type": "TEXT",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 24,
+                                              "height": 16,
+                                              "layoutSizingHorizontal": "HUG",
+                                              "layoutSizingVertical": "HUG",
+                                              "characters": "AUR",
+                                              "componentPropertyReferences": {
+                                                "characters": "Meta#43:459"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46187;44:45800",
+                                      "name": "chevR / 44px",
+                                      "type": "FRAME",
+                                      "x": 932,
+                                      "y": 22,
+                                      "width": 44,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46187;44:45801",
+                                          "name": "chevR",
+                                          "type": "INSTANCE",
+                                          "x": 12,
+                                          "y": 12,
+                                          "width": 20,
+                                          "height": 20,
+                                          "mainComponentId": "42:40222",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": true
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "44:46188",
+                          "name": "Jogadores group",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 152,
+                          "width": 992,
+                          "height": 220,
+                          "layout": {
+                            "mode": "VERTICAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 12,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "MIN",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "44:46189",
+                              "name": "Group heading",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 992,
+                              "height": 28,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 8,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46190",
+                                  "name": "user",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 4,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "2:119",
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "I44:46190;2:117",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 7.083333492279053,
+                                      "y": 3.750000238418579,
+                                      "width": 5.8333330154418945,
+                                      "height": 5.8333330154418945,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    },
+                                    {
+                                      "id": "I44:46190;2:118",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 4.1666669845581055,
+                                      "y": 10,
+                                      "width": 11.666666030883789,
+                                      "height": 7.5,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46191",
+                                  "name": "Jogadores",
+                                  "type": "TEXT",
+                                  "x": 28,
+                                  "y": 0,
+                                  "width": 90,
+                                  "height": 28,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "Jogadores"
+                                },
+                                {
+                                  "id": "44:46192",
+                                  "name": "2",
+                                  "type": "TEXT",
+                                  "x": 126,
+                                  "y": 6,
+                                  "width": 7,
+                                  "height": 16,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "2"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "44:46193",
+                              "name": "Results",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 40,
+                              "width": 992,
+                              "height": 180,
+                              "layout": {
+                                "mode": "VERTICAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 4,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "MIN",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46194",
+                                  "name": "Player / aurora10",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 992,
+                                  "height": 88,
+                                  "mainComponentId": "44:45802",
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 16,
+                                    "paddingRight": 16,
+                                    "paddingBottom": 16,
+                                    "paddingLeft": 16,
+                                    "itemSpacing": 12,
+                                    "primaryAxisAlignItems": "MIN",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutAlign": "STRETCH",
+                                  "minHeight": 88,
+                                  "clipsContent": true,
+                                  "componentProperties": {
+                                    "GameID#43:472": {
+                                      "type": "TEXT",
+                                      "value": "#48219"
+                                    },
+                                    "Meta#43:459": {
+                                      "type": "TEXT",
+                                      "value": "Aurora FC"
+                                    },
+                                    "Title#43:446": {
+                                      "type": "TEXT",
+                                      "value": "aurora10"
+                                    },
+                                    "Kind": {
+                                      "type": "VARIANT",
+                                      "value": "Player"
+                                    },
+                                    "Layout": {
+                                      "type": "VARIANT",
+                                      "value": "Wide"
+                                    },
+                                    "State": {
+                                      "type": "VARIANT",
+                                      "value": "Default"
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "I44:46194;44:45803",
+                                      "name": "Identity",
+                                      "type": "FRAME",
+                                      "x": 16,
+                                      "y": 20,
+                                      "width": 48,
+                                      "height": 48,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46194;44:45804",
+                                          "name": "Club crest / replace with returned club asset",
+                                          "type": "INSTANCE",
+                                          "x": 8,
+                                          "y": 5.714300155639648,
+                                          "width": 32,
+                                          "height": 36.5713996887207,
+                                          "mainComponentId": "3:1140",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": false
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46194;44:45805",
+                                      "name": "Result content",
+                                      "type": "FRAME",
+                                      "x": 76,
+                                      "y": 18,
+                                      "width": 844,
+                                      "height": 52,
+                                      "layout": {
+                                        "mode": "VERTICAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 4,
+                                        "primaryAxisAlignItems": "MIN",
+                                        "counterAxisAlignItems": "MIN",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FILL",
+                                      "layoutSizingVertical": "HUG",
+                                      "layoutGrow": 1,
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46194;44:45806",
+                                          "name": "aurora10",
+                                          "type": "TEXT",
+                                          "x": 0,
+                                          "y": 0,
+                                          "width": 844,
+                                          "height": 24,
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "characters": "aurora10",
+                                          "textAutoResize": "HEIGHT",
+                                          "componentPropertyReferences": {
+                                            "characters": "Title#43:446"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46194;44:45807",
+                                          "name": "Metadata",
+                                          "type": "FRAME",
+                                          "x": 0,
+                                          "y": 28,
+                                          "width": 844,
+                                          "height": 24,
+                                          "layout": {
+                                            "mode": "HORIZONTAL",
+                                            "paddingTop": 0,
+                                            "paddingRight": 0,
+                                            "paddingBottom": 0,
+                                            "paddingLeft": 0,
+                                            "itemSpacing": 8,
+                                            "primaryAxisAlignItems": "MIN",
+                                            "counterAxisAlignItems": "CENTER",
+                                            "layoutWrap": "NO_WRAP",
+                                            "strokesIncludedInLayout": true
+                                          },
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "clipsContent": true,
+                                          "children": [
+                                            {
+                                              "id": "I44:46194;44:45808",
+                                              "name": "Game ID",
+                                              "type": "FRAME",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 61,
+                                              "height": 24,
+                                              "layout": {
+                                                "mode": "HORIZONTAL",
+                                                "paddingTop": 0,
+                                                "paddingRight": 8,
+                                                "paddingBottom": 0,
+                                                "paddingLeft": 8,
+                                                "itemSpacing": 0,
+                                                "primaryAxisAlignItems": "MIN",
+                                                "counterAxisAlignItems": "CENTER",
+                                                "layoutWrap": "NO_WRAP",
+                                                "strokesIncludedInLayout": true
+                                              },
+                                              "layoutSizingHorizontal": "HUG",
+                                              "layoutSizingVertical": "FIXED",
+                                              "clipsContent": true,
+                                              "children": [
+                                                {
+                                                  "id": "I44:46194;44:45809",
+                                                  "name": "#48219",
+                                                  "type": "TEXT",
+                                                  "x": 8,
+                                                  "y": 4,
+                                                  "width": 45,
+                                                  "height": 16,
+                                                  "layoutSizingHorizontal": "HUG",
+                                                  "layoutSizingVertical": "HUG",
+                                                  "characters": "#48219",
+                                                  "componentPropertyReferences": {
+                                                    "characters": "GameID#43:472"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "id": "I44:46194;44:45810",
+                                              "name": "Aurora FC",
+                                              "type": "TEXT",
+                                              "x": 69,
+                                              "y": 4,
+                                              "width": 54,
+                                              "height": 16,
+                                              "layoutSizingHorizontal": "HUG",
+                                              "layoutSizingVertical": "HUG",
+                                              "characters": "Aurora FC",
+                                              "componentPropertyReferences": {
+                                                "characters": "Meta#43:459"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46194;44:45811",
+                                      "name": "chevR / 44px",
+                                      "type": "FRAME",
+                                      "x": 932,
+                                      "y": 22,
+                                      "width": 44,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46194;44:45812",
+                                          "name": "chevR",
+                                          "type": "INSTANCE",
+                                          "x": 12,
+                                          "y": 12,
+                                          "width": 20,
+                                          "height": 20,
+                                          "mainComponentId": "42:40222",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": true
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46195",
+                                  "name": "Player / aurora.gg",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 92,
+                                  "width": 992,
+                                  "height": 88,
+                                  "mainComponentId": "44:45802",
+                                  "deduped": true,
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 16,
+                                    "paddingRight": 16,
+                                    "paddingBottom": 16,
+                                    "paddingLeft": 16,
+                                    "itemSpacing": 12,
+                                    "primaryAxisAlignItems": "MIN",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutAlign": "STRETCH",
+                                  "minHeight": 88,
+                                  "clipsContent": true,
+                                  "textOverrides": [
+                                    {
+                                      "name": "aurora10",
+                                      "characters": "aurora.gg"
+                                    },
+                                    {
+                                      "name": "#48219",
+                                      "characters": "#19084"
+                                    },
+                                    {
+                                      "name": "Aurora FC",
+                                      "characters": "Aurora FC"
+                                    }
+                                  ],
+                                  "componentProperties": {
+                                    "GameID#43:472": {
+                                      "type": "TEXT",
+                                      "value": "#19084"
+                                    },
+                                    "Meta#43:459": {
+                                      "type": "TEXT",
+                                      "value": "Aurora FC"
+                                    },
+                                    "Title#43:446": {
+                                      "type": "TEXT",
+                                      "value": "aurora.gg"
+                                    },
+                                    "Kind": {
+                                      "type": "VARIANT",
+                                      "value": "Player"
+                                    },
+                                    "Layout": {
+                                      "type": "VARIANT",
+                                      "value": "Wide"
+                                    },
+                                    "State": {
+                                      "type": "VARIANT",
+                                      "value": "Default"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "44:46196",
+                          "name": "Notícias group",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 396,
+                          "width": 992,
+                          "height": 236,
+                          "layout": {
+                            "mode": "VERTICAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 12,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "MIN",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "44:46197",
+                              "name": "Group heading",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 992,
+                              "height": 28,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 8,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46198",
+                                  "name": "news",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 4,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "42:40213",
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "I44:46198;42:40211",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 2.5,
+                                      "y": 4.166666507720947,
+                                      "width": 15,
+                                      "height": 11.666666984558105,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    },
+                                    {
+                                      "id": "I44:46198;42:40212",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 5.833333492279053,
+                                      "y": 7.5,
+                                      "width": 8.333333015441895,
+                                      "height": 6.666666507720947,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46199",
+                                  "name": "Notícias",
+                                  "type": "TEXT",
+                                  "x": 28,
+                                  "y": 0,
+                                  "width": 69,
+                                  "height": 28,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "Notícias"
+                                },
+                                {
+                                  "id": "44:46200",
+                                  "name": "2",
+                                  "type": "TEXT",
+                                  "x": 105,
+                                  "y": 6,
+                                  "width": 7,
+                                  "height": 16,
+                                  "layoutSizingHorizontal": "HUG",
+                                  "layoutSizingVertical": "HUG",
+                                  "characters": "2"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "44:46201",
+                              "name": "Results",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 40,
+                              "width": 992,
+                              "height": 196,
+                              "layout": {
+                                "mode": "VERTICAL",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "itemSpacing": 4,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "MIN",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "HUG",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46202",
+                                  "name": "NewsCover / Aurora abre a rodada com vitória",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 992,
+                                  "height": 96,
+                                  "mainComponentId": "44:45813",
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 16,
+                                    "paddingRight": 16,
+                                    "paddingBottom": 16,
+                                    "paddingLeft": 16,
+                                    "itemSpacing": 12,
+                                    "primaryAxisAlignItems": "MIN",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutAlign": "STRETCH",
+                                  "minHeight": 88,
+                                  "clipsContent": true,
+                                  "componentProperties": {
+                                    "GameID#43:472": {
+                                      "type": "TEXT",
+                                      "value": "#48219"
+                                    },
+                                    "Meta#43:459": {
+                                      "type": "TEXT",
+                                      "value": "06 out · Competição"
+                                    },
+                                    "Title#43:446": {
+                                      "type": "TEXT",
+                                      "value": "Aurora abre a rodada com vitória"
+                                    },
+                                    "Kind": {
+                                      "type": "VARIANT",
+                                      "value": "NewsCover"
+                                    },
+                                    "Layout": {
+                                      "type": "VARIANT",
+                                      "value": "Wide"
+                                    },
+                                    "State": {
+                                      "type": "VARIANT",
+                                      "value": "Default"
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "I44:46202;44:45814",
+                                      "name": "Identity",
+                                      "type": "FRAME",
+                                      "x": 16,
+                                      "y": 16,
+                                      "width": 64,
+                                      "height": 64,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46202;44:45815",
+                                          "name": "Article cover / official original CPM asset",
+                                          "type": "INSTANCE",
+                                          "x": 0,
+                                          "y": 0,
+                                          "width": 64,
+                                          "height": 64,
+                                          "mainComponentId": "2:108",
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": false,
+                                          "children": [
+                                            {
+                                              "id": "I44:46202;44:45815;2:107",
+                                              "name": "CPM / Official logo · original JPG",
+                                              "type": "RECTANGLE",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 64,
+                                              "height": 64,
+                                              "constraints": {
+                                                "horizontal": "SCALE",
+                                                "vertical": "SCALE"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46202;44:45816",
+                                      "name": "Result content",
+                                      "type": "FRAME",
+                                      "x": 92,
+                                      "y": 26,
+                                      "width": 828,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "VERTICAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 4,
+                                        "primaryAxisAlignItems": "MIN",
+                                        "counterAxisAlignItems": "MIN",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FILL",
+                                      "layoutSizingVertical": "HUG",
+                                      "layoutGrow": 1,
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46202;44:45817",
+                                          "name": "Aurora abre a rodada com vitória",
+                                          "type": "TEXT",
+                                          "x": 0,
+                                          "y": 0,
+                                          "width": 828,
+                                          "height": 24,
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "characters": "Aurora abre a rodada com vitória",
+                                          "textAutoResize": "HEIGHT",
+                                          "componentPropertyReferences": {
+                                            "characters": "Title#43:446"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46202;44:45818",
+                                          "name": "Metadata",
+                                          "type": "FRAME",
+                                          "x": 0,
+                                          "y": 28,
+                                          "width": 828,
+                                          "height": 16,
+                                          "layout": {
+                                            "mode": "HORIZONTAL",
+                                            "paddingTop": 0,
+                                            "paddingRight": 0,
+                                            "paddingBottom": 0,
+                                            "paddingLeft": 0,
+                                            "itemSpacing": 8,
+                                            "primaryAxisAlignItems": "MIN",
+                                            "counterAxisAlignItems": "CENTER",
+                                            "layoutWrap": "NO_WRAP",
+                                            "strokesIncludedInLayout": true
+                                          },
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "clipsContent": true,
+                                          "children": [
+                                            {
+                                              "id": "I44:46202;44:45819",
+                                              "name": "06 out · Competição",
+                                              "type": "TEXT",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 828,
+                                              "height": 16,
+                                              "layoutSizingHorizontal": "FILL",
+                                              "layoutSizingVertical": "HUG",
+                                              "layoutGrow": 1,
+                                              "characters": "06 out · Competição",
+                                              "textAutoResize": "HEIGHT",
+                                              "componentPropertyReferences": {
+                                                "characters": "Meta#43:459"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46202;44:45820",
+                                      "name": "chevR / 44px",
+                                      "type": "FRAME",
+                                      "x": 932,
+                                      "y": 26,
+                                      "width": 44,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46202;44:45821",
+                                          "name": "chevR",
+                                          "type": "INSTANCE",
+                                          "x": 12,
+                                          "y": 12,
+                                          "width": 20,
+                                          "height": 20,
+                                          "mainComponentId": "42:40222",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": true
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46203",
+                                  "name": "NewsText / Aurora: elenco confirmado para a temporada",
+                                  "type": "INSTANCE",
+                                  "x": 0,
+                                  "y": 100,
+                                  "width": 992,
+                                  "height": 96,
+                                  "mainComponentId": "44:45822",
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 16,
+                                    "paddingRight": 16,
+                                    "paddingBottom": 16,
+                                    "paddingLeft": 16,
+                                    "itemSpacing": 12,
+                                    "primaryAxisAlignItems": "MIN",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutAlign": "STRETCH",
+                                  "minHeight": 88,
+                                  "clipsContent": true,
+                                  "componentProperties": {
+                                    "GameID#43:472": {
+                                      "type": "TEXT",
+                                      "value": "#48219"
+                                    },
+                                    "Meta#43:459": {
+                                      "type": "TEXT",
+                                      "value": "04 out · Clubes"
+                                    },
+                                    "Title#43:446": {
+                                      "type": "TEXT",
+                                      "value": "Aurora: elenco confirmado para a temporada"
+                                    },
+                                    "Kind": {
+                                      "type": "VARIANT",
+                                      "value": "NewsText"
+                                    },
+                                    "Layout": {
+                                      "type": "VARIANT",
+                                      "value": "Wide"
+                                    },
+                                    "State": {
+                                      "type": "VARIANT",
+                                      "value": "Default"
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "I44:46203;44:45823",
+                                      "name": "Identity",
+                                      "type": "FRAME",
+                                      "x": 16,
+                                      "y": 16,
+                                      "width": 64,
+                                      "height": 64,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46203;44:45824",
+                                          "name": "news",
+                                          "type": "INSTANCE",
+                                          "x": 20,
+                                          "y": 20,
+                                          "width": 24,
+                                          "height": 24,
+                                          "mainComponentId": "42:40213",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": true
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46203;44:45825",
+                                      "name": "Result content",
+                                      "type": "FRAME",
+                                      "x": 92,
+                                      "y": 26,
+                                      "width": 828,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "VERTICAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 4,
+                                        "primaryAxisAlignItems": "MIN",
+                                        "counterAxisAlignItems": "MIN",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FILL",
+                                      "layoutSizingVertical": "HUG",
+                                      "layoutGrow": 1,
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46203;44:45826",
+                                          "name": "Aurora: elenco confirmado para a temporada",
+                                          "type": "TEXT",
+                                          "x": 0,
+                                          "y": 0,
+                                          "width": 828,
+                                          "height": 24,
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "characters": "Aurora: elenco confirmado para a temporada",
+                                          "textAutoResize": "HEIGHT",
+                                          "componentPropertyReferences": {
+                                            "characters": "Title#43:446"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46203;44:45827",
+                                          "name": "Metadata",
+                                          "type": "FRAME",
+                                          "x": 0,
+                                          "y": 28,
+                                          "width": 828,
+                                          "height": 16,
+                                          "layout": {
+                                            "mode": "HORIZONTAL",
+                                            "paddingTop": 0,
+                                            "paddingRight": 0,
+                                            "paddingBottom": 0,
+                                            "paddingLeft": 0,
+                                            "itemSpacing": 8,
+                                            "primaryAxisAlignItems": "MIN",
+                                            "counterAxisAlignItems": "CENTER",
+                                            "layoutWrap": "NO_WRAP",
+                                            "strokesIncludedInLayout": true
+                                          },
+                                          "layoutSizingHorizontal": "FILL",
+                                          "layoutSizingVertical": "HUG",
+                                          "layoutAlign": "STRETCH",
+                                          "clipsContent": true,
+                                          "children": [
+                                            {
+                                              "id": "I44:46203;44:45828",
+                                              "name": "04 out · Clubes",
+                                              "type": "TEXT",
+                                              "x": 0,
+                                              "y": 0,
+                                              "width": 828,
+                                              "height": 16,
+                                              "layoutSizingHorizontal": "FILL",
+                                              "layoutSizingVertical": "HUG",
+                                              "layoutGrow": 1,
+                                              "characters": "04 out · Clubes",
+                                              "textAutoResize": "HEIGHT",
+                                              "componentPropertyReferences": {
+                                                "characters": "Meta#43:459"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "I44:46203;44:45829",
+                                      "name": "chevR / 44px",
+                                      "type": "FRAME",
+                                      "x": 932,
+                                      "y": 26,
+                                      "width": 44,
+                                      "height": 44,
+                                      "layout": {
+                                        "mode": "HORIZONTAL",
+                                        "paddingTop": 0,
+                                        "paddingRight": 0,
+                                        "paddingBottom": 0,
+                                        "paddingLeft": 0,
+                                        "itemSpacing": 0,
+                                        "primaryAxisAlignItems": "CENTER",
+                                        "counterAxisAlignItems": "CENTER",
+                                        "layoutWrap": "NO_WRAP",
+                                        "strokesIncludedInLayout": true
+                                      },
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46203;44:45830",
+                                          "name": "chevR",
+                                          "type": "INSTANCE",
+                                          "x": 12,
+                                          "y": 12,
+                                          "width": 20,
+                                          "height": 20,
+                                          "mainComponentId": "42:40222",
+                                          "deduped": true,
+                                          "layoutSizingHorizontal": "FIXED",
+                                          "layoutSizingVertical": "FIXED",
+                                          "clipsContent": true
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "44:46204",
+                      "name": "Direct destinations",
+                      "type": "FRAME",
+                      "x": 1024,
+                      "y": 0,
+                      "width": 256,
+                      "height": 244,
+                      "layout": {
+                        "mode": "VERTICAL",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "itemSpacing": 16,
+                        "primaryAxisAlignItems": "MIN",
+                        "counterAxisAlignItems": "MIN",
+                        "layoutWrap": "NO_WRAP",
+                        "strokesIncludedInLayout": true
+                      },
+                      "layoutSizingHorizontal": "FIXED",
+                      "layoutSizingVertical": "HUG",
+                      "clipsContent": true,
+                      "children": [
+                        {
+                          "id": "44:46205",
+                          "name": "Ir direto",
+                          "type": "TEXT",
+                          "x": 0,
+                          "y": 0,
+                          "width": 68,
+                          "height": 28,
+                          "layoutSizingHorizontal": "HUG",
+                          "layoutSizingVertical": "HUG",
+                          "characters": "Ir direto"
+                        },
+                        {
+                          "id": "44:46206",
+                          "name": "Navigation list",
+                          "type": "FRAME",
+                          "x": 0,
+                          "y": 44,
+                          "width": 256,
+                          "height": 200,
+                          "layout": {
+                            "mode": "VERTICAL",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "itemSpacing": 4,
+                            "primaryAxisAlignItems": "MIN",
+                            "counterAxisAlignItems": "MIN",
+                            "layoutWrap": "NO_WRAP",
+                            "strokesIncludedInLayout": true
+                          },
+                          "layoutSizingHorizontal": "FILL",
+                          "layoutSizingVertical": "HUG",
+                          "layoutAlign": "STRETCH",
+                          "clipsContent": true,
+                          "children": [
+                            {
+                              "id": "44:46207",
+                              "name": "Jogos",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 0,
+                              "width": 256,
+                              "height": 64,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 8,
+                                "paddingRight": 12,
+                                "paddingBottom": 8,
+                                "paddingLeft": 8,
+                                "itemSpacing": 12,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "FIXED",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46208",
+                                  "name": "Icon compartment",
+                                  "type": "FRAME",
+                                  "x": 8,
+                                  "y": 10,
+                                  "width": 44,
+                                  "height": 44,
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 0,
+                                    "paddingRight": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "itemSpacing": 0,
+                                    "primaryAxisAlignItems": "CENTER",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "44:46209",
+                                      "name": "calendar",
+                                      "type": "INSTANCE",
+                                      "x": 12,
+                                      "y": 12,
+                                      "width": 20,
+                                      "height": 20,
+                                      "mainComponentId": "3:1144",
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46209;3:1142",
+                                          "name": "Vector",
+                                          "type": "VECTOR",
+                                          "x": 2.500000238418579,
+                                          "y": 4.1666669845581055,
+                                          "width": 15,
+                                          "height": 13.333333015441895,
+                                          "constraints": {
+                                            "horizontal": "SCALE",
+                                            "vertical": "SCALE"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46209;3:1143",
+                                          "name": "Vector",
+                                          "type": "VECTOR",
+                                          "x": 2.500000238418579,
+                                          "y": 2.500000238418579,
+                                          "width": 15,
+                                          "height": 6.666666507720947,
+                                          "constraints": {
+                                            "horizontal": "SCALE",
+                                            "vertical": "SCALE"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46210",
+                                  "name": "Jogos",
+                                  "type": "TEXT",
+                                  "x": 64,
+                                  "y": 22,
+                                  "width": 148,
+                                  "height": 20,
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutGrow": 1,
+                                  "characters": "Jogos",
+                                  "textAutoResize": "HEIGHT"
+                                },
+                                {
+                                  "id": "44:46211",
+                                  "name": "chevR",
+                                  "type": "INSTANCE",
+                                  "x": 224,
+                                  "y": 22,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "42:40222",
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "I44:46211;42:40221",
+                                      "name": "Vector",
+                                      "type": "VECTOR",
+                                      "x": 7.5,
+                                      "y": 5,
+                                      "width": 5,
+                                      "height": 10,
+                                      "constraints": {
+                                        "horizontal": "SCALE",
+                                        "vertical": "SCALE"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "44:46212",
+                              "name": "Classificação",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 68,
+                              "width": 256,
+                              "height": 64,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 8,
+                                "paddingRight": 12,
+                                "paddingBottom": 8,
+                                "paddingLeft": 8,
+                                "itemSpacing": 12,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "FIXED",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46213",
+                                  "name": "Icon compartment",
+                                  "type": "FRAME",
+                                  "x": 8,
+                                  "y": 10,
+                                  "width": 44,
+                                  "height": 44,
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 0,
+                                    "paddingRight": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "itemSpacing": 0,
+                                    "primaryAxisAlignItems": "CENTER",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "44:46214",
+                                      "name": "trophy",
+                                      "type": "INSTANCE",
+                                      "x": 12,
+                                      "y": 12,
+                                      "width": 20,
+                                      "height": 20,
+                                      "mainComponentId": "3:1158",
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true,
+                                      "children": [
+                                        {
+                                          "id": "I44:46214;3:1156",
+                                          "name": "Vector",
+                                          "type": "VECTOR",
+                                          "x": 6.6666669845581055,
+                                          "y": 2.500000238418579,
+                                          "width": 6.666666507720947,
+                                          "height": 9.166666030883789,
+                                          "constraints": {
+                                            "horizontal": "SCALE",
+                                            "vertical": "SCALE"
+                                          }
+                                        },
+                                        {
+                                          "id": "I44:46214;3:1157",
+                                          "name": "Vector",
+                                          "type": "VECTOR",
+                                          "x": 3.3333334922790527,
+                                          "y": 4.1666669845581055,
+                                          "width": 13.333333015441895,
+                                          "height": 13.333333015441895,
+                                          "constraints": {
+                                            "horizontal": "SCALE",
+                                            "vertical": "SCALE"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46215",
+                                  "name": "Classificação",
+                                  "type": "TEXT",
+                                  "x": 64,
+                                  "y": 22,
+                                  "width": 148,
+                                  "height": 20,
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutGrow": 1,
+                                  "characters": "Classificação",
+                                  "textAutoResize": "HEIGHT"
+                                },
+                                {
+                                  "id": "44:46216",
+                                  "name": "chevR",
+                                  "type": "INSTANCE",
+                                  "x": 224,
+                                  "y": 22,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "42:40222",
+                                  "deduped": true,
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true
+                                }
+                              ]
+                            },
+                            {
+                              "id": "44:46217",
+                              "name": "Notícias",
+                              "type": "FRAME",
+                              "x": 0,
+                              "y": 136,
+                              "width": 256,
+                              "height": 64,
+                              "layout": {
+                                "mode": "HORIZONTAL",
+                                "paddingTop": 8,
+                                "paddingRight": 12,
+                                "paddingBottom": 8,
+                                "paddingLeft": 8,
+                                "itemSpacing": 12,
+                                "primaryAxisAlignItems": "MIN",
+                                "counterAxisAlignItems": "CENTER",
+                                "layoutWrap": "NO_WRAP",
+                                "strokesIncludedInLayout": true
+                              },
+                              "layoutSizingHorizontal": "FILL",
+                              "layoutSizingVertical": "FIXED",
+                              "layoutAlign": "STRETCH",
+                              "clipsContent": true,
+                              "children": [
+                                {
+                                  "id": "44:46218",
+                                  "name": "Icon compartment",
+                                  "type": "FRAME",
+                                  "x": 8,
+                                  "y": 10,
+                                  "width": 44,
+                                  "height": 44,
+                                  "layout": {
+                                    "mode": "HORIZONTAL",
+                                    "paddingTop": 0,
+                                    "paddingRight": 0,
+                                    "paddingBottom": 0,
+                                    "paddingLeft": 0,
+                                    "itemSpacing": 0,
+                                    "primaryAxisAlignItems": "CENTER",
+                                    "counterAxisAlignItems": "CENTER",
+                                    "layoutWrap": "NO_WRAP",
+                                    "strokesIncludedInLayout": true
+                                  },
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true,
+                                  "children": [
+                                    {
+                                      "id": "44:46219",
+                                      "name": "news",
+                                      "type": "INSTANCE",
+                                      "x": 12,
+                                      "y": 12,
+                                      "width": 20,
+                                      "height": 20,
+                                      "mainComponentId": "42:40213",
+                                      "deduped": true,
+                                      "layoutSizingHorizontal": "FIXED",
+                                      "layoutSizingVertical": "FIXED",
+                                      "clipsContent": true
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "44:46220",
+                                  "name": "Notícias",
+                                  "type": "TEXT",
+                                  "x": 64,
+                                  "y": 22,
+                                  "width": 148,
+                                  "height": 20,
+                                  "layoutSizingHorizontal": "FILL",
+                                  "layoutSizingVertical": "HUG",
+                                  "layoutGrow": 1,
+                                  "characters": "Notícias",
+                                  "textAutoResize": "HEIGHT"
+                                },
+                                {
+                                  "id": "44:46221",
+                                  "name": "chevR",
+                                  "type": "INSTANCE",
+                                  "x": 224,
+                                  "y": 22,
+                                  "width": 20,
+                                  "height": 20,
+                                  "mainComponentId": "42:40222",
+                                  "deduped": true,
+                                  "layoutSizingHorizontal": "FIXED",
+                                  "layoutSizingVertical": "FIXED",
+                                  "clipsContent": true
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

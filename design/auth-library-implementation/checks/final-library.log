@@ -1,0 +1,7 @@
+PASS 128 captures [
+  'light remove undo',
+  'light mark all read',
+  'dark remove undo',
+  'dark mark all read',
+  'password visibility; invalid credentials; retry; numeric OTP; responsive no overflow'
+]

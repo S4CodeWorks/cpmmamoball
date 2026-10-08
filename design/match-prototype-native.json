@@ -1,0 +1,1225 @@
+{
+  "expected": 42,
+  "matched": 42,
+  "unmatched": [],
+  "records": [
+    {
+      "nodeId": "64:49670",
+      "destinationId": "64:51376",
+      "actual": {
+        "nodeId": "64:49670",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51376",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49672",
+      "destinationId": "64:49710",
+      "actual": {
+        "nodeId": "64:49672",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49710",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49673",
+      "destinationId": "64:50034",
+      "actual": {
+        "nodeId": "64:49673",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50034",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49715",
+      "destinationId": "64:51376",
+      "actual": {
+        "nodeId": "64:49715",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51376",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49717",
+      "destinationId": "64:49665",
+      "actual": {
+        "nodeId": "64:49717",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49665",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49718",
+      "destinationId": "64:50034",
+      "actual": {
+        "nodeId": "64:49718",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50034",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50039",
+      "destinationId": "64:51376",
+      "actual": {
+        "nodeId": "64:50039",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51376",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50041",
+      "destinationId": "64:49710",
+      "actual": {
+        "nodeId": "64:50041",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49710",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50042",
+      "destinationId": "64:49665",
+      "actual": {
+        "nodeId": "64:50042",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49665",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50367",
+      "destinationId": "64:51586",
+      "actual": {
+        "nodeId": "64:50367",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51586",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50369",
+      "destinationId": "64:49287",
+      "actual": {
+        "nodeId": "64:50369",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49287",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50370",
+      "destinationId": "64:49475",
+      "actual": {
+        "nodeId": "64:50370",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49475",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50374",
+      "destinationId": "64:45235",
+      "actual": {
+        "nodeId": "64:50374",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45235",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50375",
+      "destinationId": "64:45492",
+      "actual": {
+        "nodeId": "64:50375",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45492",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45247",
+      "destinationId": "64:51586",
+      "actual": {
+        "nodeId": "64:45247",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51586",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45249",
+      "destinationId": "64:49287",
+      "actual": {
+        "nodeId": "64:45249",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49287",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45250",
+      "destinationId": "64:49475",
+      "actual": {
+        "nodeId": "64:45250",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49475",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45253",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:45253",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45255",
+      "destinationId": "64:45492",
+      "actual": {
+        "nodeId": "64:45255",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45492",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45504",
+      "destinationId": "64:51586",
+      "actual": {
+        "nodeId": "64:45504",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51586",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45506",
+      "destinationId": "64:49287",
+      "actual": {
+        "nodeId": "64:45506",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49287",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45507",
+      "destinationId": "64:49475",
+      "actual": {
+        "nodeId": "64:45507",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49475",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45510",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:45510",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:45511",
+      "destinationId": "64:45235",
+      "actual": {
+        "nodeId": "64:45511",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45235",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49299",
+      "destinationId": "64:51586",
+      "actual": {
+        "nodeId": "64:49299",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51586",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49301",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:49301",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49302",
+      "destinationId": "64:49475",
+      "actual": {
+        "nodeId": "64:49302",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49475",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49305",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:49305",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49306",
+      "destinationId": "64:45235",
+      "actual": {
+        "nodeId": "64:49306",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45235",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49307",
+      "destinationId": "64:45492",
+      "actual": {
+        "nodeId": "64:49307",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45492",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49487",
+      "destinationId": "64:51586",
+      "actual": {
+        "nodeId": "64:49487",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51586",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49489",
+      "destinationId": "64:49287",
+      "actual": {
+        "nodeId": "64:49489",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49287",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49490",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:49490",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49493",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:49493",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49494",
+      "destinationId": "64:45235",
+      "actual": {
+        "nodeId": "64:49494",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45235",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:49495",
+      "destinationId": "64:45492",
+      "actual": {
+        "nodeId": "64:49495",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:45492",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "I64:45256;64:42993",
+      "destinationId": "64:50410",
+      "actual": {
+        "nodeId": "I64:45256;64:42993",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50410",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "I64:45513;64:43106",
+      "destinationId": "64:51236",
+      "actual": {
+        "nodeId": "I64:45513;64:43106",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:51236",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:50422",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:50422",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:51248",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:51248",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:51398",
+      "destinationId": "64:49665",
+      "actual": {
+        "nodeId": "64:51398",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:49665",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "64:51615",
+      "destinationId": "64:50355",
+      "actual": {
+        "nodeId": "64:51615",
+        "reactions": [
+          {
+            "trigger": {
+              "type": "ON_CLICK"
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "64:50355",
+                "navigation": "NAVIGATE",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

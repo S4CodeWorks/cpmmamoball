@@ -33,6 +33,24 @@ export interface Standing {
   form: ('V' | 'E' | 'D')[];
 }
 
+export type CompetitionFormat = 'league' | 'knockout_single' | 'knockout_two_leg';
+
+/** Vínculo explícito de um confronto com times, partidas ou vencedores anteriores. */
+export interface BracketTie {
+  id: string;
+  competition_id: string;
+  stage_order: number;
+  stage_name: string;
+  tie_order: number;
+  home_club_id: string | null;
+  away_club_id: string | null;
+  home_source_tie_id: string | null;
+  away_source_tie_id: string | null;
+  first_leg_match_id: number | null;
+  second_leg_match_id: number | null;
+  is_bye: boolean;
+}
+
 // Um gol dentro de home_scorers/away_scorers — se own_goal, o nick pertence ao
 // elenco do time ADVERSÁRIO daquele array (marcou contra o próprio time).
 // assist (opcional) é o nick de um companheiro do PRÓPRIO artilheiro que deu
@@ -97,6 +115,8 @@ export type Page =
   | 'article'
   | 'more'
   | 'saved'
+  | 'notices'
+  | 'notice'
   | 'profile'
   | 'settings'
   | 'subscription'

@@ -1,0 +1,206 @@
+{
+  "scope": "Native Dark Figma only; no code or database changes",
+  "count": 32,
+  "exports": [
+    {
+      "file": "design/search-dark-previews-final/44-45959.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-46159.png",
+      "width": 1440,
+      "height": 1036
+    },
+    {
+      "file": "design/search-dark-previews-final/44-46463.png",
+      "width": 1024,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-46657.png",
+      "width": 1024,
+      "height": 1036
+    },
+    {
+      "file": "design/search-dark-previews-final/44-46955.png",
+      "width": 2560,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-47155.png",
+      "width": 2560,
+      "height": 1036
+    },
+    {
+      "file": "design/search-dark-previews-final/44-47459.png",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-47613.png",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-47844.png",
+      "width": 390,
+      "height": 876
+    },
+    {
+      "file": "design/search-dark-previews-final/44-47998.png",
+      "width": 390,
+      "height": 1020
+    },
+    {
+      "file": "design/search-dark-previews-final/44-48230.png",
+      "width": 320,
+      "height": 876
+    },
+    {
+      "file": "design/search-dark-previews-final/44-48384.png",
+      "width": 320,
+      "height": 1048
+    },
+    {
+      "file": "design/search-dark-previews-final/44-48616.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-48810.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-49034.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-49252.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-49435.png",
+      "width": 1440,
+      "height": 1036
+    },
+    {
+      "file": "design/search-dark-previews-final/44-49698.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-49961.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50144.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50266.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50418.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50564.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50675.png",
+      "width": 390,
+      "height": 1020
+    },
+    {
+      "file": "design/search-dark-previews-final/44-50866.png",
+      "width": 390,
+      "height": 992
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51057.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51168.png",
+      "width": 320,
+      "height": 1088
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51400.png",
+      "width": 1336,
+      "height": 584
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51551.png",
+      "width": 772,
+      "height": 408
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51683.png",
+      "width": 1336,
+      "height": 976
+    },
+    {
+      "file": "design/search-dark-previews-final/44-51968.png",
+      "width": 406,
+      "height": 812
+    },
+    {
+      "file": "design/search-dark-previews-final/44-52027.png",
+      "width": 1040,
+      "height": 572
+    }
+  ],
+  "empty_files": [],
+  "selfInspection": "One bounded batch; all32 inspected; no material fixes found",
+  "tokenContrast": [
+    {
+      "foreground": "text/primary",
+      "background": "surface/card",
+      "ratio": 14.91
+    },
+    {
+      "foreground": "text/secondary",
+      "background": "surface/card",
+      "ratio": 9.51
+    },
+    {
+      "foreground": "text/secondary",
+      "background": "surface/header",
+      "ratio": 10.09
+    },
+    {
+      "foreground": "action/primary",
+      "background": "nav/active-bg",
+      "ratio": 4.56
+    },
+    {
+      "foreground": "nav/active-text",
+      "background": "nav/active-bg",
+      "ratio": 7.6
+    },
+    {
+      "foreground": "text/on-action",
+      "background": "action/primary",
+      "ratio": 7.79
+    },
+    {
+      "foreground": "border/focus",
+      "background": "surface/header",
+      "ratio": 7.66
+    }
+  ],
+  "tokenContrastLimit": "Computed from opaque semantic colors, not runtime WCAG conformance"
+}

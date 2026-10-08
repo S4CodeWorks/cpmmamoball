@@ -1,0 +1,4 @@
+PASS 128 captures [
+  'password visibility; invalid credentials; retry; numeric OTP; responsive no overflow',
+  'Avisos tablet first-row y300 in both themes'
+]

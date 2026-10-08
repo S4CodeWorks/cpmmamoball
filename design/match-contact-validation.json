@@ -1,0 +1,11 @@
+{
+  "contact": "design/match-previews/contact-2.png",
+  "sha256": "e4375f502ba973490649da4b43a7e163301f8b3e6ba7cd3181541415c3c5af53",
+  "source": "design/match-previews/64-48129.png",
+  "isolatedCell": "design/match-previews/nohistory-contact-cell.png",
+  "comparison": "RGBA decoded source resized207x530 versus contact cell at left320/top32",
+  "channels": 438840,
+  "differentChannels": 0,
+  "maximumDifference": 0,
+  "note": "Direct root and isolated thumbnail show all clubs and metadata. Low-resolution full-sheet viewing produced inconsistent visual interpretations; use direct roots and the isolated cell as authoritative evidence. No Figma geometry changed during this capture correction."
+}

@@ -1,0 +1,403 @@
+{
+  "revision": 2,
+  "userIntent": "Less prose, stronger sports typography, meaningful icons and visual event hierarchy; black/white/blue and product functions retained.",
+  "pages": {
+    "home": "3:1127",
+    "components": "3:1128"
+  },
+  "features": {
+    "result": "4:1159",
+    "upcoming": "4:1189",
+    "approved": "4:1221",
+    "draw": "4:1245",
+    "wo": "4:1275",
+    "loading": "4:1305",
+    "empty": "4:1315",
+    "error": "4:1333",
+    "resultCompact": "4:1348",
+    "upcomingCompact": "4:1374",
+    "approvedCompact": "4:1401",
+    "longCompact": "4:1421"
+  },
+  "featureSet": {
+    "ok": true,
+    "nodeId": "4:1534",
+    "name": "Home / Highlight",
+    "type": "COMPONENT_SET"
+  },
+  "eventAction": {
+    "component": "4:3065",
+    "property": "Label#4:15"
+  },
+  "scenes": [
+    {
+      "root": "4:1655",
+      "header": "4:1656",
+      "content": "4:1686",
+      "feature": "4:1700",
+      "standings": "4:1730",
+      "lists": [
+        "4:1776",
+        "4:1797"
+      ],
+      "width": 1440,
+      "kind": "result"
+    },
+    {
+      "root": "4:1818",
+      "header": "4:1819",
+      "content": "4:1849",
+      "feature": "4:1863",
+      "standings": "4:1895",
+      "lists": [
+        "4:1941",
+        "4:1962"
+      ],
+      "width": 1440,
+      "kind": "upcoming"
+    },
+    {
+      "root": "4:1983",
+      "header": "4:1984",
+      "content": "4:2014",
+      "feature": "4:2028",
+      "standings": "4:2052",
+      "lists": [
+        "4:2098",
+        "4:2119"
+      ],
+      "width": 1440,
+      "kind": "approved"
+    },
+    {
+      "root": "4:2140",
+      "header": "4:2141",
+      "content": "4:2168",
+      "feature": "4:2182",
+      "standings": "4:2212",
+      "lists": [
+        "4:2258",
+        "4:2279"
+      ],
+      "width": 1024,
+      "kind": "result"
+    },
+    {
+      "root": "4:2300",
+      "header": "4:2301",
+      "content": "4:2331",
+      "feature": "4:2345",
+      "standings": "4:2375",
+      "lists": [
+        "4:2421",
+        "4:2442"
+      ],
+      "width": 2560,
+      "kind": "result"
+    },
+    {
+      "root": "4:2463",
+      "header": "4:2464",
+      "content": "4:2478",
+      "feature": "4:2492",
+      "standings": "4:2561",
+      "lists": [
+        "4:2519",
+        "4:2540"
+      ],
+      "width": 768,
+      "kind": "result"
+    },
+    {
+      "root": "4:2606",
+      "header": "4:2607",
+      "content": "4:2621",
+      "feature": "4:2635",
+      "standings": "4:2704",
+      "lists": [
+        "4:2662",
+        "4:2683"
+      ],
+      "width": 390,
+      "kind": "result"
+    },
+    {
+      "root": "4:2749",
+      "header": "4:2750",
+      "content": "4:2764",
+      "feature": "4:2778",
+      "standings": "4:2847",
+      "lists": [
+        "4:2805",
+        "4:2826"
+      ],
+      "width": 320,
+      "kind": "result"
+    }
+  ],
+  "primitives": {
+    "color/white": "#FFFFFF",
+    "color/black": "#000000",
+    "color/neutral/50": "#F7F8FA",
+    "color/neutral/100": "#EEF0F3",
+    "color/neutral/200": "#DFE3E8",
+    "color/neutral/400": "#929BA8",
+    "color/neutral/600": "#546071",
+    "color/neutral/800": "#242B35",
+    "color/neutral/950": "#11151B",
+    "color/blue/50": "#EFF5FF",
+    "color/blue/100": "#DBE9FF",
+    "color/blue/400": "#75AAFF",
+    "color/blue/600": "#165DDE",
+    "color/blue/700": "#124DB8",
+    "color/blue/800": "#15376B",
+    "space/0": 0,
+    "space/1": 4,
+    "space/2": 8,
+    "space/3": 12,
+    "space/4": 16,
+    "space/6": 24,
+    "space/8": 32,
+    "space/12": 48,
+    "space/16": 64,
+    "radius/sm": 8,
+    "radius/md": 12,
+    "radius/lg": 16,
+    "radius/full": 999,
+    "size/control": 44,
+    "size/icon": 20,
+    "size/logo": 72,
+    "size/header": 88,
+    "size/content": 1280,
+    "size/stroke": 1,
+    "size/focus": 2,
+    "type/size/caption": 12,
+    "type/size/label": 14,
+    "type/size/body": 16,
+    "type/size/brand": 24,
+    "type/size/title": 32,
+    "type/line/caption": 16,
+    "type/line/label": 20,
+    "type/line/body": 24,
+    "type/line/brand": 28,
+    "type/line/title": 40,
+    "motion/fast": 120,
+    "motion/normal": 180,
+    "motion/reduced": 0,
+    "type/family": "Manrope",
+    "type/size/score": 80,
+    "type/line/score": 80,
+    "type/size/section": 28,
+    "type/line/section": 32,
+    "size/crest": 64,
+    "size/highlight-min": 352,
+    "size/compact-header": 72,
+    "type/family/display": "Barlow Condensed",
+    "type/size/score-compact": 44,
+    "type/line/score-compact": 48
+  },
+  "primitiveIds": {
+    "color/white": "VariableID:2:7",
+    "color/black": "VariableID:2:8",
+    "color/neutral/50": "VariableID:2:9",
+    "color/neutral/100": "VariableID:2:10",
+    "color/neutral/200": "VariableID:2:11",
+    "color/neutral/400": "VariableID:2:12",
+    "color/neutral/600": "VariableID:2:13",
+    "color/neutral/800": "VariableID:2:14",
+    "color/neutral/950": "VariableID:2:15",
+    "color/blue/50": "VariableID:2:16",
+    "color/blue/100": "VariableID:2:17",
+    "color/blue/400": "VariableID:2:18",
+    "color/blue/600": "VariableID:2:19",
+    "color/blue/700": "VariableID:2:20",
+    "color/blue/800": "VariableID:2:21",
+    "space/0": "VariableID:2:22",
+    "space/1": "VariableID:2:23",
+    "space/2": "VariableID:2:24",
+    "space/3": "VariableID:2:25",
+    "space/4": "VariableID:2:26",
+    "space/6": "VariableID:2:27",
+    "space/8": "VariableID:2:28",
+    "space/12": "VariableID:2:29",
+    "space/16": "VariableID:2:30",
+    "radius/sm": "VariableID:2:31",
+    "radius/md": "VariableID:2:32",
+    "radius/lg": "VariableID:2:33",
+    "radius/full": "VariableID:2:34",
+    "size/control": "VariableID:2:35",
+    "size/icon": "VariableID:2:36",
+    "size/logo": "VariableID:2:37",
+    "size/header": "VariableID:2:38",
+    "size/content": "VariableID:2:39",
+    "size/stroke": "VariableID:2:40",
+    "size/focus": "VariableID:2:41",
+    "type/size/caption": "VariableID:2:42",
+    "type/size/label": "VariableID:2:43",
+    "type/size/body": "VariableID:2:44",
+    "type/size/brand": "VariableID:2:45",
+    "type/size/title": "VariableID:2:46",
+    "type/line/caption": "VariableID:2:47",
+    "type/line/label": "VariableID:2:48",
+    "type/line/body": "VariableID:2:49",
+    "type/line/brand": "VariableID:2:50",
+    "type/line/title": "VariableID:2:51",
+    "motion/fast": "VariableID:2:52",
+    "motion/normal": "VariableID:2:53",
+    "motion/reduced": "VariableID:2:54",
+    "type/family": "VariableID:2:55",
+    "type/size/score": "VariableID:3:1129",
+    "type/line/score": "VariableID:3:1130",
+    "type/size/section": "VariableID:3:1131",
+    "type/line/section": "VariableID:3:1132",
+    "size/crest": "VariableID:3:1133",
+    "size/highlight-min": "VariableID:3:1134",
+    "size/compact-header": "VariableID:3:1135",
+    "type/family/display": "VariableID:4:2929",
+    "type/size/score-compact": "VariableID:4:4083",
+    "type/line/score-compact": "VariableID:4:4084"
+  },
+  "lightSpec": {
+    "surface/page": "color/neutral/50",
+    "surface/header": "color/white",
+    "surface/menu": "color/white",
+    "surface/subtle": "color/neutral/50",
+    "text/primary": "color/neutral/950",
+    "text/secondary": "color/neutral/600",
+    "text/on-action": "color/white",
+    "text/disabled": "color/neutral/600",
+    "border/subtle": "color/neutral/200",
+    "border/focus": "color/blue/600",
+    "action/primary": "color/blue/600",
+    "action/primary-hover": "color/blue/700",
+    "action/disabled": "color/neutral/100",
+    "nav/active-bg": "color/blue/50",
+    "nav/active-text": "color/blue/700",
+    "nav/hover-bg": "color/neutral/100",
+    "header/height": "size/header",
+    "header/logo-size": "size/logo",
+    "layout/content-max": "size/content",
+    "control/min-height": "size/control",
+    "control/radius": "radius/md",
+    "control/gap": "space/2",
+    "layout/gutter": "space/8",
+    "menu/icon-bg": "color/blue/50",
+    "menu/icon-color": "color/blue/600",
+    "feature/result-bg": "color/neutral/950",
+    "feature/result-ink": "color/white",
+    "feature/result-muted": "color/neutral/200",
+    "feature/result-line": "color/neutral/800"
+  },
+  "lightIds": {
+    "surface/page": "VariableID:2:56",
+    "surface/header": "VariableID:2:57",
+    "surface/menu": "VariableID:2:58",
+    "surface/subtle": "VariableID:2:59",
+    "text/primary": "VariableID:2:60",
+    "text/secondary": "VariableID:2:61",
+    "text/on-action": "VariableID:2:62",
+    "text/disabled": "VariableID:2:63",
+    "border/subtle": "VariableID:2:64",
+    "border/focus": "VariableID:2:65",
+    "action/primary": "VariableID:2:66",
+    "action/primary-hover": "VariableID:2:67",
+    "action/disabled": "VariableID:2:68",
+    "nav/active-bg": "VariableID:2:69",
+    "nav/active-text": "VariableID:2:70",
+    "nav/hover-bg": "VariableID:2:71",
+    "header/height": "VariableID:2:72",
+    "header/logo-size": "VariableID:2:73",
+    "layout/content-max": "VariableID:2:74",
+    "control/min-height": "VariableID:2:75",
+    "control/radius": "VariableID:2:76",
+    "control/gap": "VariableID:2:77",
+    "layout/gutter": "VariableID:2:78",
+    "menu/icon-bg": "VariableID:2:1123",
+    "menu/icon-color": "VariableID:2:1124",
+    "feature/result-bg": "VariableID:4:2930",
+    "feature/result-ink": "VariableID:4:2931",
+    "feature/result-muted": "VariableID:4:2932",
+    "feature/result-line": "VariableID:4:2933"
+  },
+  "textStyles": {
+    "Caption": "S:dd3e53afd1a443d9aa33abeace318c6bd90ff2d5,",
+    "Label": "S:dc1426a92e2a8697a1eeca2fdb04f4f4f2f030a2,",
+    "Body": "S:f8133e407c02d9cf40f065c0293f26d10fe4ad73,",
+    "Brand": "S:cf9ea3d4fc6355a51063396ad6778ec956074140,",
+    "Title": "S:5a694d6a01c8f2d9ca99a83a8664fb6ad9fb732c,",
+    "Score": "S:ba5d9aa11d5c8b4aa0eade617b98a3df210bf900,",
+    "Section": "S:48d537e5c76438555977e7e694058fb9173c5e98,",
+    "Body Strong": "S:19f3908cd85101fe095a2174bb308a14251009f7,",
+    "Score Compact": "S:4c7fbc8ae59aad9aeb0b5a6295e6520b44e7d644,"
+  },
+  "variableCount": 113,
+  "fonts": {
+    "fonts": [
+      {
+        "fontName": {
+          "family": "Manrope",
+          "style": "Medium",
+          "variationSettings": {
+            "wght": 500
+          }
+        },
+        "count": 238
+      },
+      {
+        "fontName": {
+          "family": "Manrope",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        },
+        "count": 161
+      },
+      {
+        "fontName": {
+          "family": "Barlow Condensed",
+          "style": "SemiBold"
+        },
+        "count": 94
+      },
+      {
+        "fontName": {
+          "family": "Manrope",
+          "style": "SemiBold",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        "count": 50
+      },
+      {
+        "fontName": {
+          "family": "Barlow Condensed",
+          "style": "Bold"
+        },
+        "count": 7
+      }
+    ],
+    "variationAxes": {
+      "Manrope": [
+        "wght"
+      ]
+    }
+  },
+  "previewDirectory": "design/home-v2-previews",
+  "changes": {
+    "uiFont": "Manrope",
+    "displayFont": "Barlow Condensed",
+    "score": "80/80 Bold",
+    "scoreCompact": "44/48 Bold",
+    "brand": "24/28 SemiBold",
+    "section": "28/32 SemiBold",
+    "title": "32/40 SemiBold",
+    "intro": "Competition selector only; generic page heading/subtitle removed",
+    "result": "Dark scoreboard, crest holder, day/month tile, round/time, primary arrow action",
+    "upcoming": "Blue50, centered day/time, single footer round, arrow action",
+    "approval": "Initials, one confirmation line and relative recency",
+    "lists": "Club crest/name rows; score/time capsules; 88px rows"
+  },
+  "scope": "Figma static components only; no implemented app or authored motion claim"
+}

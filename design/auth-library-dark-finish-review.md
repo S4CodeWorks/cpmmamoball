@@ -1,0 +1,42 @@
+disposition: ship
+
+Inputs: no separate QUALITY BAR card was supplied; incumbent DESIGN.md, the approved Light originals and established Dark references govern this Operate extension. Unrelated historical document sections and the complete nested native tree were not exhaustively reviewed. A new concept seed, concept comp, reproduction state/spec/diffs and OS platform references are inapplicable to this existing responsive-web Figma world.
+
+## persistence
+
+Pass. PRODUCT.md and pre-existing DESIGN.md preserve the CPM identity, original assets, Barlow Condensed/Manrope and paired Light/Dark semantic world. The original request extends Dark across every screen since Login through Salvos/Avisos; the prior “Figma primeiro; implementar depois” boundary remains explicit. `auth-library-dark-brief.md` records all five direction promises. Metadata persists ten native pages and 132 source-to-Dark root mappings: Login 14, Registration 28, Recovery 35 and Library 55. The native component record contains 41 separate editable masters/sets. Existing historical future-Dark statements are prior acceptance records, not evidence that these new artifacts are missing.
+
+Evidence passes. All ten required contact parts were opened and inspected, covering every root at 320/390/768/1024/1440/2560 and their states/fixtures. Full-size originals inspected: Login 26031/25953/26451/26856; Registration 27112/28390/29363; Recovery 30325/31390/33614; Library 34323/35515/35759/34141/36561/36858/39840/40084/37931/37318 (all node IDs prefixed `54:`). Original PNG dimensions agree with root metadata; document tops and claimed content are present. Compact Salvos uses its declared extended document height and includes the complete news row. No contact inventory scene or inspected original is blank, malformed or clipped. All 183 supplied PNGs—132 root originals, 41 component exports and ten contacts—pass chunk CRC, image decompression and scanline-length checks. This is native design evidence, not a browser capture matrix.
+
+## fidelity
+
+Before reading the direction contract, the contact inventory established the salient composition: large desktop official crest/stacked CPM wordmark with a separate bounded account form; compact crest/name/back lockup; direct account heading, stage tracker and dominant action; grouped saved rows; inbox filters/read action and matching message details. Representative approved Light originals were then compared directly.
+
+| Salient element or promise | Verdict | Evidence |
+| --- | --- | --- |
+| TYPE | match | Barlow Condensed preserves its compressed display character in wordmark, task titles, section headings and time. Manrope preserves readable UI, body and metadata; no substitute display face appears. |
+| MATERIAL | match | Original official logo and generic crest bitmaps remain visible, with original white/gray fields. Flat tonal surfaces and incumbent drawn vector icons preserve the actual world's material; no fabricated texture, dimensional illustration or physical finish. |
+| GROUND | match | Auth outer-ground samples are exactly #0C1017. Library and existing Dark Jogos top-header samples are exactly #111824; their visible page/card separation agrees with named Midnight #0C1017/#151E2B authority. No newly invented dark temperature or washed-out Light surface appears. |
+| Desktop auth topology and scale | match | Login 26031, Registration 27112 and Recovery 30325 retain the approved Light brand panel, large logo/stacked wordmark, return and lower personal shortcuts, and right task column. Contact inventory retains the same bounded ultrawide composition. |
+| Compact auth composition | match | Original lockup/back control and single current-task column remain complete at 320/390; 768 keeps the same bounded compact pattern. The 320px eight-slot OTP fits without collision in both Registration 28390 and Recovery 31390. |
+| Control surfaces and default outlines | adaptation | The Dark brief FIRST VIEWPORT and explicit local `auth/input-border` alias authorize the neutral #929BA8 default outline against #111824. Light control geometry is preserved; brighter boundaries improve recognition without adding a new primitive palette. |
+| Focus, action and disabled treatment | match | Login 26451 and Recovery 33614 expose clear blue focus; Library 39840/40084 expose whole-row focus. Primary action remains bright blue with dark ink, while disabled verification/security and read-all states use tonal support fills and retained action copy. |
+| Account stages, identity and feedback | match | Dados/E-mail → Código → Senha retain distinct labels, completion checks, compact identity, eight slots, 0:59 wait, resend references and minimum-eight-character guidance. Error states retain problem/recovery text and icons; security pending reserves space without fabricated provider execution. |
+| Saved composition and responsive sequence | match | Approved Light 16394 and Dark 34323 share the two-column grouped topology, count/filter hierarchy, original crests, match/time and bookmark actions. Dark 35515 preserves wrapped filters, complete single sequence and multiline news copy at 320px. |
+| Inbox, reading states and message details | match | Dark 35759/34141 preserve filters, read action and three ordered messages. 37931 removes Novo and shows checks/Tudo lido; 40084 retains readable focus. Detail 36561 matches Light 18727 composition and intrinsic desktop CTA; 36858 retains the full-width compact action and complete body. |
+| Removal/undo and recovery states | match | 37318 changes saved count/news subset coherently and retains visible undo. Contact inventory includes empty, unavailable, loading, error/retry, selected filter, unread-empty and one-read equivalents without fabricated known counts during failure/loading. |
+| Native theme bindings and fixture continuity | match | Stored audit reports zero Light semantic paints across 173 roots/10279 nodes. All 233 inherited dimensional aliases resolve to identical primitive values. Every one of the 100 stored native reaction records matches its expected rebased reaction. This verifies the supplied records, not runtime interaction execution. |
+
+THESIS holds through separated surfaces and readable controls. OWN-WORLD holds through the established palette, typography, assets and corners. STORY preserves approved account stages and proposed public inbox/saved consolidation, with no new success or delivery promise. FIRST VIEWPORT keeps each task immediately identifiable by the official crest, condensed title, current input or grouped rows and direct blue action. FORM preserves editable Dark counterparts and the Light geometry; its explicit no-new-concept extension scope makes a new seed unnecessary. The memory test retains the recognizable CPM crest/condensed sports voice and direct task, without explanatory marketing prose.
+
+## ceiling
+
+Reached within the supplied incumbent authority and native specification scope. Tonal page/header/card/support separation, strong condensed lettering, retained sports/time/crest cues, outlined auth controls and blue action/focus use the world's relevant devices. Additional depth, ornament or image production would change the approved minimal world. No kicker, gradient text, glyph substitute, decorative glass, hard shadow, side stripe or imitation physical material appears. Icon compartments are controls within semantic rows, not a nested page-card scaffold. The bounded 120ms dissolve remains fixture motion; static exports and stored reactions do not verify runtime motion or reduced motion. No HTML/CSS detector ran, and none was run for this review.
+
+## material_fixes
+
+None within the authorized native Figma scope. Demonstration values and all fixtures are explicitly synthetic. No real input, OTP delivery/timer, completed authentication, persistence, admin publication or notification broadcast is claimed. Only the games CTA has a native destination; other destinations and first-read branch persistence retain their declared static/intention scope. Browser keyboard/ARIA, provider sizing, OTP paste/autofill, consent/session/account read storage and responsive/runtime accessibility remain implementation verification work.
+
+## keep
+
+Preserve the approved Light geometry and content, intact raster identity, condensed sports typography, readable Dark outlines and tonal roles, coherent saved/read states, and explicit separation between finite native fixtures and future application behavior.

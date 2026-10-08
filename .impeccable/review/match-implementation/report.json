@@ -1,0 +1,310 @@
+{
+  "results": [
+    {
+      "name": "light-final-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 1169,
+        "hero": 305
+      }
+    },
+    {
+      "name": "light-final-1024",
+      "geometry": {
+        "width": 960,
+        "height": 1284,
+        "hero": 305
+      }
+    },
+    {
+      "name": "light-final-2560",
+      "geometry": {
+        "width": 1280,
+        "height": 1169,
+        "hero": 305
+      }
+    },
+    {
+      "name": "light-final-768",
+      "geometry": {
+        "width": 720,
+        "height": 960,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-final-390",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-final-320",
+      "geometry": {
+        "width": 288,
+        "height": 948,
+        "hero": 261
+      }
+    },
+    {
+      "name": "light-confrontos",
+      "geometry": {
+        "width": 358,
+        "height": 813,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-rodada",
+      "geometry": {
+        "width": 358,
+        "height": 889,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-scheduled",
+      "geometry": {
+        "width": 358,
+        "height": 665,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-live",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-wo",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-empty",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-draw",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-unknown",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-nohistory",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "light-long",
+      "geometry": {
+        "width": 288,
+        "height": 1156,
+        "hero": 341
+      }
+    },
+    {
+      "name": "light-loading",
+      "geometry": {
+        "width": 358,
+        "height": 773
+      }
+    },
+    {
+      "name": "light-missing",
+      "geometry": {
+        "width": 358,
+        "height": 284
+      }
+    },
+    {
+      "name": "light-error",
+      "geometry": {
+        "width": 358,
+        "height": 284
+      }
+    },
+    {
+      "name": "dark-final-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 1169,
+        "hero": 305
+      }
+    },
+    {
+      "name": "dark-final-1024",
+      "geometry": {
+        "width": 960,
+        "height": 1284,
+        "hero": 305
+      }
+    },
+    {
+      "name": "dark-final-2560",
+      "geometry": {
+        "width": 1280,
+        "height": 1169,
+        "hero": 305
+      }
+    },
+    {
+      "name": "dark-final-768",
+      "geometry": {
+        "width": 720,
+        "height": 960,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-final-390",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-final-320",
+      "geometry": {
+        "width": 288,
+        "height": 948,
+        "hero": 261
+      }
+    },
+    {
+      "name": "dark-confrontos",
+      "geometry": {
+        "width": 358,
+        "height": 813,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-rodada",
+      "geometry": {
+        "width": 358,
+        "height": 889,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-scheduled",
+      "geometry": {
+        "width": 358,
+        "height": 665,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-live",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-wo",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-empty",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-draw",
+      "geometry": {
+        "width": 358,
+        "height": 573,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-unknown",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-nohistory",
+      "geometry": {
+        "width": 358,
+        "height": 928,
+        "hero": 241
+      }
+    },
+    {
+      "name": "dark-long",
+      "geometry": {
+        "width": 288,
+        "height": 1156,
+        "hero": 341
+      }
+    },
+    {
+      "name": "dark-loading",
+      "geometry": {
+        "width": 358,
+        "height": 773
+      }
+    },
+    {
+      "name": "dark-missing",
+      "geometry": {
+        "width": 358,
+        "height": 284
+      }
+    },
+    {
+      "name": "dark-error",
+      "geometry": {
+        "width": 358,
+        "height": 284
+      }
+    },
+    {
+      "name": "real-supabase",
+      "geometry": {
+        "width": 1280,
+        "height": 316
+      }
+    }
+  ],
+  "errors": []
+}

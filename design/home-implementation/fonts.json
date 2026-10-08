@@ -1,0 +1,38 @@
+[
+  {
+    "family": "Barlow Condensed",
+    "weight": "600",
+    "path": "public/fonts/barlow-condensed-600.ttf",
+    "origin": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B4873_3E.ttf"
+  },
+  {
+    "family": "Barlow Condensed",
+    "weight": "700",
+    "path": "public/fonts/barlow-condensed-700.ttf",
+    "origin": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2_3E.ttf"
+  },
+  {
+    "family": "Manrope",
+    "weight": "400",
+    "path": "public/fonts/manrope-400.ttf",
+    "origin": "https://fonts.gstatic.com/s/manrope/v20/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk79FO_F.ttf"
+  },
+  {
+    "family": "Manrope",
+    "weight": "500",
+    "path": "public/fonts/manrope-500.ttf",
+    "origin": "https://fonts.gstatic.com/s/manrope/v20/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk7PFO_F.ttf"
+  },
+  {
+    "family": "Manrope",
+    "weight": "600",
+    "path": "public/fonts/manrope-600.ttf",
+    "origin": "https://fonts.gstatic.com/s/manrope/v20/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk4jE-_F.ttf"
+  },
+  {
+    "family": "Manrope",
+    "weight": "700",
+    "path": "public/fonts/manrope-700.ttf",
+    "origin": "https://fonts.gstatic.com/s/manrope/v20/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk4aE-_F.ttf"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "theme": "light",
+    "width": "1440",
+    "meanChannelDifference": 1.4916652735985736,
+    "pixelsWithRGBsumDifferenceAbove60Percent": 2.0828457595007244,
+    "note": "Font rasterization differs between Figma and Chromium; real fixture matches reference content."
+  },
+  {
+    "theme": "light",
+    "width": "390",
+    "meanChannelDifference": 4.02805110084262,
+    "pixelsWithRGBsumDifferenceAbove60Percent": 4.3461387454320315,
+    "note": "Font rasterization differs between Figma and Chromium; real fixture matches reference content."
+  },
+  {
+    "theme": "dark",
+    "width": "1440",
+    "meanChannelDifference": 1.4439763735651399,
+    "pixelsWithRGBsumDifferenceAbove60Percent": 2.0609049370333223,
+    "note": "Font rasterization differs between Figma and Chromium; real fixture matches reference content."
+  },
+  {
+    "theme": "dark",
+    "width": "390",
+    "meanChannelDifference": 3.7817386971097218,
+    "pixelsWithRGBsumDifferenceAbove60Percent": 4.300232551115943,
+    "note": "Font rasterization differs between Figma and Chromium; real fixture matches reference content."
+  }
+]

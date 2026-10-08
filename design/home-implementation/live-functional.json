@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "themePersistence": true,
+  "consent": true,
+  "realMatchNavigation": true,
+  "searchAndBrowserBack": true,
+  "mobileMenuKeyboard": true,
+  "errors": [],
+  "retryAfter503": true,
+  "errorIsNotEmpty": true,
+  "simulatedFailureCount": 4
+}

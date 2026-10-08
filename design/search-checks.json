@@ -1,0 +1,167 @@
+{
+  "scope": "Native Figma Light only; no runtime/code/DB changes",
+  "exports": [
+    {
+      "file": "design/search-previews-final/43-40569.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-40704.png",
+      "width": 1440,
+      "height": 1036
+    },
+    {
+      "file": "design/search-previews-final/43-40896.png",
+      "width": 1024,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-41028.png",
+      "width": 1024,
+      "height": 1036
+    },
+    {
+      "file": "design/search-previews-final/43-41217.png",
+      "width": 2560,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-41352.png",
+      "width": 2560,
+      "height": 1036
+    },
+    {
+      "file": "design/search-previews-final/43-41544.png",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-41660.png",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-41806.png",
+      "width": 390,
+      "height": 876
+    },
+    {
+      "file": "design/search-previews-final/43-41922.png",
+      "width": 390,
+      "height": 1020
+    },
+    {
+      "file": "design/search-previews-final/43-42069.png",
+      "width": 320,
+      "height": 876
+    },
+    {
+      "file": "design/search-previews-final/43-42224.png",
+      "width": 320,
+      "height": 1048
+    },
+    {
+      "file": "design/search-previews-final/43-42371.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-42572.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-42774.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-43167.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-43367.png",
+      "width": 1440,
+      "height": 1036
+    },
+    {
+      "file": "design/search-previews-final/43-43569.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-43769.png",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "design/search-previews-final/43-43977.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-previews-final/43-44134.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-previews-final/43-44292.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-previews-final/43-44450.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-previews-final/43-44606.png",
+      "width": 390,
+      "height": 1020
+    },
+    {
+      "file": "design/search-previews-final/43-44764.png",
+      "width": 390,
+      "height": 992
+    },
+    {
+      "file": "design/search-previews-final/43-44920.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "design/search-previews-final/43-45084.png",
+      "width": 320,
+      "height": 1088
+    },
+    {
+      "file": "design/search-previews-final/43-45281.png",
+      "width": 1040,
+      "height": 572
+    },
+    {
+      "file": "design/search-previews-final/43-45292.png",
+      "width": 1336,
+      "height": 584
+    },
+    {
+      "file": "design/search-previews-final/43-45379.png",
+      "width": 772,
+      "height": 408
+    },
+    {
+      "file": "design/search-previews-final/44-45457.png",
+      "width": 1336,
+      "height": 976
+    },
+    {
+      "file": "design/search-previews-final/44-45616.png",
+      "width": 406,
+      "height": 812
+    }
+  ],
+  "count": 32,
+  "empty_files": []
+}

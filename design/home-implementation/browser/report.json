@@ -1,0 +1,452 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "width": 1440,
+      "height": 997,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 88
+      },
+      "home": {
+        "x": 80,
+        "y": 88,
+        "width": 1280,
+        "height": 1041
+      },
+      "feature": {
+        "x": 80,
+        "y": 196,
+        "width": 856,
+        "height": 352
+      },
+      "standings": {
+        "x": 960,
+        "y": 196,
+        "width": 400,
+        "height": 401
+      },
+      "lists": {
+        "x": 80,
+        "y": 629,
+        "width": 1280,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 1057,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 88
+      },
+      "home": {
+        "x": 24,
+        "y": 88,
+        "width": 976,
+        "height": 1041
+      },
+      "feature": {
+        "x": 24,
+        "y": 196,
+        "width": 600,
+        "height": 352
+      },
+      "standings": {
+        "x": 648,
+        "y": 196,
+        "width": 352,
+        "height": 401
+      },
+      "lists": {
+        "x": 24,
+        "y": 629,
+        "width": 976,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "light",
+      "width": 2560,
+      "height": 997,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 2560,
+        "height": 88
+      },
+      "home": {
+        "x": 640,
+        "y": 88,
+        "width": 1280,
+        "height": 1041
+      },
+      "feature": {
+        "x": 640,
+        "y": 196,
+        "width": 856,
+        "height": 352
+      },
+      "standings": {
+        "x": 1520,
+        "y": 196,
+        "width": 400,
+        "height": 401
+      },
+      "lists": {
+        "x": 640,
+        "y": 629,
+        "width": 1280,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "height": 1698,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 72
+      },
+      "home": {
+        "x": 24,
+        "y": 72,
+        "width": 720,
+        "height": 1758
+      },
+      "feature": {
+        "x": 24,
+        "y": 180,
+        "width": 720,
+        "height": 325
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 24,
+        "y": 537,
+        "width": 720,
+        "height": 696
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 1698,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 72
+      },
+      "home": {
+        "x": 16,
+        "y": 72,
+        "width": 358,
+        "height": 1758
+      },
+      "feature": {
+        "x": 16,
+        "y": 180,
+        "width": 358,
+        "height": 325
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 16,
+        "y": 537,
+        "width": 358,
+        "height": 696
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 1800,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 72
+      },
+      "home": {
+        "x": 16,
+        "y": 72,
+        "width": 288,
+        "height": 1818
+      },
+      "feature": {
+        "x": 16,
+        "y": 180,
+        "width": 288,
+        "height": 341
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 16,
+        "y": 553,
+        "width": 288,
+        "height": 708
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "height": 997,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 88
+      },
+      "home": {
+        "x": 80,
+        "y": 88,
+        "width": 1280,
+        "height": 1041
+      },
+      "feature": {
+        "x": 80,
+        "y": 196,
+        "width": 856,
+        "height": 352
+      },
+      "standings": {
+        "x": 960,
+        "y": 196,
+        "width": 400,
+        "height": 401
+      },
+      "lists": {
+        "x": 80,
+        "y": 629,
+        "width": 1280,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 1057,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 88
+      },
+      "home": {
+        "x": 24,
+        "y": 88,
+        "width": 976,
+        "height": 1041
+      },
+      "feature": {
+        "x": 24,
+        "y": 196,
+        "width": 600,
+        "height": 352
+      },
+      "standings": {
+        "x": 648,
+        "y": 196,
+        "width": 352,
+        "height": 401
+      },
+      "lists": {
+        "x": 24,
+        "y": 629,
+        "width": 976,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 2560,
+      "height": 997,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 2560,
+        "height": 88
+      },
+      "home": {
+        "x": 640,
+        "y": 88,
+        "width": 1280,
+        "height": 1041
+      },
+      "feature": {
+        "x": 640,
+        "y": 196,
+        "width": 856,
+        "height": 352
+      },
+      "standings": {
+        "x": 1520,
+        "y": 196,
+        "width": 400,
+        "height": 401
+      },
+      "lists": {
+        "x": 640,
+        "y": 629,
+        "width": 1280,
+        "height": 336
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "height": 1698,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 72
+      },
+      "home": {
+        "x": 24,
+        "y": 72,
+        "width": 720,
+        "height": 1758
+      },
+      "feature": {
+        "x": 24,
+        "y": 180,
+        "width": 720,
+        "height": 325
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 24,
+        "y": 537,
+        "width": 720,
+        "height": 696
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 1698,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 72
+      },
+      "home": {
+        "x": 16,
+        "y": 72,
+        "width": 358,
+        "height": 1758
+      },
+      "feature": {
+        "x": 16,
+        "y": 180,
+        "width": 358,
+        "height": 325
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 16,
+        "y": 537,
+        "width": 358,
+        "height": 696
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 1800,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 72
+      },
+      "home": {
+        "x": 16,
+        "y": 72,
+        "width": 288,
+        "height": 1818
+      },
+      "feature": {
+        "x": 16,
+        "y": 180,
+        "width": 288,
+        "height": 341
+      },
+      "standings": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "lists": {
+        "x": 16,
+        "y": 553,
+        "width": 288,
+        "height": 708
+      },
+      "overflow": false,
+      "loadedImages": true
+    },
+    {
+      "liveText": "Jogos, resultados e classificação CPM MamoBall\nserie b teste 2026\nserie b teste\nAgendado\nTime Teste Feed\n23 AGO\n20h00\ndomingo\nReal Madrid\nRodada 2\nVer confronto\nClassificação\n\nserie b teste · 2026\n\n#\nClube\nPts\n1\nteste fc\n3\n2\nTime Teste Feed\n0\n3\nReal Madrid\n0\nTabela completa\nPróximos jogos\nVer jogos\nTime Teste Feed\nReal Madrid\n23 ago\n20h00\nHORÁRIO\nteste fc\nReal Madrid\n13 set\n20h00\nHORÁRIO\nResultados recentes\nVer histórico\nteste fc\nReal Madrid\n28 jul\n4 – 2\nFINAL\nNotícias\nVer todas\nComunicado · Ter 11 Ago\nATENCAO\n\nisso é um comunidado de teste\n\nInscrições abertas\nInscreva seu time"
+    }
+  ],
+  "errors": []
+}

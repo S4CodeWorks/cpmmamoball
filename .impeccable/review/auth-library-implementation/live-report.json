@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "light real public announcements empty",
+    "light real anonymous saved empty",
+    "dark real public announcements empty",
+    "dark real anonymous saved empty"
+  ],
+  "errors": [],
+  "network": "real Supabase public reads; no writes or email sends"
+}

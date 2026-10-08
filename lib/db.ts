@@ -4,7 +4,7 @@
  */
 
 import { supabase } from './supabase';
-import type { Club, Standing, Match, Scorer, NewsItem, Player, Position, GoalEntry } from './types';
+import type { Club, Standing, Match, Scorer, NewsItem, Player, Position, GoalEntry, BracketTie, CompetitionFormat } from './types';
 
 // ── Tipos específicos do banco ─────────────────────────────────────────────
 
@@ -15,6 +15,7 @@ export interface Competition {
   status: 'planejado' | 'inscricoes' | 'em_andamento' | 'encerrado';
   rodada_atual: number;
   total_rodadas: number;
+  classification_format: CompetitionFormat;
 }
 
 // Jogador proposto numa inscrição — ainda não é um Player real (sem club_id, o time não existe ainda)
@@ -165,7 +166,38 @@ export async function fetchCompetitions(): Promise<Competition[]> {
     .select('*')
     .order('created_at', { ascending: false });
   if (error) throw error;
-  return (data ?? []) as Competition[];
+  return (data ?? []).map(row => ({
+    ...(row as Omit<Competition, 'classification_format'> & { classification_format?: CompetitionFormat }),
+    classification_format: (row as { classification_format?: CompetitionFormat }).classification_format ?? 'league',
+  }));
+}
+
+export async function fetchBracketTies(competitionId: string): Promise<BracketTie[]> {
+  const { data, error } = await supabase
+    .from('competition_bracket_ties')
+    .select('*')
+    .eq('competition_id', competitionId)
+    .order('stage_order', { ascending: true })
+    .order('tie_order', { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as BracketTie[];
+}
+
+export type BracketTieInput = Omit<BracketTie, 'id'>;
+
+export async function createBracketTie(tie: BracketTieInput): Promise<void> {
+  const { error } = await supabase.from('competition_bracket_ties').insert(tie);
+  if (error) throw error;
+}
+
+export async function updateBracketTie(id: string, tie: BracketTieInput): Promise<void> {
+  const { error } = await supabase.from('competition_bracket_ties').update(tie).eq('id', id);
+  if (error) throw error;
+}
+
+export async function deleteBracketTie(id: string): Promise<void> {
+  const { error } = await supabase.from('competition_bracket_ties').delete().eq('id', id);
+  if (error) throw error;
 }
 
 export async function fetchStandings(competitionId: string): Promise<Standing[]> {
@@ -253,19 +285,48 @@ export async function fetchInscricoes(competitionId?: string): Promise<Inscricao
 // Chave: 'club:<id>' | 'match:<id>' | 'art:<id>'
 
 export async function fetchBookmarkKeys(userId: string): Promise<string[]> {
-  const { data, error } = await supabase.from('bookmarks').select('key').eq('user_id', userId);
-  if (error) throw error;
-  return (data ?? []).map(r => (r as { key: string }).key);
+  const keys:string[]=[];
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+  try { for(let offset=0;;offset+=500){
+    const {data,error}=await supabase.from('bookmarks').select('key').eq('user_id',userId).order('key').range(offset,offset+499).abortSignal(controller.signal);
+    if(error)throw error;keys.push(...(data??[]).map(row=>row.key as string));
+    if((data?.length??0)<500)return keys;
+  }} finally {clearTimeout(timer);}
 }
 
 export async function addBookmarkKey(userId: string, key: string): Promise<void> {
-  const { error } = await supabase.from('bookmarks').insert({ user_id: userId, key });
+  const { error } = await supabase.from('bookmarks').upsert({ user_id: userId, key }, { onConflict: 'user_id,key', ignoreDuplicates: true });
   if (error) throw error;
 }
 
 export async function removeBookmarkKey(userId: string, key: string): Promise<void> {
   const { error } = await supabase.from('bookmarks').delete().eq('user_id', userId).eq('key', key);
   if (error) throw error;
+}
+
+/** Resolve saved resources by ID, including matches outside the active competition. */
+export async function fetchSavedResources(keys: string[], signal?: AbortSignal) {
+  const result: { clubs: Club[]; competitions: Competition[]; matches: Match[]; news: NewsItem[] } = { clubs: [], competitions: [], matches: [], news: [] };
+  const groups = [
+    { prefix: 'club:', table: 'clubs', map: rowToClub, target: result.clubs },
+    { prefix: 'favcomp:', table: 'competitions', map: (r: Record<string, unknown>) => r as unknown as Competition, target: result.competitions },
+    { prefix: 'match:', table: 'matches', map: rowToMatch, target: result.matches },
+    { prefix: 'art:', table: 'news', map: rowToNews, target: result.news },
+  ];
+  await Promise.all(groups.map(async group => {
+    const ids = keys.filter(k => k.startsWith(group.prefix)).map(k => k.slice(group.prefix.length)).filter(id => group.table !== 'matches' || /^\d+$/.test(id));
+    for (let i = 0; i < ids.length; i += 100) {
+      let q = supabase.from(group.table).select('*').in('id', ids.slice(i, i + 100));
+      if (group.table === 'news') q = q.eq('published', true);
+      if (signal) q = q.abortSignal(signal);
+      const { data, error } = await q;
+      if (error) throw error;
+      for (const row of data ?? []) (group.target as unknown[]).push(group.map(row));
+    }
+  }));
+  const teamIds=[...new Set(result.matches.flatMap(match=>[match.home,match.away]))].filter(id=>id&&!result.clubs.some(club=>club.id===id));
+  for(let i=0;i<teamIds.length;i+=100){let q=supabase.from('clubs').select('*').in('id',teamIds.slice(i,i+100));if(signal)q=q.abortSignal(signal);const {data,error}=await q;if(error)throw error;result.clubs.push(...(data??[]).map(rowToClub));}
+  return result;
 }
 
 // ── Escrita — Clubes ──────────────────────────────────────────────────────
@@ -290,30 +351,6 @@ export async function deleteClub(id: string) {
 }
 
 // ── Leitura / Escrita — Jogadores ────────────────────────────────────────────
-
-export interface PlayerSearchResult {
-  id: string;
-  nick: string;
-  game_id: string;
-  club_id: string;
-}
-
-// Busca por nick OU ID do jogo — duas queries ilike separadas (em vez de um filtro
-// .or() com string interpolada) pra não dar brecha de injeção de filtro PostgREST.
-export async function searchPlayers(query: string, limit = 8): Promise<PlayerSearchResult[]> {
-  const q = query.trim();
-  if (!q) return [];
-  const pattern = `%${q}%`;
-  const [byNick, byGameId] = await Promise.all([
-    supabase.from('players').select('id, nick, game_id, club_id').ilike('nick', pattern).limit(limit),
-    supabase.from('players').select('id, nick, game_id, club_id').ilike('game_id', pattern).limit(limit),
-  ]);
-  if (byNick.error) throw byNick.error;
-  if (byGameId.error) throw byGameId.error;
-  const map = new Map<string, PlayerSearchResult>();
-  [...(byNick.data ?? []), ...(byGameId.data ?? [])].forEach(p => map.set((p as PlayerSearchResult).id, p as PlayerSearchResult));
-  return [...map.values()].slice(0, limit);
-}
 
 export async function fetchPlayers(clubId: string): Promise<Player[]> {
   const { data, error } = await supabase

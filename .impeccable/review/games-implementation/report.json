@@ -1,0 +1,733 @@
+{
+  "results": [
+    {
+      "name": "light-today-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 867,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-today-1024",
+      "geometry": {
+        "width": 976,
+        "height": 867,
+        "cards": [
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-today-2560",
+      "geometry": {
+        "width": 1280,
+        "height": 867,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-today-768",
+      "geometry": {
+        "width": 720,
+        "height": 867,
+        "cards": [
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-today-390",
+      "geometry": {
+        "width": 358,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-today-320",
+      "geometry": {
+        "width": 288,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-upcoming-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 978,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-results-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 930,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-upcoming-390",
+      "geometry": {
+        "width": 358,
+        "height": 1324,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-results-390",
+      "geometry": {
+        "width": 358,
+        "height": 1276,
+        "cards": [
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-empty",
+      "geometry": {
+        "width": 358,
+        "height": 580,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-empty-upcoming",
+      "geometry": {
+        "width": 358,
+        "height": 512,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-empty-results",
+      "geometry": {
+        "width": 358,
+        "height": 512,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-loading",
+      "geometry": {
+        "width": 358,
+        "height": 656,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-error",
+      "geometry": {
+        "width": 358,
+        "height": 596,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-long",
+      "geometry": {
+        "width": 288,
+        "height": 1288,
+        "cards": [
+          {
+            "width": 288,
+            "height": 236
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 236
+          },
+          {
+            "width": 288,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-missing",
+      "geometry": {
+        "width": 358,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "light-loading-320",
+      "geometry": {
+        "width": 288,
+        "height": 656,
+        "cards": []
+      }
+    },
+    {
+      "name": "light-error-320",
+      "geometry": {
+        "width": 288,
+        "height": 596,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-today-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 867,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-today-1024",
+      "geometry": {
+        "width": 976,
+        "height": 867,
+        "cards": [
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          },
+          {
+            "width": 976,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-today-2560",
+      "geometry": {
+        "width": 1280,
+        "height": 867,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-today-768",
+      "geometry": {
+        "width": 720,
+        "height": 867,
+        "cards": [
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          },
+          {
+            "width": 720,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-today-390",
+      "geometry": {
+        "width": 358,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-today-320",
+      "geometry": {
+        "width": 288,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-upcoming-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 978,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          },
+          {
+            "width": 1280,
+            "height": 140
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-results-1440",
+      "geometry": {
+        "width": 1280,
+        "height": 930,
+        "cards": [
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          },
+          {
+            "width": 1280,
+            "height": 128
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-upcoming-390",
+      "geometry": {
+        "width": 358,
+        "height": 1324,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-results-390",
+      "geometry": {
+        "width": 358,
+        "height": 1276,
+        "cards": [
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          },
+          {
+            "width": 358,
+            "height": 192
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-empty",
+      "geometry": {
+        "width": 358,
+        "height": 580,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-empty-upcoming",
+      "geometry": {
+        "width": 358,
+        "height": 512,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-empty-results",
+      "geometry": {
+        "width": 358,
+        "height": 512,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-loading",
+      "geometry": {
+        "width": 358,
+        "height": 656,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-error",
+      "geometry": {
+        "width": 358,
+        "height": 596,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-long",
+      "geometry": {
+        "width": 288,
+        "height": 1288,
+        "cards": [
+          {
+            "width": 288,
+            "height": 236
+          },
+          {
+            "width": 288,
+            "height": 204
+          },
+          {
+            "width": 288,
+            "height": 236
+          },
+          {
+            "width": 288,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-missing",
+      "geometry": {
+        "width": 358,
+        "height": 1224,
+        "cards": [
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          },
+          {
+            "width": 358,
+            "height": 204
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark-loading-320",
+      "geometry": {
+        "width": 288,
+        "height": 656,
+        "cards": []
+      }
+    },
+    {
+      "name": "dark-error-320",
+      "geometry": {
+        "width": 288,
+        "height": 596,
+        "cards": []
+      }
+    },
+    {
+      "name": "live-light",
+      "geometry": {
+        "width": 1280,
+        "height": 488,
+        "cards": []
+      }
+    },
+    {
+      "name": "live-dark",
+      "geometry": {
+        "width": 1280,
+        "height": 488,
+        "cards": []
+      }
+    }
+  ],
+  "errors": []
+}

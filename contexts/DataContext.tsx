@@ -63,6 +63,9 @@ async function fetchAll(): Promise<Omit<DataState, 'loading' | 'initialLoad' | '
     fetchInscricoes(),
   ]);
 
+  if (clubsR.status === 'rejected') throw clubsR.reason;
+  if (compsR.status === 'rejected') throw compsR.reason;
+
   const clubs        = settled(clubsR,  []);
   const competitions = settled(compsR,  []);
   const news         = settled(newsR,   []);
@@ -84,6 +87,8 @@ async function fetchAll(): Promise<Omit<DataState, 'loading' | 'initialLoad' | '
       fetchMatches(active.id),
       fetchScorers(active.id),
     ]);
+    if (standR.status === 'rejected') throw standR.reason;
+    if (matchR.status === 'rejected') throw matchR.reason;
     standings = settled(standR, []);
     matches   = settled(matchR, []);
     scorers   = settled(scorR,  []);

@@ -1,0 +1,1545 @@
+{
+  "version": 1,
+  "artifact": "Salvos e Avisos · Light",
+  "pages": {
+    "screens": "54:15397",
+    "components": "54:15398",
+    "states": "54:15399"
+  },
+  "scenes": [
+    {
+      "root": "54:15818",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:15828",
+      "back": "54:15935",
+      "filters": {
+        "Todos": "54:15945",
+        "Competições": "54:15950",
+        "Clubes": "54:15957",
+        "Jogos": "54:15963",
+        "Notícias": "54:15971"
+      },
+      "rows": [
+        "54:15986",
+        "54:16002",
+        "54:16012",
+        "54:16029",
+        "54:16058"
+      ],
+      "removeButtons": [
+        "I54:15986;54:15594",
+        "I54:16002;54:15608",
+        "I54:16012;54:15608",
+        "I54:16029;54:15641",
+        "I54:16058;54:15621"
+      ],
+      "openButtons": [
+        "54:15986",
+        "54:16002",
+        "54:16012",
+        "I54:16029;54:15639",
+        "54:16058"
+      ]
+    },
+    {
+      "root": "54:16069",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:16079",
+      "back": "54:16186",
+      "action": "54:16207",
+      "filters": {
+        "Todos": "54:16196",
+        "Não lidos": "54:16201"
+      },
+      "rows": [
+        "54:16212",
+        "54:16226",
+        "54:16240"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:16212;54:15567",
+        "I54:16226;54:15567",
+        "I54:16240;54:15582"
+      ]
+    },
+    {
+      "root": "54:16254",
+      "width": 390,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:16264",
+      "back": "54:16371",
+      "action": "54:16392",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:16394",
+      "width": 1440,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:16397",
+      "back": "54:16529",
+      "filters": {
+        "Todos": "54:16539",
+        "Competições": "54:16544",
+        "Clubes": "54:16551",
+        "Jogos": "54:16557",
+        "Notícias": "54:16565"
+      },
+      "rows": [
+        "54:16581",
+        "54:16600",
+        "54:16613",
+        "54:16633",
+        "54:16662"
+      ],
+      "removeButtons": [
+        "I54:16581;54:15499",
+        "I54:16600;54:15513",
+        "I54:16613;54:15513",
+        "I54:16633;54:15552",
+        "I54:16662;54:15528"
+      ],
+      "openButtons": [
+        "I54:16581;54:15496",
+        "I54:16600;54:15510",
+        "I54:16613;54:15510",
+        "I54:16633;54:15549",
+        "I54:16662;54:15525"
+      ]
+    },
+    {
+      "root": "54:16676",
+      "width": 1024,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:16679",
+      "back": "54:16808",
+      "filters": {
+        "Todos": "54:16818",
+        "Competições": "54:16823",
+        "Clubes": "54:16830",
+        "Jogos": "54:16836",
+        "Notícias": "54:16844"
+      },
+      "rows": [
+        "54:16860",
+        "54:16879",
+        "54:16892",
+        "54:16912",
+        "54:16941"
+      ],
+      "removeButtons": [
+        "I54:16860;54:15499",
+        "I54:16879;54:15513",
+        "I54:16892;54:15513",
+        "I54:16912;54:15552",
+        "I54:16941;54:15528"
+      ],
+      "openButtons": [
+        "I54:16860;54:15496",
+        "I54:16879;54:15510",
+        "I54:16892;54:15510",
+        "I54:16912;54:15549",
+        "I54:16941;54:15525"
+      ]
+    },
+    {
+      "root": "54:16955",
+      "width": 2560,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:16958",
+      "back": "54:17090",
+      "filters": {
+        "Todos": "54:17100",
+        "Competições": "54:17105",
+        "Clubes": "54:17112",
+        "Jogos": "54:17118",
+        "Notícias": "54:17126"
+      },
+      "rows": [
+        "54:17142",
+        "54:17161",
+        "54:17174",
+        "54:17194",
+        "54:17223"
+      ],
+      "removeButtons": [
+        "I54:17142;54:15499",
+        "I54:17161;54:15513",
+        "I54:17174;54:15513",
+        "I54:17194;54:15552",
+        "I54:17223;54:15528"
+      ],
+      "openButtons": [
+        "I54:17142;54:15496",
+        "I54:17161;54:15510",
+        "I54:17174;54:15510",
+        "I54:17194;54:15549",
+        "I54:17223;54:15525"
+      ]
+    },
+    {
+      "root": "54:17237",
+      "width": 768,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:17247",
+      "back": "54:17354",
+      "filters": {
+        "Todos": "54:17364",
+        "Competições": "54:17369",
+        "Clubes": "54:17376",
+        "Jogos": "54:17382",
+        "Notícias": "54:17390"
+      },
+      "rows": [
+        "54:17405",
+        "54:17424",
+        "54:17437",
+        "54:17457",
+        "54:17486"
+      ],
+      "removeButtons": [
+        "I54:17405;54:15499",
+        "I54:17424;54:15513",
+        "I54:17437;54:15513",
+        "I54:17457;54:15552",
+        "I54:17486;54:15528"
+      ],
+      "openButtons": [
+        "I54:17405;54:15496",
+        "I54:17424;54:15510",
+        "I54:17437;54:15510",
+        "I54:17457;54:15549",
+        "I54:17486;54:15525"
+      ]
+    },
+    {
+      "root": "54:17500",
+      "width": 320,
+      "kind": "Salvos",
+      "state": "Default",
+      "content": "54:17510",
+      "back": "54:17617",
+      "filters": {
+        "Todos": "54:17627",
+        "Competições": "54:17632",
+        "Clubes": "54:17639",
+        "Jogos": "54:17645",
+        "Notícias": "54:17653"
+      },
+      "rows": [
+        "54:17668",
+        "54:17684",
+        "54:17694",
+        "54:17711",
+        "54:17740"
+      ],
+      "removeButtons": [
+        "I54:17668;54:15594",
+        "I54:17684;54:15608",
+        "I54:17694;54:15608",
+        "I54:17711;54:15641",
+        "I54:17740;54:15621"
+      ],
+      "openButtons": [
+        "54:17668",
+        "54:17684",
+        "54:17694",
+        "I54:17711;54:15639",
+        "54:17740"
+      ]
+    },
+    {
+      "root": "54:17751",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:17754",
+      "back": "54:17886",
+      "action": "54:17907",
+      "filters": {
+        "Todos": "54:17896",
+        "Não lidos": "54:17901"
+      },
+      "rows": [
+        "54:17912",
+        "54:17926",
+        "54:17940"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:17912;54:15567",
+        "I54:17926;54:15567",
+        "I54:17940;54:15582"
+      ]
+    },
+    {
+      "root": "54:17954",
+      "width": 1024,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:17957",
+      "back": "54:18086",
+      "action": "54:18107",
+      "filters": {
+        "Todos": "54:18096",
+        "Não lidos": "54:18101"
+      },
+      "rows": [
+        "54:18112",
+        "54:18126",
+        "54:18140"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:18112;54:15567",
+        "I54:18126;54:15567",
+        "I54:18140;54:15582"
+      ]
+    },
+    {
+      "root": "54:18154",
+      "width": 2560,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:18157",
+      "back": "54:18289",
+      "action": "54:18310",
+      "filters": {
+        "Todos": "54:18299",
+        "Não lidos": "54:18304"
+      },
+      "rows": [
+        "54:18315",
+        "54:18329",
+        "54:18343"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:18315;54:15567",
+        "I54:18329;54:15567",
+        "I54:18343;54:15582"
+      ]
+    },
+    {
+      "root": "54:18357",
+      "width": 768,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:18367",
+      "back": "54:18474",
+      "action": "54:18495",
+      "filters": {
+        "Todos": "54:18484",
+        "Não lidos": "54:18489"
+      },
+      "rows": [
+        "54:18500",
+        "54:18514",
+        "54:18528"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:18500;54:15567",
+        "I54:18514;54:15567",
+        "I54:18528;54:15582"
+      ]
+    },
+    {
+      "root": "54:18542",
+      "width": 320,
+      "kind": "Avisos",
+      "state": "Default",
+      "content": "54:18552",
+      "back": "54:18659",
+      "action": "54:18680",
+      "filters": {
+        "Todos": "54:18669",
+        "Não lidos": "54:18674"
+      },
+      "rows": [
+        "54:18685",
+        "54:18699",
+        "54:18713"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:18685;54:15567",
+        "I54:18699;54:15567",
+        "I54:18713;54:15582"
+      ]
+    },
+    {
+      "root": "54:18727",
+      "width": 1440,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:18730",
+      "back": "54:18862",
+      "action": "54:18883",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:18885",
+      "width": 1024,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:18888",
+      "back": "54:19017",
+      "action": "54:19038",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19040",
+      "width": 2560,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:19043",
+      "back": "54:19175",
+      "action": "54:19196",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19198",
+      "width": 768,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:19208",
+      "back": "54:19315",
+      "action": "54:19336",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19338",
+      "width": 320,
+      "kind": "Aviso",
+      "state": "Default",
+      "content": "54:19348",
+      "back": "54:19455",
+      "action": "54:19476",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    }
+  ],
+  "states": [
+    {
+      "root": "54:19478",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Empty",
+      "content": "54:19488",
+      "back": "54:19595",
+      "action": "54:19644",
+      "filters": {
+        "Todos": "54:19605",
+        "Competições": "54:19610",
+        "Clubes": "54:19617",
+        "Jogos": "54:19623",
+        "Notícias": "54:19631"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19646",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Error",
+      "content": "54:19656",
+      "back": "54:19763",
+      "action": "54:19813",
+      "filters": {
+        "Todos": "54:19773",
+        "Competições": "54:19778",
+        "Clubes": "54:19785",
+        "Jogos": "54:19791",
+        "Notícias": "54:19799"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19815",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Loading",
+      "content": "54:19825",
+      "back": "54:19932",
+      "filters": {
+        "Todos": "54:19942",
+        "Competições": "54:19947",
+        "Clubes": "54:19954",
+        "Jogos": "54:19960",
+        "Notícias": "54:19968"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:19981",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "ClubFilter",
+      "content": "54:19991",
+      "back": "54:20098",
+      "filters": {
+        "Todos": "54:20108",
+        "Competições": "54:20113",
+        "Clubes": "54:20120",
+        "Jogos": "54:20126",
+        "Notícias": "54:20134"
+      },
+      "rows": [
+        "54:20148",
+        "54:20158"
+      ],
+      "removeButtons": [
+        "I54:20148;54:15608",
+        "I54:20158;54:15608"
+      ],
+      "openButtons": [
+        "54:20148",
+        "54:20158"
+      ]
+    },
+    {
+      "root": "54:20168",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Removed",
+      "content": "54:20178",
+      "back": "54:20285",
+      "filters": {
+        "Todos": "54:20295",
+        "Competições": "54:20300",
+        "Clubes": "54:20307",
+        "Jogos": "54:20313",
+        "Notícias": "54:20321"
+      },
+      "rows": [
+        "54:20336",
+        "54:20352",
+        "54:20362",
+        "54:20379"
+      ],
+      "removeButtons": [
+        "I54:20336;54:15594",
+        "I54:20352;54:15608",
+        "I54:20362;54:15608",
+        "I54:20379;54:15641"
+      ],
+      "openButtons": [
+        "54:20336",
+        "54:20352",
+        "54:20362",
+        "I54:20379;54:15639"
+      ],
+      "undo": "54:24894"
+    },
+    {
+      "root": "54:20402",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Unavailable",
+      "content": "54:20412",
+      "back": "54:20519",
+      "action": "54:20568",
+      "filters": {
+        "Todos": "54:20529",
+        "Competições": "54:20534",
+        "Clubes": "54:20541",
+        "Jogos": "54:20547",
+        "Notícias": "54:20555"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:20570",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Empty",
+      "content": "54:20580",
+      "back": "54:20687",
+      "filters": {
+        "Todos": "54:20697",
+        "Não lidos": "54:20702"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:20714",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Error",
+      "content": "54:20724",
+      "back": "54:20831",
+      "action": "54:20863",
+      "filters": {
+        "Todos": "54:20841",
+        "Não lidos": "54:20846"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:20865",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Loading",
+      "content": "54:20875",
+      "back": "54:20982",
+      "action": "54:21003",
+      "filters": {
+        "Todos": "54:20992",
+        "Não lidos": "54:20997"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:21013",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Unread",
+      "content": "54:21023",
+      "back": "54:21130",
+      "action": "54:21151",
+      "filters": {
+        "Todos": "54:21140",
+        "Não lidos": "54:21145"
+      },
+      "rows": [
+        "54:21156",
+        "54:21170"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:21156;54:15567",
+        "I54:21170;54:15567"
+      ]
+    },
+    {
+      "root": "54:21184",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "ReadAll",
+      "content": "54:21194",
+      "back": "54:21301",
+      "action": "54:21322",
+      "filters": {
+        "Todos": "54:21311",
+        "Não lidos": "54:21316"
+      },
+      "rows": [
+        "54:21327",
+        "54:21341",
+        "54:21355"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:21327;54:15582",
+        "I54:21341;54:15582",
+        "I54:21355;54:15582"
+      ]
+    },
+    {
+      "root": "54:21369",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "UnreadEmpty",
+      "content": "54:21379",
+      "back": "54:21486",
+      "action": "54:21507",
+      "filters": {
+        "Todos": "54:21496",
+        "Não lidos": "54:21501"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:21517",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "OneRead",
+      "content": "54:21527",
+      "back": "54:21634",
+      "action": "54:21655",
+      "filters": {
+        "Todos": "54:21644",
+        "Não lidos": "54:21649"
+      },
+      "rows": [
+        "54:21660",
+        "54:21674",
+        "54:21688"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:21660;54:15582",
+        "I54:21674;54:15567",
+        "I54:21688;54:15582"
+      ]
+    },
+    {
+      "root": "54:21702",
+      "width": 390,
+      "kind": "Aviso",
+      "state": "RegistrationNotice",
+      "content": "54:21712",
+      "back": "54:21819",
+      "action": "54:21840",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:21842",
+      "width": 390,
+      "kind": "Aviso",
+      "state": "RulesNotice",
+      "content": "54:21852",
+      "back": "54:21959",
+      "action": "54:21980",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:21982",
+      "width": 1440,
+      "kind": "Salvos",
+      "state": "Empty",
+      "content": "54:21985",
+      "back": "54:22117",
+      "action": "54:22166",
+      "filters": {
+        "Todos": "54:22127",
+        "Competições": "54:22132",
+        "Clubes": "54:22139",
+        "Jogos": "54:22145",
+        "Notícias": "54:22153"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:22168",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "Empty",
+      "content": "54:22171",
+      "back": "54:22303",
+      "filters": {
+        "Todos": "54:22313",
+        "Não lidos": "54:22318"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:22330",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "ReadAll",
+      "content": "54:22333",
+      "back": "54:22465",
+      "action": "54:22486",
+      "filters": {
+        "Todos": "54:22475",
+        "Não lidos": "54:22480"
+      },
+      "rows": [
+        "54:22491",
+        "54:22505",
+        "54:22519"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:22491;54:15582",
+        "I54:22505;54:15582",
+        "I54:22519;54:15582"
+      ]
+    },
+    {
+      "root": "54:22533",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "OneRead",
+      "content": "54:22536",
+      "back": "54:22668",
+      "action": "54:22689",
+      "filters": {
+        "Todos": "54:22678",
+        "Não lidos": "54:22683"
+      },
+      "rows": [
+        "54:22694",
+        "54:22708",
+        "54:22722"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:22694;54:15582",
+        "I54:22708;54:15567",
+        "I54:22722;54:15582"
+      ]
+    },
+    {
+      "root": "54:22736",
+      "width": 1440,
+      "kind": "Aviso",
+      "state": "RegistrationNotice",
+      "content": "54:22739",
+      "back": "54:22871",
+      "action": "54:22892",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:22894",
+      "width": 1440,
+      "kind": "Aviso",
+      "state": "RulesNotice",
+      "content": "54:22897",
+      "back": "54:23029",
+      "action": "54:23050",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:23052",
+      "width": 1440,
+      "kind": "Salvos",
+      "state": "ClubFilter",
+      "content": "54:23055",
+      "back": "54:23187",
+      "filters": {
+        "Todos": "54:23197",
+        "Competições": "54:23202",
+        "Clubes": "54:23209",
+        "Jogos": "54:23215",
+        "Notícias": "54:23223"
+      },
+      "rows": [
+        "54:23238",
+        "54:23251"
+      ],
+      "removeButtons": [
+        "I54:23238;54:15513",
+        "I54:23251;54:15513"
+      ],
+      "openButtons": [
+        "I54:23238;54:15510",
+        "I54:23251;54:15510"
+      ]
+    },
+    {
+      "root": "54:23264",
+      "width": 1440,
+      "kind": "Salvos",
+      "state": "Removed",
+      "content": "54:23267",
+      "back": "54:23399",
+      "filters": {
+        "Todos": "54:23409",
+        "Competições": "54:23414",
+        "Clubes": "54:23421",
+        "Jogos": "54:23427",
+        "Notícias": "54:23435"
+      },
+      "rows": [
+        "54:23451",
+        "54:23470",
+        "54:23483",
+        "54:23503"
+      ],
+      "removeButtons": [
+        "I54:23451;54:15499",
+        "I54:23470;54:15513",
+        "I54:23483;54:15513",
+        "I54:23503;54:15552"
+      ],
+      "openButtons": [
+        "I54:23451;54:15496",
+        "I54:23470;54:15510",
+        "I54:23483;54:15510",
+        "I54:23503;54:15549"
+      ],
+      "undo": "54:24900"
+    },
+    {
+      "root": "54:23526",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "Unread",
+      "content": "54:23529",
+      "back": "54:23661",
+      "action": "54:23682",
+      "filters": {
+        "Todos": "54:23671",
+        "Não lidos": "54:23676"
+      },
+      "rows": [
+        "54:23687",
+        "54:23701"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:23687;54:15567",
+        "I54:23701;54:15567"
+      ]
+    },
+    {
+      "root": "54:24724",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "UnreadEmpty",
+      "content": "54:24727",
+      "back": "54:24859",
+      "action": "54:24880",
+      "filters": {
+        "Todos": "54:24869",
+        "Não lidos": "54:24874"
+      },
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:24979",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "KeyboardFocus",
+      "content": "54:24989",
+      "back": "54:24991",
+      "filters": {
+        "Todos": "54:24999",
+        "Competições": "54:25000",
+        "Clubes": "54:25001",
+        "Jogos": "54:25002",
+        "Notícias": "54:25003"
+      },
+      "rows": [
+        "54:25010",
+        "54:25015",
+        "54:25016",
+        "54:25021",
+        "54:25026"
+      ],
+      "removeButtons": [
+        "I54:25010;54:15594",
+        "I54:25015;54:15608",
+        "I54:25016;54:15608",
+        "I54:25021;54:15641",
+        "I54:25026;54:15621"
+      ],
+      "openButtons": [
+        "54:25010",
+        "54:25015",
+        "54:25016",
+        "I54:25021;54:15639",
+        "54:25026"
+      ]
+    },
+    {
+      "root": "54:25135",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "KeyboardFocus",
+      "content": "54:25145",
+      "back": "54:25147",
+      "action": "54:25157",
+      "filters": {
+        "Todos": "54:25155",
+        "Não lidos": "54:25156"
+      },
+      "rows": [
+        "54:25161",
+        "54:25162",
+        "54:25163"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:25161;54:15567",
+        "I54:25162;54:15567",
+        "I54:25163;54:15582"
+      ]
+    }
+  ],
+  "components": {
+    "filters": {
+      "default": {
+        "id": "54:15474",
+        "props": {
+          "Label": "Label#54:29",
+          "Count": "Count#54:30"
+        },
+        "icon": "54:15470"
+      },
+      "selected": {
+        "id": "54:15480",
+        "props": {
+          "Label": "Label#54:31",
+          "Count": "Count#54:32"
+        },
+        "icon": "54:15476"
+      }
+    },
+    "saved": {
+      "Competition": {
+        "id": "54:15502",
+        "props": {
+          "Title": "Title#54:33",
+          "Meta": "Meta#54:34"
+        },
+        "open": "54:15496",
+        "remove": "54:15499"
+      },
+      "Club": {
+        "id": "54:15516",
+        "props": {
+          "Title": "Title#54:35",
+          "Meta": "Meta#54:36"
+        },
+        "open": "54:15510",
+        "remove": "54:15513"
+      },
+      "News": {
+        "id": "54:15531",
+        "props": {
+          "Title": "Title#54:37",
+          "Meta": "Meta#54:38"
+        },
+        "open": "54:15525",
+        "remove": "54:15528"
+      },
+      "Match": {
+        "id": "54:15555",
+        "props": {
+          "Meta": "Meta#54:39",
+          "Home": "Home#54:40",
+          "Away": "Away#54:41",
+          "Time": "Time#54:42"
+        },
+        "open": "54:15549",
+        "remove": "54:15552"
+      }
+    },
+    "notice": {
+      "unread": {
+        "id": "54:15570",
+        "props": {
+          "Title": "Title#54:43",
+          "Date": "Date#54:44",
+          "Preview": "Preview#54:45"
+        },
+        "open": "54:15567"
+      },
+      "read": {
+        "id": "54:15585",
+        "props": {
+          "Title": "Title#54:46",
+          "Date": "Date#54:47",
+          "Preview": "Preview#54:48"
+        },
+        "open": "54:15582"
+      }
+    },
+    "savedCompact": {
+      "Competition": {
+        "id": "54:15586",
+        "props": {
+          "Title": "Title#54:33",
+          "Meta": "Meta#54:34"
+        },
+        "open": "54:15586",
+        "remove": "54:15594"
+      },
+      "Club": {
+        "id": "54:15600",
+        "props": {
+          "Title": "Title#54:35",
+          "Meta": "Meta#54:36"
+        },
+        "open": "54:15600",
+        "remove": "54:15608"
+      },
+      "News": {
+        "id": "54:15613",
+        "props": {
+          "Title": "Title#54:37",
+          "Meta": "Meta#54:38"
+        },
+        "open": "54:15613",
+        "remove": "54:15621"
+      },
+      "Match": {
+        "id": "54:15627",
+        "props": {
+          "Meta": "Meta#54:39",
+          "Home": "Home#54:40",
+          "Away": "Away#54:41",
+          "Time": "Time#54:42"
+        },
+        "open": "54:15639",
+        "remove": "54:15641"
+      }
+    },
+    "focus": {
+      "filter": {
+        "id": "54:24950",
+        "props": {
+          "Label": "Label#54:31",
+          "Count": "Count#54:32"
+        },
+        "icon": "54:15476"
+      },
+      "club": {
+        "id": "54:24955",
+        "props": {
+          "Title": "Title#54:35",
+          "Meta": "Meta#54:36"
+        },
+        "open": "54:15600",
+        "remove": "54:15608"
+      },
+      "notice": {
+        "id": "54:24965",
+        "props": {
+          "Title": "Title#54:43",
+          "Date": "Date#54:44",
+          "Preview": "Preview#54:45"
+        },
+        "open": "54:15567"
+      }
+    }
+  },
+  "icons": {
+    "saved": "2:888",
+    "notices": "54:8034",
+    "all": "42:40229",
+    "competition": "2:885",
+    "club": "42:40216",
+    "match": "21:24674",
+    "news": "42:40213",
+    "back": "54:8021",
+    "right": "42:40222",
+    "close": "42:40209",
+    "check": "54:8911",
+    "alert": "54:8028",
+    "crest": "3:1140"
+  },
+  "prototype": {
+    "entry": "54:23715",
+    "links": [
+      {
+        "nodeId": "54:23725",
+        "target": "54:24125"
+      },
+      {
+        "nodeId": "54:23728",
+        "target": "54:24301"
+      },
+      {
+        "nodeId": "54:24130",
+        "target": "54:23715"
+      },
+      {
+        "nodeId": "54:24306",
+        "target": "54:23715"
+      },
+      {
+        "nodeId": "54:24140",
+        "target": "54:23052"
+      },
+      {
+        "nodeId": "54:23197",
+        "target": "54:24125"
+      },
+      {
+        "nodeId": "I54:24166;54:15528",
+        "target": "54:23264"
+      },
+      {
+        "nodeId": "54:24900",
+        "target": "54:24125"
+      },
+      {
+        "nodeId": "I54:24320;54:15567",
+        "target": "54:24401"
+      },
+      {
+        "nodeId": "54:24316",
+        "target": "54:22330"
+      },
+      {
+        "nodeId": "54:24315",
+        "target": "54:23526"
+      },
+      {
+        "nodeId": "I54:23687;54:15567",
+        "target": "54:24401"
+      },
+      {
+        "nodeId": "54:23682",
+        "target": "54:22330"
+      },
+      {
+        "nodeId": "I54:22694;54:15582",
+        "target": "54:24401"
+      },
+      {
+        "nodeId": "54:22689",
+        "target": "54:22330"
+      },
+      {
+        "nodeId": "54:23671",
+        "target": "54:24301"
+      },
+      {
+        "nodeId": "54:22480",
+        "target": "54:24724"
+      },
+      {
+        "nodeId": "54:24869",
+        "target": "54:22330"
+      },
+      {
+        "nodeId": "54:24406",
+        "target": "54:22533"
+      },
+      {
+        "nodeId": "54:24421",
+        "target": "54:23774"
+      },
+      {
+        "nodeId": "I54:24321;54:15567",
+        "target": "54:22736"
+      },
+      {
+        "nodeId": "54:22871",
+        "target": "54:24301"
+      },
+      {
+        "nodeId": "I54:24322;54:15582",
+        "target": "54:22894"
+      },
+      {
+        "nodeId": "54:23029",
+        "target": "54:24301"
+      },
+      {
+        "nodeId": "54:24467",
+        "target": "54:25232"
+      },
+      {
+        "nodeId": "54:24614",
+        "target": "54:25232"
+      },
+      {
+        "nodeId": "54:24477",
+        "target": "54:19981"
+      },
+      {
+        "nodeId": "54:20108",
+        "target": "54:24455"
+      },
+      {
+        "nodeId": "I54:24502;54:15621",
+        "target": "54:20168"
+      },
+      {
+        "nodeId": "54:24894",
+        "target": "54:24455"
+      },
+      {
+        "nodeId": "I54:24628;54:15567",
+        "target": "54:24686"
+      },
+      {
+        "nodeId": "54:24624",
+        "target": "54:21184"
+      },
+      {
+        "nodeId": "54:24623",
+        "target": "54:21013"
+      },
+      {
+        "nodeId": "I54:21156;54:15567",
+        "target": "54:24686"
+      },
+      {
+        "nodeId": "54:21151",
+        "target": "54:21184"
+      },
+      {
+        "nodeId": "I54:21660;54:15582",
+        "target": "54:24686"
+      },
+      {
+        "nodeId": "54:21655",
+        "target": "54:21184"
+      },
+      {
+        "nodeId": "54:21140",
+        "target": "54:24602"
+      },
+      {
+        "nodeId": "54:21316",
+        "target": "54:21369"
+      },
+      {
+        "nodeId": "54:21496",
+        "target": "54:21184"
+      },
+      {
+        "nodeId": "54:24698",
+        "target": "54:21517"
+      },
+      {
+        "nodeId": "54:24713",
+        "target": "54:23963"
+      },
+      {
+        "nodeId": "I54:24629;54:15567",
+        "target": "54:21702"
+      },
+      {
+        "nodeId": "54:21819",
+        "target": "54:24602"
+      },
+      {
+        "nodeId": "I54:24630;54:15582",
+        "target": "54:21842"
+      },
+      {
+        "nodeId": "54:21959",
+        "target": "54:24602"
+      }
+    ],
+    "scope": "Same-page synthetic fixtures only. Entry/prototype copies and states on States page; main scene matrices remain separate. Original auth pages unchanged. Representative club filter/news removal+undo/mark-all/first-message read/back; three initial messages have matching detail references. Only games CTA has native destination. No database/persistence/broadcast/browser push permission requested. Counts are unknown while fetch is pending/failed. First-message read has a static unread-filter intent; persistence between all branches is not simulated. KeyboardFocus references are visual only.",
+    "transition": {
+      "type": "DISSOLVE",
+      "durationSeconds": 0.12,
+      "easing": "EASE_OUT"
+    },
+    "mobileReturn": "54:25232"
+  },
+  "prototypeFixtures": [
+    {
+      "root": "54:23715",
+      "width": 1440,
+      "kind": "Login",
+      "state": "Entry"
+    },
+    {
+      "root": "54:23774",
+      "width": 1440,
+      "kind": "Jogos",
+      "state": "Destination"
+    },
+    {
+      "root": "54:23963",
+      "width": 390,
+      "kind": "Jogos",
+      "state": "Destination"
+    },
+    {
+      "root": "54:24125",
+      "width": 1440,
+      "kind": "Salvos",
+      "state": "Prototype",
+      "content": "54:24128",
+      "back": "54:24130",
+      "filters": {
+        "Todos": "54:24138",
+        "Competições": "54:24139",
+        "Clubes": "54:24140",
+        "Jogos": "54:24141",
+        "Notícias": "54:24142"
+      },
+      "rows": [
+        "54:24149",
+        "54:24154",
+        "54:24155",
+        "54:24161",
+        "54:24166"
+      ],
+      "removeButtons": [
+        "I54:24149;54:15499",
+        "I54:24154;54:15513",
+        "I54:24155;54:15513",
+        "I54:24161;54:15552",
+        "I54:24166;54:15528"
+      ],
+      "openButtons": [
+        "I54:24149;54:15496",
+        "I54:24154;54:15510",
+        "I54:24155;54:15510",
+        "I54:24161;54:15549",
+        "I54:24166;54:15525"
+      ]
+    },
+    {
+      "root": "54:24301",
+      "width": 1440,
+      "kind": "Avisos",
+      "state": "Prototype",
+      "content": "54:24304",
+      "back": "54:24306",
+      "action": "54:24316",
+      "filters": {
+        "Todos": "54:24314",
+        "Não lidos": "54:24315"
+      },
+      "rows": [
+        "54:24320",
+        "54:24321",
+        "54:24322"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:24320;54:15567",
+        "I54:24321;54:15567",
+        "I54:24322;54:15582"
+      ]
+    },
+    {
+      "root": "54:24401",
+      "width": 1440,
+      "kind": "Aviso",
+      "state": "Prototype",
+      "content": "54:24404",
+      "back": "54:24406",
+      "action": "54:24421",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:24455",
+      "width": 390,
+      "kind": "Salvos",
+      "state": "Prototype",
+      "content": "54:24465",
+      "back": "54:24467",
+      "filters": {
+        "Todos": "54:24475",
+        "Competições": "54:24476",
+        "Clubes": "54:24477",
+        "Jogos": "54:24478",
+        "Notícias": "54:24479"
+      },
+      "rows": [
+        "54:24486",
+        "54:24491",
+        "54:24492",
+        "54:24497",
+        "54:24502"
+      ],
+      "removeButtons": [
+        "I54:24486;54:15594",
+        "I54:24491;54:15608",
+        "I54:24492;54:15608",
+        "I54:24497;54:15641",
+        "I54:24502;54:15621"
+      ],
+      "openButtons": [
+        "54:24486",
+        "54:24491",
+        "54:24492",
+        "I54:24497;54:15639",
+        "54:24502"
+      ]
+    },
+    {
+      "root": "54:24602",
+      "width": 390,
+      "kind": "Avisos",
+      "state": "Prototype",
+      "content": "54:24612",
+      "back": "54:24614",
+      "action": "54:24624",
+      "filters": {
+        "Todos": "54:24622",
+        "Não lidos": "54:24623"
+      },
+      "rows": [
+        "54:24628",
+        "54:24629",
+        "54:24630"
+      ],
+      "removeButtons": [],
+      "openButtons": [
+        "I54:24628;54:15567",
+        "I54:24629;54:15567",
+        "I54:24630;54:15582"
+      ]
+    },
+    {
+      "root": "54:24686",
+      "width": 390,
+      "kind": "Aviso",
+      "state": "Prototype",
+      "content": "54:24696",
+      "back": "54:24698",
+      "action": "54:24713",
+      "filters": {},
+      "rows": [],
+      "removeButtons": [],
+      "openButtons": []
+    },
+    {
+      "root": "54:25232",
+      "width": 390,
+      "kind": "Login",
+      "state": "Return"
+    }
+  ],
+  "scope": "Figma first; user explicitly deferred implementation/site/Supabase/admin."
+}

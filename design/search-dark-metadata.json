@@ -1,0 +1,916 @@
+{
+  "artifact": "Pesquisa · Dark",
+  "fileName": "Sem título",
+  "pages": {
+    "screens": "44:45651",
+    "components": "44:45652",
+    "states": "44:45653"
+  },
+  "componentSets": {
+    "field": "44:45654",
+    "category": "44:45727",
+    "result": "44:45792",
+    "notice": "44:45931"
+  },
+  "masters": {
+    "field": {
+      "Wide-Empty": "44:45655",
+      "Wide-Focus": "44:45661",
+      "Wide-Filled": "44:45667",
+      "Wide-Disabled": "44:45673",
+      "Compact-Empty": "44:45679",
+      "Compact-Focus": "44:45685",
+      "Compact-Filled": "44:45691",
+      "Compact-Disabled": "44:45697"
+    },
+    "category": {
+      "All-Default": "44:45728",
+      "All-Selected": "44:45733",
+      "Club-Default": "44:45738",
+      "Club-Selected": "44:45743",
+      "Club-Hover": "44:45748",
+      "Club-Focus": "44:45753",
+      "Player-Default": "44:45758",
+      "Player-Selected": "44:45763",
+      "News-Default": "44:45768",
+      "News-Selected": "44:45773"
+    },
+    "result": {
+      "Club-Wide-Default": "44:45793",
+      "Player-Wide-Default": "44:45802",
+      "NewsCover-Wide-Default": "44:45813",
+      "NewsText-Wide-Default": "44:45822",
+      "Club-Compact-Default": "44:45831",
+      "Player-Compact-Default": "44:45840",
+      "NewsCover-Compact-Default": "44:45851",
+      "NewsText-Compact-Default": "44:45860",
+      "Club-Wide-Hover": "44:45869",
+      "Club-Wide-Focus": "44:45878",
+      "Club-Compact-Hover": "44:45887",
+      "Club-Compact-Focus": "44:45896"
+    },
+    "notice": {
+      "Empty": "44:45932",
+      "Unavailable": "44:45938",
+      "PlayerError": "44:45944"
+    }
+  },
+  "componentSheets": {
+    "field": "44:51400",
+    "category": "44:51551",
+    "result": "44:51683",
+    "notice": "44:51968"
+  },
+  "scenes": [
+    {
+      "root": "44:45959",
+      "header": "44:45960",
+      "content": "44:45962",
+      "width": 1440,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:45964",
+      "field": "44:45970",
+      "filters": {},
+      "source": "43:40569"
+    },
+    {
+      "root": "44:46159",
+      "header": "44:46160",
+      "content": "44:46162",
+      "width": 1440,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:46164",
+      "field": "44:46170",
+      "clear": "I44:46170;44:45671",
+      "filters": {
+        "All": "44:46173",
+        "Club": "44:46174",
+        "Player": "44:46175",
+        "News": "44:46176"
+      },
+      "source": "43:40704"
+    },
+    {
+      "root": "44:46463",
+      "header": "44:46464",
+      "content": "44:46466",
+      "width": 1024,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:46468",
+      "field": "44:46474",
+      "filters": {},
+      "source": "43:40896"
+    },
+    {
+      "root": "44:46657",
+      "header": "44:46658",
+      "content": "44:46660",
+      "width": 1024,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:46662",
+      "field": "44:46668",
+      "clear": "I44:46668;44:45671",
+      "filters": {
+        "All": "44:46671",
+        "Club": "44:46672",
+        "Player": "44:46673",
+        "News": "44:46674"
+      },
+      "source": "43:41028"
+    },
+    {
+      "root": "44:46955",
+      "header": "44:46956",
+      "content": "44:46958",
+      "width": 2560,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:46960",
+      "field": "44:46966",
+      "filters": {},
+      "source": "43:41217"
+    },
+    {
+      "root": "44:47155",
+      "header": "44:47156",
+      "content": "44:47158",
+      "width": 2560,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:47160",
+      "field": "44:47166",
+      "clear": "I44:47166;44:45671",
+      "filters": {
+        "All": "44:47169",
+        "Club": "44:47170",
+        "Player": "44:47171",
+        "News": "44:47172"
+      },
+      "source": "43:41352"
+    },
+    {
+      "root": "44:47459",
+      "header": "44:47460",
+      "content": "44:47469",
+      "width": 768,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:47471",
+      "field": "44:47475",
+      "filters": {},
+      "source": "43:41544"
+    },
+    {
+      "root": "44:47613",
+      "header": "44:47614",
+      "content": "44:47623",
+      "width": 768,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:47625",
+      "field": "44:47629",
+      "clear": "I44:47629;44:45695",
+      "filters": {
+        "All": "44:47632",
+        "Club": "44:47633",
+        "Player": "44:47634",
+        "News": "44:47635"
+      },
+      "source": "43:41660"
+    },
+    {
+      "root": "44:47844",
+      "header": "44:47845",
+      "content": "44:47854",
+      "width": 390,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:47856",
+      "field": "44:47860",
+      "filters": {},
+      "source": "43:41806"
+    },
+    {
+      "root": "44:47998",
+      "header": "44:47999",
+      "content": "44:48008",
+      "width": 390,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:48010",
+      "field": "44:48014",
+      "clear": "I44:48014;44:45695",
+      "filters": {
+        "All": "44:48017",
+        "Club": "44:48018",
+        "Player": "44:48020",
+        "News": "44:48021"
+      },
+      "source": "43:41922"
+    },
+    {
+      "root": "44:48230",
+      "header": "44:48231",
+      "content": "44:48240",
+      "width": 320,
+      "mode": "Initial",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:48242",
+      "field": "44:48246",
+      "filters": {},
+      "source": "43:42069"
+    },
+    {
+      "root": "44:48384",
+      "header": "44:48385",
+      "content": "44:48394",
+      "width": 320,
+      "mode": "Results",
+      "category": "All",
+      "pageKey": "screens",
+      "back": "44:48396",
+      "field": "44:48400",
+      "clear": "I44:48400;44:45695",
+      "filters": {
+        "All": "44:48403",
+        "Club": "44:48404",
+        "Player": "44:48406",
+        "News": "44:48407"
+      },
+      "source": "43:42224"
+    },
+    {
+      "root": "44:48616",
+      "width": 1440,
+      "mode": "Filtered",
+      "category": "Club",
+      "pageKey": "screens",
+      "header": "44:48617",
+      "content": "44:48619",
+      "field": "44:48627",
+      "clear": "I44:48627;44:45671",
+      "back": "44:48621",
+      "filters": {
+        "All": "44:48630",
+        "Club": "44:48631",
+        "Player": "44:48632",
+        "News": "44:48633"
+      },
+      "source": "43:42371"
+    },
+    {
+      "root": "44:48810",
+      "width": 1440,
+      "mode": "Filtered",
+      "category": "Player",
+      "pageKey": "screens",
+      "header": "44:48811",
+      "content": "44:48813",
+      "field": "44:48821",
+      "clear": "I44:48821;44:45671",
+      "back": "44:48815",
+      "filters": {
+        "All": "44:48824",
+        "Club": "44:48825",
+        "Player": "44:48826",
+        "News": "44:48827"
+      },
+      "source": "43:42572"
+    },
+    {
+      "root": "44:49034",
+      "width": 1440,
+      "mode": "Filtered",
+      "category": "News",
+      "pageKey": "screens",
+      "header": "44:49035",
+      "content": "44:49037",
+      "field": "44:49045",
+      "clear": "I44:49045;44:45671",
+      "back": "44:49039",
+      "filters": {
+        "All": "44:49048",
+        "Club": "44:49049",
+        "Player": "44:49050",
+        "News": "44:49051"
+      },
+      "source": "43:42774"
+    },
+    {
+      "root": "44:49252",
+      "width": 1440,
+      "mode": "Empty",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:49253",
+      "content": "44:49255",
+      "field": "44:49263",
+      "clear": "I44:49263;44:45671",
+      "back": "44:49257",
+      "filters": {
+        "All": "44:49266",
+        "Club": "44:49267",
+        "Player": "44:49268",
+        "News": "44:49269"
+      },
+      "source": "43:43167"
+    },
+    {
+      "root": "44:49435",
+      "width": 1440,
+      "mode": "Loading",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:49436",
+      "content": "44:49438",
+      "field": "44:49446",
+      "clear": "I44:49446;44:45671",
+      "back": "44:49440",
+      "filters": {
+        "All": "44:49449",
+        "Club": "44:49450",
+        "Player": "44:49451",
+        "News": "44:49452"
+      },
+      "source": "43:43367"
+    },
+    {
+      "root": "44:49698",
+      "width": 1440,
+      "mode": "PartialError",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:49699",
+      "content": "44:49701",
+      "field": "44:49709",
+      "clear": "I44:49709;44:45671",
+      "back": "44:49703",
+      "filters": {
+        "All": "44:49712",
+        "Club": "44:49713",
+        "Player": "44:49714",
+        "News": "44:49715"
+      },
+      "source": "43:43569"
+    },
+    {
+      "root": "44:49961",
+      "width": 1440,
+      "mode": "Unavailable",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:49962",
+      "content": "44:49964",
+      "field": "44:49972",
+      "back": "44:49966",
+      "filters": {
+        "All": "44:49975",
+        "Club": "44:49976",
+        "Player": "44:49977",
+        "News": "44:49978"
+      },
+      "source": "43:43769"
+    },
+    {
+      "root": "44:50144",
+      "width": 390,
+      "mode": "Filtered",
+      "category": "Club",
+      "pageKey": "screens",
+      "header": "44:50145",
+      "content": "44:50154",
+      "field": "44:50160",
+      "clear": "I44:50160;44:45695",
+      "back": "44:50156",
+      "filters": {
+        "All": "44:50163",
+        "Club": "44:50164",
+        "Player": "44:50166",
+        "News": "44:50167"
+      },
+      "source": "43:43977"
+    },
+    {
+      "root": "44:50266",
+      "width": 390,
+      "mode": "Filtered",
+      "category": "Player",
+      "pageKey": "screens",
+      "header": "44:50267",
+      "content": "44:50276",
+      "field": "44:50282",
+      "clear": "I44:50282;44:45695",
+      "back": "44:50278",
+      "filters": {
+        "All": "44:50285",
+        "Club": "44:50286",
+        "Player": "44:50288",
+        "News": "44:50289"
+      },
+      "source": "43:44134"
+    },
+    {
+      "root": "44:50418",
+      "width": 390,
+      "mode": "Filtered",
+      "category": "News",
+      "pageKey": "screens",
+      "header": "44:50419",
+      "content": "44:50428",
+      "field": "44:50434",
+      "clear": "I44:50434;44:45695",
+      "back": "44:50430",
+      "filters": {
+        "All": "44:50437",
+        "Club": "44:50438",
+        "Player": "44:50440",
+        "News": "44:50441"
+      },
+      "source": "43:44292"
+    },
+    {
+      "root": "44:50564",
+      "width": 390,
+      "mode": "Empty",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:50565",
+      "content": "44:50574",
+      "field": "44:50580",
+      "clear": "I44:50580;44:45695",
+      "back": "44:50576",
+      "filters": {
+        "All": "44:50583",
+        "Club": "44:50584",
+        "Player": "44:50586",
+        "News": "44:50587"
+      },
+      "source": "43:44450"
+    },
+    {
+      "root": "44:50675",
+      "width": 390,
+      "mode": "Loading",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:50676",
+      "content": "44:50685",
+      "field": "44:50691",
+      "clear": "I44:50691;44:45695",
+      "back": "44:50687",
+      "filters": {
+        "All": "44:50694",
+        "Club": "44:50695",
+        "Player": "44:50697",
+        "News": "44:50698"
+      },
+      "source": "43:44606"
+    },
+    {
+      "root": "44:50866",
+      "width": 390,
+      "mode": "PartialError",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:50867",
+      "content": "44:50876",
+      "field": "44:50882",
+      "clear": "I44:50882;44:45695",
+      "back": "44:50878",
+      "filters": {
+        "All": "44:50885",
+        "Club": "44:50886",
+        "Player": "44:50888",
+        "News": "44:50889"
+      },
+      "source": "43:44764"
+    },
+    {
+      "root": "44:51057",
+      "width": 390,
+      "mode": "Unavailable",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:51058",
+      "content": "44:51067",
+      "field": "44:51073",
+      "back": "44:51069",
+      "filters": {
+        "All": "44:51076",
+        "Club": "44:51077",
+        "Player": "44:51079",
+        "News": "44:51080"
+      },
+      "source": "43:44920"
+    },
+    {
+      "root": "44:51168",
+      "width": 320,
+      "mode": "Long",
+      "category": "All",
+      "pageKey": "states",
+      "header": "44:51169",
+      "content": "44:51178",
+      "field": "44:51184",
+      "clear": "I44:51184;44:45695",
+      "back": "44:51180",
+      "filters": {
+        "All": "44:51187",
+        "Club": "44:51188",
+        "Player": "44:51190",
+        "News": "44:51191"
+      },
+      "source": "43:45084"
+    }
+  ],
+  "note": "44:52027",
+  "lightSource": "design/search-metadata.json",
+  "prototype": {
+    "widths": [
+      1440,
+      390
+    ],
+    "queryFixture": "aurora",
+    "transition": "DISSOLVE 120ms EASE_OUT",
+    "paths": [
+      "Initial field → mixed Results",
+      "Clear → Initial",
+      "Category All/Club/Player/News → matching result frame",
+      "Back → previous prototype frame"
+    ],
+    "exceptionsStatic": true,
+    "realDataOrNetwork": false
+  },
+  "geometry": {
+    "field-wide-height": "VariableID:42:40230",
+    "field-compact-height": "VariableID:42:40231",
+    "result-min-height": "VariableID:42:40232",
+    "news-thumb-size": "VariableID:42:40233",
+    "rail-width": "VariableID:42:40234",
+    "identity-compact-size": "VariableID:43:45291"
+  },
+  "icons": {
+    "search": "2:112",
+    "user": "2:119",
+    "arrow": "2:128",
+    "calendar": "3:1144",
+    "trophy": "3:1158",
+    "clock": "3:1154",
+    "close": "42:40209",
+    "news": "42:40213",
+    "shield": "42:40216",
+    "back": "42:40219",
+    "chevR": "42:40222",
+    "alert": "42:40226",
+    "filter": "42:40229"
+  },
+  "limits": [
+    "Dark Figma specification only, no app/database changes",
+    "Fixtures are demonstrative; counts refer to the presented subset",
+    "No live search, actual retry, destination pages or accessibility runtime validation in Figma",
+    "No fabricated recent/popular query data",
+    "Future implementation must wire partial player loading/error, category filters and polite result announcements",
+    "Whole result row is clickable; compact trailing 20px chevron is decorative",
+    "Compact news headlines clamp at 3 lines; full title remains accessible in implementation"
+  ],
+  "exports": [
+    {
+      "nodeId": "44:45959",
+      "path": "design/search-dark-previews-final/44-45959.png"
+    },
+    {
+      "nodeId": "44:46159",
+      "path": "design/search-dark-previews-final/44-46159.png"
+    },
+    {
+      "nodeId": "44:46463",
+      "path": "design/search-dark-previews-final/44-46463.png"
+    },
+    {
+      "nodeId": "44:46657",
+      "path": "design/search-dark-previews-final/44-46657.png"
+    },
+    {
+      "nodeId": "44:46955",
+      "path": "design/search-dark-previews-final/44-46955.png"
+    },
+    {
+      "nodeId": "44:47155",
+      "path": "design/search-dark-previews-final/44-47155.png"
+    },
+    {
+      "nodeId": "44:47459",
+      "path": "design/search-dark-previews-final/44-47459.png"
+    },
+    {
+      "nodeId": "44:47613",
+      "path": "design/search-dark-previews-final/44-47613.png"
+    },
+    {
+      "nodeId": "44:47844",
+      "path": "design/search-dark-previews-final/44-47844.png"
+    },
+    {
+      "nodeId": "44:47998",
+      "path": "design/search-dark-previews-final/44-47998.png"
+    },
+    {
+      "nodeId": "44:48230",
+      "path": "design/search-dark-previews-final/44-48230.png"
+    },
+    {
+      "nodeId": "44:48384",
+      "path": "design/search-dark-previews-final/44-48384.png"
+    },
+    {
+      "nodeId": "44:48616",
+      "path": "design/search-dark-previews-final/44-48616.png"
+    },
+    {
+      "nodeId": "44:48810",
+      "path": "design/search-dark-previews-final/44-48810.png"
+    },
+    {
+      "nodeId": "44:49034",
+      "path": "design/search-dark-previews-final/44-49034.png"
+    },
+    {
+      "nodeId": "44:49252",
+      "path": "design/search-dark-previews-final/44-49252.png"
+    },
+    {
+      "nodeId": "44:49435",
+      "path": "design/search-dark-previews-final/44-49435.png"
+    },
+    {
+      "nodeId": "44:49698",
+      "path": "design/search-dark-previews-final/44-49698.png"
+    },
+    {
+      "nodeId": "44:49961",
+      "path": "design/search-dark-previews-final/44-49961.png"
+    },
+    {
+      "nodeId": "44:50144",
+      "path": "design/search-dark-previews-final/44-50144.png"
+    },
+    {
+      "nodeId": "44:50266",
+      "path": "design/search-dark-previews-final/44-50266.png"
+    },
+    {
+      "nodeId": "44:50418",
+      "path": "design/search-dark-previews-final/44-50418.png"
+    },
+    {
+      "nodeId": "44:50564",
+      "path": "design/search-dark-previews-final/44-50564.png"
+    },
+    {
+      "nodeId": "44:50675",
+      "path": "design/search-dark-previews-final/44-50675.png"
+    },
+    {
+      "nodeId": "44:50866",
+      "path": "design/search-dark-previews-final/44-50866.png"
+    },
+    {
+      "nodeId": "44:51057",
+      "path": "design/search-dark-previews-final/44-51057.png"
+    },
+    {
+      "nodeId": "44:51168",
+      "path": "design/search-dark-previews-final/44-51168.png"
+    },
+    {
+      "nodeId": "44:51400",
+      "path": "design/search-dark-previews-final/44-51400.png"
+    },
+    {
+      "nodeId": "44:51551",
+      "path": "design/search-dark-previews-final/44-51551.png"
+    },
+    {
+      "nodeId": "44:51683",
+      "path": "design/search-dark-previews-final/44-51683.png"
+    },
+    {
+      "nodeId": "44:51968",
+      "path": "design/search-dark-previews-final/44-51968.png"
+    },
+    {
+      "nodeId": "44:52027",
+      "path": "design/search-dark-previews-final/44-52027.png"
+    }
+  ],
+  "componentApis": {
+    "field": {
+      "id": "44:45654",
+      "name": "Search / Field · Dark",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Query#42:415": {
+          "type": "TEXT",
+          "defaultValue": "aurora"
+        },
+        "Placeholder#43:485": {
+          "type": "TEXT",
+          "defaultValue": "Clube, jogador ou notícia"
+        },
+        "Layout": {
+          "type": "VARIANT",
+          "defaultValue": "Wide",
+          "variantOptions": [
+            "Wide",
+            "Compact"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Empty",
+          "variantOptions": [
+            "Empty",
+            "Focus",
+            "Filled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "category": {
+      "id": "44:45727",
+      "name": "Search / Category · Dark",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Count#43:435": {
+          "type": "TEXT",
+          "defaultValue": "5"
+        },
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "All",
+          "variantOptions": [
+            "All",
+            "Club",
+            "Player",
+            "News"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Selected",
+            "Hover",
+            "Focus"
+          ]
+        }
+      }
+    },
+    "result": {
+      "id": "44:45792",
+      "name": "Search / Result · Dark",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Title#43:446": {
+          "type": "TEXT",
+          "defaultValue": "Aurora FC"
+        },
+        "Meta#43:459": {
+          "type": "TEXT",
+          "defaultValue": "AUR"
+        },
+        "GameID#43:472": {
+          "type": "TEXT",
+          "defaultValue": "#48219"
+        },
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "Club",
+          "variantOptions": [
+            "Club",
+            "Player",
+            "NewsCover",
+            "NewsText"
+          ]
+        },
+        "Layout": {
+          "type": "VARIANT",
+          "defaultValue": "Wide",
+          "variantOptions": [
+            "Wide",
+            "Compact"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      }
+    },
+    "notice": {
+      "id": "44:45931",
+      "name": "Search / Notice · Dark",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "Empty",
+          "variantOptions": [
+            "Empty",
+            "Unavailable",
+            "PlayerError"
+          ]
+        }
+      }
+    }
+  },
+  "paintRoles": [
+    {
+      "name": "surface/page",
+      "id": "VariableID:2:79",
+      "hex": "#0c1017"
+    },
+    {
+      "name": "surface/header",
+      "id": "VariableID:2:80",
+      "hex": "#111824"
+    },
+    {
+      "name": "surface/card",
+      "id": "VariableID:7:6679",
+      "hex": "#151e2b"
+    },
+    {
+      "name": "surface/subtle",
+      "id": "VariableID:2:82",
+      "hex": "#202d40"
+    },
+    {
+      "name": "text/primary",
+      "id": "VariableID:2:83",
+      "hex": "#edf2f9"
+    },
+    {
+      "name": "text/secondary",
+      "id": "VariableID:2:84",
+      "hex": "#b8c4d6"
+    },
+    {
+      "name": "text/on-action",
+      "id": "VariableID:2:85",
+      "hex": "#0b1628"
+    },
+    {
+      "name": "border/subtle",
+      "id": "VariableID:2:87",
+      "hex": "#33445b"
+    },
+    {
+      "name": "border/focus",
+      "id": "VariableID:2:88",
+      "hex": "#7baaff"
+    },
+    {
+      "name": "action/primary",
+      "id": "VariableID:2:89",
+      "hex": "#7baaff"
+    },
+    {
+      "name": "nav/active-bg",
+      "id": "VariableID:2:92",
+      "hex": "#203f6a"
+    },
+    {
+      "name": "nav/active-text",
+      "id": "VariableID:2:93",
+      "hex": "#c5dcff"
+    },
+    {
+      "name": "nav/hover-bg",
+      "id": "VariableID:2:94",
+      "hex": "#202d40"
+    }
+  ]
+}

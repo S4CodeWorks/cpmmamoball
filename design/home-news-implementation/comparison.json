@@ -1,0 +1,114 @@
+[
+  {
+    "theme": "light",
+    "variant": "one",
+    "width": 1440,
+    "figma": {
+      "width": 1280,
+      "height": 256
+    },
+    "browser": {
+      "width": 1280,
+      "height": 256
+    },
+    "meanChannelDifference": 1.014
+  },
+  {
+    "theme": "light",
+    "variant": "one",
+    "width": 390,
+    "figma": {
+      "width": 358,
+      "height": 436
+    },
+    "browser": {
+      "width": 358,
+      "height": 436
+    },
+    "meanChannelDifference": 2.125
+  },
+  {
+    "theme": "light",
+    "variant": "many",
+    "width": 1440,
+    "figma": {
+      "width": 1280,
+      "height": 256
+    },
+    "browser": {
+      "width": 1280,
+      "height": 256
+    },
+    "meanChannelDifference": 2.395
+  },
+  {
+    "theme": "light",
+    "variant": "many",
+    "width": 390,
+    "figma": {
+      "width": 358,
+      "height": 748
+    },
+    "browser": {
+      "width": 358,
+      "height": 748
+    },
+    "meanChannelDifference": 2.899
+  },
+  {
+    "theme": "dark",
+    "variant": "one",
+    "width": 1440,
+    "figma": {
+      "width": 1280,
+      "height": 256
+    },
+    "browser": {
+      "width": 1280,
+      "height": 256
+    },
+    "meanChannelDifference": 1.032
+  },
+  {
+    "theme": "dark",
+    "variant": "one",
+    "width": 390,
+    "figma": {
+      "width": 358,
+      "height": 436
+    },
+    "browser": {
+      "width": 358,
+      "height": 436
+    },
+    "meanChannelDifference": 2.163
+  },
+  {
+    "theme": "dark",
+    "variant": "many",
+    "width": 1440,
+    "figma": {
+      "width": 1280,
+      "height": 256
+    },
+    "browser": {
+      "width": 1280,
+      "height": 256
+    },
+    "meanChannelDifference": 2.488
+  },
+  {
+    "theme": "dark",
+    "variant": "many",
+    "width": 390,
+    "figma": {
+      "width": 358,
+      "height": 748
+    },
+    "browser": {
+      "width": 358,
+      "height": 748
+    },
+    "meanChannelDifference": 3.013
+  }
+]

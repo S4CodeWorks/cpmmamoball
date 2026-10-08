@@ -1,0 +1,81 @@
+{
+  "newNames": [
+    {
+      "master": "64:42635",
+      "side": "Home",
+      "node": "64:51787"
+    },
+    {
+      "master": "64:42635",
+      "side": "Away",
+      "node": "64:51799"
+    },
+    {
+      "master": "64:44939",
+      "side": "Home",
+      "node": "64:51811"
+    },
+    {
+      "master": "64:44939",
+      "side": "Away",
+      "node": "64:51813"
+    },
+    {
+      "master": "64:44975",
+      "side": "Home",
+      "node": "64:51815"
+    },
+    {
+      "master": "64:44975",
+      "side": "Away",
+      "node": "64:51817"
+    },
+    {
+      "master": "64:45011",
+      "side": "Home",
+      "node": "64:51819"
+    },
+    {
+      "master": "64:45011",
+      "side": "Away",
+      "node": "64:51821"
+    },
+    {
+      "master": "64:45047",
+      "side": "Home",
+      "node": "64:51823"
+    },
+    {
+      "master": "64:45047",
+      "side": "Away",
+      "node": "64:51826"
+    },
+    {
+      "master": "64:45083",
+      "side": "Home",
+      "node": "64:51829"
+    },
+    {
+      "master": "64:45083",
+      "side": "Away",
+      "node": "64:51831"
+    }
+  ],
+  "tagProps": [
+    {
+      "set": "64:49663",
+      "keys": {
+        "Home": "Home tag#64:127",
+        "Away": "Away tag#64:134"
+      }
+    },
+    {
+      "set": "64:49664",
+      "keys": {
+        "Home": "Home tag#64:141",
+        "Away": "Away tag#64:148"
+      }
+    }
+  ],
+  "rail": "64:44213"
+}

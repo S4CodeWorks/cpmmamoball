@@ -1,0 +1,952 @@
+{
+  "implementation": {
+    "status": "implemented in real site, Light and Dark",
+    "date": "2026-10-06",
+    "record": "design/games-implementation/implementation.md",
+    "validation": "design/games-implementation/validation.md",
+    "review": "design/games-implementation/review.md",
+    "verdict": "design/games-implementation/verdict.md",
+    "verdictScope": "four material fixes resolved; ship is a fix-list verdict, not a new full review",
+    "historicalSource": "Existing source IDs, fixture records, original Figma reviews and export sets retain their original scope."
+  },
+  "version": "Jogos Dark v1",
+  "created": "2026-10-05",
+  "mode": "Operate",
+  "pages": {
+    "components": "15:19337",
+    "screens": "15:19338",
+    "states": "15:19339"
+  },
+  "tabSet": {
+    "ok": true,
+    "nodeId": "15:19340",
+    "name": "Games / Category tab / Dark",
+    "type": "COMPONENT_SET"
+  },
+  "matchSet": {
+    "ok": true,
+    "nodeId": "15:19416",
+    "name": "Games / Match / Dark",
+    "type": "COMPONENT_SET"
+  },
+  "tabs": [
+    {
+      "root": "15:19341",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19342",
+      "state": "Default",
+      "compact": false
+    },
+    {
+      "root": "15:19346",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19347",
+      "state": "Selected",
+      "compact": false
+    },
+    {
+      "root": "15:19351",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19352",
+      "state": "Hover",
+      "compact": false
+    },
+    {
+      "root": "15:19356",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19357",
+      "state": "Focus",
+      "compact": false
+    },
+    {
+      "root": "15:19361",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19362",
+      "state": "Disabled",
+      "compact": false
+    },
+    {
+      "root": "15:19366",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19368",
+      "state": "Default",
+      "compact": true
+    },
+    {
+      "root": "15:19372",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19374",
+      "state": "Selected",
+      "compact": true
+    },
+    {
+      "root": "15:19378",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19380",
+      "state": "Hover",
+      "compact": true
+    },
+    {
+      "root": "15:19384",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19386",
+      "state": "Focus",
+      "compact": true
+    },
+    {
+      "root": "15:19390",
+      "props": {
+        "Label": "Label#13:48",
+        "Count": "Count#13:49",
+        "ShowCount": "Show count#13:50"
+      },
+      "icon": "15:19392",
+      "state": "Disabled",
+      "compact": true
+    }
+  ],
+  "matches": [
+    {
+      "root": "15:19417",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "scheduled",
+      "compact": false,
+      "state": "Default"
+    },
+    {
+      "root": "15:19440",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "result",
+      "compact": false,
+      "state": "Default"
+    },
+    {
+      "root": "15:19463",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "draw",
+      "compact": false,
+      "state": "Default"
+    },
+    {
+      "root": "15:19486",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "wo",
+      "compact": false,
+      "state": "Default"
+    },
+    {
+      "root": "15:19509",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124"
+      },
+      "kind": "scheduled",
+      "compact": true,
+      "state": "Default"
+    },
+    {
+      "root": "15:19528",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "ScoreHome": "Home score#13:126",
+        "Away": "Away#13:123",
+        "ScoreAway": "Away score#13:127",
+        "Phase": "Phase#13:124"
+      },
+      "kind": "result",
+      "compact": true,
+      "state": "Default"
+    },
+    {
+      "root": "15:19549",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "ScoreHome": "Home score#13:126",
+        "Away": "Away#13:123",
+        "ScoreAway": "Away score#13:127",
+        "Phase": "Phase#13:124"
+      },
+      "kind": "draw",
+      "compact": true,
+      "state": "Default"
+    },
+    {
+      "root": "15:19570",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "ScoreHome": "Home score#13:126",
+        "Away": "Away#13:123",
+        "ScoreAway": "Away score#13:127",
+        "Phase": "Phase#13:124"
+      },
+      "kind": "wo",
+      "compact": true,
+      "state": "Default"
+    },
+    {
+      "root": "15:19591",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "scheduled",
+      "compact": false,
+      "state": "Hover"
+    },
+    {
+      "root": "15:19614",
+      "props": {
+        "Time": "Time / status#13:119",
+        "Round": "Round#13:120",
+        "Home": "Home#13:121",
+        "Score": "Score#13:122",
+        "Away": "Away#13:123",
+        "Phase": "Phase#13:124",
+        "Date": "Date#13:125"
+      },
+      "kind": "scheduled",
+      "compact": false,
+      "state": "Focus"
+    }
+  ],
+  "scenes": [
+    {
+      "root": "15:19692",
+      "width": 1440,
+      "category": "today",
+      "state": null,
+      "header": "15:19693",
+      "content": "15:19695",
+      "tabs": {
+        "today": "15:19702",
+        "upcoming": "15:19703",
+        "results": "15:19704"
+      },
+      "groups": [
+        "15:19705"
+      ],
+      "matches": [
+        "15:19714",
+        "15:19716",
+        "15:19718",
+        "15:19720"
+      ]
+    },
+    {
+      "root": "15:19876",
+      "width": 1024,
+      "category": "today",
+      "state": null,
+      "header": "15:19877",
+      "content": "15:19879",
+      "tabs": {
+        "today": "15:19886",
+        "upcoming": "15:19887",
+        "results": "15:19888"
+      },
+      "groups": [
+        "15:19889"
+      ],
+      "matches": [
+        "15:19898",
+        "15:19900",
+        "15:19902",
+        "15:19904"
+      ]
+    },
+    {
+      "root": "15:20057",
+      "width": 2560,
+      "category": "today",
+      "state": null,
+      "header": "15:20058",
+      "content": "15:20060",
+      "tabs": {
+        "today": "15:20067",
+        "upcoming": "15:20068",
+        "results": "15:20069"
+      },
+      "groups": [
+        "15:20070"
+      ],
+      "matches": [
+        "15:20079",
+        "15:20081",
+        "15:20083",
+        "15:20085"
+      ]
+    },
+    {
+      "root": "15:20241",
+      "width": 768,
+      "category": "today",
+      "state": null,
+      "header": "15:20242",
+      "content": "15:20251",
+      "tabs": {
+        "today": "15:20258",
+        "upcoming": "15:20259",
+        "results": "15:20260"
+      },
+      "groups": [
+        "15:20261"
+      ],
+      "matches": [
+        "15:20270",
+        "15:20272",
+        "15:20274",
+        "15:20276"
+      ]
+    },
+    {
+      "root": "15:20409",
+      "width": 390,
+      "category": "today",
+      "state": null,
+      "header": "15:20410",
+      "content": "15:20419",
+      "tabs": {
+        "today": "15:20426",
+        "upcoming": "15:20427",
+        "results": "15:20428"
+      },
+      "groups": [
+        "15:20429"
+      ],
+      "matches": [
+        "15:20438",
+        "15:20439",
+        "15:20440",
+        "15:20441"
+      ]
+    },
+    {
+      "root": "15:20561",
+      "width": 320,
+      "category": "today",
+      "state": null,
+      "header": "15:20562",
+      "content": "15:20571",
+      "tabs": {
+        "today": "15:20578",
+        "upcoming": "15:20579",
+        "results": "15:20580"
+      },
+      "groups": [
+        "15:20581"
+      ],
+      "matches": [
+        "15:20590",
+        "15:20591",
+        "15:20592",
+        "15:20593"
+      ]
+    },
+    {
+      "root": "15:20713",
+      "width": 1440,
+      "category": "upcoming",
+      "state": null,
+      "header": "15:20714",
+      "content": "15:20716",
+      "tabs": {
+        "today": "15:20723",
+        "upcoming": "15:20724",
+        "results": "15:20725"
+      },
+      "groups": [
+        "15:20726",
+        "15:20738"
+      ],
+      "matches": [
+        "15:20735",
+        "15:20737",
+        "15:20747",
+        "15:20749"
+      ]
+    },
+    {
+      "root": "15:20905",
+      "width": 390,
+      "category": "upcoming",
+      "state": null,
+      "header": "15:20906",
+      "content": "15:20915",
+      "tabs": {
+        "today": "15:20922",
+        "upcoming": "15:20923",
+        "results": "15:20924"
+      },
+      "groups": [
+        "15:20925",
+        "15:20936"
+      ],
+      "matches": [
+        "15:20934",
+        "15:20935",
+        "15:20945",
+        "15:20946"
+      ]
+    },
+    {
+      "root": "15:21066",
+      "width": 1440,
+      "category": "results",
+      "state": null,
+      "header": "15:21067",
+      "content": "15:21069",
+      "tabs": {
+        "today": "15:21076",
+        "upcoming": "15:21077",
+        "results": "15:21078"
+      },
+      "groups": [
+        "15:21079",
+        "15:21091"
+      ],
+      "matches": [
+        "15:21088",
+        "15:21090",
+        "15:21100",
+        "15:21102"
+      ]
+    },
+    {
+      "root": "15:21262",
+      "width": 390,
+      "category": "results",
+      "state": null,
+      "header": "15:21263",
+      "content": "15:21272",
+      "tabs": {
+        "today": "15:21279",
+        "upcoming": "15:21280",
+        "results": "15:21281"
+      },
+      "groups": [
+        "15:21282",
+        "15:21293"
+      ],
+      "matches": [
+        "15:21291",
+        "15:21292",
+        "15:21302",
+        "15:21303"
+      ]
+    }
+  ],
+  "states": [
+    {
+      "root": "15:21435",
+      "width": 1440,
+      "category": "today",
+      "state": "empty",
+      "header": "15:21436",
+      "content": "15:21438",
+      "tabs": {
+        "today": "15:21445",
+        "upcoming": "15:21446",
+        "results": "15:21447"
+      },
+      "groups": [
+        "15:21448"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21503",
+      "width": 390,
+      "category": "today",
+      "state": "empty",
+      "header": "15:21504",
+      "content": "15:21513",
+      "tabs": {
+        "today": "15:21520",
+        "upcoming": "15:21521",
+        "results": "15:21522"
+      },
+      "groups": [
+        "15:21523"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21558",
+      "width": 390,
+      "category": "upcoming",
+      "state": "empty",
+      "header": "15:21559",
+      "content": "15:21568",
+      "tabs": {
+        "today": "15:21575",
+        "upcoming": "15:21576",
+        "results": "15:21577"
+      },
+      "groups": [
+        "15:21578"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21611",
+      "width": 390,
+      "category": "results",
+      "state": "empty",
+      "header": "15:21612",
+      "content": "15:21621",
+      "tabs": {
+        "today": "15:21628",
+        "upcoming": "15:21629",
+        "results": "15:21630"
+      },
+      "groups": [
+        "15:21631"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21664",
+      "width": 390,
+      "category": "today",
+      "state": "loading",
+      "header": "15:21665",
+      "content": "15:21674",
+      "tabs": {
+        "today": "15:21681",
+        "upcoming": "15:21682",
+        "results": "15:21683"
+      },
+      "groups": [
+        "15:21684"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21719",
+      "width": 390,
+      "category": "today",
+      "state": "error",
+      "header": "15:21720",
+      "content": "15:21729",
+      "tabs": {
+        "today": "15:21736",
+        "upcoming": "15:21737",
+        "results": "15:21738"
+      },
+      "groups": [
+        "15:21739"
+      ],
+      "matches": []
+    },
+    {
+      "root": "15:21776",
+      "width": 320,
+      "category": "today",
+      "state": null,
+      "header": "15:21777",
+      "content": "15:21786",
+      "tabs": {
+        "today": "15:21793",
+        "upcoming": "15:21794",
+        "results": "15:21795"
+      },
+      "groups": [
+        "15:21796"
+      ],
+      "matches": [
+        "15:21805",
+        "15:21806",
+        "15:21807",
+        "15:21808"
+      ]
+    },
+    {
+      "root": "15:21928",
+      "width": 390,
+      "category": "today",
+      "state": null,
+      "header": "15:21929",
+      "content": "15:21938",
+      "tabs": {
+        "today": "15:21945",
+        "upcoming": "15:21946",
+        "results": "15:21947"
+      },
+      "groups": [
+        "15:21948"
+      ],
+      "matches": [
+        "15:21957",
+        "15:21958",
+        "15:21959",
+        "15:21960"
+      ]
+    }
+  ],
+  "interactionSheet": "15:22080",
+  "data": {
+    "today": [
+      {
+        "Home": "Aurora FC",
+        "Away": "Atlético Paulista",
+        "Time": "20h30",
+        "Round": "Rodada 7",
+        "Date": "05 out"
+      },
+      {
+        "Home": "União MamoBall",
+        "Away": "Vila Esportiva",
+        "Time": "21h00",
+        "Round": "Rodada 7",
+        "Date": "05 out"
+      },
+      {
+        "Home": "Aurora FC",
+        "Away": "União MamoBall",
+        "Time": "22h00",
+        "Round": "Rodada 8",
+        "Date": "05 out"
+      },
+      {
+        "Home": "Atlético Paulista",
+        "Away": "Vila Esportiva",
+        "Time": "22h30",
+        "Round": "Rodada 8",
+        "Date": "05 out"
+      }
+    ],
+    "upcoming": [
+      {
+        "Home": "Aurora FC",
+        "Away": "Vila Esportiva",
+        "Time": "20h30",
+        "Round": "Rodada 9",
+        "Date": "08 out"
+      },
+      {
+        "Home": "Atlético Paulista",
+        "Away": "União MamoBall",
+        "Time": "21h00",
+        "Round": "Rodada 9",
+        "Date": "08 out"
+      },
+      {
+        "Home": "Aurora FC",
+        "Away": "Atlético Paulista",
+        "Time": "20h30",
+        "Round": "Rodada 10",
+        "Date": "10 out"
+      },
+      {
+        "Home": "União MamoBall",
+        "Away": "Vila Esportiva",
+        "Time": "21h00",
+        "Round": "Rodada 10",
+        "Date": "10 out"
+      }
+    ],
+    "results": [
+      {
+        "Home": "Aurora FC",
+        "Away": "Atlético Paulista",
+        "Time": "Final",
+        "Round": "Rodada 6",
+        "Date": "04 out",
+        "kind": "result",
+        "Score": "3 – 1",
+        "ScoreHome": "3",
+        "ScoreAway": "1"
+      },
+      {
+        "Home": "União MamoBall",
+        "Away": "Vila Esportiva",
+        "Time": "Empate",
+        "Round": "Rodada 6",
+        "Date": "04 out",
+        "kind": "draw",
+        "Score": "2 – 2",
+        "ScoreHome": "2",
+        "ScoreAway": "2"
+      },
+      {
+        "Home": "Atlético Paulista",
+        "Away": "Vila Esportiva",
+        "Time": "W.O.",
+        "Round": "Rodada 5",
+        "Date": "03 out",
+        "kind": "wo",
+        "Score": "3 – 0",
+        "ScoreHome": "3",
+        "ScoreAway": "0"
+      },
+      {
+        "Home": "Aurora FC",
+        "Away": "União MamoBall",
+        "Time": "Final",
+        "Round": "Rodada 5",
+        "Date": "03 out",
+        "kind": "result",
+        "Score": "1 – 0",
+        "ScoreHome": "1",
+        "ScoreAway": "0"
+      }
+    ]
+  },
+  "previewDirectory": "design/games-dark-previews-final",
+  "geometry": {
+    "contentMax": 1280,
+    "gutterMobile": 16,
+    "gutterTablet": 24,
+    "headerDesktop": 88,
+    "headerSmall": 72,
+    "tabDesktop": 52,
+    "tabMobile": 72,
+    "timeCellWidth": 112,
+    "wideCardPaddingX": 24,
+    "wideCardPaddingY": 20,
+    "mobileCardPadding": 16,
+    "cardGapMobile": 12,
+    "cardRadius": 16,
+    "focusStroke": 2
+  },
+  "limits": {
+    "appChanged": false,
+    "darkAuthored": true,
+    "liveIncluded": false,
+    "detailFrameCreated": false,
+    "competitionSelectorAdded": false,
+    "emptyCTAPrototype": false
+  },
+  "tokens": {
+    "primitives": {
+      "space/5": 20,
+      "size/games-time-cell": 112,
+      "size/games-tab": 52,
+      "size/games-date-marker": 56
+    },
+    "primitiveVariables": {
+      "space/5": "VariableID:13:19320",
+      "size/games-time-cell": "VariableID:13:19321",
+      "size/games-tab": "VariableID:13:19322",
+      "size/games-date-marker": "VariableID:13:19323"
+    },
+    "semantic": {
+      "games/time-cell-width": "size/games-time-cell",
+      "games/tab-height": "size/games-tab",
+      "games/tab-mobile-height": "size/compact-header",
+      "games/date-marker-width": "size/games-date-marker",
+      "games/card-padding-y": "space/5"
+    },
+    "semanticVariables": {
+      "games/time-cell-width": "VariableID:15:19687",
+      "games/tab-height": "VariableID:15:19688",
+      "games/tab-mobile-height": "VariableID:15:19689",
+      "games/date-marker-width": "VariableID:15:19690",
+      "games/card-padding-y": "VariableID:15:19691"
+    }
+  },
+  "note": "15:22215",
+  "review": {
+    "file": "design/games-dark-review.md",
+    "disposition": "ship",
+    "captures": 19
+  },
+  "sourceLight": "design/games-metadata.json",
+  "componentMap": {
+    "2:129": "8:6697",
+    "2:138": "8:6707",
+    "2:140": "8:6709",
+    "2:142": "8:6711",
+    "2:144": "8:6713",
+    "2:150": "8:6720",
+    "2:152": "8:6722",
+    "2:154": "8:6724",
+    "2:156": "8:6726",
+    "2:158": "8:6728",
+    "2:184": "8:6754",
+    "2:188": "8:6758",
+    "2:203": "8:6801",
+    "2:213": "8:6811",
+    "2:225": "8:6824",
+    "2:376": "8:6836",
+    "2:377": "8:6848",
+    "2:378": "8:6860",
+    "2:164": "8:6945",
+    "2:818": "8:6948",
+    "2:823": "8:6951",
+    "2:169": "8:6961",
+    "2:829": "8:6963",
+    "2:833": "8:6965",
+    "2:173": "8:6974",
+    "2:838": "8:6977",
+    "2:842": "8:6980",
+    "2:177": "8:6987",
+    "2:847": "8:6991",
+    "2:854": "8:6995",
+    "2:903": "8:7009",
+    "2:1110": "8:7014",
+    "2:1116": "8:7019",
+    "4:1421": "8:7027",
+    "4:1447": "8:7068",
+    "4:1492": "8:7113",
+    "4:1513": "8:7161",
+    "4:1159": "8:7210",
+    "4:1189": "8:7241",
+    "4:1221": "8:7268",
+    "4:1245": "8:7290",
+    "4:1275": "8:7321",
+    "4:1305": "8:7352",
+    "4:1315": "8:7362",
+    "4:1333": "8:7373",
+    "4:1348": "8:7383",
+    "4:1374": "8:7414",
+    "4:1401": "8:7441",
+    "4:3065": "8:7548",
+    "6:4094": "8:7552",
+    "6:4087": "8:7566",
+    "6:6119": "8:7570",
+    "6:6123": "8:7574",
+    "6:6127": "8:7578",
+    "13:16353": "15:19341",
+    "13:16360": "15:19346",
+    "13:16367": "15:19351",
+    "13:16374": "15:19356",
+    "13:16381": "15:19361",
+    "13:16388": "15:19366",
+    "13:16396": "15:19372",
+    "13:16404": "15:19378",
+    "13:16412": "15:19384",
+    "13:16420": "15:19390",
+    "13:16429": "15:19417",
+    "13:16457": "15:19440",
+    "13:16485": "15:19463",
+    "13:16513": "15:19486",
+    "13:16541": "15:19509",
+    "13:16565": "15:19528",
+    "13:16591": "15:19549",
+    "13:16617": "15:19570",
+    "13:16643": "15:19591",
+    "13:16671": "15:19614"
+  },
+  "variableMap": {
+    "VariableID:2:56": "VariableID:2:79",
+    "VariableID:2:57": "VariableID:2:80",
+    "VariableID:2:58": "VariableID:2:81",
+    "VariableID:2:59": "VariableID:2:82",
+    "VariableID:2:60": "VariableID:2:83",
+    "VariableID:2:61": "VariableID:2:84",
+    "VariableID:2:62": "VariableID:2:85",
+    "VariableID:2:63": "VariableID:2:86",
+    "VariableID:2:64": "VariableID:2:87",
+    "VariableID:2:65": "VariableID:2:88",
+    "VariableID:2:66": "VariableID:2:89",
+    "VariableID:2:67": "VariableID:2:90",
+    "VariableID:2:68": "VariableID:2:91",
+    "VariableID:2:69": "VariableID:2:92",
+    "VariableID:2:70": "VariableID:2:93",
+    "VariableID:2:71": "VariableID:2:94",
+    "VariableID:2:72": "VariableID:2:95",
+    "VariableID:2:73": "VariableID:2:96",
+    "VariableID:2:74": "VariableID:2:97",
+    "VariableID:2:75": "VariableID:2:98",
+    "VariableID:2:76": "VariableID:2:99",
+    "VariableID:2:77": "VariableID:2:100",
+    "VariableID:2:78": "VariableID:2:101",
+    "VariableID:2:1123": "VariableID:2:1125",
+    "VariableID:2:1124": "VariableID:2:1126",
+    "VariableID:4:2930": "VariableID:7:6680",
+    "VariableID:4:2931": "VariableID:7:6681",
+    "VariableID:4:2932": "VariableID:7:6682",
+    "VariableID:4:2933": "VariableID:7:6683",
+    "VariableID:13:19324": "VariableID:15:19687",
+    "VariableID:13:19325": "VariableID:15:19688",
+    "VariableID:13:19326": "VariableID:15:19689",
+    "VariableID:13:19327": "VariableID:15:19690",
+    "VariableID:13:19328": "VariableID:15:19691"
+  },
+  "bindingsApplied": 1995,
+  "lightPaintBindingsCheck": {"roots": 22, "unexpectedVisibleBindings": 0},
+  "contrastChecks": [{"name":"Primary/card","ink":"#EDF2F9","surface":"#151E2B","ratio":14.91},{"name":"Secondary/card","ink":"#B8C4D6","surface":"#151E2B","ratio":9.51},{"name":"Selected/background","ink":"#C5DCFF","surface":"#203F6A","ratio":7.6},{"name":"Time/time-cell","ink":"#7BAAFF","surface":"#203F6A","ratio":4.56},{"name":"Time/card","ink":"#7BAAFF","surface":"#151E2B","ratio":7.21},{"name":"Action ink/fill","ink":"#0B1628","surface":"#7BAAFF","ratio":7.79}]
+}

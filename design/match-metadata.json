@@ -1,0 +1,1042 @@
+{
+  "version": 1,
+  "date": "2026-10-07",
+  "mode": "Light",
+  "pages": {
+    "screens": "63:42506",
+    "components": "63:42507",
+    "states": "63:42508"
+  },
+  "scenes": [
+    {
+      "root": "64:43164",
+      "width": 1440,
+      "compact": false,
+      "header": "64:43165",
+      "gutter": "64:43194",
+      "content": "64:43195",
+      "nav": "64:43196",
+      "back": "64:43197",
+      "id": "64:43201",
+      "save": "64:43202",
+      "share": "64:43206",
+      "scoreboard": "64:43214",
+      "tabs": {},
+      "body": "64:43250",
+      "tab": "Goals",
+      "name": "Final"
+    },
+    {
+      "root": "64:43481",
+      "width": 390,
+      "compact": true,
+      "header": "64:43482",
+      "gutter": "64:43490",
+      "content": "64:43496",
+      "nav": "64:43497",
+      "back": "64:43498",
+      "id": "64:43501",
+      "save": "64:43502",
+      "share": "64:43505",
+      "scoreboard": "64:43512",
+      "tabs": {
+        "Goals": "64:43549",
+        "History": "64:43555",
+        "Round": "64:43560"
+      },
+      "body": "64:43565",
+      "tab": "Goals",
+      "name": "Final"
+    },
+    {
+      "root": "64:43663",
+      "width": 320,
+      "compact": true,
+      "header": "64:43664",
+      "gutter": "64:43672",
+      "content": "64:43678",
+      "nav": "64:43679",
+      "back": "64:43680",
+      "id": "64:43683",
+      "save": "64:43684",
+      "share": "64:43687",
+      "scoreboard": "64:43694",
+      "tabs": {
+        "Goals": "64:43731",
+        "History": "64:43737",
+        "Round": "64:43742"
+      },
+      "body": "64:43747",
+      "tab": "Goals",
+      "name": "Final"
+    },
+    {
+      "root": "64:43845",
+      "width": 768,
+      "compact": true,
+      "header": "64:43846",
+      "gutter": "64:43854",
+      "content": "64:43860",
+      "nav": "64:43861",
+      "back": "64:43862",
+      "id": "64:43865",
+      "save": "64:43866",
+      "share": "64:43869",
+      "scoreboard": "64:43876",
+      "tabs": {
+        "Goals": "64:43913",
+        "History": "64:43919",
+        "Round": "64:43924"
+      },
+      "body": "64:43929",
+      "tab": "Goals",
+      "name": "Final"
+    },
+    {
+      "root": "64:44027",
+      "width": 1024,
+      "compact": false,
+      "header": "64:44028",
+      "gutter": "64:44057",
+      "content": "64:44058",
+      "nav": "64:44059",
+      "back": "64:44060",
+      "id": "64:44064",
+      "save": "64:44065",
+      "share": "64:44069",
+      "scoreboard": "64:44077",
+      "tabs": {},
+      "body": "64:44113",
+      "tab": "Goals",
+      "name": "Final"
+    },
+    {
+      "root": "64:44344",
+      "width": 2560,
+      "compact": false,
+      "header": "64:44345",
+      "gutter": "64:44374",
+      "content": "64:44375",
+      "nav": "64:44376",
+      "back": "64:44377",
+      "id": "64:44381",
+      "save": "64:44382",
+      "share": "64:44386",
+      "scoreboard": "64:44394",
+      "tabs": {},
+      "body": "64:44430",
+      "tab": "Goals",
+      "name": "Final"
+    }
+  ],
+  "states": [
+    {
+      "root": "64:45235",
+      "width": 390,
+      "state": "Confrontos",
+      "content": "64:45245",
+      "nav": "64:45246",
+      "body": "64:45256"
+    },
+    {
+      "root": "64:45492",
+      "width": 390,
+      "state": "Rodada",
+      "content": "64:45502",
+      "nav": "64:45503",
+      "body": "64:45513"
+    },
+    {
+      "root": "64:45741",
+      "width": 1440,
+      "state": "Scheduled",
+      "content": "64:45744",
+      "nav": "64:45745",
+      "scoreboard": "64:45750",
+      "reminder": "64:46100"
+    },
+    {
+      "root": "64:46106",
+      "width": 390,
+      "state": "Scheduled",
+      "content": "64:46116",
+      "nav": "64:46117",
+      "scoreboard": "64:46122",
+      "reminder": "64:46330"
+    },
+    {
+      "root": "64:46335",
+      "width": 390,
+      "state": "UnknownTime",
+      "content": "64:46345",
+      "nav": "64:46346",
+      "scoreboard": "64:46351",
+      "reminder": "64:46559"
+    },
+    {
+      "root": "64:46564",
+      "width": 1440,
+      "state": "Live",
+      "content": "64:46567",
+      "nav": "64:46568",
+      "scoreboard": "64:46573"
+    },
+    {
+      "root": "64:46918",
+      "width": 390,
+      "state": "Live",
+      "content": "64:46928",
+      "nav": "64:46929",
+      "scoreboard": "64:46934"
+    },
+    {
+      "root": "64:47137",
+      "width": 390,
+      "state": "Draw",
+      "content": "64:47147",
+      "nav": "64:47148",
+      "scoreboard": "64:47153"
+    },
+    {
+      "root": "64:47360",
+      "width": 1440,
+      "state": "WO",
+      "content": "64:47363",
+      "nav": "64:47364",
+      "scoreboard": "64:47369"
+    },
+    {
+      "root": "64:47718",
+      "width": 390,
+      "state": "WO",
+      "content": "64:47728",
+      "nav": "64:47729",
+      "scoreboard": "64:47734"
+    },
+    {
+      "root": "64:47941",
+      "width": 390,
+      "state": "NoGoals",
+      "content": "64:47951",
+      "nav": "64:47952"
+    },
+    {
+      "root": "64:48129",
+      "width": 390,
+      "state": "NoHistory",
+      "content": "64:48139",
+      "nav": "64:48140",
+      "body": "64:48150"
+    },
+    {
+      "root": "64:48391",
+      "width": 1440,
+      "state": "Loading",
+      "content": "64:48394",
+      "nav": "64:48395"
+    },
+    {
+      "root": "64:48717",
+      "width": 390,
+      "state": "Loading",
+      "content": "64:48727",
+      "nav": "64:48728"
+    },
+    {
+      "root": "64:48908",
+      "width": 390,
+      "state": "Error",
+      "content": "64:48918",
+      "nav": "64:48919",
+      "feedback": "64:49090"
+    },
+    {
+      "root": "64:49097",
+      "width": 390,
+      "state": "Missing",
+      "content": "64:49107",
+      "nav": "64:49108",
+      "feedback": "64:49279"
+    },
+    {
+      "root": "64:49287",
+      "width": 390,
+      "state": "Saved",
+      "content": "64:49297",
+      "nav": "64:49298"
+    },
+    {
+      "root": "64:49475",
+      "width": 390,
+      "state": "Copied",
+      "content": "64:49485",
+      "nav": "64:49486"
+    },
+    {
+      "root": "64:49710",
+      "state": "Saved",
+      "width": 1440
+    },
+    {
+      "root": "64:50034",
+      "state": "Copied",
+      "width": 1440
+    }
+  ],
+  "prototypes": [
+    {
+      "root": "64:49665",
+      "width": 1440,
+      "kind": "Main"
+    },
+    {
+      "root": "64:51376",
+      "width": 1440,
+      "kind": "Games"
+    },
+    {
+      "root": "64:50355",
+      "width": 390,
+      "kind": "Main"
+    },
+    {
+      "root": "64:51586",
+      "width": 390,
+      "kind": "Games"
+    },
+    {
+      "root": "64:50410",
+      "width": 390,
+      "kind": "Past"
+    },
+    {
+      "root": "64:51236",
+      "width": 390,
+      "kind": "Other"
+    }
+  ],
+  "components": {
+    "sets": {
+      "actionSet": "64:49661",
+      "tabSet": "64:49662",
+      "scoreboardSets": [
+        "64:49663",
+        "64:49664"
+      ]
+    },
+    "heroes": [
+      [
+        {
+          "root": "64:42598",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "refs": {
+            "competition": "64:42567",
+            "round": "64:42568",
+            "homeCrest": "64:42571",
+            "home": "64:42573",
+            "scoreH": "64:42577",
+            "scoreA": "64:42579",
+            "status": "64:42580",
+            "awayCrest": "64:42585",
+            "away": "64:42587",
+            "date": "64:42595",
+            "stage": "64:42597"
+          },
+          "compact": false,
+          "status": "Final"
+        },
+        {
+          "root": "64:44759",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "compact": false,
+          "status": "Scheduled"
+        },
+        {
+          "root": "64:44795",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "compact": false,
+          "status": "UnknownTime"
+        },
+        {
+          "root": "64:44831",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "compact": false,
+          "status": "Live"
+        },
+        {
+          "root": "64:44867",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "compact": false,
+          "status": "Draw"
+        },
+        {
+          "root": "64:44903",
+          "props": {
+            "competition": "competition#64:87",
+            "round": "round#64:88",
+            "home": "home#64:89",
+            "away": "away#64:90",
+            "scoreH": "scoreH#64:91",
+            "scoreA": "scoreA#64:92",
+            "date": "date#64:93",
+            "stage": "stage#64:94",
+            "Home crest": "Home crest#64:95",
+            "Away crest": "Away crest#64:96",
+            "Home tag": "Home tag#64:127",
+            "Away tag": "Away tag#64:134"
+          },
+          "compact": false,
+          "status": "WO"
+        }
+      ],
+      [
+        {
+          "root": "64:42635",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "refs": {
+            "competition": "64:42604",
+            "round": "64:42605",
+            "homeCrest": "64:42608",
+            "home": "64:51787",
+            "scoreH": "64:42614",
+            "scoreA": "64:42616",
+            "status": "64:42617",
+            "awayCrest": "64:42622",
+            "away": "64:51799",
+            "date": "64:42632",
+            "stage": "64:42634"
+          },
+          "compact": true,
+          "status": "Final"
+        },
+        {
+          "root": "64:44939",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "compact": true,
+          "status": "Scheduled"
+        },
+        {
+          "root": "64:44975",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "compact": true,
+          "status": "UnknownTime"
+        },
+        {
+          "root": "64:45011",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "compact": true,
+          "status": "Live"
+        },
+        {
+          "root": "64:45047",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "compact": true,
+          "status": "Draw"
+        },
+        {
+          "root": "64:45083",
+          "props": {
+            "competition": "competition#64:107",
+            "round": "round#64:108",
+            "home": "home#64:109",
+            "away": "away#64:110",
+            "scoreH": "scoreH#64:111",
+            "scoreA": "scoreA#64:112",
+            "date": "date#64:113",
+            "stage": "stage#64:114",
+            "Home crest": "Home crest#64:115",
+            "Away crest": "Away crest#64:116",
+            "Home tag": "Home tag#64:141",
+            "Away tag": "Away tag#64:148"
+          },
+          "compact": true,
+          "status": "WO"
+        }
+      ]
+    ],
+    "goalRows": [
+      {
+        "root": "64:42657",
+        "kind": "Goal",
+        "props": {
+          "nick": "Nick#64:65",
+          "gameID": "Game ID#64:66",
+          "assist": "Attribution#64:67",
+          "count": "Goals#64:68",
+          "hasID": "Show ID#64:69",
+          "hasAssist": "Show assist#64:70"
+        }
+      },
+      {
+        "root": "64:42678",
+        "kind": "OwnGoal",
+        "props": {
+          "nick": "Nick#64:71",
+          "gameID": "Game ID#64:72",
+          "assist": "Attribution#64:73",
+          "count": "Goals#64:74",
+          "hasID": "Show ID#64:75",
+          "hasAssist": "Show assist#64:76"
+        }
+      }
+    ],
+    "sections": {
+      "goals": [
+        "64:42862",
+        "64:42961"
+      ],
+      "history": "64:43029"
+    },
+    "rounds": [
+      "64:43098",
+      "64:43163"
+    ],
+    "tabs": [
+      {
+        "root": "64:42685",
+        "kind": "Goals",
+        "state": "Default"
+      },
+      {
+        "root": "64:42692",
+        "kind": "Goals",
+        "state": "Selected"
+      },
+      {
+        "root": "64:42698",
+        "kind": "History",
+        "state": "Default"
+      },
+      {
+        "root": "64:42704",
+        "kind": "History",
+        "state": "Selected"
+      },
+      {
+        "root": "64:42710",
+        "kind": "Round",
+        "state": "Default"
+      },
+      {
+        "root": "64:42716",
+        "kind": "Round",
+        "state": "Selected"
+      }
+    ],
+    "actions": [
+      {
+        "key": "BackWide",
+        "root": "64:42518",
+        "state": "Default"
+      },
+      {
+        "key": "BackCompact",
+        "root": "64:42522",
+        "state": "Default"
+      },
+      {
+        "key": "SaveWide",
+        "root": "64:42527",
+        "state": "Default"
+      },
+      {
+        "key": "SaveCompact",
+        "root": "64:42531",
+        "state": "Default"
+      },
+      {
+        "key": "ShareWide",
+        "root": "64:42540",
+        "state": "Default"
+      },
+      {
+        "key": "ShareCompact",
+        "root": "64:42548",
+        "state": "Default"
+      },
+      {
+        "key": "ReminderWide",
+        "root": "64:42555",
+        "state": "Default"
+      },
+      {
+        "key": "ReminderCompact",
+        "root": "64:42561",
+        "state": "Default"
+      },
+      {
+        "key": "BackWide",
+        "root": "64:45119",
+        "state": "Hover"
+      },
+      {
+        "key": "BackWide",
+        "root": "64:45123",
+        "state": "Focus"
+      },
+      {
+        "key": "BackCompact",
+        "root": "64:45127",
+        "state": "Hover"
+      },
+      {
+        "key": "BackCompact",
+        "root": "64:45130",
+        "state": "Focus"
+      },
+      {
+        "key": "SaveWide",
+        "root": "64:45133",
+        "state": "Hover"
+      },
+      {
+        "key": "SaveWide",
+        "root": "64:45137",
+        "state": "Focus"
+      },
+      {
+        "key": "SaveWide",
+        "root": "64:45141",
+        "state": "Selected"
+      },
+      {
+        "key": "SaveCompact",
+        "root": "64:45145",
+        "state": "Hover"
+      },
+      {
+        "key": "SaveCompact",
+        "root": "64:45148",
+        "state": "Focus"
+      },
+      {
+        "key": "SaveCompact",
+        "root": "64:45151",
+        "state": "Selected"
+      },
+      {
+        "key": "ShareWide",
+        "root": "64:45154",
+        "state": "Hover"
+      },
+      {
+        "key": "ShareWide",
+        "root": "64:45162",
+        "state": "Focus"
+      },
+      {
+        "key": "ShareCompact",
+        "root": "64:45170",
+        "state": "Hover"
+      },
+      {
+        "key": "ShareCompact",
+        "root": "64:45177",
+        "state": "Focus"
+      },
+      {
+        "key": "ReminderWide",
+        "root": "64:45184",
+        "state": "Hover"
+      },
+      {
+        "key": "ReminderWide",
+        "root": "64:45190",
+        "state": "Focus"
+      },
+      {
+        "key": "ReminderWide",
+        "root": "64:45196",
+        "state": "Selected"
+      },
+      {
+        "key": "ReminderCompact",
+        "root": "64:45202",
+        "state": "Hover"
+      },
+      {
+        "key": "ReminderCompact",
+        "root": "64:45207",
+        "state": "Focus"
+      },
+      {
+        "key": "ReminderCompact",
+        "root": "64:45212",
+        "state": "Selected"
+      }
+    ],
+    "feedback": [
+      {
+        "root": "64:42724",
+        "kind": "Goals",
+        "props": {
+          "title": "Title#64:77"
+        }
+      },
+      {
+        "root": "64:42731",
+        "kind": "History",
+        "props": {
+          "title": "Title#64:78"
+        }
+      },
+      {
+        "root": "64:42739",
+        "kind": "Scheduled",
+        "props": {
+          "title": "Title#64:79"
+        }
+      },
+      {
+        "root": "64:42746",
+        "kind": "WO",
+        "props": {
+          "title": "Title#64:80"
+        }
+      },
+      {
+        "root": "64:42754",
+        "kind": "Error",
+        "props": {
+          "title": "Title#64:81"
+        }
+      },
+      {
+        "root": "64:42763",
+        "kind": "Missing",
+        "props": {
+          "title": "Title#64:82"
+        }
+      }
+    ],
+    "icons": {
+      "back": "54:8021",
+      "bookmark": "2:888",
+      "share": "21:24682",
+      "bell": "21:24678",
+      "ball": "21:24674",
+      "check": "3:1147",
+      "trophy": "3:1158",
+      "calendar": "3:1144",
+      "clock": "3:1154",
+      "arrow": "2:128",
+      "user": "2:119",
+      "alert": "54:8028",
+      "assist": "64:42513"
+    }
+  },
+  "reactions": [
+    {
+      "nodeId": "64:49670",
+      "destinationId": "64:51376"
+    },
+    {
+      "nodeId": "64:49672",
+      "destinationId": "64:49710"
+    },
+    {
+      "nodeId": "64:49673",
+      "destinationId": "64:50034"
+    },
+    {
+      "nodeId": "64:49715",
+      "destinationId": "64:51376"
+    },
+    {
+      "nodeId": "64:49717",
+      "destinationId": "64:49665"
+    },
+    {
+      "nodeId": "64:49718",
+      "destinationId": "64:50034"
+    },
+    {
+      "nodeId": "64:50039",
+      "destinationId": "64:51376"
+    },
+    {
+      "nodeId": "64:50041",
+      "destinationId": "64:49710"
+    },
+    {
+      "nodeId": "64:50042",
+      "destinationId": "64:49665"
+    },
+    {
+      "nodeId": "64:50367",
+      "destinationId": "64:51586"
+    },
+    {
+      "nodeId": "64:50369",
+      "destinationId": "64:49287"
+    },
+    {
+      "nodeId": "64:50370",
+      "destinationId": "64:49475"
+    },
+    {
+      "nodeId": "64:50374",
+      "destinationId": "64:45235"
+    },
+    {
+      "nodeId": "64:50375",
+      "destinationId": "64:45492"
+    },
+    {
+      "nodeId": "64:45247",
+      "destinationId": "64:51586"
+    },
+    {
+      "nodeId": "64:45249",
+      "destinationId": "64:49287"
+    },
+    {
+      "nodeId": "64:45250",
+      "destinationId": "64:49475"
+    },
+    {
+      "nodeId": "64:45253",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:45255",
+      "destinationId": "64:45492"
+    },
+    {
+      "nodeId": "64:45504",
+      "destinationId": "64:51586"
+    },
+    {
+      "nodeId": "64:45506",
+      "destinationId": "64:49287"
+    },
+    {
+      "nodeId": "64:45507",
+      "destinationId": "64:49475"
+    },
+    {
+      "nodeId": "64:45510",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:45511",
+      "destinationId": "64:45235"
+    },
+    {
+      "nodeId": "64:49299",
+      "destinationId": "64:51586"
+    },
+    {
+      "nodeId": "64:49301",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:49302",
+      "destinationId": "64:49475"
+    },
+    {
+      "nodeId": "64:49305",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:49306",
+      "destinationId": "64:45235"
+    },
+    {
+      "nodeId": "64:49307",
+      "destinationId": "64:45492"
+    },
+    {
+      "nodeId": "64:49487",
+      "destinationId": "64:51586"
+    },
+    {
+      "nodeId": "64:49489",
+      "destinationId": "64:49287"
+    },
+    {
+      "nodeId": "64:49490",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:49493",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:49494",
+      "destinationId": "64:45235"
+    },
+    {
+      "nodeId": "64:49495",
+      "destinationId": "64:45492"
+    },
+    {
+      "nodeId": "I64:45256;64:42993",
+      "destinationId": "64:50410"
+    },
+    {
+      "nodeId": "I64:45513;64:43106",
+      "destinationId": "64:51236"
+    },
+    {
+      "nodeId": "64:50422",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:51248",
+      "destinationId": "64:50355"
+    },
+    {
+      "nodeId": "64:51398",
+      "destinationId": "64:49665"
+    },
+    {
+      "nodeId": "64:51615",
+      "destinationId": "64:50355"
+    }
+  ],
+  "previewDirectory": "design/match-previews",
+  "limits": {
+    "applicationChanged": false,
+    "databaseChanged": false,
+    "darkAuthored": false,
+    "fixturesNotRealData": true,
+    "realTimeTransportVerified": false,
+    "chronologicalGoalOrder": false
+  },
+  "review": {
+    "disposition": "ship",
+    "path": "design/match-review.md",
+    "fixes": "design/match-fix-verification.json"
+  }
+}

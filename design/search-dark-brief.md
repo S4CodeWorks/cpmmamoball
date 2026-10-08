@@ -1,0 +1,9 @@
+# Pesquisa · Dark · Figma
+
+Native editable dark counterpart of the completed Light search; Operate within the approved CPM world. No application or database changes. Preserve existing query semantics, subset counts, player-to-club destinations, fixtures and responsive structure. The user explicitly requested dark now; no replacement identity decisions.
+
+Use the existing Dark semantic collection: Midnight page, a separate raised card surface, header/input surfaces, readable primary/secondary text, action-blue selected labels and tinted active compartments. The pale active-navigation text role remains distinct from the selected search labels. Focus and primary recovery use the incumbent accessible action palette. Preserve Manrope/Barlow Condensed, official unmodified raster logo, original SVG geometry, content wrapping, compact news max three lines and whole-row links. No arbitrary inversion of image assets.
+
+Cover all 27 Light scene equivalents at1440/1024/2560/768/390/320, four component usage sheets and a native handoff note; native component sets must be separate reusable Dark masters. Prototype only1440/390 fixture query/categories/clear/back with120ms dissolve; exceptional states remain static. Final export/render review, independent finish review and documentation merge close this task. Native acceptance does not establish runtime keyboard/ARIA, queries, retry, reduced motion or application breakpoint behavior.
+
+Completed · 2026-10-06. All 32 final native exports passed the bounded author inspection and [independent finish review](search-dark-review.md), which returned **ship** with no material fixes. [Documentation handoff](search-dark-documentation.md) records the merged PRODUCT/DESIGN extension, APIs, assets and native-only verification limits. Existing tokens, identity, sidecar, source/database behavior and prior statuses are preserved.

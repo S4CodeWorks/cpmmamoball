@@ -1,0 +1,2147 @@
+{
+  "upcoming": {
+    "note": "This tree serialized to ~52k chars at detail \"full\" — beyond what a tool result can deliver, so this is the same tree with its LAYOUT intact and its APPEARANCE dropped. Every frame still carries its exact layout (flex/grid mode, padding, itemSpacing/gap, alignment) and each node its sizing and constraints, and each text its characters. What is missing is colour, typography, effects and token bindings. Build the structure from the layout objects, never from x/y: emit the container and its gap/padding, not per-child margins or absolute offsets. To get what is missing, call get_design_context per section nodeId (detail: full, dedupeComponents: true) before building that section — never estimate those values from a screenshot.",
+    "nodes": [
+      {
+        "id": "13:17784",
+        "name": "Jogos content",
+        "type": "FRAME",
+        "x": 80,
+        "y": 0,
+        "width": 1280,
+        "height": 978,
+        "layout": {
+          "mode": "VERTICAL",
+          "paddingTop": 32,
+          "paddingRight": 0,
+          "paddingBottom": 32,
+          "paddingLeft": 0,
+          "itemSpacing": 32,
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "layoutWrap": "NO_WRAP",
+          "strokesIncludedInLayout": true
+        },
+        "layoutSizingHorizontal": "FILL",
+        "layoutSizingVertical": "HUG",
+        "layoutAlign": "STRETCH",
+        "maxWidth": 1280,
+        "clipsContent": true,
+        "children": [
+          {
+            "id": "13:17785",
+            "name": "Page context",
+            "type": "FRAME",
+            "x": 0,
+            "y": 32,
+            "width": 1280,
+            "height": 44,
+            "layout": {
+              "mode": "HORIZONTAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 24,
+              "primaryAxisAlignItems": "SPACE_BETWEEN",
+              "counterAxisAlignItems": "CENTER",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "layoutAlign": "STRETCH",
+            "clipsContent": true,
+            "children": [
+              {
+                "id": "13:17786",
+                "name": "Jogos",
+                "type": "TEXT",
+                "x": 0,
+                "y": 2,
+                "width": 69,
+                "height": 40,
+                "layoutSizingHorizontal": "HUG",
+                "layoutSizingVertical": "HUG",
+                "characters": "Jogos"
+              },
+              {
+                "id": "13:17787",
+                "name": "Active competition / noninteractive",
+                "type": "FRAME",
+                "x": 1101,
+                "y": 0,
+                "width": 179,
+                "height": 44,
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 12,
+                  "paddingBottom": 0,
+                  "paddingLeft": 12,
+                  "itemSpacing": 8,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "HUG",
+                "layoutSizingVertical": "FIXED",
+                "clipsContent": true,
+                "children": [
+                  {
+                    "id": "13:17788",
+                    "name": "Icon / trophy",
+                    "type": "INSTANCE",
+                    "x": 12,
+                    "y": 12,
+                    "width": 20,
+                    "height": 20,
+                    "mainComponentId": "3:1158",
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "I13:17788;3:1156",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 6.6666669845581055,
+                        "y": 2.500000238418579,
+                        "width": 6.666666507720947,
+                        "height": 9.166666030883789,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      },
+                      {
+                        "id": "I13:17788;3:1157",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 3.3333334922790527,
+                        "y": 4.1666669845581055,
+                        "width": 13.333333015441895,
+                        "height": 13.333333015441895,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "13:17791",
+                    "name": "Copa Paulista 2026",
+                    "type": "TEXT",
+                    "x": 40,
+                    "y": 12,
+                    "width": 127,
+                    "height": 20,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "Copa Paulista 2026"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "13:17792",
+            "name": "Categories",
+            "type": "FRAME",
+            "x": 0,
+            "y": 108,
+            "width": 1280,
+            "height": 52,
+            "layout": {
+              "mode": "HORIZONTAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 8,
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "CENTER",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "FIXED",
+            "layoutAlign": "STRETCH",
+            "clipsContent": true,
+            "children": [
+              {
+                "id": "13:17793",
+                "name": "today",
+                "type": "INSTANCE",
+                "x": 0,
+                "y": 0,
+                "width": 176,
+                "height": 52,
+                "mainComponentId": "13:16353",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 16,
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "itemSpacing": 8,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "FIXED",
+                "clipsContent": false,
+                "componentProperties": {
+                  "Show count#13:50": {
+                    "type": "BOOLEAN",
+                    "value": true
+                  },
+                  "Count#13:49": {
+                    "type": "TEXT",
+                    "value": "4"
+                  },
+                  "Label#13:48": {
+                    "type": "TEXT",
+                    "value": "Hoje"
+                  },
+                  "State": {
+                    "type": "VARIANT",
+                    "value": "Default"
+                  },
+                  "Layout": {
+                    "type": "VARIANT",
+                    "value": "Desktop"
+                  }
+                },
+                "children": [
+                  {
+                    "id": "I13:17793;13:16354",
+                    "name": "Icon / calendar",
+                    "type": "INSTANCE",
+                    "x": 42.5,
+                    "y": 16,
+                    "width": 20,
+                    "height": 20,
+                    "mainComponentId": "3:1144",
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "I13:17793;13:16354;3:1142",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 2.500000238418579,
+                        "y": 4.1666669845581055,
+                        "width": 15,
+                        "height": 13.333333015441895,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      },
+                      {
+                        "id": "I13:17793;13:16354;3:1143",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 2.500000238418579,
+                        "y": 2.500000238418579,
+                        "width": 15,
+                        "height": 6.666666507720947,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "I13:17793;13:16357",
+                    "name": "Hoje",
+                    "type": "TEXT",
+                    "x": 70.5,
+                    "y": 16,
+                    "width": 31,
+                    "height": 20,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "Hoje",
+                    "componentPropertyReferences": {
+                      "characters": "Label#13:48"
+                    }
+                  },
+                  {
+                    "id": "I13:17793;13:16358",
+                    "name": "Category count",
+                    "type": "FRAME",
+                    "x": 109.5,
+                    "y": 14,
+                    "width": 24,
+                    "height": 24,
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "componentPropertyReferences": {
+                      "visible": "Show count#13:50"
+                    },
+                    "children": [
+                      {
+                        "id": "I13:17793;13:16359",
+                        "name": "4",
+                        "type": "TEXT",
+                        "x": 8,
+                        "y": 4,
+                        "width": 8,
+                        "height": 16,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "4",
+                        "componentPropertyReferences": {
+                          "characters": "Count#13:49"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "13:17800",
+                "name": "upcoming",
+                "type": "INSTANCE",
+                "x": 184,
+                "y": 0,
+                "width": 176,
+                "height": 52,
+                "mainComponentId": "13:16360",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 16,
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "itemSpacing": 8,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "FIXED",
+                "clipsContent": false,
+                "componentProperties": {
+                  "Show count#13:50": {
+                    "type": "BOOLEAN",
+                    "value": true
+                  },
+                  "Count#13:49": {
+                    "type": "TEXT",
+                    "value": "4"
+                  },
+                  "Label#13:48": {
+                    "type": "TEXT",
+                    "value": "Próximos"
+                  },
+                  "State": {
+                    "type": "VARIANT",
+                    "value": "Selected"
+                  },
+                  "Layout": {
+                    "type": "VARIANT",
+                    "value": "Desktop"
+                  }
+                },
+                "children": [
+                  {
+                    "id": "I13:17800;13:16361",
+                    "name": "Icon / clock",
+                    "type": "INSTANCE",
+                    "x": 27.5,
+                    "y": 16,
+                    "width": 20,
+                    "height": 20,
+                    "mainComponentId": "3:1154",
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "I13:17800;13:16361;3:1152",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 2.500000238418579,
+                        "y": 2.500000238418579,
+                        "width": 15,
+                        "height": 15,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      },
+                      {
+                        "id": "I13:17800;13:16361;3:1153",
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "x": 10,
+                        "y": 5.833333492279053,
+                        "width": 2.5,
+                        "height": 5.8333330154418945,
+                        "constraints": {
+                          "horizontal": "SCALE",
+                          "vertical": "SCALE"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "I13:17800;13:16364",
+                    "name": "Hoje",
+                    "type": "TEXT",
+                    "x": 55.5,
+                    "y": 16,
+                    "width": 61,
+                    "height": 20,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "Próximos",
+                    "componentPropertyReferences": {
+                      "characters": "Label#13:48"
+                    }
+                  },
+                  {
+                    "id": "I13:17800;13:16365",
+                    "name": "Category count",
+                    "type": "FRAME",
+                    "x": 124.5,
+                    "y": 14,
+                    "width": 24,
+                    "height": 24,
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "componentPropertyReferences": {
+                      "visible": "Show count#13:50"
+                    },
+                    "children": [
+                      {
+                        "id": "I13:17800;13:16366",
+                        "name": "4",
+                        "type": "TEXT",
+                        "x": 8,
+                        "y": 4,
+                        "width": 8,
+                        "height": 16,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "4",
+                        "componentPropertyReferences": {
+                          "characters": "Count#13:49"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "13:17809",
+                "name": "results",
+                "type": "INSTANCE",
+                "x": 368,
+                "y": 0,
+                "width": 176,
+                "height": 52,
+                "mainComponentId": "13:16353",
+                "deduped": true,
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 16,
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "itemSpacing": 8,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "FIXED",
+                "clipsContent": false,
+                "textOverrides": [
+                  {
+                    "name": "Hoje",
+                    "characters": "Resultados"
+                  },
+                  {
+                    "name": "4",
+                    "characters": "4"
+                  }
+                ],
+                "componentProperties": {
+                  "Show count#13:50": {
+                    "type": "BOOLEAN",
+                    "value": true
+                  },
+                  "Count#13:49": {
+                    "type": "TEXT",
+                    "value": "4"
+                  },
+                  "Label#13:48": {
+                    "type": "TEXT",
+                    "value": "Resultados"
+                  },
+                  "State": {
+                    "type": "VARIANT",
+                    "value": "Default"
+                  },
+                  "Layout": {
+                    "type": "VARIANT",
+                    "value": "Desktop"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "13:17817",
+            "name": "Fixtures / Quinta-feira",
+            "type": "FRAME",
+            "x": 0,
+            "y": 192,
+            "width": 1280,
+            "height": 361,
+            "layout": {
+              "mode": "VERTICAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 16,
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "layoutAlign": "STRETCH",
+            "clipsContent": true,
+            "children": [
+              {
+                "id": "13:17818",
+                "name": "Group / Quinta-feira",
+                "type": "FRAME",
+                "x": 0,
+                "y": 0,
+                "width": 1280,
+                "height": 64,
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 16,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": true,
+                "children": [
+                  {
+                    "id": "13:17819",
+                    "name": "Calendar day",
+                    "type": "FRAME",
+                    "x": 0,
+                    "y": 0,
+                    "width": 56,
+                    "height": 64,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "13:17820",
+                        "name": "08",
+                        "type": "TEXT",
+                        "x": 13.5,
+                        "y": 4,
+                        "width": 29,
+                        "height": 40,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "08"
+                      },
+                      {
+                        "id": "13:17821",
+                        "name": "OUT",
+                        "type": "TEXT",
+                        "x": 15.5,
+                        "y": 44,
+                        "width": 25,
+                        "height": 16,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "OUT"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "13:17822",
+                    "name": "Group label",
+                    "type": "FRAME",
+                    "x": 72,
+                    "y": 6,
+                    "width": 1208,
+                    "height": 52,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 4,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutGrow": 1,
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "13:17823",
+                        "name": "Quinta-feira",
+                        "type": "TEXT",
+                        "x": 0,
+                        "y": 0,
+                        "width": 1208,
+                        "height": 32,
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "characters": "Quinta-feira",
+                        "textAutoResize": "HEIGHT"
+                      },
+                      {
+                        "id": "13:17824",
+                        "name": "8 de outubro",
+                        "type": "TEXT",
+                        "x": 0,
+                        "y": 36,
+                        "width": 1208,
+                        "height": 16,
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "characters": "8 de outubro",
+                        "textAutoResize": "HEIGHT"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "13:17825",
+                "name": "Matches",
+                "type": "FRAME",
+                "x": 0,
+                "y": 80,
+                "width": 1280,
+                "height": 281,
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 0,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": true,
+                "children": [
+                  {
+                    "id": "13:17826",
+                    "name": "Match / scheduled",
+                    "type": "INSTANCE",
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 140,
+                    "mainComponentId": "13:16429",
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 20,
+                      "paddingRight": 24,
+                      "paddingBottom": 20,
+                      "paddingLeft": 24,
+                      "itemSpacing": 12,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "componentProperties": {
+                      "Home score#13:126": {
+                        "type": "TEXT",
+                        "value": "3"
+                      },
+                      "Away#13:123": {
+                        "type": "TEXT",
+                        "value": "Vila Esportiva"
+                      },
+                      "Time / status#13:119": {
+                        "type": "TEXT",
+                        "value": "20h30"
+                      },
+                      "Score#13:122": {
+                        "type": "TEXT",
+                        "value": "VS"
+                      },
+                      "Date#13:125": {
+                        "type": "TEXT",
+                        "value": "08 out"
+                      },
+                      "Home#13:121": {
+                        "type": "TEXT",
+                        "value": "Aurora FC"
+                      },
+                      "Away score#13:127": {
+                        "type": "TEXT",
+                        "value": "1"
+                      },
+                      "Phase#13:124": {
+                        "type": "TEXT",
+                        "value": "Fase de grupos"
+                      },
+                      "Round#13:120": {
+                        "type": "TEXT",
+                        "value": "Rodada 9"
+                      },
+                      "Kind": {
+                        "type": "VARIANT",
+                        "value": "scheduled"
+                      },
+                      "Layout": {
+                        "type": "VARIANT",
+                        "value": "Desktop"
+                      },
+                      "State": {
+                        "type": "VARIANT",
+                        "value": "Default"
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "I13:17826;13:16430",
+                        "name": "Fixture",
+                        "type": "FRAME",
+                        "x": 24,
+                        "y": 20,
+                        "width": 1232,
+                        "height": 68,
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 24,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": true,
+                        "children": [
+                          {
+                            "id": "I13:17826;13:16431",
+                            "name": "Time or result",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 112,
+                            "height": 68,
+                            "layout": {
+                              "mode": "VERTICAL",
+                              "paddingTop": 8,
+                              "paddingRight": 12,
+                              "paddingBottom": 8,
+                              "paddingLeft": 12,
+                              "itemSpacing": 4,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP",
+                              "strokesIncludedInLayout": true
+                            },
+                            "layoutSizingHorizontal": "FIXED",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": true,
+                            "children": [
+                              {
+                                "id": "I13:17826;13:16432",
+                                "name": "20h30",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 8,
+                                "width": 88,
+                                "height": 32,
+                                "layoutSizingHorizontal": "FILL",
+                                "layoutSizingVertical": "HUG",
+                                "layoutAlign": "STRETCH",
+                                "characters": "20h30",
+                                "textAutoResize": "HEIGHT",
+                                "componentPropertyReferences": {
+                                  "characters": "Time / status#13:119"
+                                }
+                              },
+                              {
+                                "id": "I13:17826;13:16433",
+                                "name": "Rodada 6",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 44,
+                                "width": 88,
+                                "height": 16,
+                                "layoutSizingHorizontal": "FILL",
+                                "layoutSizingVertical": "HUG",
+                                "layoutAlign": "STRETCH",
+                                "characters": "Rodada 9",
+                                "textAutoResize": "HEIGHT",
+                                "componentPropertyReferences": {
+                                  "characters": "Round#13:120"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I13:17826;13:16434",
+                            "name": "Teams",
+                            "type": "FRAME",
+                            "x": 136,
+                            "y": 10,
+                            "width": 1028,
+                            "height": 48,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 0,
+                              "paddingRight": 0,
+                              "paddingBottom": 0,
+                              "paddingLeft": 0,
+                              "itemSpacing": 24,
+                              "primaryAxisAlignItems": "MIN",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP",
+                              "strokesIncludedInLayout": true
+                            },
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutGrow": 1,
+                            "clipsContent": true,
+                            "children": [
+                              {
+                                "id": "I13:17826;13:16435",
+                                "name": "Team",
+                                "type": "FRAME",
+                                "x": 0,
+                                "y": 0,
+                                "width": 442,
+                                "height": 48,
+                                "layout": {
+                                  "mode": "HORIZONTAL",
+                                  "paddingTop": 0,
+                                  "paddingRight": 0,
+                                  "paddingBottom": 0,
+                                  "paddingLeft": 0,
+                                  "itemSpacing": 12,
+                                  "primaryAxisAlignItems": "MIN",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "layoutWrap": "NO_WRAP",
+                                  "strokesIncludedInLayout": true
+                                },
+                                "layoutSizingHorizontal": "FILL",
+                                "layoutSizingVertical": "HUG",
+                                "layoutGrow": 1,
+                                "clipsContent": true,
+                                "children": [
+                                  {
+                                    "id": "I13:17826;13:16436",
+                                    "name": "Club emblem",
+                                    "type": "FRAME",
+                                    "x": 0,
+                                    "y": 0,
+                                    "width": 48,
+                                    "height": 48,
+                                    "layout": {
+                                      "mode": "HORIZONTAL",
+                                      "paddingTop": 0,
+                                      "paddingRight": 0,
+                                      "paddingBottom": 0,
+                                      "paddingLeft": 0,
+                                      "itemSpacing": 0,
+                                      "primaryAxisAlignItems": "CENTER",
+                                      "counterAxisAlignItems": "CENTER",
+                                      "layoutWrap": "NO_WRAP",
+                                      "strokesIncludedInLayout": true
+                                    },
+                                    "layoutSizingHorizontal": "FIXED",
+                                    "layoutSizingVertical": "FIXED",
+                                    "clipsContent": true,
+                                    "children": [
+                                      {
+                                        "id": "I13:17826;13:16437",
+                                        "name": "Club crest / original fallback",
+                                        "type": "INSTANCE",
+                                        "x": 8,
+                                        "y": 6,
+                                        "width": 32,
+                                        "height": 36,
+                                        "mainComponentId": "3:1140",
+                                        "layoutSizingHorizontal": "FIXED",
+                                        "layoutSizingVertical": "FIXED",
+                                        "clipsContent": false,
+                                        "children": [
+                                          {
+                                            "id": "I13:17826;13:16437;3:1139",
+                                            "name": "Club / Generic crest · existing fallback",
+                                            "type": "RECTANGLE",
+                                            "x": 0,
+                                            "y": 0,
+                                            "width": 32,
+                                            "height": 36,
+                                            "constraints": {
+                                              "horizontal": "SCALE",
+                                              "vertical": "SCALE"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "I13:17826;13:16439",
+                                    "name": "Aurora FC",
+                                    "type": "TEXT",
+                                    "x": 60,
+                                    "y": 12,
+                                    "width": 382,
+                                    "height": 24,
+                                    "layoutSizingHorizontal": "FILL",
+                                    "layoutSizingVertical": "HUG",
+                                    "layoutGrow": 1,
+                                    "characters": "Aurora FC",
+                                    "textAutoResize": "HEIGHT",
+                                    "componentPropertyReferences": {
+                                      "characters": "Home#13:121"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "I13:17826;13:16440",
+                                "name": "Score",
+                                "type": "FRAME",
+                                "x": 466,
+                                "y": 8,
+                                "width": 96,
+                                "height": 32,
+                                "layout": {
+                                  "mode": "VERTICAL",
+                                  "paddingTop": 0,
+                                  "paddingRight": 0,
+                                  "paddingBottom": 0,
+                                  "paddingLeft": 0,
+                                  "itemSpacing": 0,
+                                  "primaryAxisAlignItems": "CENTER",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "layoutWrap": "NO_WRAP",
+                                  "strokesIncludedInLayout": true
+                                },
+                                "layoutSizingHorizontal": "FIXED",
+                                "layoutSizingVertical": "HUG",
+                                "clipsContent": true,
+                                "children": [
+                                  {
+                                    "id": "I13:17826;13:16441",
+                                    "name": "VS",
+                                    "type": "TEXT",
+                                    "x": 35.5,
+                                    "y": 0,
+                                    "width": 25,
+                                    "height": 32,
+                                    "layoutSizingHorizontal": "HUG",
+                                    "layoutSizingVertical": "HUG",
+                                    "characters": "VS",
+                                    "componentPropertyReferences": {
+                                      "characters": "Score#13:122"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "I13:17826;13:16442",
+                                "name": "Team",
+                                "type": "FRAME",
+                                "x": 586,
+                                "y": 0,
+                                "width": 442,
+                                "height": 48,
+                                "layout": {
+                                  "mode": "HORIZONTAL",
+                                  "paddingTop": 0,
+                                  "paddingRight": 0,
+                                  "paddingBottom": 0,
+                                  "paddingLeft": 0,
+                                  "itemSpacing": 12,
+                                  "primaryAxisAlignItems": "MIN",
+                                  "counterAxisAlignItems": "CENTER",
+                                  "layoutWrap": "NO_WRAP",
+                                  "strokesIncludedInLayout": true
+                                },
+                                "layoutSizingHorizontal": "FILL",
+                                "layoutSizingVertical": "HUG",
+                                "layoutGrow": 1,
+                                "clipsContent": true,
+                                "children": [
+                                  {
+                                    "id": "I13:17826;13:16443",
+                                    "name": "Club emblem",
+                                    "type": "FRAME",
+                                    "x": 0,
+                                    "y": 0,
+                                    "width": 48,
+                                    "height": 48,
+                                    "layout": {
+                                      "mode": "HORIZONTAL",
+                                      "paddingTop": 0,
+                                      "paddingRight": 0,
+                                      "paddingBottom": 0,
+                                      "paddingLeft": 0,
+                                      "itemSpacing": 0,
+                                      "primaryAxisAlignItems": "CENTER",
+                                      "counterAxisAlignItems": "CENTER",
+                                      "layoutWrap": "NO_WRAP",
+                                      "strokesIncludedInLayout": true
+                                    },
+                                    "layoutSizingHorizontal": "FIXED",
+                                    "layoutSizingVertical": "FIXED",
+                                    "clipsContent": true,
+                                    "children": [
+                                      {
+                                        "id": "I13:17826;13:16444",
+                                        "name": "Club crest / original fallback",
+                                        "type": "INSTANCE",
+                                        "x": 8,
+                                        "y": 6,
+                                        "width": 32,
+                                        "height": 36,
+                                        "mainComponentId": "3:1140",
+                                        "deduped": true,
+                                        "layoutSizingHorizontal": "FIXED",
+                                        "layoutSizingVertical": "FIXED",
+                                        "clipsContent": false
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "I13:17826;13:16446",
+                                    "name": "Atlético Paulista",
+                                    "type": "TEXT",
+                                    "x": 60,
+                                    "y": 12,
+                                    "width": 382,
+                                    "height": 24,
+                                    "layoutSizingHorizontal": "FILL",
+                                    "layoutSizingVertical": "HUG",
+                                    "layoutGrow": 1,
+                                    "characters": "Vila Esportiva",
+                                    "textAutoResize": "HEIGHT",
+                                    "componentPropertyReferences": {
+                                      "characters": "Away#13:123"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I13:17826;13:16447",
+                            "name": "Open match / visual affordance",
+                            "type": "FRAME",
+                            "x": 1188,
+                            "y": 12,
+                            "width": 44,
+                            "height": 44,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 0,
+                              "paddingRight": 0,
+                              "paddingBottom": 0,
+                              "paddingLeft": 0,
+                              "itemSpacing": 0,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP",
+                              "strokesIncludedInLayout": true
+                            },
+                            "layoutSizingHorizontal": "FIXED",
+                            "layoutSizingVertical": "FIXED",
+                            "clipsContent": true,
+                            "children": [
+                              {
+                                "id": "I13:17826;13:16448",
+                                "name": "Icon / arrow",
+                                "type": "INSTANCE",
+                                "x": 12,
+                                "y": 12,
+                                "width": 20,
+                                "height": 20,
+                                "mainComponentId": "2:128",
+                                "layoutSizingHorizontal": "FIXED",
+                                "layoutSizingVertical": "FIXED",
+                                "clipsContent": true,
+                                "children": [
+                                  {
+                                    "id": "I13:17826;13:16448;2:127",
+                                    "name": "Vector",
+                                    "type": "VECTOR",
+                                    "x": 4.1666669845581055,
+                                    "y": 5.833333492279053,
+                                    "width": 11.666666030883789,
+                                    "height": 8.333333015441895,
+                                    "constraints": {
+                                      "horizontal": "SCALE",
+                                      "vertical": "SCALE"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "I13:17826;13:16450",
+                        "name": "Match context",
+                        "type": "FRAME",
+                        "x": 24,
+                        "y": 100,
+                        "width": 1232,
+                        "height": 20,
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 8,
+                          "primaryAxisAlignItems": "SPACE_BETWEEN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": true,
+                        "children": [
+                          {
+                            "id": "I13:17826;13:16451",
+                            "name": "Phase",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 112,
+                            "height": 20,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 0,
+                              "paddingRight": 0,
+                              "paddingBottom": 0,
+                              "paddingLeft": 0,
+                              "itemSpacing": 8,
+                              "primaryAxisAlignItems": "MIN",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP",
+                              "strokesIncludedInLayout": true
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "FIXED",
+                            "clipsContent": true,
+                            "children": [
+                              {
+                                "id": "I13:17826;13:16452",
+                                "name": "Icon / trophy",
+                                "type": "INSTANCE",
+                                "x": 0,
+                                "y": 0,
+                                "width": 20,
+                                "height": 20,
+                                "mainComponentId": "3:1158",
+                                "deduped": true,
+                                "layoutSizingHorizontal": "FIXED",
+                                "layoutSizingVertical": "FIXED",
+                                "clipsContent": true
+                              },
+                              {
+                                "id": "I13:17826;13:16455",
+                                "name": "Fase de grupos",
+                                "type": "TEXT",
+                                "x": 28,
+                                "y": 2,
+                                "width": 84,
+                                "height": 16,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Fase de grupos",
+                                "componentPropertyReferences": {
+                                  "characters": "Phase#13:124"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I13:17826;13:16456",
+                            "name": "05 out",
+                            "type": "TEXT",
+                            "x": 1196,
+                            "y": 2,
+                            "width": 36,
+                            "height": 16,
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "characters": "08 out",
+                            "componentPropertyReferences": {
+                              "characters": "Date#13:125"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "13:17854",
+                    "name": "Divider",
+                    "type": "FRAME",
+                    "x": 0,
+                    "y": 140,
+                    "width": 1280,
+                    "height": 1,
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true
+                  },
+                  {
+                    "id": "13:17855",
+                    "name": "Match / scheduled",
+                    "type": "INSTANCE",
+                    "x": 0,
+                    "y": 141,
+                    "width": 1280,
+                    "height": 140,
+                    "mainComponentId": "13:16429",
+                    "deduped": true,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 20,
+                      "paddingRight": 24,
+                      "paddingBottom": 20,
+                      "paddingLeft": 24,
+                      "itemSpacing": 12,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "textOverrides": [
+                      {
+                        "name": "20h30",
+                        "characters": "21h00"
+                      },
+                      {
+                        "name": "Rodada 6",
+                        "characters": "Rodada 9"
+                      },
+                      {
+                        "name": "Aurora FC",
+                        "characters": "Atlético Paulista"
+                      },
+                      {
+                        "name": "VS",
+                        "characters": "VS"
+                      },
+                      {
+                        "name": "Atlético Paulista",
+                        "characters": "União MamoBall"
+                      },
+                      {
+                        "name": "Fase de grupos",
+                        "characters": "Fase de grupos"
+                      },
+                      {
+                        "name": "05 out",
+                        "characters": "08 out"
+                      }
+                    ],
+                    "componentProperties": {
+                      "Home score#13:126": {
+                        "type": "TEXT",
+                        "value": "3"
+                      },
+                      "Away#13:123": {
+                        "type": "TEXT",
+                        "value": "União MamoBall"
+                      },
+                      "Time / status#13:119": {
+                        "type": "TEXT",
+                        "value": "21h00"
+                      },
+                      "Score#13:122": {
+                        "type": "TEXT",
+                        "value": "VS"
+                      },
+                      "Date#13:125": {
+                        "type": "TEXT",
+                        "value": "08 out"
+                      },
+                      "Home#13:121": {
+                        "type": "TEXT",
+                        "value": "Atlético Paulista"
+                      },
+                      "Away score#13:127": {
+                        "type": "TEXT",
+                        "value": "1"
+                      },
+                      "Phase#13:124": {
+                        "type": "TEXT",
+                        "value": "Fase de grupos"
+                      },
+                      "Round#13:120": {
+                        "type": "TEXT",
+                        "value": "Rodada 9"
+                      },
+                      "Kind": {
+                        "type": "VARIANT",
+                        "value": "scheduled"
+                      },
+                      "Layout": {
+                        "type": "VARIANT",
+                        "value": "Desktop"
+                      },
+                      "State": {
+                        "type": "VARIANT",
+                        "value": "Default"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "13:17883",
+            "name": "Fixtures / Sábado",
+            "type": "FRAME",
+            "x": 0,
+            "y": 585,
+            "width": 1280,
+            "height": 361,
+            "layout": {
+              "mode": "VERTICAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 16,
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "layoutAlign": "STRETCH",
+            "clipsContent": true,
+            "children": [
+              {
+                "id": "13:17884",
+                "name": "Group / Sábado",
+                "type": "FRAME",
+                "x": 0,
+                "y": 0,
+                "width": 1280,
+                "height": 64,
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 16,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": true,
+                "children": [
+                  {
+                    "id": "13:17885",
+                    "name": "Calendar day",
+                    "type": "FRAME",
+                    "x": 0,
+                    "y": 0,
+                    "width": 56,
+                    "height": 64,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "13:17886",
+                        "name": "10",
+                        "type": "TEXT",
+                        "x": 16,
+                        "y": 4,
+                        "width": 24,
+                        "height": 40,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "10"
+                      },
+                      {
+                        "id": "13:17887",
+                        "name": "OUT",
+                        "type": "TEXT",
+                        "x": 15.5,
+                        "y": 44,
+                        "width": 25,
+                        "height": 16,
+                        "layoutSizingHorizontal": "HUG",
+                        "layoutSizingVertical": "HUG",
+                        "characters": "OUT"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "13:17888",
+                    "name": "Group label",
+                    "type": "FRAME",
+                    "x": 72,
+                    "y": 6,
+                    "width": 1208,
+                    "height": 52,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 4,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutGrow": 1,
+                    "clipsContent": true,
+                    "children": [
+                      {
+                        "id": "13:17889",
+                        "name": "Sábado",
+                        "type": "TEXT",
+                        "x": 0,
+                        "y": 0,
+                        "width": 1208,
+                        "height": 32,
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "characters": "Sábado",
+                        "textAutoResize": "HEIGHT"
+                      },
+                      {
+                        "id": "13:17890",
+                        "name": "10 de outubro",
+                        "type": "TEXT",
+                        "x": 0,
+                        "y": 36,
+                        "width": 1208,
+                        "height": 16,
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "characters": "10 de outubro",
+                        "textAutoResize": "HEIGHT"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "13:17891",
+                "name": "Matches",
+                "type": "FRAME",
+                "x": 0,
+                "y": 80,
+                "width": 1280,
+                "height": 281,
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 0,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": true,
+                "children": [
+                  {
+                    "id": "13:17892",
+                    "name": "Match / scheduled",
+                    "type": "INSTANCE",
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 140,
+                    "mainComponentId": "13:16429",
+                    "deduped": true,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 20,
+                      "paddingRight": 24,
+                      "paddingBottom": 20,
+                      "paddingLeft": 24,
+                      "itemSpacing": 12,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "textOverrides": [
+                      {
+                        "name": "20h30",
+                        "characters": "20h30"
+                      },
+                      {
+                        "name": "Rodada 6",
+                        "characters": "Rodada 10"
+                      },
+                      {
+                        "name": "Aurora FC",
+                        "characters": "Aurora FC"
+                      },
+                      {
+                        "name": "VS",
+                        "characters": "VS"
+                      },
+                      {
+                        "name": "Atlético Paulista",
+                        "characters": "Atlético Paulista"
+                      },
+                      {
+                        "name": "Fase de grupos",
+                        "characters": "Fase de grupos"
+                      },
+                      {
+                        "name": "05 out",
+                        "characters": "10 out"
+                      }
+                    ],
+                    "componentProperties": {
+                      "Home score#13:126": {
+                        "type": "TEXT",
+                        "value": "3"
+                      },
+                      "Away#13:123": {
+                        "type": "TEXT",
+                        "value": "Atlético Paulista"
+                      },
+                      "Time / status#13:119": {
+                        "type": "TEXT",
+                        "value": "20h30"
+                      },
+                      "Score#13:122": {
+                        "type": "TEXT",
+                        "value": "VS"
+                      },
+                      "Date#13:125": {
+                        "type": "TEXT",
+                        "value": "10 out"
+                      },
+                      "Home#13:121": {
+                        "type": "TEXT",
+                        "value": "Aurora FC"
+                      },
+                      "Away score#13:127": {
+                        "type": "TEXT",
+                        "value": "1"
+                      },
+                      "Phase#13:124": {
+                        "type": "TEXT",
+                        "value": "Fase de grupos"
+                      },
+                      "Round#13:120": {
+                        "type": "TEXT",
+                        "value": "Rodada 10"
+                      },
+                      "Kind": {
+                        "type": "VARIANT",
+                        "value": "scheduled"
+                      },
+                      "Layout": {
+                        "type": "VARIANT",
+                        "value": "Desktop"
+                      },
+                      "State": {
+                        "type": "VARIANT",
+                        "value": "Default"
+                      }
+                    }
+                  },
+                  {
+                    "id": "13:17920",
+                    "name": "Divider",
+                    "type": "FRAME",
+                    "x": 0,
+                    "y": 140,
+                    "width": 1280,
+                    "height": 1,
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 0,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "CENTER",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true
+                  },
+                  {
+                    "id": "13:17921",
+                    "name": "Match / scheduled",
+                    "type": "INSTANCE",
+                    "x": 0,
+                    "y": 141,
+                    "width": 1280,
+                    "height": 140,
+                    "mainComponentId": "13:16429",
+                    "deduped": true,
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 20,
+                      "paddingRight": 24,
+                      "paddingBottom": 20,
+                      "paddingLeft": 24,
+                      "itemSpacing": 12,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "textOverrides": [
+                      {
+                        "name": "20h30",
+                        "characters": "21h00"
+                      },
+                      {
+                        "name": "Rodada 6",
+                        "characters": "Rodada 10"
+                      },
+                      {
+                        "name": "Aurora FC",
+                        "characters": "União MamoBall"
+                      },
+                      {
+                        "name": "VS",
+                        "characters": "VS"
+                      },
+                      {
+                        "name": "Atlético Paulista",
+                        "characters": "Vila Esportiva"
+                      },
+                      {
+                        "name": "Fase de grupos",
+                        "characters": "Fase de grupos"
+                      },
+                      {
+                        "name": "05 out",
+                        "characters": "10 out"
+                      }
+                    ],
+                    "componentProperties": {
+                      "Home score#13:126": {
+                        "type": "TEXT",
+                        "value": "3"
+                      },
+                      "Away#13:123": {
+                        "type": "TEXT",
+                        "value": "Vila Esportiva"
+                      },
+                      "Time / status#13:119": {
+                        "type": "TEXT",
+                        "value": "21h00"
+                      },
+                      "Score#13:122": {
+                        "type": "TEXT",
+                        "value": "VS"
+                      },
+                      "Date#13:125": {
+                        "type": "TEXT",
+                        "value": "10 out"
+                      },
+                      "Home#13:121": {
+                        "type": "TEXT",
+                        "value": "União MamoBall"
+                      },
+                      "Away score#13:127": {
+                        "type": "TEXT",
+                        "value": "1"
+                      },
+                      "Phase#13:124": {
+                        "type": "TEXT",
+                        "value": "Fase de grupos"
+                      },
+                      "Round#13:120": {
+                        "type": "TEXT",
+                        "value": "Rodada 10"
+                      },
+                      "Kind": {
+                        "type": "VARIANT",
+                        "value": "scheduled"
+                      },
+                      "Layout": {
+                        "type": "VARIANT",
+                        "value": "Desktop"
+                      },
+                      "State": {
+                        "type": "VARIANT",
+                        "value": "Default"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "motion": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:16733",
+        "result": {
+          "rootNodeId": "13:16733",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:16920",
+        "result": {
+          "rootNodeId": "13:16920",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17110",
+        "result": {
+          "rootNodeId": "13:17110",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17282",
+        "result": {
+          "rootNodeId": "13:17282",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17454",
+        "result": {
+          "rootNodeId": "13:17454",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 137,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17610",
+        "result": {
+          "rootNodeId": "13:17610",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 137,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17784",
+        "result": {
+          "rootNodeId": "13:17784",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 161,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:17964",
+        "result": {
+          "rootNodeId": "13:17964",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 146,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:18147",
+        "result": {
+          "rootNodeId": "13:18147",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 165,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "13:18331",
+        "result": {
+          "rootNodeId": "13:18331",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 158,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:19695",
+        "result": {
+          "rootNodeId": "15:19695",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:19879",
+        "result": {
+          "rootNodeId": "15:19879",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20060",
+        "result": {
+          "rootNodeId": "15:20060",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20251",
+        "result": {
+          "rootNodeId": "15:20251",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 153,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20419",
+        "result": {
+          "rootNodeId": "15:20419",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 137,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20571",
+        "result": {
+          "rootNodeId": "15:20571",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 137,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20716",
+        "result": {
+          "rootNodeId": "15:20716",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 161,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:20915",
+        "result": {
+          "rootNodeId": "15:20915",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 146,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:21069",
+        "result": {
+          "rootNodeId": "15:21069",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 165,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "nodeId": "15:21272",
+        "result": {
+          "rootNodeId": "15:21272",
+          "coverage": {
+            "status": "complete",
+            "visitedNodes": 158,
+            "animatedNodes": 0
+          },
+          "nodes": []
+        }
+      }
+    }
+  ]
+}
