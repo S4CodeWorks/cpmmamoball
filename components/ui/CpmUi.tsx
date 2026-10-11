@@ -2,6 +2,8 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 const assets = {
+ registrationClipboard:'registration/104-3318', registrationRoster:'registration/109-11450', registrationCaptain:'registration/109-11489', registrationTag:'registration/109-11493', registrationHash:'registration/104-3330', registrationMention:'registration/109-11507', registrationEdit:'registration/104-3321', registrationTrash:'registration/104-3324', registrationPlus:'registration/104-3327', registrationSend:'registration/109-11496', registrationUndo:'registration/109-11499', registrationLock:'registration/109-11503',
+ feedbackProgress: 'feedback-progress',
  matchAssist: 'match/64-42513', matchShare: 'match/21-24682', matchBell: 'match/21-24678', matchBall: 'match/21-24674',
  authMail: 'auth/54-8007', authLock: 'auth/54-8011', authEye: 'auth/54-8015', authEyeOff: 'auth/54-8018',
  authBack: 'auth/54-8021', authLogin: 'auth/54-8024', authAlert: 'auth/54-8028', authShield: 'auth/54-8031', authBell: 'auth/54-8034', authCheck: 'auth/54-8911', libraryBall: 'auth/21-24674',
@@ -21,8 +23,10 @@ export type CpmIconName = keyof typeof assets;
 export function CpmIcon({ name, className = '' }: { name: CpmIconName; className?: string }) {
  return <span aria-hidden="true" className={'cpm-icon '+className} style={{ '--cpm-icon-url': 'url("/cpm-icons/'+assets[name]+'.svg")' } as CSSProperties} />;
 }
-export function CpmAction({ children, onClick, primary = false }: { children: ReactNode; onClick: () => void; primary?: boolean }) {
- return <motion.button type="button" onClick={onClick} className={'cpm-button '+(primary?'cpm-button-primary':'cpm-button-text')} whileTap={{ scale: 0.98 }} transition={{ duration: 0.12 }}>{children}</motion.button>;
+export function CpmAction({ children, onClick, primary = false, type = 'button', disabled = false, busy = false, className = '' }: {
+ children: ReactNode; onClick?: () => void; primary?: boolean; type?: 'button' | 'submit'; disabled?: boolean; busy?: boolean; className?: string;
+}) {
+ return <motion.button type={type} onClick={onClick} disabled={disabled || busy} aria-busy={busy || undefined} className={'cpm-button '+(primary?'cpm-button-primary':'cpm-button-text')+' '+className} whileTap={disabled || busy ? undefined : { scale: 0.98 }} transition={{ duration: 0.12 }}>{children}</motion.button>;
 }
 export function CpmPopover({ label, trigger, children, className = '', disabled = false, role = 'menu' }: {
  label: string; trigger: ReactNode; children: (close: () => void) => ReactNode; className?: string; disabled?: boolean; role?: 'menu' | 'listbox';

@@ -148,14 +148,43 @@ export async function fetchClubById(id: string): Promise<Club | null> {
   return data ? rowToClub(data) : null;
 }
 
+/** All editions of this club, including historical fixtures. Exact filters avoid slug interpolation. */
+export async function fetchClubMatches(clubId: string): Promise<Match[]> {
+  const results = await Promise.all([
+    supabase.from('matches').select('*').eq('home_id', clubId),
+    supabase.from('matches').select('*').eq('away_id', clubId),
+  ]);
+  const matches = new Map<number, Match>();
+  for (const { data, error } of results) {
+    if (error) throw error;
+    for (const row of data ?? []) { const match = rowToMatch(row); matches.set(match.id, match); }
+  }
+  return [...matches.values()];
+}
+
+export async function fetchClubCompetitionIds(clubId: string): Promise<string[]> {
+  const { data, error } = await supabase.from('club_competitions').select('competition_id').eq('club_id', clubId);
+  if (error) throw error;
+  return (data ?? []).map(row => row.competition_id as string);
+}
+
+/** Roster membership is explicit; never attribute another edition's statistics. */
+export async function fetchCompetitionPlayerIds(competitionId: string): Promise<Set<string>> {
+  const { data, error } = await supabase.from('player_competitions').select('player_id').eq('competition_id', competitionId);
+  if (error) throw error;
+  return new Set((data ?? []).map(row => row.player_id as string));
+}
+
 export async function fetchMatchById(id: number): Promise<Match | null> {
   const { data, error } = await supabase.from('matches').select('*').eq('id', id).maybeSingle();
   if (error) throw error;
   return data ? rowToMatch(data) : null;
 }
 
-export async function fetchNewsById(id: string): Promise<NewsItem | null> {
-  const { data, error } = await supabase.from('news').select('*').eq('id', id).maybeSingle();
+export async function fetchNewsById(id: string, signal?: AbortSignal): Promise<NewsItem | null> {
+  let query = supabase.from('news').select('*').eq('id', id).eq('published', true);
+  if (signal) query = query.abortSignal(signal);
+  const { data, error } = await query.maybeSingle();
   if (error) throw error;
   return data ? rowToNews(data) : null;
 }
@@ -260,12 +289,14 @@ export async function fetchScorers(competitionId: string): Promise<Scorer[]> {
   return (data ?? []).map(rowToScorer);
 }
 
-export async function fetchNews(): Promise<NewsItem[]> {
-  const { data, error } = await supabase
+export async function fetchNews(signal?: AbortSignal): Promise<NewsItem[]> {
+  let query = supabase
     .from('news')
     .select('*')
     .eq('published', true)
     .order('created_at', { ascending: false });
+  if (signal) query = query.abortSignal(signal);
+  const { data, error } = await query;
   if (error) throw error;
   return (data ?? []).map(rowToNews);
 }

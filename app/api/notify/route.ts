@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import webpush from 'web-push';
+import { isTrustedPushEndpoint } from '@/lib/push-endpoint';
 
 const vapidSubject = process.env.VAPID_SUBJECT;
 const vapidPublic = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
@@ -45,6 +46,8 @@ export async function POST(req: Request) {
 
   let sent = 0;
   for (const s of subs ?? []) {
+    // Legacy rows were accepted before endpoint validation existed.
+    if (!isTrustedPushEndpoint(s.endpoint)) continue;
     try {
       await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, payload);
       sent++;

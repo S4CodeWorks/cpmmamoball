@@ -1,239 +1,142 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, type MouseEvent, type ReactNode } from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { useData } from '@/contexts/DataContext';
-import { I } from '@/components/icons';
-import { TopAppBar } from '@/components/ui/TopAppBar';
-import { SheetItem } from '@/components/ui/Sheet';
-import { Crest } from '@/components/ui/Crest';
+import { CpmIcon, CpmPopover, type CpmIconName } from '@/components/ui/CpmUi';
+import { MatchScoreboard } from './MatchScreen';
+import { fetchNews, fetchNewsById, fetchMatchById, fetchClubById, fetchCompetitions, type Competition } from '@/lib/db';
+import type { NewsItem, Match, Club } from '@/lib/types';
 import { shareLink } from '@/lib/share';
 import { pathForPage } from '@/lib/routes';
 
-import { SkeletonNewsCard, SkeletonArticleBody } from '@/components/ui/Skeleton';
-
-interface Props {
-  onNav: (page: string, param?: string | number | null) => void;
-  onBack?: () => void;
-  articleId?: string;
-}
-
-const CATS: { value: string; label: string }[] = [
-  { value: 'todas', label: 'Todas' },
-  { value: 'noticia', label: 'Notícias' },
-  { value: 'resultado', label: 'Resultados' },
-  { value: 'inscricoes', label: 'Inscrições' },
-  { value: 'comunicado', label: 'Comunicados' },
+type Navigate = (page: string, param?: string | number | null) => void;
+interface Props { onNav: Navigate; onBack?: () => void; articleId?: string }
+const categories: { value: string; label: string; icon: CpmIconName }[] = [
+  { value: 'todas', label: 'Todas', icon: 'searchNews' },
+  { value: 'noticia', label: 'Notícias', icon: 'searchNews' },
+  { value: 'resultado', label: 'Resultados', icon: 'matchBall' },
+  { value: 'inscricoes', label: 'Inscrições', icon: 'ticket' },
+  { value: 'comunicado', label: 'Comunicados', icon: 'matchBell' },
 ];
 
-export function NewsScreen({ onNav }: { onNav: Props['onNav'] }) {
+function navigate(event: MouseEvent<HTMLAnchorElement>, open: () => void) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault(); open();
+}
+
+function useNewsResource(id?: string) {
+  const [resource, setResource] = useState<{ key: string; data: NewsItem[]; state: 'loading' | 'ready' | 'error' } | null>(null);
+  const [attempt, setAttempt] = useState(0), key = id ?? 'list';
+  useEffect(() => {
+    const controller = new AbortController(); let active = true;
+    const timer = setTimeout(() => controller.abort(), 12000);
+    (id !== undefined ? id ? fetchNewsById(id, controller.signal).then(item => item ? [item] : []) : Promise.resolve([]) : fetchNews(controller.signal))
+      .then(data => { if (active) setResource({ key, data, state: 'ready' }); })
+      .catch(() => { if (active) setResource({ key, data: [], state: 'error' }); })
+      .finally(() => clearTimeout(timer));
+    return () => { active = false; clearTimeout(timer); controller.abort(); };
+  }, [id, key, attempt]);
+  return { data: resource?.key === key ? resource.data : [], state: resource?.key === key ? resource.state : 'loading', retry: () => { setResource(null); setAttempt(value => value + 1); } };
+}
+
+function NewsState({ icon = 'searchNews', title, action, onAction }: { icon?: CpmIconName; title: string; action?: string; onAction?: () => void }) {
+  return <div className="cpm-editorial-state"><span><CpmIcon name={icon}/></span><h2>{title}</h2>{action && <button type="button" className="cpm-editorial-state-action" onClick={onAction}><CpmIcon name="arrow"/>{action}</button>}</div>;
+}
+
+function Loading({ article = false }: { article?: boolean }) {
+  return <div className={'cpm-editorial-loading' + (article ? ' is-reading' : '')} role="status" aria-label={article ? 'Carregando notícia' : 'Carregando notícias'} aria-busy="true">{[0, 1, 2].map(index => <div key={index} aria-hidden="true"><span/><span/><span/></div>)}</div>;
+}
+
+function Metadata({ item, author = false }: { item: NewsItem; author?: boolean }) {
+  return <div className="cpm-editorial-meta">
+    {item.date?.trim() && <span><CpmIcon name="calendar"/>{item.date}</span>}
+    {item.readTime?.trim() && <span><CpmIcon name="clock"/>{item.readTime}</span>}
+    {author && item.author?.trim() && <span><CpmIcon name="user"/>{item.author}</span>}
+  </div>;
+}
+
+function Cover({ src, reading = false }: { src?: string; reading?: boolean }) {
+  const [failed, setFailed] = useState<string | null>(null);
+  if (!src?.trim() || failed === src) return null;
+  const brand = src.split('?')[0] === '/cpm-official.jpg';
+  return <div className={'cpm-editorial-cover' + (reading ? ' is-reading' : '') + (brand ? ' is-brand' : '')}>
+    {/* eslint-disable-next-line @next/next/no-img-element -- preserve original uploaded editorial imagery. */}
+    <img src={src} alt="" decoding="async" onError={() => setFailed(src)}/>
+  </div>;
+}
+
+export function NewsScreen({ onNav }: { onNav: Navigate }) {
+  const { data: news, state, retry } = useNewsResource();
   const [active, setActive] = useState('todas');
-  const { news, loading } = useData();
-
-  if (loading) {
-    return (
-      <>
-        <TopAppBar large title="Notícias" subhead="Cobertura oficial CPM" />
-        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <SkeletonNewsCard delay={0} />
-          <SkeletonNewsCard delay={0.08} />
-          <SkeletonNewsCard delay={0.16} />
-        </div>
-      </>
-    );
-  }
-
-  const filtered = active === 'todas' ? news : news.filter(n => n.category === active);
-  const featured = filtered[0];
-  const list = filtered.slice(1);
-
-  if (news.length === 0) {
-    return (
-      <>
-        <TopAppBar large title="Notícias" subhead="Cobertura oficial CPM" />
-        <div className="empty" style={{ marginTop: 48 }}>
-          <div className="empty-icon">{I.news}</div>
-          <h3 style={{ margin: '0 0 8px', fontSize: 17, fontWeight: 700, color: 'var(--on-surface)' }}>Nenhuma notícia ainda</h3>
-          <p style={{ margin: 0, fontSize: 14 }}>As novidades da temporada aparecem aqui em breve.</p>
-        </div>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <TopAppBar large title="Notícias" subhead="Cobertura oficial CPM" />
-
-      <div style={{ padding: '0 16px 14px', display: 'flex', gap: 8, overflowX: 'auto' }} className="hide-scrollbar">
-        {CATS.map(c => (
-          <button key={c.value} onClick={() => setActive(c.value)} className="tap"
-            style={{ flex: '0 0 auto', height: 36, padding: '0 16px', borderRadius: 8, background: active === c.value ? 'var(--primary)' : 'transparent', color: active === c.value ? 'var(--on-primary)' : 'var(--on-surface)', border: '1px solid ' + (active === c.value ? 'transparent' : 'var(--outline-variant)'), fontWeight: active === c.value ? 700 : 500, fontSize: 13, whiteSpace: 'nowrap' }}>
-            {c.label}
-          </button>
-        ))}
-      </div>
-
-      {!featured ? (
-        <div className="empty" style={{ marginTop: 24 }}>
-          <div className="empty-icon">{I.news}</div>
-          <p style={{ margin: 0, fontSize: 14 }}>Nenhuma notícia nessa categoria.</p>
-        </div>
-      ) : (
-      <>
-      {/* Featured article — full width (stacked on mobile, lado a lado no desktop) */}
-      <div style={{ padding: '0 16px 16px' }}>
-        <button onClick={() => onNav('article', featured.id)} className="tap" style={{ width: '100%', textAlign: 'left' }}>
-          <div className="card-filled d-news-hero">
-            <div className="ph-img" data-label={featured.img} style={{ aspectRatio: '16/9' }} />
-            <div className="d-news-hero-body" style={{ padding: '16px 18px 18px' }}>
-              <div className="eyebrow eyebrow-acc">{featured.tag} · {featured.date}</div>
-              <h3 style={{ margin: '6px 0 8px', fontSize: 18, fontWeight: 700, lineHeight: 1.25, letterSpacing: '-0.005em' }}>{featured.title}</h3>
-              <p style={{ margin: 0, fontSize: 13.5, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>{featured.excerpt}</p>
-            </div>
-          </div>
-        </button>
-      </div>
-
-      {/* Article list — 3-column grid on desktop, stacked list on mobile */}
-      <div style={{ padding: '0 16px' }}>
-        <div className="d-news-grid">
-          {list.map(n => (
-            <button key={n.id} onClick={() => onNav('article', n.id)} className="tap"
-              style={{ width: '100%', textAlign: 'left' }}>
-              <div className="card-filled" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div className="ph-img" data-label="" style={{ aspectRatio: '16/9' }} />
-                <div style={{ padding: '12px 14px 14px', flex: 1 }}>
-                  <div className="eyebrow">{n.tag} · {n.date}</div>
-                  <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.3, marginTop: 6 }}>{n.title}</div>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-      </>
-      )}
-    </>
-  );
+  const selected = categories.find(category => category.value === active)!;
+  const filtered = active === 'todas' ? news : news.filter(item => item.category === active);
+  const count = (value: string) => state === 'ready' ? value === 'todas' ? news.length : news.filter(item => item.category === value).length : null;
+  const lead = filtered[0];
+  return <main className={"cpm-editorial cpm-editorial-list" + (state === 'loading' ? ' is-loading' : '')}>
+    <div className="cpm-editorial-title"><CpmIcon name="searchNews"/><h1>Notícias</h1></div>
+    {state !== 'loading' && <><div className="cpm-editorial-categories" aria-label="Categorias de notícias">{categories.map(category => <button type="button" key={category.value} aria-pressed={active === category.value} className={active === category.value ? 'is-selected' : ''} onClick={() => setActive(category.value)}><CpmIcon name={category.icon}/>{category.label}{count(category.value) !== null && <small>{count(category.value)}</small>}</button>)}</div>
+    <CpmPopover className="cpm-editorial-selector" label="Categoria de notícias" role="listbox" trigger={<><CpmIcon name={selected.icon}/><span>{active === 'todas' ? 'Todas as notícias' : selected.label}</span>{count(active) !== null && <small>{count(active)}</small>}<CpmIcon name="chevron"/></>}>
+      {close => categories.map(category => <button type="button" role="option" aria-selected={category.value === active} key={category.value} onClick={() => { setActive(category.value); close(); }}><CpmIcon name={category.icon}/><span>{category.value === 'todas' ? 'Todas as notícias' : category.label}</span>{count(category.value) !== null && <small>{count(category.value)}</small>}{category.value === active && <CpmIcon name="authCheck"/>}</button>)}
+    </CpmPopover></>}
+    <span className="cpm-visually-hidden" role="status">{state === 'ready' ? `${filtered.length} ${filtered.length === 1 ? 'notícia' : 'notícias'}` : ''}</span>
+    {state === 'loading' ? <Loading/> : state === 'error' ? <NewsState icon="searchAlert" title="Não foi possível carregar" action="Tentar novamente" onAction={retry}/> : !lead ? <NewsState title={news.length ? 'Nenhuma notícia nesta categoria' : 'Nenhuma notícia ainda'} action={news.length ? 'Ver todas' : undefined} onAction={() => setActive('todas')}/> : <>
+      <a className="cpm-editorial-lead" href={pathForPage('article', lead.id)!} onClick={event => navigate(event, () => onNav('article', lead.id))}>
+        <Cover key={lead.id} src={lead.img}/><div className="cpm-editorial-lead-copy"><h2>{lead.title}</h2>{lead.excerpt?.trim() && <p>{lead.excerpt}</p>}<Metadata item={lead}/><span className="cpm-editorial-read">Ler notícia<CpmIcon name="arrow"/></span></div>
+      </a>
+      <div className="cpm-editorial-rows">{filtered.slice(1).map(item => <a href={pathForPage('article', item.id)!} key={item.id} onClick={event => navigate(event, () => onNav('article', item.id))} className="cpm-editorial-row">
+        <span className="cpm-editorial-row-icon"><CpmIcon name={categories.find(category => category.value === item.category)?.icon ?? 'searchNews'}/></span>
+        <span className="cpm-editorial-row-copy"><h2>{item.title}</h2>{(item.excerpt?.trim() || item.tag?.trim()) && <small>{item.excerpt?.trim() || item.tag}</small>}{item.date?.trim() && <span className="cpm-editorial-row-date"><CpmIcon name="calendar"/>{item.date}</span>}</span><span className="cpm-editorial-row-arrow"><CpmIcon name="arrow"/></span>
+      </a>)}</div>
+    </>}
+  </main>;
 }
 
-function ArticleMatchCard({ matchId, onNav }: { matchId: number; onNav: Props['onNav'] }) {
-  const { matches, clubById } = useData();
-  const m = matches.find(x => x.id === matchId);
-  if (!m) return null;
-  const home = clubById(m.home), away = clubById(m.away);
-  if (!home || !away) return null;
-  return (
-    <button onClick={() => onNav('match', m.id)} className="tap" style={{ width: '100%', textAlign: 'left', marginBottom: 22 }}>
-      <div className="card-filled" style={{ padding: '16px 18px' }}>
-        <div className="eyebrow eyebrow-acc" style={{ marginBottom: 12 }}>Resultado da partida</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10 }}>
-          <div style={{ textAlign: 'center' }}>
-            <Crest id={home.id} size={40} radius={12} />
-            <div style={{ fontSize: 12.5, fontWeight: 700, marginTop: 6 }}>{home.tag}</div>
-          </div>
-          <span className="mono tabular" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.03em' }}>{m.scoreH} — {m.scoreA}</span>
-          <div style={{ textAlign: 'center' }}>
-            <Crest id={away.id} size={40} radius={12} />
-            <div style={{ fontSize: 12.5, fontWeight: 700, marginTop: 6 }}>{away.tag}</div>
-          </div>
-        </div>
-        <div style={{ textAlign: 'center', marginTop: 10, fontSize: 12, color: 'var(--on-surface-variant)' }}>{m.stage} · {m.date}</div>
-      </div>
-    </button>
-  );
+type Related = { competition: Competition | null; match: Match | null; home: Club | null; away: Club | null };
+function RelatedContent({ item, onNav, children }: { item: NewsItem; onNav: Navigate; children: ReactNode }) {
+  const [result, setResult] = useState<{ key: string; data?: Related; error?: boolean } | null>(null), [attempt, setAttempt] = useState(0);
+  const key = item.id + ':' + attempt;
+  useEffect(() => {
+    if (!item.match_id && !item.competition_id) return;
+    let active = true;
+    const timer = setTimeout(() => { if (active) { active = false; setResult({ key, error: true }); } }, 12000);
+    const load = async () => {
+      const match = item.match_id ? await fetchMatchById(item.match_id) : null;
+      const competitionId = item.competition_id ?? match?.competition_id;
+      const [competitions, home, away] = await Promise.all([competitionId ? fetchCompetitions() : Promise.resolve([]), match ? fetchClubById(match.home) : Promise.resolve(null), match ? fetchClubById(match.away) : Promise.resolve(null)]);
+      if (active) setResult({ key, data: { competition: competitions.find(comp => comp.id === competitionId) ?? null, match, home, away } });
+    };
+    load().catch(() => { if (active) setResult({ key, error: true }); }).finally(() => clearTimeout(timer));
+    return () => { active = false; clearTimeout(timer); };
+  }, [item.match_id, item.competition_id, key]);
+  const related = result?.key === key ? result.data : null;
+  const comp = related?.competition, match = related?.match;
+  const compName = comp ? [comp.nome, comp.edicao].filter(Boolean).join(' ') : '';
+  const open = comp?.status === 'inscricoes';
+  const destination = match ? { page: 'match', id: match.id, label: 'Ver partida', icon: 'matchBall' as const } : comp ? { page: item.category === 'inscricoes' ? 'tournaments' : 'jogos', id: comp.id, label: item.category === 'inscricoes' ? 'Ver competição' : 'Ver jogos', icon: item.category === 'inscricoes' ? 'ticket' as const : 'calendar' as const } : null;
+  return <>
+    {(item.match_id || item.competition_id) && !result ? <div className="cpm-editorial-related-loading" role="status" aria-label="Carregando conteúdo relacionado"/> : result?.key === key && result.error ? <div className="cpm-editorial-related-error"><CpmIcon name="searchAlert"/><span>Conteúdo relacionado indisponível</span><button type="button" onClick={() => { setResult(null); setAttempt(value => value + 1); }}>Tentar novamente</button></div> : null}
+    {item.category === 'resultado' && match && related?.home && related.away && <MatchScoreboard detail={{ match, home: related.home, away: related.away, competition: comp ?? null }} onNav={onNav}/>}
+    {comp && (item.category === 'inscricoes' || item.category === 'comunicado') && <section className="cpm-editorial-context" aria-label="Competição relacionada">
+      <div className="cpm-editorial-context-name"><span><CpmIcon name={item.category === 'inscricoes' ? 'ticket' : 'matchBell'}/></span><h2>{compName}</h2></div>
+      <div className="cpm-editorial-context-status"><CpmIcon name={item.category === 'inscricoes' ? open ? 'authCheck' : 'authLock' : 'calendar'}/>{item.category === 'inscricoes' ? open ? 'Inscrições abertas' : 'Inscrições encerradas' : comp.rodada_atual ? 'Rodada ' + comp.rodada_atual : 'Programação'}</div>
+      {item.category === 'inscricoes' && open && <button type="button" className="cpm-button cpm-button-primary" onClick={() => onNav('subscription', comp.id)}><CpmIcon name="ticket"/>Inscrever time<CpmIcon name="arrow"/></button>}
+    </section>}
+    {children}
+    {destination && <button type="button" className="cpm-editorial-destination" onClick={() => onNav(destination.page, destination.id)}><CpmIcon name={destination.icon}/><span>{destination.label}</span><CpmIcon name="arrow"/></button>}
+  </>;
 }
 
-function ArticleSubscriptionCard({ competitionId, onNav }: { competitionId: string; onNav: Props['onNav'] }) {
-  const { competitions } = useData();
-  const c = competitions.find(x => x.id === competitionId);
-  if (!c) return null;
-  const open = c.status === 'inscricoes';
-  return (
-    <div className="card-filled" style={{ padding: '16px 18px', marginBottom: 22 }}>
-      <div className="eyebrow eyebrow-acc" style={{ marginBottom: 6 }}>{open ? 'Inscrições abertas' : 'Inscrições encerradas'}</div>
-      <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 4 }}>{c.nome} {c.edicao}</div>
-      {open ? (
-        <button onClick={() => onNav('subscription', c.id)} className="btn btn-primary" style={{ height: 42, width: '100%', marginTop: 10 }}>
-          Inscrever meu time
-        </button>
-      ) : (
-        <div style={{ fontSize: 13, color: 'var(--on-surface-variant)' }}>As inscrições dessa competição já foram encerradas.</div>
-      )}
-    </div>
-  );
-}
-
-export function ArticleScreen({ onBack, onNav, articleId }: Props) {
-  const { news, loading } = useData();
-
-  if (loading) {
-    return (
-      <div aria-busy="true" aria-label="Carregando artigo">
-        <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)' }}>
-          <TopAppBar showBack onBack={onBack} title="" />
-        </div>
-        <SkeletonArticleBody />
-      </div>
-    );
-  }
-
-  const n = news.find(x => x.id === articleId) ?? news[0];
-  const { bookmarks, toggleBookmark, showToast } = useApp();
-  if (!n) return <div className="empty"><p>Artigo não encontrado.</p></div>;
-  const bk = 'art:' + n.id;
-  const isB = bookmarks.has(bk);
-
-  const menu = (close: () => void) => (
-    <>
-      <SheetItem icon={isB ? 'starFilled' : 'star'} label={isB ? 'Remover dos salvos' : 'Salvar artigo'} on={isB}
-        onClick={() => { toggleBookmark(bk); showToast(isB ? 'Removido dos salvos' : 'Artigo salvo'); }} />
-      <SheetItem icon="share" label="Compartilhar" onClick={async () => {
-        close();
-        const r = await shareLink({ title: n.title, text: `${n.title} · CPM MamoBall`, url: `${window.location.origin}${pathForPage('article', n.id)}` });
-        if (r === 'copied') showToast('Link copiado');
-        else if (r === 'failed') showToast('Não foi possível compartilhar');
-      }} />
-    </>
-  );
-
-  return (
-    <>
-      <div style={{ position: 'sticky', top: 0, zIndex: 30, background: 'var(--surface)' }}>
-        <TopAppBar showBack onBack={onBack} title="" menu={menu}
-          rightExtras={
-            <button className={`icon-btn${isB ? ' is-on' : ''}`}
-              onClick={() => { toggleBookmark(bk); showToast(isB ? 'Removido dos salvos' : 'Artigo salvo'); }}>
-              {isB ? I.starFilled : I.star}
-            </button>
-          }
-        />
-      </div>
-
-      <article>
-        <div className="ph-img" data-label={n.img} style={{ aspectRatio: '16/9', borderRadius: 0 }} />
-        <div style={{ padding: '20px 20px 28px' }}>
-          <div className="eyebrow eyebrow-acc" style={{ marginBottom: 10 }}>{n.tag} · {n.date} · {n.readTime}</div>
-          <h1 style={{ margin: '0 0 16px', fontSize: 26, lineHeight: 1.18, fontWeight: 800, letterSpacing: '-0.02em' }}>{n.title}</h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 22 }}>
-            <span style={{ width: 32, height: 32, borderRadius: 999, background: 'var(--surface-c-high)', display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700 }}>{n.author[0]}</span>
-            <div>
-              <div style={{ fontSize: 13.5, fontWeight: 600 }}>{n.author}</div>
-              <div style={{ fontSize: 11.5, color: 'var(--on-surface-variant)' }}>{n.date}</div>
-            </div>
-          </div>
-          <p style={{ fontSize: 17, fontWeight: 500, color: 'var(--on-surface)', lineHeight: 1.55, margin: '0 0 20px' }}>{n.excerpt}</p>
-          {n.category === 'resultado' && n.match_id !== null && <ArticleMatchCard matchId={n.match_id} onNav={onNav} />}
-          {n.category === 'inscricoes' && n.competition_id !== null && <ArticleSubscriptionCard competitionId={n.competition_id} onNav={onNav} />}
-          {n.body.trim()
-            ? n.body.split(/\n\s*\n/).map((paragraph, i) => (
-                <p key={i} style={{ fontSize: 15.5, color: 'var(--on-surface-variant)', lineHeight: 1.7, margin: '0 0 16px' }}>{paragraph.trim()}</p>
-              ))
-            : (
-                <p style={{ fontSize: 14, color: 'var(--on-surface-variant)', fontStyle: 'italic' }}>Sem mais detalhes cadastrados pra essa notícia.</p>
-              )}
-        </div>
-      </article>
-    </>
-  );
+export function ArticleScreen({ onNav, articleId }: Props) {
+  const app = useApp();
+  const { data, state, retry } = useNewsResource(articleId ?? '');
+  const item = data[0], [pending, setPending] = useState(false);
+  const back = () => onNav('news');
+  const controls = <div className="cpm-editorial-controls"><button type="button" aria-label="Voltar às notícias" onClick={back}><CpmIcon name="searchBack"/><span>Notícias</span></button><span className="cpm-editorial-controls-spacer"/>{item && <>
+    <button type="button" aria-label={app.bookmarks.has('art:' + item.id) ? 'Remover notícia dos salvos' : 'Salvar notícia'} aria-pressed={app.bookmarks.has('art:' + item.id)} disabled={pending || app.savedLoading} onClick={async () => { setPending(true); try { await app.saveWithFeedback('art:' + item.id, !app.bookmarks.has('art:' + item.id), 'Notícia'); } finally { setPending(false); } }}><CpmIcon name="bookmark"/><span>{app.bookmarks.has('art:' + item.id) ? 'Salvo' : 'Salvar'}</span></button>
+    <button type="button" aria-label="Compartilhar notícia" onClick={async () => { const result = await shareLink({ title: item.title, text: item.title + ' · CPM MamoBall', url: window.location.origin + pathForPage('article', item.id) }); if (result === 'copied') app.showToast('Link copiado', { variant: 'copied' }); else if (result === 'failed') app.showError(new Error('Não foi possível compartilhar. Tente novamente.')); }}><CpmIcon name="matchShare"/><span>Compartilhar</span></button>
+  </>}</div>;
+  return <main className="cpm-editorial cpm-editorial-article">{controls}{state === 'loading' ? <Loading article/> : state === 'error' ? <NewsState icon="searchAlert" title="Não foi possível carregar" action="Tentar novamente" onAction={retry}/> : !item ? <NewsState title="Notícia não encontrada" action="Ver notícias" onAction={back}/> : <article key={item.id}>
+    <h1>{item.title}</h1><Metadata item={item} author/><Cover src={item.img} reading/>{item.excerpt?.trim() && <p className="cpm-editorial-excerpt">{item.excerpt}</p>}
+    <RelatedContent item={item} onNav={onNav}><div className="cpm-editorial-prose">{item.body?.trim() && item.body.split(/\n\s*\n/).filter(paragraph => paragraph.trim()).map((paragraph, index) => <p key={index}>{paragraph.trim()}</p>)}</div></RelatedContent>
+  </article>}</main>;
 }

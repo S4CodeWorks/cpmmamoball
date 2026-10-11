@@ -99,7 +99,7 @@ function InitialLoadError({ message, onRetry }: { message: string; onRetry: () =
 
 function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialParam?: string | number | null }) {
   const { resolvedTheme } = useApp();
-  const { isStaff, isLoggedIn } = useAuth();
+  const { isStaff, isLoggedIn, loading: authLoading } = useAuth();
   const { initialLoad, error, refresh } = useData();
   const scrollRef = useRef<HTMLDivElement>(null);
   const historyDepth=useRef(0);
@@ -184,9 +184,9 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
 
   const p = current.page;
   const [gatedPage,setGatedPage]=useState<Page|null>(null);
-  const requiresAuth=(p==='profile'||p==='subscription')&&!isLoggedIn;
+  const requiresAuth=(p==='profile'||p==='subscription'&&!authLoading)&&!isLoggedIn;
   if(requiresAuth&&gatedPage!==p)setGatedPage(p);
-  else if(gatedPage!==null&&gatedPage!==p)setGatedPage(null);
+  else if(gatedPage!==null&&(gatedPage!==p||p==='subscription'&&isLoggedIn))setGatedPage(null);
   const authSurface=p==='login'||requiresAuth||gatedPage===p;
   const authSuccess=()=>{setGatedPage(null);if(p!=='subscription')onBack();};
   let view: React.ReactNode;
@@ -195,7 +195,7 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
     case 'jogos':        view = <JogosScreen key={String(current.param)} onNav={onNav} initialTab={current.extra} initialCompetitionId={current.param as string | null} />; break;
     case 'news':         view = <NewsScreen onNav={onNav} />; break;
     case 'match':        view = <MatchScreen onNav={onNav} onBack={onBack} matchId={current.param as number} />; break;
-    case 'club':         view = <ClubScreen onNav={onNav} onBack={onBack} clubId={current.param as string} />; break;
+    case 'club':         view = <ClubScreen key={String(current.param)} onNav={onNav} onBack={() => stack.length > 1 ? onBack() : onNav('search')} clubId={current.param as string} />; break;
     case 'article':      view = <ArticleScreen onNav={onNav} onBack={onBack} articleId={current.param as string} />; break;
     case 'more':         view = <MoreScreen onNav={onNav} />; break;
     case 'saved':        view = <SavedScreen onNav={onNav} onBack={onBack} filter={savedFilter} onFilterChange={setSavedFilter}/>; break;
@@ -208,7 +208,7 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
       break;
     case 'settings':     view = <SettingsScreen onBack={onBack} onNav={onNav} />; break;
     case 'subscription':
-      view = !authSurface
+      view = authLoading ? <InitialLoading /> : !authSurface
         ? <SubscriptionScreen onBack={onBack} onNav={onNav} presetCompId={current.param as string | null} />
         : <AuthGate onSuccess={authSuccess} onBack={onBack} onNav={onNav} />;
       break;
@@ -234,11 +234,11 @@ function AppRoot({ initialPage, initialParam }: { initialPage?: string; initialP
       <div className="app-main">
         {!authSurface&&<DesktopHeader page={current.page} param={current.param} onTab={onTab} onNav={onNav} />}
         <div id="cpm-main" tabIndex={-1} className={`scroll${isNarrow ? ' d-narrow' : ''}`} ref={scrollRef}>
-          {authSurface || ['home','jogos','search','saved','notices','notice','match'].includes(p) ? view : initialLoad ? <InitialLoading /> : error ? <InitialLoadError message={error} onRetry={refresh} /> : view}
+          {authSurface || ['home','jogos','search','saved','notices','notice','match','news','article','club','subscription'].includes(p) ? view : initialLoad ? <InitialLoading /> : error ? <InitialLoadError message={error} onRetry={refresh} /> : view}
         </div>
         <Toast />
         <CookieBanner surface={p} />
-        {!authSurface && !['home','jogos','search','saved','notices','notice','match'].includes(p) && <BottomNav page={current.page} onNav={onTab} />}
+        {!authSurface && !['home','jogos','search','saved','notices','notice','match','news','article','club','subscription'].includes(p) && <BottomNav page={current.page} onNav={onTab} />}
       </div>
       <ConfirmDialogHost />
     </div>

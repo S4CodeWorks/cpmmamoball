@@ -31,7 +31,7 @@ function Filter({label,icon,count,selected,onClick}:{label:string;icon:CpmIconNa
 const emptyResources:Awaited<ReturnType<typeof fetchSavedResources>>={clubs:[],competitions:[],matches:[],news:[]};
 export function SavedScreen({onBack,onNav,filter='Todos',onFilterChange}:{onBack:()=>void;onNav:Navigate;filter?:SavedFilter;onFilterChange?:(filter:SavedFilter)=>void}){
  const app=useApp(),{clubs:allClubs}=useData();
- const [localFilter,setLocalFilter]=useState<SavedFilter>(filter),[resources,setResources]=useState(emptyResources),[loading,setLoading]=useState(true),[error,setError]=useState(false),[version,setVersion]=useState(0),[removed,setRemoved]=useState<{key:string;label:string}|null>(null),[unavailable,setUnavailable]=useState(false);
+ const [localFilter,setLocalFilter]=useState<SavedFilter>(filter),[resources,setResources]=useState(emptyResources),[loading,setLoading]=useState(true),[error,setError]=useState(false),[version,setVersion]=useState(0),[unavailable,setUnavailable]=useState(false);
  const selected=onFilterChange?filter:localFilter;
  const keys=[...app.favClubs].map(id=>'club:'+id).concat([...app.favComps].map(id=>'favcomp:'+id),[...app.bookmarks].filter(k=>k.startsWith('match:')||k.startsWith('art:'))).sort();
  const keyString=JSON.stringify(keys),known=useRef(new Set<string>()),owner=useAuth().user?.id;
@@ -46,8 +46,7 @@ export function SavedScreen({onBack,onNav,filter='Todos',onFilterChange}:{onBack
  },[keyString,app.savedLoading,app.savedError,version,owner]);
  const pending=app.savedLoading||loading,failed=!!app.savedError||error;
  const count=(prefix:string)=>keys.filter(k=>k.startsWith(prefix)).length;
- const remove=async(key:string,label:string)=>{setRemoved({key,label});try{await app.setSavedKey(key,false);}catch{setRemoved(null);app.showError(new Error('Não foi possível remover. Tente novamente.'));}};
- const undo=async()=>{if(!removed)return;const item=removed;setRemoved(null);try{await app.setSavedKey(item.key,true);}catch{app.showError(new Error('Não foi possível restaurar. Tente novamente.'));}};
+ const remove=async(key:string,label:string)=>{await app.saveWithFeedback(key,false,label);};
  const button=(key:string,label:string)=><button type="button" className="cpm-library-remove" aria-label={'Remover '+label+' dos salvos'} onClick={()=>void remove(key,label)}><CpmIcon name="bookmark"/></button>;
  const row=(key:string,label:string,meta:string,icon:ReactNode,page:string,param:string|number,available:boolean)=> <div className="cpm-library-row" key={key}><button type="button" className="cpm-library-open" onClick={()=>available?onNav(page,param):setUnavailable(true)}>{icon}<span className="cpm-library-row-copy"><strong>{label}</strong><small>{meta}</small></span><span className="cpm-library-row-chevron"><CpmIcon name="searchChevron"/></span></button>{button(key,label)}</div>;
  const section=(category:typeof categories[number])=>{
@@ -65,7 +64,7 @@ export function SavedScreen({onBack,onNav,filter='Todos',onFilterChange}:{onBack
  };
  return <main className="cpm-library"><Heading title="Salvos" icon="bookmark" count={pending||failed?null:keys.length} onBack={()=>unavailable?setUnavailable(false):onBack()}/><div className="cpm-library-filters" aria-label="Filtrar salvos"><Filter label="Todos" icon="searchFilter" count={pending||failed?null:keys.length} selected={selected==='Todos'} onClick={()=>{setLocalFilter('Todos');onFilterChange?.('Todos');}}/>{categories.map(c=><Filter key={c.label} label={c.label} icon={c.icon} count={pending||failed?null:count(c.prefix)} selected={selected===c.label} onClick={()=>{setLocalFilter(c.label);onFilterChange?.(c.label);}}/>)}</div>
  {unavailable?<Feedback icon="searchAlert" title="Item indisponível" description="Este conteúdo não está mais disponível." action="Voltar aos salvos" onAction={()=>setUnavailable(false)}/>:failed?<Feedback icon="searchAlert" title="Não foi possível carregar" description="Tente novamente." action="Tentar novamente" onAction={()=>{app.reloadSaved();setVersion(v=>v+1);}}/>:pending?<Feedback icon="bookmark" title="Carregando…" busy/>:!keys.length||selected!=='Todos'&&!categories.some(c=>c.label===selected&&count(c.prefix))?<Feedback icon="bookmark" title="Nada salvo ainda" description="Salve clubes, competições, jogos e notícias." action="Explorar jogos" onAction={()=>onNav('jogos')}/>:<motion.div className="cpm-library-saved-grid" initial={{opacity:reduced?1:0}} animate={{opacity:1}} transition={{duration:.16}}>{selected==='Todos'?<><div>{categories.slice(0,2).map(section)}</div><div>{categories.slice(2).map(section)}</div></>:<div>{categories.filter(c=>c.label===selected).map(section)}</div>}</motion.div>}
- {removed&&!failed&&<div className="cpm-library-undo" role="status"><CpmIcon name="authCheck"/><span>Item removido</span><button type="button" onClick={()=>void undo()}>Desfazer</button></div>}</main>;
+ </main>;
 }
 function noticeDate(n:Announcement){const date=new Date(n.published_at??n.created_at);return date.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}).replaceAll(' de ',' ').replace('.','')+' · '+date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
 export function NoticesScreen({onBack,onNav,filter='Todos',onFilterChange}:{onBack:()=>void;onNav:Navigate;filter?:NoticeFilter;onFilterChange?:(f:NoticeFilter)=>void}){

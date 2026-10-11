@@ -1,11 +1,23 @@
 -- =============================================================================
 -- CFM MAMOBALL — SCHEMA COMPLETO
 -- =============================================================================
--- Este arquivo é a fonte de verdade do banco de dados.
--- Para aplicar em um projeto novo: cole tudo no SQL Editor do Supabase.
+-- Bootstrap legado: não é o estado atual de segurança do banco.
+-- As migrações em supabase/migrations e o export revisado definem a RLS atual.
+-- Não execute este arquivo novamente sobre um projeto já endurecido.
 -- Última revisão: 2026-07-26 (resincronizado com as migrações aplicadas em produção)
 -- =============================================================================
 
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'push_subscriptions'
+      AND column_name = 'capability_hash'
+  ) THEN
+    RAISE EXCEPTION 'Bootstrap legado bloqueado: use as migrações para preservar a RLS atual';
+  END IF;
+END;
+$$;
 
 -- =============================================================================
 -- SEÇÃO 1 — TABELAS PRINCIPAIS

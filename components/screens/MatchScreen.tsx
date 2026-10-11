@@ -48,12 +48,12 @@ function navigate(event: MouseEvent<HTMLAnchorElement>, open: () => void) {
   event.preventDefault(); open();
 }
 
-function Scoreboard({ detail, onNav }: { detail: Detail; onNav: Props['onNav'] }) {
+export function MatchScoreboard({ detail, onNav, context }: { detail: Pick<Detail, 'match' | 'home' | 'away' | 'competition'>; onNav: Props['onNav']; context?: { round: string; stage: string } }) {
   const { match, home, away, competition } = detail, scheduled = match.status === 'agendado';
   const status = matchStatus(match);
   return <section className="cpm-match-scoreboard" aria-label={`${home.nome} contra ${away.nome}`}>
     <h1 className="cpm-match-sr">{home.nome} contra {away.nome} · Partida {match.id}</h1>
-    <div className="cpm-match-competition"><CpmIcon name="trophy"/><span>{competition ? [competition.nome, competition.edicao].filter(Boolean).join(' ') : 'Competição'}</span><small>{match.rodada ? 'Rodada ' + match.rodada : 'Rodada a definir'}</small></div>
+    <div className="cpm-match-competition"><CpmIcon name="trophy"/><span>{competition ? [competition.nome, competition.edicao].filter(Boolean).join(' ') : 'Competição'}</span><small>{context?.round ?? (match.rodada ? 'Rodada ' + match.rodada : 'Rodada a definir')}</small></div>
     <div className="cpm-match-scoreboard-main">
       <ClubIdentity club={home} onNav={onNav}/>
       <div className="cpm-match-result"><div className="cpm-match-score" aria-label={scheduled ? 'Partida agendada' : `${home.nome} ${match.scoreH ?? 'placar não registrado'}, ${away.nome} ${match.scoreA ?? 'placar não registrado'}`}>
@@ -62,7 +62,7 @@ function Scoreboard({ detail, onNav }: { detail: Detail; onNav: Props['onNav'] }
       <ClubIdentity club={away} onNav={onNav}/>
     </div>
     <div className="cpm-match-divider"/>
-    <div className="cpm-match-metadata"><span><CpmIcon name="calendar"/>{matchDetailDate(match)}</span><span>{match.stage || 'Fase a definir'}</span></div>
+    <div className="cpm-match-metadata"><span><CpmIcon name="calendar"/>{matchDetailDate(match)}</span><span>{context?.stage ?? (match.stage || 'Fase a definir')}</span></div>
   </section>;
 }
 
@@ -142,7 +142,7 @@ export function MatchScreen({ onNav, matchId }: Props) {
   const app = useApp(), reduced = useReducedMotion(), panelId = useId();
   const [resource, setResource] = useState<Resource | null>(null), [attempt, setAttempt] = useState(0);
   const [selected, setSelected] = useState<{ id: number | undefined; section: Section }>({ id: matchId, section: 'goals' });
-  const [feedback, setFeedback] = useState<{ id: number; message: string } | null>(null), [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(false);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]), operationId = useRef(matchId);
   useEffect(() => { operationId.current = matchId; }, [matchId]);
   const validId = typeof matchId === 'number' && Number.isSafeInteger(matchId) && matchId > 0;
@@ -177,21 +177,15 @@ export function MatchScreen({ onNav, matchId }: Props) {
     load().catch(() => { if (!cancelled) setResource({ id: matchId, state: 'error' }); }).finally(() => clearTimeout(timer));
     return () => { cancelled = true; clearTimeout(timer); };
   }, [matchId, validId, attempt]);
-  useEffect(() => {
-    if (!feedback) return;
-    const timer = setTimeout(() => setFeedback(null), 5000);
-    return () => clearTimeout(timer);
-  }, [feedback]);
   const retry = () => { setResource(null); setAttempt(value => value + 1); };
   const games = () => onNav('jogos', detail?.match.competition_id ?? null, detail?.match.status === 'finalizado' ? 'resultados' : 'proximos');
   const key = detail ? 'match:' + detail.match.id : '', saved = app.bookmarks.has(key), reminding = app.notifs.has(key);
   const toggleSaved = async (reminder = false) => {
     if (!detail || pending) return;
-    const id = detail.id, wasSaved = reminder ? reminding : saved;
+    const wasSaved = reminder ? reminding : saved;
     setPending(true);
     try {
-      await app.setSavedKey(reminder ? 'notif:' + key : key, !wasSaved);
-      if (operationId.current === id) setFeedback({ id, message: reminder ? wasSaved ? 'Lembrete removido' : 'Lembrete salvo' : wasSaved ? 'Partida removida dos salvos' : 'Partida salva' });
+      await app.saveWithFeedback(reminder ? 'notif:' + key : key, !wasSaved, 'Partida');
     } catch { app.showError(new Error('Não foi possível salvar. Tente novamente.')); }
     finally { setPending(false); }
   };
@@ -200,7 +194,7 @@ export function MatchScreen({ onNav, matchId }: Props) {
     const id = detail.id;
     const result = await shareLink({ title: `${detail.home.nome} × ${detail.away.nome}`, text: `${detail.home.tag} × ${detail.away.tag} · CPM MamoBall`, url: window.location.origin + pathForPage('match', id) });
     if (operationId.current !== id) return;
-    if (result === 'copied') setFeedback({ id, message: 'Link copiado' });
+    if (result === 'copied') app.showToast('Link copiado', { variant: 'copied' });
     else if (result === 'failed') app.showError(new Error('Não foi possível compartilhar'));
   };
   const keyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -215,7 +209,7 @@ export function MatchScreen({ onNav, matchId }: Props) {
       <button type="button" className="cpm-match-action cpm-match-icon-action" disabled={!detail} aria-label="Compartilhar partida" onClick={() => void share()}><CpmIcon name="matchShare"/><span>Compartilhar</span></button></>}
     </div>
     {loading ? <MatchLoading/> : !detail ? <Feedback icon={current?.state === 'error' ? 'authAlert' : 'search'} title={current?.state === 'error' ? 'Não foi possível carregar' : 'Partida não encontrada'} action={current?.state === 'error' ? 'Tentar novamente' : 'Ver jogos'} onAction={current?.state === 'error' ? retry : games}/> : <>
-      <Scoreboard detail={detail} onNav={onNav}/>
+      <MatchScoreboard detail={detail} onNav={onNav}/>
       <div className="cpm-match-tabs" role="tablist" aria-label="Detalhes da partida">{sections.map((tab, index) => <button type="button" key={tab.id} ref={el => { buttons.current[index] = el; }} role="tab" id={panelId + '-' + tab.id} aria-controls={panelId + '-panel'} aria-selected={section === tab.id} tabIndex={section === tab.id ? 0 : -1} className={section === tab.id ? 'is-selected' : ''} onClick={() => select(tab.id)} onKeyDown={event => keyboard(event, index)}><CpmIcon name={tab.icon}/><span>{tab.label}</span></button>)}</div>
       <div className="cpm-match-sections">
         <div className="cpm-match-wide"><div className="cpm-match-primary"><Goals key={detail.id} match={detail.match} home={detail.home} away={detail.away} rosters={rosters} reminding={reminding} saving={pending || app.savedLoading} onReminder={() => void toggleSaved(true)}/></div><History detail={detail} onNav={onNav} onRetry={retry}/><div className="cpm-match-wide-round"><Round detail={detail} onNav={onNav} onRetry={retry}/></div></div>
@@ -224,6 +218,5 @@ export function MatchScreen({ onNav, matchId }: Props) {
         </motion.div>
       </div>
     </>}
-    {feedback && feedback.id === matchId && <div className="cpm-match-success" role="status"><CpmIcon name="check"/>{feedback.message}</div>}
   </div>;
 }

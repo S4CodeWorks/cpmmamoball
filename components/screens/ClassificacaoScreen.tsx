@@ -418,14 +418,14 @@ export function ClassificacaoScreen({ onNav, initialTab, initialCompetitionId }:
     close();
     const result = await shareLink({ title: selected ? `${selected.nome} ${selected.edicao}` : 'CPM MamoBall', text: 'CPM MamoBall' });
     if (result === 'copied') showToast('Link copiado');
-    else if (result === 'failed') showToast('Não foi possível compartilhar');
+    else if (result === 'failed') showToast('Não foi possível compartilhar. Tente novamente.', { variant: 'error' });
   };
 
   const menu = (close: () => void) => <div className="cpm-menu-links">
-    <CpmMenuItem icon="classificationBell" onClick={() => { if (selected) toggleNotif(notificationKey); close(); showToast(notifications ? 'Notificações desativadas' : 'Notificações ativadas'); }}>
+    <CpmMenuItem icon="classificationBell" onClick={() => { if (selected) toggleNotif(notificationKey); close(); }}>
       {notifications ? 'Notificações ativadas' : 'Receber notificações'}
     </CpmMenuItem>
-    <CpmMenuItem icon={favorite ? 'star' : 'star'} onClick={() => { if (selected) toggleFavComp(selected.id); close(); showToast(favorite ? 'Removida dos favoritos' : 'Adicionada aos favoritos'); }}>
+    <CpmMenuItem icon={favorite ? 'star' : 'star'} onClick={() => { if (selected) toggleFavComp(selected.id); close(); }}>
       {favorite ? 'Remover dos favoritos' : 'Favoritar competição'}
     </CpmMenuItem>
     <CpmMenuItem icon="classificationShare" onClick={() => void shareCompetition(close)}>Compartilhar competição</CpmMenuItem>

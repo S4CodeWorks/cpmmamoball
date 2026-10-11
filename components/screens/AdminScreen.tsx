@@ -165,7 +165,7 @@ function AdminInscricoes() {
             game_id: j.game_id,
             discord: j.discord ?? null,
             posicao: j.posicao ?? null,
-            is_captain: j.nick.trim().toLowerCase() === it.capitao.trim().toLowerCase(),
+            is_captain: it.capitao_game_id ? j.game_id === it.capitao_game_id : j.nick.trim().toLowerCase() === it.capitao.trim().toLowerCase(),
           })));
           await enrollClubWithRoster(clubId, it.competition_id);
         }

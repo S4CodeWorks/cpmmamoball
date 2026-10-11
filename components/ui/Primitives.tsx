@@ -1,10 +1,8 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
-import { useApp } from '@/contexts/AppContext';
 import { Select } from './Select';
 import { CpmIcon } from './CpmUi';
-import { I } from '@/components/icons';
 import type { Match, FormResult } from '@/lib/types';
 
 // Modal centralizado — formulários "importantes" (ex: nova partida) usam isso
@@ -163,30 +161,4 @@ export function PageBar({ page, totalPages, onPage, pageSize, onPageSize, rangeL
   );
 }
 
-export function Toast() {
-  const { toast, hideToast } = useApp();
-  if (!toast) return null;
-  const isError = toast.variant === 'error';
-  return (
-    <div
-      className={`snackbar${isError ? ' is-error' : ''}`}
-      role={isError ? 'alert' : 'status'}
-      aria-live={isError ? 'assertive' : 'polite'}
-      style={{ position: 'absolute', bottom: 96, left: 16, right: 16, zIndex: 70 }}
-    >
-      <span className="snackbar-icon" style={{ color: isError ? 'var(--error)' : 'var(--primary)' }}>
-        {isError ? I.alertTriangle : I.check}
-      </span>
-      {toast.msg}
-      {toast.action && (
-        <button
-          className="snackbar-action"
-          style={{ color: isError ? 'var(--error)' : 'var(--primary)' }}
-          onClick={() => { toast.action?.onClick(); hideToast(); }}
-        >
-          {toast.action.label.toUpperCase()}
-        </button>
-      )}
-    </div>
-  );
-}
+export { ActionFeedback as Toast } from './ActionFeedback';

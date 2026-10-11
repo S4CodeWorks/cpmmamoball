@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import type { CpmIconName } from '@/components/ui/CpmUi';
 import { fetchBookmarkKeys, addBookmarkKey, removeBookmarkKey } from '@/lib/db';
 
 type Theme = 'auto' | 'light' | 'dark';
@@ -15,10 +16,10 @@ interface ConfirmOptions {
   danger?: boolean;
 }
 
-export type ToastVariant = 'success' | 'error';
-export interface ToastAction { label: string; onClick: () => void }
-export interface ToastState { msg: string; variant: ToastVariant; action?: ToastAction }
-interface ShowToastOptions { variant?: ToastVariant; action?: ToastAction }
+export type ToastVariant = 'success' | 'error' | 'undo' | 'restored' | 'copied' | 'pending' | 'warning' | 'info';
+export interface ToastAction { label: string; onClick: () => void | Promise<void>; keepOpen?: boolean }
+export interface ToastState { id: string; msg: string; variant: ToastVariant; action?: ToastAction; icon?: CpmIconName }
+interface ShowToastOptions { variant?: ToastVariant; action?: ToastAction; id?: string; icon?: CpmIconName }
 
 interface AppContextValue {
   theme: Theme;
@@ -41,6 +42,7 @@ interface AppContextValue {
   savedError: string | null;
   reloadSaved: () => void;
   setSavedKey: (key: string, saved: boolean) => Promise<void>;
+  saveWithFeedback: (key: string, saved: boolean, label?: string) => Promise<void>;
   toast: ToastState | null;
   showToast: (msg: string, opts?: ShowToastOptions) => void;
   showError: (e: unknown) => void;
@@ -82,10 +84,12 @@ function readLS(key: string): string[] {
 }
 function writeLS(key: string, values: Set<string>) {
   if (typeof window === 'undefined') return;
-  try { localStorage.setItem(key, JSON.stringify([...values])); } catch { /* Keep the current visitor session usable. */ }
+  try { localStorage.setItem(key, JSON.stringify([...values])); return true; } catch { return false; }
 }
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
+  const [feedbackQueue, setFeedbackQueue] = useState<ToastState[]>([]);
+
   const [cookieConsent, setCookieConsentState] = useState<CookieConsent>('unset');
   useEffect(() => { queueMicrotask(()=>setCookieConsentState(readConsent())); }, []);
 
@@ -138,6 +142,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [favComps, setFavComps] = useState<Set<string>>(new Set());
   // Usuário logado → grava no Supabase; visitante → grava no localStorage
   const userIdRef = useRef<string | null>(null);
+  const visitorStorageAvailable = useRef(true);
 
   const [savedLoading, setSavedLoading] = useState(true);
   const [savedError, setSavedError] = useState<string | null>(null);
@@ -156,7 +161,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const hydrate = async (uid: string | null) => {
       hydratedUser=uid;
       const epoch = ++generation;
-      if (userIdRef.current !== uid) applyKeys(new Set());
+      if (userIdRef.current !== uid) { applyKeys(new Set()); setFeedbackQueue(queue => queue.filter(item => !item.id.startsWith('saved:'))); }
       userIdRef.current = uid; setSavedLoading(true); setSavedError(null);
       try {
         const keys = uid ? await fetchBookmarkKeys(uid) : readConsent()==='accepted' ? [
@@ -179,10 +184,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const next = new Set(keysRef.current); if(saved)next.add(key);else next.delete(key); applyKeys(next);
     if(!uid){
       if(cookieConsent==='accepted'){
-        writeLS(LS_CLUBS,new Set([...next].filter(k=>k.startsWith(CLUB_PREFIX)).map(k=>k.slice(CLUB_PREFIX.length))));
-        writeLS(LS_COMPS,new Set([...next].filter(k=>k.startsWith(COMP_PREFIX)).map(k=>k.slice(COMP_PREFIX.length))));
-        writeLS(LS_NOTIFS,new Set([...next].filter(k=>k.startsWith(NOTIF_PREFIX)).map(k=>k.slice(NOTIF_PREFIX.length))));
-        writeLS(LS_BOOKMARKS,new Set([...next].filter(k=>![CLUB_PREFIX,COMP_PREFIX,NOTIF_PREFIX].some(p=>k.startsWith(p)))));
+        visitorStorageAvailable.current = [
+          writeLS(LS_CLUBS,new Set([...next].filter(k=>k.startsWith(CLUB_PREFIX)).map(k=>k.slice(CLUB_PREFIX.length)))),
+          writeLS(LS_COMPS,new Set([...next].filter(k=>k.startsWith(COMP_PREFIX)).map(k=>k.slice(COMP_PREFIX.length)))),
+          writeLS(LS_NOTIFS,new Set([...next].filter(k=>k.startsWith(NOTIF_PREFIX)).map(k=>k.slice(NOTIF_PREFIX.length)))),
+          writeLS(LS_BOOKMARKS,new Set([...next].filter(k=>![CLUB_PREFIX,COMP_PREFIX,NOTIF_PREFIX].some(p=>k.startsWith(p)))))
+        ].every(Boolean);
       }
       return;
     }
@@ -196,27 +203,51 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       throw error;
     }finally{if(queues.current.get(queueKey)===task)queues.current.delete(queueKey);}
   };
-  const toggleKey=(key:string)=>{void setSavedKey(key,!keysRef.current.has(key)).catch(()=>showError(new Error('Não foi possível salvar. Tente novamente.')));};
+  const toggleKey = (key: string) => { void saveWithFeedback(key, !keysRef.current.has(key)); };
   const toggleFav=(id:string)=>toggleKey(CLUB_PREFIX+id);
   const toggleNotif=(id:string)=>toggleKey(NOTIF_PREFIX+id);
   const toggleFavComp=(id:string)=>toggleKey(COMP_PREFIX+id);
   const toggleBookmark=(key:string)=>toggleKey(key);
 
-  const [toast, setToast] = useState<ToastState | null>(null);
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const toast = feedbackQueue[0] ?? null;
+  const feedbackSequence = useRef(0);
   const showToast = (msg: string, opts?: ShowToastOptions) => {
-    setToast({ msg, variant: opts?.variant ?? 'success', action: opts?.action });
-    if (toastTimer.current) clearTimeout(toastTimer.current);
-    // Toast com ação fica mais tempo na tela — dá margem pro usuário clicar
-    toastTimer.current = setTimeout(() => setToast(null), opts?.action ? 4200 : 2200);
+    const item: ToastState = { id: opts?.id ?? 'feedback-' + ++feedbackSequence.current, msg, variant: opts?.variant ?? (opts?.action ? 'undo' : /copiado/i.test(msg) ? 'copied' : 'success'), action: opts?.action, icon: opts?.icon ?? (!opts?.variant && !opts?.action && !/copiado/i.test(msg) ? 'authCheck' : undefined) };
+    setFeedbackQueue(queue => {
+      const index = queue.findIndex(entry => entry.id === item.id);
+      if (index >= 0) return queue.map((entry, at) => at === index ? item : entry);
+      return [...queue, item];
+    });
   };
-  // Formata erros de forma consistente — o ícone/cor do variant 'error' já
-  // comunica que é um erro, então não precisa mais do prefixo "Erro: " no texto.
-  const showError = (e: unknown) =>
-    showToast(e instanceof Error ? e.message : String(e), { variant: 'error' });
-  const hideToast = () => {
-    if (toastTimer.current) clearTimeout(toastTimer.current);
-    setToast(null);
+  const showError = (e: unknown) => showToast(e instanceof Error ? e.message : String(e), { variant: 'error' });
+  const hideToast = () => setFeedbackQueue(queue => queue.slice(1));
+
+  const savedOperationVersion = useRef(new Map<string, number>());
+  const saveWithFeedback = async (key: string, saved: boolean, label = key.startsWith(CLUB_PREFIX) ? 'Clube' : key.startsWith(COMP_PREFIX) ? 'Competição' : key.startsWith('art:') ? 'Notícia' : key.startsWith('match:') ? 'Partida' : 'Item') => {
+    const owner = userIdRef.current;
+    const id = 'saved:' + (owner ?? 'guest') + ':' + key;
+    const version = (savedOperationVersion.current.get(id) ?? 0) + 1;
+    savedOperationVersion.current.set(id, version);
+    const current = () => savedOperationVersion.current.get(id) === version && userIdRef.current === owner;
+    const reminder = key.startsWith(NOTIF_PREFIX);
+    const icon: CpmIconName = reminder ? 'authBell' : key.startsWith(CLUB_PREFIX) || key.startsWith(COMP_PREFIX) ? 'star' : 'bookmark';
+    const apply = async (value: boolean, restored = false): Promise<void> => {
+      if (!current()) return;
+      showToast(restored ? 'Restaurando…' : value ? 'Salvando…' : 'Removendo…', { id, variant: 'pending' });
+      try {
+        await setSavedKey(key, value);
+        if (!current()) return;
+        const sessionOnly = !owner && (cookieConsent !== 'accepted' || !visitorStorageAvailable.current);
+        const message = restored ? 'Item restaurado' : reminder ? value ? sessionOnly ? 'Lembrete salvo nesta sessão' : 'Lembrete salvo' : 'Lembrete removido' : value ? sessionOnly ? 'Salvo nesta sessão' : label + (['Notícia', 'Competição', 'Partida'].includes(label) ? ' salva' : ' salvo') : 'Removido dos salvos';
+        showToast(message, { id, variant: restored ? 'restored' : value ? 'success' : 'undo', icon: restored ? 'authCheck' : icon,
+          action: !value ? { label: 'Desfazer', keepOpen: true, onClick: () => apply(true, true) } : undefined });
+      } catch {
+        if (!current()) return;
+        showToast(restored ? 'Não foi possível restaurar.' : 'Não foi possível salvar a alteração.', { id, variant: 'error',
+          action: { label: 'Tentar novamente', keepOpen: true, onClick: () => apply(value, restored) } });
+      }
+    };
+    await apply(saved);
   };
 
   // Popup de confirmação próprio do sistema (substitui window.confirm).
@@ -236,7 +267,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       notifs, toggleNotif,
       favComps, toggleFavComp,
       bookmarks, toggleBookmark,
-      savedLoading, savedError, reloadSaved:()=>setSavedVersion(v=>v+1), setSavedKey,
+      savedLoading, savedError, reloadSaved:()=>setSavedVersion(v=>v+1), setSavedKey, saveWithFeedback,
       toast, showToast, showError, hideToast,
       confirm, confirmState, closeConfirm,
     }}>

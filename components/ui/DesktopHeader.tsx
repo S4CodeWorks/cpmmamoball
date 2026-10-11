@@ -9,7 +9,7 @@ export function DesktopHeader({page,onTab,onNav}:Props) {
  const {resolvedTheme,setTheme,showToast}=useApp();
  const {isLoggedIn,isStaff,profile,user,signOut}=useAuth();
  const nick=profile?.nick||user?.email?.split('@')[0]||'Minha conta';
- const active=page==='match'?'jogos':page==='club'?'tournaments':page==='article'?'news':page;
+ const active=page==='match'?'jogos':page==='article'?'news':page;
  const go=(target:string,close:()=>void)=>{close();onNav(target);};
  const links=(close:()=>void)=><>
   <div className="cpm-menu-links">

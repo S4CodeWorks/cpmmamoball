@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './cpm-tokens.css';
 import './cpm.css';
+import './cpm-feedback.css';
+import './cpm-news.css';
+import './cpm-club.css';
+import './cpm-registration.css';
 
 export const metadata: Metadata = {
   title: 'CPM MamoBall',

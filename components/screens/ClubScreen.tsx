@@ -1,312 +1,134 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useApp } from '@/contexts/AppContext';
-import { useData } from '@/contexts/DataContext';
-import { I } from '@/components/icons';
-import { TopAppBar } from '@/components/ui/TopAppBar';
-import { SheetItem } from '@/components/ui/Sheet';
-import { FormDots } from '@/components/ui/Primitives';
-import { MatchTile } from '@/components/ui/MatchTile';
+import { CpmIcon, CpmPopover, type CpmIconName } from '@/components/ui/CpmUi';
 import { Crest } from '@/components/ui/Crest';
-import { ColorMesh } from '@/components/ui/ColorMesh';
-import { SkeletonRow, SkeletonClubHero, SkeletonList } from '@/components/ui/Skeleton';
-import { useIsDesktop } from '@/hooks/useIsDesktop';
-import { fetchPlayers } from '@/lib/db';
-import { shareLink } from '@/lib/share';
+import { MatchScoreboard } from './MatchScreen';
+import { fetchClubById, fetchClubs, fetchCompetitions, fetchClubMatches, fetchClubCompetitionIds, fetchPlayers, fetchCompetitionPlayerIds, fetchStandings, fetchScorers, fetchBracketTies, type Competition } from '@/lib/db';
+import { clubFixtures, playerStatistics } from '@/lib/clubDetails';
+import { resolveBracket } from '@/lib/bracket';
+import { matchDate } from '@/lib/matchDate';
+import { matchStatus } from '@/lib/matchDetails';
 import { pathForPage } from '@/lib/routes';
-import type { Player } from '@/lib/types';
+import { shareLink } from '@/lib/share';
+import type { Club, Match, Player, Standing, Scorer, BracketTie } from '@/lib/types';
 
-interface Props {
-  onNav: (page: string, param?: string | number | null) => void;
-  onBack?: () => void;
-  clubId?: string;
-}
+type Navigate = (page: string, param?: string | number | null, extra?: string | null) => void;
+interface Props { onNav: Navigate; onBack?: () => void; clubId?: string }
+type Tab = 'summary' | 'games' | 'roster';
+const tabs: { id: Tab; label: string; icon: CpmIconName }[] = [
+  { id: 'summary', label: 'Resumo', icon: 'searchShield' },
+  { id: 'games', label: 'Jogos', icon: 'matchBall' },
+  { id: 'roster', label: 'Elenco', icon: 'user' },
+];
+type Index = { club: Club; clubs: Club[]; competitions: Competition[]; matches: Match[]; players: Player[] | null };
+type Selection = { key: string; standings: Standing[] | null; scorers: Scorer[] | null; players: Set<string> | null; ties: BracketTie[] | null };
+const fulfilled = <T,>(result: PromiseSettledResult<T>): T | null => result.status === 'fulfilled' ? result.value : null;
 
-function StatBlock({ n, l, big }: { n: string | number; l: string; big?: boolean }) {
-  return (
-    <div style={{ padding: '4px 10px', textAlign: 'center' }}>
-      <div className="mono tabular" style={{ fontSize: big ? 22 : 18, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, color: big ? 'var(--primary)' : 'var(--on-surface)' }}>{n}</div>
-      <div style={{ fontSize: 11, color: 'var(--on-surface-variant)', marginTop: 6 }}>{l}</div>
-    </div>
-  );
-}
-
-function Info({ k, v, last }: { k: string; v: React.ReactNode; last?: boolean }) {
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', borderBottom: last ? 'none' : '1px solid var(--outline-variant)', fontSize: 13.5 }}>
-      <span style={{ color: 'var(--on-surface-variant)' }}>{k}</span>
-      <span style={{ fontWeight: 600 }}>{v}</span>
-    </div>
-  );
-}
-
-export function ClubScreen({ onNav, onBack, clubId }: Props) {
-  const { clubs, standings, matches, scorers, activeComp, clubById, loading } = useData();
-
-  if (loading) {
-    return (
-      <div aria-busy="true" aria-label="Carregando clube">
-        <SkeletonClubHero />
-        <div style={{ padding: '16px' }}>
-          <SkeletonList rows={5} />
-        </div>
-      </div>
-    );
-  }
-
-  const c = clubById(clubId || '') || clubs[0];
-  if (!c) return <div className="empty"><p>Clube não encontrado.</p></div>;
-
-  const row = standings.find(r => r.club === c.id);
-  const pos = standings.findIndex(r => r.club === c.id) + 1;
-  const clubMatches = matches.filter(m => m.home === c.id || m.away === c.id);
-  const nextM = clubMatches.find(m => m.status === 'agendado');
-  const recent = clubMatches.filter(m => m.status === 'finalizado');
-  const [tab, setTab] = useState('visao');
-  const { favClubs, toggleFav, showToast, resolvedTheme } = useApp();
-  const isFav = favClubs.has(c.id);
-  const isDesktop = useIsDesktop();
-
-  // ── Jogadores reais ──────────────────────────────────────────────────────
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [loadingPlayers, setLoadingPlayers] = useState(true);
-
+function useClub(id: string) {
+  const [resource, setResource] = useState<{ id: string; data?: Index; state: 'ready' | 'missing' | 'error' } | null>(null);
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
-    let cancelled = false;
-    setLoadingPlayers(true);
-    fetchPlayers(c.id)
-      .then(data => { if (!cancelled) setPlayers(data); })
-      .catch(() => {})
-      .finally(() => { if (!cancelled) setLoadingPlayers(false); });
-    return () => { cancelled = true; };
-  }, [c.id]);
+    let active = true;
+    const timer = setTimeout(() => { if (active) { active = false; setResource({ id, state: 'error' }); } }, 12000);
+    const load = async () => {
+      const club = id ? await fetchClubById(id) : null;
+      if (!club) { if (active) setResource({ id, state: 'missing' }); return; }
+      const [clubs, competitions, matches, enrolled, roster] = await Promise.all([
+        fetchClubs(), fetchCompetitions(), fetchClubMatches(club.id), fetchClubCompetitionIds(club.id),
+        Promise.allSettled([fetchPlayers(club.id)]),
+      ]);
+      const ids = new Set([...enrolled, ...matches.map(match => match.competition_id)]);
+      if (active) setResource({ id, state: 'ready', data: { club, clubs, matches, competitions: competitions.filter(comp => ids.has(comp.id)), players: fulfilled(roster[0]) } });
+    };
+    load().catch(() => { if (active) setResource({ id, state: 'error' }); }).finally(() => clearTimeout(timer));
+    return () => { active = false; clearTimeout(timer); };
+  }, [id, attempt]);
+  return { resource: resource?.id === id ? resource : null, retry: () => { setResource(null); setAttempt(value => value + 1); } };
+}
 
-  // Artilheiros indexados por nick
-  const scorerMap = Object.fromEntries(scorers.map(s => [s.nick, s]));
-  const captain = players.find(p => p.is_captain);
+function Heading({ icon, children, action }: { icon: CpmIconName; children: ReactNode; action?: ReactNode }) {
+  return <div className="cpm-club-heading"><CpmIcon name={icon}/><h2>{children}</h2>{action}</div>;
+}
+function Action({ icon, children, onClick, label, pressed, disabled }: { icon: CpmIconName; children: ReactNode; onClick: () => void; label?: string; pressed?: boolean; disabled?: boolean }) {
+  return <button type="button" className="cpm-club-action" aria-label={label} aria-pressed={pressed} disabled={disabled} onClick={onClick}><CpmIcon name={icon}/><span>{children}</span></button>;
+}
+function State({ icon = 'calendar', children, action, onAction }: { icon?: CpmIconName; children: ReactNode; action?: string; onAction?: () => void }) {
+  return <div className="cpm-club-state" role="status"><span><CpmIcon name={icon}/></span><p>{children}</p>{action && <Action icon="arrow" onClick={onAction!}>{action}</Action>}</div>;
+}
+function Loading({ compact = false }: { compact?: boolean }) {
+  return <div className={'cpm-club-loading' + (compact ? ' is-compact' : '')} role="status" aria-label="Carregando clube" aria-busy="true">{[0, 1, 2].map(value => <div key={value} aria-hidden="true"><span/><span/><span/></div>)}</div>;
+}
+function navigate(event: MouseEvent<HTMLAnchorElement>, open: () => void) {
+  if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault(); open();
+}
 
-  const menu = (close: () => void) => (
-    <>
-      <SheetItem icon={isFav ? 'heartFilled' : 'heart'} label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-        meta="Receba notificações dos jogos do clube" on={isFav}
-        onClick={() => { toggleFav(c.id); showToast(isFav ? `${c.tag} removido dos favoritos` : `${c.tag} adicionado aos favoritos`); }} />
-      <SheetItem icon="share" label="Compartilhar" onClick={async () => {
-        close();
-        const r = await shareLink({ title: c.nome, text: `${c.nome} (${c.tag}) · CPM MamoBall`, url: `${window.location.origin}${pathForPage('club', c.id)}` });
-        if (r === 'copied') showToast('Link copiado');
-        else if (r === 'failed') showToast('Não foi possível compartilhar');
-      }} />
-      <SheetItem icon="bell" label="Notificações do clube" meta="Avisar sobre novos jogos" on={isFav}
-        onClick={() => { toggleFav(c.id); }} />
-    </>
-  );
+function Fixture({ match, clubs, competition, onNav }: { match: Match; clubs: Club[]; competition: Competition | null; onNav: Navigate }) {
+  const result = match.status === 'finalizado', date = matchDate(match), status = matchStatus(match);
+  const home = clubs.find(club => club.id === match.home), away = clubs.find(club => club.id === match.away);
+  const name = (club?: Club) => club?.nome || 'Clube a definir';
+  const team = (club: Club | undefined, score: number | null) => <span className="cpm-club-fixture-team"><span className="cpm-club-emblem">{club ? <Crest id={club.id} club={club} size={32} height={36}/> : <CpmIcon name="searchShield"/>}</span><span>{name(club)}</span>{result && <b>{score ?? '—'}</b>}</span>;
+  return <a className={'cpm-club-fixture' + (result ? ' is-result' : '')} href={pathForPage('match', match.id)!} onClick={event => navigate(event, () => onNav('match', match.id))} aria-label={`${name(home)} contra ${name(away)}, ${result ? `${match.scoreH ?? '—'} a ${match.scoreA ?? '—'}, ${status.label}` : date.time}, ${date.short}`}>
+    <span className="cpm-club-fixture-main"><span className="cpm-club-fixture-status"><b>{result ? status.label : date.time}</b><small>Rodada {match.rodada || '—'}</small></span><span className="cpm-club-fixture-teams">{team(home, match.scoreH)}<strong>{result ? `${match.scoreH ?? '—'} – ${match.scoreA ?? '—'}` : match.status === 'ao_vivo' ? 'Ao vivo' : 'VS'}</strong>{team(away, match.scoreA)}</span><CpmIcon name="arrow"/></span>
+    <span className="cpm-club-fixture-compact-date"><span>{date.short} · {result ? status.label : `Rodada ${match.rodada || '—'}`}</span>{result && <small>Rodada {match.rodada || '—'}</small>}</span>
+    <span className="cpm-club-fixture-footer"><span><CpmIcon name="trophy"/>{competition ? [competition.nome, competition.edicao].filter(Boolean).join(' ') : match.stage || 'Competição'}</span><small>{date.short}</small><CpmIcon name="arrow"/></span>
+  </a>;
+}
 
-  /* ── Painel: Visão Geral ─────────────────────────────────────────────────── */
+export function ClubScreen({ onNav, onBack, clubId = '' }: Props) {
+  const app = useApp(), reduced = useReducedMotion(), { resource, retry } = useClub(clubId);
+  const [tab, setTab] = useState<Tab>('summary'), [games, setGames] = useState<'upcoming' | 'results'>('upcoming');
+  const [selected, setSelected] = useState<string | null>(null), [selection, setSelection] = useState<Selection | null>(null);
+  const [attempt, setAttempt] = useState(0), [pending, setPending] = useState(false);
+  const panel = useId(), tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const index = resource?.data, club = index?.club;
+  const competition = index?.competitions.find(comp => comp.id === selected) ?? index?.competitions.find(comp => comp.status === 'em_andamento') ?? index?.competitions[0] ?? null;
+  const selectedId = competition?.id, selectionKey = `${clubId}:${selectedId ?? ''}:${attempt}`;
+  useEffect(() => {
+    if (!selectedId) return;
+    let active = true;
+    const timer = setTimeout(() => { if (active) { active = false; setSelection({ key: selectionKey, standings: null, scorers: null, players: null, ties: null }); } }, 12000);
+    Promise.allSettled([fetchStandings(selectedId), fetchScorers(selectedId), fetchCompetitionPlayerIds(selectedId), competition?.classification_format === 'league' ? Promise.resolve([] as BracketTie[]) : fetchBracketTies(selectedId)])
+      .then(([standings, scorers, players, ties]) => { if (active) setSelection({ key: selectionKey, standings: fulfilled(standings), scorers: fulfilled(scorers), players: fulfilled(players), ties: fulfilled(ties) }); })
+      .finally(() => clearTimeout(timer));
+    return () => { active = false; clearTimeout(timer); };
+  }, [selectedId, selectionKey, competition?.classification_format]);
+  const data = selection?.key === selectionKey ? selection : null;
+  const retrySelection = () => setAttempt(value => value + 1);
+  const keyboard = (event: KeyboardEvent<HTMLButtonElement>, at: number) => {
+    const next = event.key === 'ArrowRight' ? (at + 1) % 3 : event.key === 'ArrowLeft' ? (at + 2) % 3 : event.key === 'Home' ? 0 : event.key === 'End' ? 2 : null;
+    if (next === null) return; event.preventDefault(); setTab(tabs[next].id); tabRefs.current[next]?.focus();
+  };
+  const back = onBack ?? (() => onNav('search'));
+  if (!resource) return <main className="cpm-club"><Loading/></main>;
+  if (!club || !index) return <main className="cpm-club"><div className="cpm-club-toolbar"><Action icon="searchBack" onClick={back}>Voltar</Action></div><State icon="searchAlert" action={resource.state === 'error' ? 'Tentar novamente' : 'Buscar clubes'} onAction={resource.state === 'error' ? retry : () => onNav('search')}>{resource.state === 'error' ? 'Não foi possível carregar o clube' : 'Clube não encontrado'}</State></main>;
 
-  const VisaoPanel = (
-    <div style={{ padding: '16px 16px 0', display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <div className="card-filled" style={{ padding: '18px 20px' }}>
-        <div className="eyebrow eyebrow-acc" style={{ marginBottom: 12 }}>Forma recente</div>
-        <div style={{ display: 'flex', gap: 6 }}>
-          <FormDots form={row?.form ?? []} />
-        </div>
-        {row && (
-          <p style={{ margin: '14px 0 0', fontSize: 14, color: 'var(--on-surface-variant)', lineHeight: 1.5 }}>
-            {row.V} vitória{row.V !== 1 ? 's' : ''}, {row.E} empate{row.E !== 1 ? 's' : ''} e {row.D} derrota{row.D !== 1 ? 's' : ''} em {row.J} jogo{row.J !== 1 ? 's' : ''}.
-          </p>
-        )}
-      </div>
-      {nextM && (
-        <div>
-          <div className="eyebrow" style={{ padding: '8px 4px 10px' }}>PRÓXIMO JOGO</div>
-          <MatchTile m={nextM} onClick={() => onNav('match', nextM.id)} showStage />
-        </div>
-      )}
-      <div>
-        <div className="eyebrow" style={{ padding: '8px 4px 10px' }}>ÚLTIMOS RESULTADOS</div>
-        <div className="card-filled">
-          {recent.slice(0, 3).length === 0
-            ? <div style={{ padding: '16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhum resultado ainda.</div>
-            : recent.slice(0, 3).map((m, i) => (
-              <button key={m.id} onClick={() => onNav('match', m.id)} className="tap"
-                style={{ width: '100%', textAlign: 'left', display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 10, padding: '14px 16px', borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-end' }}>
-                  <span style={{ fontSize: 13, fontWeight: (m.scoreH ?? 0) > (m.scoreA ?? 0) ? 700 : 500 }}>{clubById(m.home)?.tag}</span>
-                  <Crest id={m.home} size={24} />
-                </div>
-                <span className="mono tabular" style={{ fontSize: 15, fontWeight: 700, padding: '4px 10px', background: 'var(--surface-c-high)', borderRadius: 8, whiteSpace: 'nowrap' }}>{m.scoreH}–{m.scoreA}</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <Crest id={m.away} size={24} />
-                  <span style={{ fontSize: 13, fontWeight: (m.scoreA ?? 0) > (m.scoreH ?? 0) ? 700 : 500 }}>{clubById(m.away)?.tag}</span>
-                </div>
-              </button>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  );
-
-  /* ── Painel: Elenco ──────────────────────────────────────────────────────── */
-
-  const ElencoPanel = (
-    <div style={{ padding: '0 16px' }}>
-      <div className="card-filled">
-        {loadingPlayers ? (
-          <>{Array.from({ length: 4 }).map((_, i) => <div key={i} style={{ borderTop: i ? '1px solid var(--outline-variant)' : 'none' }}><SkeletonRow delay={i * 0.05} /></div>)}</>
-        ) : players.length === 0 ? (
-          <div style={{ padding: '20px 16px', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhum jogador cadastrado.</div>
-        ) : (
-          <>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 40px 40px', padding: '14px 16px', fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--on-surface-variant)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-              <span>JOGADOR</span>
-              <span style={{ textAlign: 'center' }}>G</span>
-              <span style={{ textAlign: 'right' }}>A</span>
-            </div>
-            {players.map(p => {
-              const stats = scorerMap[p.nick];
-              const goals   = stats?.goals   ?? 0;
-              const assists = stats?.assists ?? 0;
-              return (
-                <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '1fr 40px 40px', alignItems: 'center', gap: 10, padding: '12px 16px', borderTop: '1px solid var(--outline-variant)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-                    <span style={{ width: 32, height: 32, borderRadius: 9, background: p.is_captain ? 'var(--primary-container)' : 'var(--surface-c-high)', display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 800, color: p.is_captain ? 'var(--on-primary-container)' : 'var(--on-surface-variant)', flexShrink: 0 }}>
-                      {p.is_captain ? 'C' : p.nick[0]?.toUpperCase()}
-                    </span>
-                    <div style={{ minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6 }}>
-                        {p.nick}
-                        {p.is_captain && (
-                          <span style={{ fontSize: 10, background: 'var(--primary-container)', color: 'var(--on-primary-container)', padding: '1px 7px', borderRadius: 999, fontWeight: 700, letterSpacing: '0.03em', flexShrink: 0 }}>CAP</span>
-                        )}
-                      </div>
-                      <div className="mono" style={{ fontSize: 11.5, color: 'var(--on-surface-variant)', marginTop: 1 }}>
-                        #{p.game_id}
-                      </div>
-                    </div>
-                  </div>
-                  <span className="mono tabular" style={{ textAlign: 'center', fontSize: 14, fontWeight: 600 }}>{goals}</span>
-                  <span className="mono tabular" style={{ textAlign: 'right', fontSize: 13, color: 'var(--on-surface-variant)' }}>{assists}</span>
-                </div>
-              );
-            })}
-          </>
-        )}
-      </div>
-    </div>
-  );
-
-  /* ── Painel: Sobre ───────────────────────────────────────────────────────── */
-
-  const SobrePanel = (
-    <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <div className="card-filled" style={{ padding: '6px 18px' }}>
-        {captain && <Info k="Capitão" v={captain.nick} />}
-        <Info k="Jogadores" v={loadingPlayers ? '—' : players.length} />
-        <Info k="Cores" v={
-          <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
-            <span style={{ width: 18, height: 18, borderRadius: 4, background: c.color }} />
-            <span style={{ width: 18, height: 18, borderRadius: 4, background: c.color2, border: '1px solid var(--outline-variant)' }} />
-          </span>
-        } last={!captain} />
-      </div>
-      {activeComp && (
-        <div>
-          <div className="eyebrow" style={{ padding: '8px 4px 10px' }}>COMPETIÇÃO ATUAL</div>
-          <div className="card-filled" style={{ padding: '14px 16px' }}>
-            <div style={{ fontSize: 14, fontWeight: 600 }}>{activeComp.nome}</div>
-            <div style={{ fontSize: 12, color: 'var(--on-surface-variant)', marginTop: 4 }}>{activeComp.edicao}</div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-
-  /* ── Painel: Jogos ───────────────────────────────────────────────────────── */
-
-  const JogosPanel = (
-    <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {clubMatches.length === 0
-        ? <div style={{ padding: '20px 0', fontSize: 13, color: 'var(--on-surface-variant)' }}>Nenhuma partida registrada.</div>
-        : clubMatches.map(m => <MatchTile key={m.id} m={m} onClick={() => onNav('match', m.id)} showStage />)
-      }
-    </div>
-  );
-
-  const compName = activeComp?.nome ?? 'Liga';
-
-  return (
-    <>
-      {/* Stadium club hero */}
-      <div className="stadium-hero">
-        <ColorMesh colors={[c.color, c.color2]} opacity={resolvedTheme === 'dark' ? 0.35 : 0.5} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <TopAppBar showBack onBack={onBack} title=""
-            rightExtras={
-              <button className={`icon-btn${isFav ? ' is-on' : ''}`}
-                onClick={() => { toggleFav(c.id); showToast(isFav ? `${c.tag} removido dos favoritos` : `${c.tag} adicionado aos favoritos`); }}
-                aria-label="Favoritar">
-                {isFav ? I.heartFilled : I.heart}
-              </button>
-            }
-            menu={menu}
-          />
-          <div style={{ padding: '0 24px 22px', display: 'flex', alignItems: 'center', gap: 18 }}>
-            <Crest id={c.id} size={84} radius={22} />
-            <div style={{ minWidth: 0, flex: 1 }}>
-              {pos > 0 && <div className="eyebrow eyebrow-acc">#{pos} · {compName}</div>}
-              <h1 style={{ margin: '6px 0 6px', fontSize: 26, lineHeight: 1.1, fontWeight: 800, letterSpacing: '-0.02em', wordBreak: 'break-word' }}>{c.nome}</h1>
-              <div className="mono" style={{ fontSize: 12, color: 'var(--on-surface-variant)' }}>{c.tag}</div>
-            </div>
-          </div>
-        </div>
-        <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', padding: '14px 8px 16px', background: 'var(--surface-c-low)', borderTop: '1px solid var(--outline-variant)' }}>
-          <StatBlock n={row?.P ?? 0} l="Pontos" big />
-          <StatBlock n={row?.J ?? 0} l="Jogos" />
-          <StatBlock n={row?.V ?? 0} l="Vitórias" />
-          <StatBlock n={(row?.SG ?? 0) > 0 ? '+' + (row?.SG ?? 0) : (row?.SG ?? 0)} l="Saldo" />
-        </div>
-      </div>
-
-      {/* Desktop: painéis lado a lado + jogos abaixo */}
-      {isDesktop ? (
-        <>
-          <div className="d-split" style={{ paddingTop: 8 }}>
-            {/* Left: Visão + Sobre */}
-            <div>
-              <div style={{ padding: '8px 16px 4px', fontWeight: 700, fontSize: 15, color: 'var(--on-surface)' }}>Visão Geral</div>
-              {VisaoPanel}
-              <div style={{ padding: '24px 16px 4px', fontWeight: 700, fontSize: 15, color: 'var(--on-surface)' }}>Sobre</div>
-              {SobrePanel}
-            </div>
-            {/* Right: Elenco */}
-            <div>
-              <div style={{ padding: '24px 16px 4px', fontWeight: 700, fontSize: 15, color: 'var(--on-surface)' }}>Elenco</div>
-              {ElencoPanel}
-            </div>
-          </div>
-          {/* Jogos — full width below */}
-          <div style={{ padding: '28px 0 0' }}>
-            <div style={{ padding: '0 16px 12px', fontWeight: 700, fontSize: 15, color: 'var(--on-surface)' }}>Todos os Jogos</div>
-            {JogosPanel}
-          </div>
-        </>
-      ) : (
-        /* Mobile: 4 tabs */
-        <>
-          <div className="tabs">
-            {[{ id: 'visao', label: 'Visão' }, { id: 'elenco', label: 'Elenco' }, { id: 'jogos', label: 'Jogos' }, { id: 'sobre', label: 'Sobre' }].map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} className={tab === t.id ? 'is-active' : ''}>{t.label}</button>
-            ))}
-          </div>
-
-          {tab === 'visao'  && VisaoPanel}
-          {tab === 'elenco' && ElencoPanel}
-          {tab === 'jogos'  && JogosPanel}
-          {tab === 'sobre'  && SobrePanel}
-        </>
-      )}
-    </>
-  );
+  const matches = index.matches.filter(match => !competition || match.competition_id === competition.id);
+  const { upcoming, results } = clubFixtures(matches), next = upcoming[0];
+  const table = data?.standings, row = table?.find(row => row.club === club.id);
+  const position = table ? [...table].sort((a, b) => b.P - a.P || b.SG - a.SG).findIndex(row => row.club === club.id) + 1 : 0;
+  const roster = index.players?.filter(player => !competition || data?.players?.has(player.id));
+  const favorite = app.favClubs.has(club.id), league = competition?.classification_format === 'league';
+  const compName = competition ? [competition.nome, competition.edicao].filter(Boolean).join(' ') : '';
+  const stages = data?.ties ? resolveBracket(data.ties, matches, index.clubs, competition!.classification_format) : [];
+  const tie = stages.flatMap(stage => stage.ties).filter(result => result.home.clubId === club.id || result.away.clubId === club.id).reverse().find(result => result.outcome !== 'final' && result.outcome !== 'bye') ?? stages.flatMap(stage => stage.ties).filter(result => result.home.clubId === club.id || result.away.clubId === club.id).at(-1);
+  const currentMatch = next ?? (league ? null : tie?.secondLeg ?? tie?.firstLeg);
+  const home = currentMatch ? index.clubs.find(club => club.id === currentMatch.home) : null, away = currentMatch ? index.clubs.find(club => club.id === currentMatch.away) : null;
+  const selector = <CpmPopover className="cpm-club-selector" label="Competição do clube" role="listbox" trigger={<><CpmIcon name="trophy"/><span>{compName}</span><CpmIcon name="chevron"/></>}>
+    {close => index.competitions.map(comp => <button type="button" role="option" aria-selected={comp.id === competition?.id} key={comp.id} onClick={() => { setSelected(comp.id); close(); }}><CpmIcon name="trophy"/><span>{[comp.nome, comp.edicao].filter(Boolean).join(' ')}</span></button>)}
+  </CpmPopover>;
+  const openTable = () => onNav('tournaments', competition!.id, league ? 'table' : 'bracket');
+  const participation = !competition ? <State icon="trophy">Sem competição vinculada</State> : <section className="cpm-club-participation">{selector}<div className="cpm-club-divider"/>{!data ? <Loading compact/> : league ? table === null ? <State icon="searchAlert" action="Tentar novamente" onAction={retrySelection}>Classificação indisponível</State> : <><div className="cpm-club-metrics"><div><strong>{position ? `${position}º` : '—'}</strong><small>Posição</small></div><div><strong>{row?.P ?? '—'}</strong><small>Pontos</small></div></div><Action icon="arrow" onClick={openTable}>Ver tabela</Action></> : data.ties === null ? <State icon="searchAlert" action="Tentar novamente" onAction={retrySelection}>Chave indisponível</State> : <><div className="cpm-club-knockout"><h3><CpmIcon name="trophy"/>{tie?.tie.stage_name || 'Mata-mata'}</h3><small>{competition.classification_format === 'knockout_single' ? 'Jogo único' : 'Ida e volta'}</small>{tie && <p>{tie.home.label} × {tie.away.label}</p>}{tie && tie.homeGoals !== null && tie.awayGoals !== null && <p>{competition.classification_format === 'knockout_two_leg' ? 'Agregado · ' : ''}{tie.homeGoals} – {tie.awayGoals}</p>}</div><Action icon="arrow" onClick={openTable}>Ver chave</Action></>}</section>;
+  const campaign = league && data && table !== null && <section className="cpm-club-campaign"><Heading icon="matchBall">Campanha</Heading><div className="cpm-club-form" role="img" aria-label={row?.form?.length ? row.form.slice(-5).map(value => value === 'V' ? 'Vitória' : value === 'E' ? 'Empate' : 'Derrota').join(', ') : 'Sem resultados recentes'}>{Array.from({ length: 5 }, (_, i) => { const value = row?.form?.slice(-5)[i]; return <span key={i} className={value === 'V' ? 'is-win' : value === 'D' ? 'is-loss' : ''} aria-hidden="true">{value || '—'}</span>; })}</div><div className="cpm-club-campaign-stats">{[['Jogos', row?.J], ['Vitórias', row?.V], ['Empates', row?.E], ['Derrotas', row?.D]].map(([label, value]) => <div key={label}><strong>{value ?? '—'}</strong><small>{label}</small></div>)}</div><div className="cpm-club-divider"/><div className="cpm-club-balance"><span>{row ? `${row.GP} pró · ${row.GC} contra` : '— pró · — contra'}</span><span>{row ? `${row.SG > 0 ? '+' : ''}${row.SG} saldo` : '— saldo'}</span></div></section>;
+  const recent = <section className="cpm-club-recent"><Heading icon="clock" action={<Action icon="arrow" onClick={() => { setGames('results'); setTab('games'); }}>Ver jogos</Action>}>{league || !tie ? 'Últimos resultados' : competition?.classification_format === 'knockout_two_leg' ? 'Ida' : 'Resultados'}</Heading><div className="cpm-club-fixtures">{results.length ? results.slice(0, 3).map(match => <Fixture key={match.id} match={match} clubs={index.clubs} competition={competition} onNav={onNav}/>) : <State>Nenhum resultado registrado</State>}</div></section>;
+  return <main className="cpm-club">
+    <section className="cpm-club-identity" aria-label="Clube"><div className="cpm-club-toolbar"><Action icon="searchBack" onClick={back}>Voltar</Action><span/><Action icon="star" label={favorite ? 'Remover clube dos salvos' : 'Favoritar clube'} pressed={favorite} disabled={pending || app.savedLoading} onClick={async () => { setPending(true); try { await app.saveWithFeedback('club:' + club.id, !favorite, 'Clube'); } finally { setPending(false); } }}>{favorite ? 'Favoritado' : 'Favoritar'}</Action><Action icon="matchShare" label="Compartilhar clube" onClick={async () => { const result = await shareLink({ title: club.nome, text: club.nome + ' · CPM MamoBall', url: window.location.origin + pathForPage('club', club.id) }); if (result === 'copied') app.showToast('Link copiado', { variant: 'copied' }); else if (result === 'failed') app.showError(new Error('Não foi possível compartilhar. Tente novamente.')); }}>Compartilhar</Action></div><div className="cpm-club-name"><Crest key={club.id} id={club.id} club={club} size={64}/><div><h1>{club.nome}</h1><div className="cpm-club-colors"><span>{club.tag}</span><span>Cores</span>{[club.color, club.color2].filter(Boolean).map((color, i) => <i key={i} title={color} aria-label={`Cor ${i + 1}: ${color}`} style={{ backgroundColor: /^#[\da-f]{3,8}$/i.test(color) ? color : undefined }}/>)}</div></div></div></section>
+    <div className="cpm-club-tabs" role="tablist" aria-label="Detalhes do clube">{tabs.map((item, i) => <button type="button" key={item.id} ref={node => { tabRefs.current[i] = node; }} role="tab" id={`${panel}-${item.id}`} aria-selected={item.id === tab} aria-controls={panel} tabIndex={item.id === tab ? 0 : -1} onClick={() => setTab(item.id)} onKeyDown={event => keyboard(event, i)}><CpmIcon name={item.icon}/>{item.label}</button>)}</div>
+    <motion.div key={tab} id={panel} role="tabpanel" tabIndex={0} aria-labelledby={`${panel}-${tab}`} initial={false} animate={{ opacity: 1 }} transition={{ duration: reduced ? 0 : .12 }}>
+      {tab === 'summary' && !competition ? <State icon="trophy">Sem competição vinculada</State> : tab === 'summary' ? <div className="cpm-club-summary"><section className="cpm-club-next"><Heading icon={league || !tie ? next?.status === 'ao_vivo' ? 'matchBall' : 'calendar' : 'trophy'}>{league || !tie ? next?.status === 'ao_vivo' ? 'Ao vivo' : 'Próximo jogo' : tie.tie.stage_name}</Heading>{currentMatch && home && away ? <><MatchScoreboard detail={{ match: currentMatch, home, away, competition }} onNav={onNav} context={!league && tie ? { round: tie.tie.stage_name, stage: competition?.classification_format === 'knockout_single' ? 'Jogo único' : currentMatch.id === tie.tie.second_leg_match_id ? 'Volta' : 'Ida' } : undefined}/><Action icon="arrow" onClick={() => onNav('match', currentMatch.id)}>Ver partida</Action></> : <State>Nenhum jogo agendado</State>}</section><aside className="cpm-club-rail">{participation}{campaign}</aside>{!league && !results.length ? null : recent}</div> : tab === 'games' ? <div className="cpm-club-games"><div className="cpm-club-game-tabs" role="group" aria-label="Situação dos jogos"><button type="button" aria-pressed={games === 'upcoming'} onClick={() => setGames('upcoming')}><CpmIcon name="calendar"/>Próximos<small>{upcoming.length}</small></button><button type="button" aria-pressed={games === 'results'} onClick={() => setGames('results')}><CpmIcon name="calendar"/>Resultados<small>{results.length}</small></button></div><div className="cpm-club-fixtures">{(games === 'upcoming' ? upcoming : results).length ? (games === 'upcoming' ? upcoming : results).map(match => <Fixture key={match.id} match={match} clubs={index.clubs} competition={competition} onNav={onNav}/>) : <State>{matches.length ? games === 'upcoming' ? 'Nenhum jogo agendado' : 'Nenhum resultado registrado' : 'Nenhuma partida registrada'}</State>}</div></div> : <section className="cpm-club-roster"><Heading icon="user">Elenco</Heading>{index.players === null ? <State icon="searchAlert" action="Tentar novamente" onAction={retry}>Não foi possível carregar o elenco</State> : competition && !data ? <Loading compact/> : competition && data?.players === null ? <State icon="searchAlert" action="Tentar novamente" onAction={retrySelection}>Não foi possível carregar o elenco</State> : !roster?.length ? <State icon="user">Nenhum jogador cadastrado</State> : <>{competition && data?.scorers === null && <State icon="searchAlert" action="Tentar novamente" onAction={retrySelection}>Estatísticas indisponíveis</State>}<table className="cpm-club-roster-table"><thead><tr><th scope="col">Jogador</th><th scope="col"><CpmIcon name="matchBall"/><span>Gols</span></th><th scope="col"><CpmIcon name="matchAssist"/><span>Assist.</span></th></tr></thead><tbody>{roster.map(player => { const stats = playerStatistics(player, roster, data?.scorers ?? []); return <tr key={player.id}><td><div className="cpm-club-player"><span className="cpm-club-player-avatar">{player.nick?.[0]?.toUpperCase() || <CpmIcon name="user"/>}</span><div><strong>{player.nick || 'Jogador sem nome'}</strong><small>{player.game_id ? '#' + player.game_id : 'ID indisponível'}{player.posicao && <span>{player.posicao}</span>}</small>{player.is_captain && <small><CpmIcon name="searchShield"/>Capitão</small>}</div></div></td><td>{stats?.goals ?? '—'}</td><td>{stats?.assists ?? '—'}</td></tr>; })}</tbody></table></>}</section>}
+    </motion.div>
+  </main>;
 }

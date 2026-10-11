@@ -1,0 +1,136 @@
+/* Native registration geometry: Light104:3368/3448/3711, Dark111:6053.
+   960px content, 24px rhythm; compact layout below1024px. */
+.app-root[data-surface="subscription"][data-auth-flow="false"] { background:var(--cpm-surface-page); color:var(--cpm-text-primary); }
+.app-root[data-surface="subscription"][data-auth-flow="false"] .scroll { width:100%; max-width:none; margin:0; padding:0; background:var(--cpm-surface-page); }
+.cpm-team-registration { padding:32px 80px; min-height:100%; font:500 14px/20px var(--cpm-font-ui); color:var(--cpm-text-primary); }
+.cpm-team-registration * { box-sizing:border-box; }
+.cpm-registration-content { width:100%; max-width:960px; margin:auto; display:flex; flex-direction:column; gap:24px; }
+.cpm-team-registration button,.cpm-team-registration input,.cpm-team-registration textarea,.cpm-team-registration select { font:inherit; -webkit-tap-highlight-color:transparent; }
+.cpm-team-registration :is(button,input,textarea,select):focus-visible { outline:2px solid var(--cpm-border-focus); outline-offset:2px; }
+.cpm-team-registration ::selection { background:var(--cpm-nav-active-bg); color:var(--cpm-nav-active-text); }
+.cpm-team-registration :is(input,textarea) { caret-color:var(--cpm-action-primary); }
+.cpm-team-registration ::placeholder { color:var(--cpm-text-secondary); opacity:1; }
+.cpm-team-registration :is(textarea,select) { scrollbar-color:var(--cpm-border-subtle) transparent; scrollbar-width:thin; }
+.cpm-team-registration h1,.cpm-team-registration h2,.cpm-team-registration h3,.cpm-team-registration p { margin:0; }
+.cpm-team-registration h1 { font:600 32px/40px var(--cpm-font-display); }
+.cpm-team-registration h1:focus { outline:none; }
+.cpm-team-registration h2,.cpm-team-registration h3 { font:600 28px/32px var(--cpm-font-display); }
+.cpm-registration-heading { display:flex; align-items:center; gap:16px; min-height:44px; }
+.cpm-registration-heading h1 { flex:1; }
+.cpm-registration-tonal { color:var(--cpm-nav-active-text); background:var(--cpm-nav-active-bg); border-radius:12px; }
+.cpm-registration-tonal:hover { background:var(--cpm-nav-hover-bg); }
+.cpm-registration-action.cpm-registration-tonal { padding:12px; }
+.cpm-team-registration button:disabled { color:var(--cpm-text-disabled); background:var(--cpm-action-disabled); cursor:default; }
+.cpm-registration-competition { max-width:100%; color:var(--cpm-nav-active-text); }
+.cpm-registration-competition>.cpm-popover-trigger { padding:12px; background:var(--cpm-nav-active-bg); text-align:left; }
+.cpm-registration-competition>.cpm-popover-trigger>span:not(.cpm-icon) { overflow-wrap:anywhere; }
+.cpm-registration-competition .cpm-popover-panel { right:0; left:auto; }
+.cpm-registration-competition [role="option"] { display:flex; align-items:center; gap:8px; padding:12px; min-height:44px; width:100%; text-align:left; border-radius:8px; color:var(--cpm-text-primary); }
+.cpm-registration-competition [role="option"]:hover,.cpm-registration-competition [aria-selected="true"] { background:var(--cpm-nav-active-bg); color:var(--cpm-nav-active-text); }
+.cpm-registration-progress { display:flex; align-items:center; list-style:none; padding:0; margin:0; gap:8px; }
+.cpm-registration-step { display:flex; align-items:center; gap:8px; padding:12px; flex:1; min-width:0; min-height:44px; border-radius:12px; background:var(--cpm-surface-card,var(--cpm-surface-header)); color:var(--cpm-text-secondary); }
+.cpm-registration-step.is-current { background:var(--cpm-nav-active-bg); color:var(--cpm-nav-active-text); }
+.cpm-registration-progress-arrow { display:flex; color:var(--cpm-text-secondary); }
+.cpm-registration-stage { min-width:0; }
+.cpm-registration-card { display:flex; flex-direction:column; gap:16px; padding:24px; border-radius:16px; background:var(--cpm-surface-card,var(--cpm-surface-header)); min-width:0; }
+.cpm-registration-section-head { display:flex; align-items:center; gap:12px; min-height:32px; }
+.cpm-registration-section-head>.cpm-icon { color:var(--cpm-text-secondary); }
+.cpm-registration-paste textarea { display:block; width:100%; height:280px; padding:16px; background:var(--cpm-surface-subtle); color:var(--cpm-text-secondary); border:0; border-radius:12px; resize:vertical; min-height:160px; }
+.cpm-registration-caption { color:var(--cpm-text-secondary); font:400 12px/16px var(--cpm-font-ui); }
+.cpm-registration-import-actions { display:flex; align-items:stretch; gap:12px; }
+.cpm-registration-import-actions>.cpm-button-primary { flex:0 0 auto; }
+.cpm-registration-action.cpm-button-primary { justify-content:flex-start; text-align:left; }
+.cpm-registration-review { display:flex; flex-direction:column; gap:24px; }
+.cpm-registration-team { border:0; margin:0; width:100%; }
+.cpm-registration-team>.cpm-registration-action { align-self:flex-start; }
+.cpm-registration-team-fields,.cpm-registration-editor-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.cpm-registration-field { display:flex; flex-direction:column; gap:8px; min-width:0; }
+.cpm-registration-field>label { font:400 12px/16px var(--cpm-font-ui); color:var(--cpm-text-secondary); }
+.cpm-registration-input { display:flex; align-items:center; gap:8px; min-height:44px; padding:12px; background:var(--cpm-surface-subtle); border-radius:12px; }
+.cpm-registration-input>.cpm-icon { color:var(--cpm-text-secondary); }
+.cpm-registration-input :is(input,select) { min-width:0; width:100%; background:transparent; color:var(--cpm-text-primary); border:0; padding:0; height:20px; border-radius:0; }
+.cpm-registration-input select { height:24px; color-scheme:light dark; }
+.cpm-registration-input:focus-within { outline:2px solid var(--cpm-border-focus); outline-offset:2px; }
+.cpm-registration-input input:focus-visible,.cpm-registration-input select:focus-visible { outline:none; }
+.cpm-registration-input.is-invalid { outline:1px solid var(--cpm-feedback-error); }
+.cpm-registration-field-error { color:var(--cpm-feedback-error,var(--error)); font-size:12px; line-height:16px; }
+.cpm-registration-captain-note { display:flex; align-items:center; gap:8px; min-height:44px; color:var(--cpm-text-secondary); font:400 12px/16px var(--cpm-font-ui); }
+.cpm-registration-captain-note button { color:var(--cpm-action-primary); font-size:14px; font-weight:500; min-height:44px; padding:12px; border-radius:12px; }
+.cpm-registration-captain-note button:hover { background:var(--cpm-nav-hover-bg); }
+.cpm-registration-roster { display:flex; flex-direction:column; gap:12px; }
+.cpm-registration-roster-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.cpm-registration-roster-heading>span { font-size:16px; line-height:24px; color:var(--cpm-nav-active-text); font-variant-numeric:tabular-nums; }
+.cpm-registration-player { display:flex; align-items:center; gap:12px; padding:16px; border-radius:12px; background:var(--cpm-surface-header); flex-wrap:wrap; min-height:76px; }
+.cpm-registration-player-info { display:flex; flex:1; min-width:0; flex-direction:column; gap:4px; }
+.cpm-registration-player-name { display:flex; align-items:center; min-width:0; gap:8px; }
+.cpm-registration-player-name strong { font-weight:600; font-size:16px; line-height:24px; overflow-wrap:anywhere; }
+.cpm-registration-player-name>span { color:var(--cpm-nav-active-text); font-size:14px; line-height:20px; display:flex; gap:8px; align-items:center; padding:12px; min-height:44px; border-radius:12px; background:var(--cpm-nav-active-bg); }
+.cpm-registration-player-name>span>.cpm-icon { width:20px; height:20px; flex-basis:20px; mask-size:20px; -webkit-mask-size:20px; }
+.cpm-registration-player-id { font-size:12px; line-height:16px; overflow-wrap:anywhere; color:var(--cpm-text-secondary); }
+.cpm-registration-player-discord { width:224px; display:flex; flex-direction:column; gap:4px; font:400 12px/16px var(--cpm-font-ui); color:var(--cpm-text-secondary); overflow-wrap:anywhere; }
+.cpm-registration-player-actions { display:flex; align-items:center; gap:4px; }
+.cpm-registration-player-actions button { width:44px; height:44px; display:grid; place-items:center; border-radius:12px; }
+.cpm-registration-player-actions button:last-child { color:var(--cpm-text-primary); background:var(--cpm-nav-active-bg); }
+.cpm-registration-player-actions button:last-child:hover { background:var(--cpm-nav-hover-bg); }
+.cpm-registration-player.is-captain { min-height:96px; }
+.cpm-registration-player.is-invalid { outline:1px solid var(--cpm-feedback-error,var(--error)); }
+.cpm-registration-player-error { flex-basis:100%; display:flex; gap:8px; align-items:center; color:var(--cpm-feedback-error,var(--error)); font-size:12px; }
+.cpm-registration-player-error>.cpm-icon { width:16px; height:16px; flex-basis:16px; mask-size:16px; -webkit-mask-size:16px; }
+.cpm-registration-empty { min-height:100px; color:var(--cpm-text-secondary); display:flex; gap:12px; align-items:center; padding:16px; }
+.cpm-registration-submit { padding:16px; }
+.cpm-registration-consent { display:flex; align-items:center; gap:0; min-height:44px; flex-wrap:wrap; }
+.cpm-registration-consent input { width:20px; height:20px; margin:0 12px 0 0; accent-color:var(--cpm-action-primary); cursor:pointer; }
+.cpm-registration-consent label { cursor:pointer; }
+.cpm-registration-consent button { min-height:44px; padding:0 0 0 4px; color:var(--cpm-action-primary); text-decoration:underline; text-underline-offset:3px; }
+.cpm-registration-editor>.cpm-registration-action,.cpm-registration-picker>.cpm-registration-action { width:100%; }
+.cpm-registration-picker { gap:12px; }
+.cpm-registration-status { padding:32px; gap:24px; }
+.cpm-registration-status-mark { display:grid; place-items:center; width:52px; height:52px; padding:16px; border-radius:16px; background:var(--cpm-nav-active-bg); color:var(--cpm-nav-active-text); }
+.cpm-registration-status>h2 { font-size:32px; line-height:40px; }
+.cpm-registration-status-facts { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.cpm-registration-status-facts>span { display:flex; align-items:center; gap:8px; }
+.cpm-registration-status-facts>span:last-child { color:var(--cpm-nav-active-text); }
+.cpm-registration-status>p { color:var(--cpm-text-secondary); }
+.cpm-registration-status>.cpm-registration-action { align-self:flex-start; }
+.cpm-registration-alert { display:flex; gap:12px; align-items:center; background:var(--cpm-feedback-error-bg,var(--cpm-nav-active-bg)); color:var(--cpm-feedback-error,var(--cpm-text-primary)); border-radius:12px; padding:12px 16px; }
+.cpm-registration-alert>span:not(.cpm-icon) { flex:1; overflow-wrap:anywhere; }
+.cpm-registration-alert>button { display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border-radius:12px; }
+.cpm-registration-spinner { animation:cpm-registration-spin 1s linear infinite; }
+@keyframes cpm-registration-spin { to { transform:rotate(360deg); } }
+@media (min-width:1024px) and (max-width:1279px) { .cpm-team-registration { padding:32px 24px; } }
+@media (max-width:1023px) {
+  .cpm-team-registration { padding:16px 16px 32px; }
+  .cpm-registration-heading { flex-direction:column; align-items:flex-start; }
+  .cpm-registration-progress { gap:4px; }
+  .cpm-registration-step { flex-direction:column; min-height:64px; padding:8px; }
+  .cpm-registration-card { padding:16px; }
+  .cpm-registration-paste textarea { height:304px; }
+  .cpm-registration-import-actions { flex-direction:column; }
+  .cpm-registration-team-fields,.cpm-registration-editor-fields { grid-template-columns:1fr; }
+  .cpm-registration-team>.cpm-registration-action { align-self:stretch; }
+  .cpm-registration-player { display:grid; grid-template-columns:minmax(0,1fr) 92px; column-gap:12px; row-gap:0; }
+  .cpm-registration-player-info { grid-column:1; grid-row:1; }
+  .cpm-registration-player-name { display:contents; }
+  .cpm-registration-player-name strong { order:0; }
+  .cpm-registration-player-id { order:1; }
+  .cpm-registration-player-name>span { order:2; align-self:flex-start; }
+  .cpm-registration-player-name>span { min-height:28px; padding:4px; gap:4px; }
+  .cpm-registration-player-id { grid-column:1; grid-row:2; width:auto; font-size:12px; line-height:16px; }
+  .cpm-registration-player-discord { display:none; }
+  .cpm-registration-player-actions { grid-column:2; grid-row:1; }
+  .cpm-registration-player.is-captain { min-height:108px; }
+  .cpm-registration-player-error { grid-column:1 / -1; margin-top:8px; }
+  .cpm-registration-status { padding:24px; }
+  .cpm-registration-status>.cpm-registration-action { align-self:stretch; }
+}
+@media (prefers-reduced-motion:reduce) { .cpm-registration-spinner { animation:none; } }
+@media (min-width:600px) and (max-width:1023px) { .cpm-team-registration { padding:32px 24px; } }
+
+.app-root[data-theme="dark"] .cpm-registration-input,.app-root[data-theme="dark"] .cpm-registration-paste textarea { border:1px solid var(--cpm-auth-outline); }
+.app-root[data-theme="dark"] .cpm-registration-input { padding:11px; }
+.app-root[data-surface="subscription"] .cpm-feedback-host { bottom:calc(32px + env(safe-area-inset-bottom) + var(--cpm-keyboard-offset,0px)); }
+
+[data-theme="light"] .cpm-registration-section-head>.cpm-icon,
+[data-theme="light"] .cpm-registration-input>.cpm-icon,
+[data-theme="light"] .cpm-registration-tonal>.cpm-icon,
+[data-theme="light"] .cpm-registration-player-name>span>.cpm-icon { color:var(--cpm-text-primary); }
